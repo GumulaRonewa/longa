@@ -1,0 +1,482 @@
+.authBox{
+  width: 100%;
+  overflow: hidden;
+}
+.leftBox{
+  width: 55%;
+  height:100vh;
+  float:left;
+  position: relative;
+
+}
+.leftBoxBusiness{
+  width: 45%;
+  height:100vh;
+  float:left;
+  position: relative;
+
+}
+.leftBoxChoose{
+  width: 50%;
+  height:100vh;
+  float:left;
+  position: relative;
+
+}
+.toplogo{
+  float: right;
+   display: grid;
+   place-items:end;
+   width: 40%;
+   position: relative;
+
+}
+.regbuttondiv{
+   display: grid;
+   place-items:end;
+   margin-right: 40px;
+ 
+
+}
+.topSec{
+   height: 120px;
+   width:100px;
+   margin-top:10px;
+   margin-right: 20px
+}
+.leftRegBox{
+  width: 40%;
+  height:100vh;
+  float:left;
+  position: relative;
+
+}
+.rightRegBox{
+  width: 60%;
+  height:100vh;
+  float:right;
+  position: relative;
+
+}
+.registerbutton{
+  width:50%;
+    float:left;
+     text-align: center;
+font: normal normal normal 25px/28px;
+letter-spacing: 0px;
+color: #FFFFFF;
+opacity: 1;
+  place-items:center;
+}
+.forgotbutton{
+  width:50%;
+    float:right;
+    font: normal normal normal 25px/28px;
+letter-spacing: 0px;
+color: #FFFFFF;
+opacity: 1;
+   text-align: center;
+  place-items:center;
+}
+.buttonText{
+font: normal normal normal 25px/28px;
+letter-spacing: 0px;
+color: #FFFFFF;
+opacity: 1;
+}
+.buttons{
+   width: 149px;
+   height: 44px;
+   border-radius: 10px;
+   margin-top: 25px;
+   font-size: 18px;
+letter-spacing: 0px;
+   display: flex;
+       outline: none;
+
+     color: white;
+     padding: 12px 16px; /* Some padding */
+   flex-direction: row;
+  background: #C70F0F 0% 0% no-repeat padding-box;
+}
+.buttonshidden{
+   width: 149px;
+   height: 44px;
+   border-radius: 10px;
+   margin-top: 25px;
+   font-size: 18px;
+letter-spacing: 0px;
+       outline: none;
+      display: none;
+     color: white;
+     padding: 12px 16px; /* Some padding */
+   flex-direction: row;
+  background: #C70F0F 0% 0% no-repeat padding-box;
+}
+.Gmailbutton{
+   width: 149px;
+   height: 44px;
+   border-radius: 10px;
+   font-size: 18px;
+letter-spacing: 0px;
+   display: flex;
+     color: white;
+     padding: 12px 16px; /* Some padding */
+    outline: none;
+
+   flex-direction: row;
+   margin-top: 12px;
+  background: #C70F0F 0% 0% no-repeat padding-box;
+}
+.facebookbutton{
+   width: 149px;
+   height: 44px;
+     padding: 12px 16px; /* Some padding */
+
+   display: flex;
+   flex-direction: row;
+   font-size: 18px;
+letter-spacing: 0px;
+  text-align: center;
+   color: white;
+    outline: none;
+
+   border-radius: 10px;
+   margin-top: 40px;
+  background: #C70F0F 0% 0% no-repeat padding-box;
+}
+.logoplace{
+  display: grid;
+  place-items:center;
+   width: 100%;
+}
+.regplace{
+  display: grid;
+  place-items:center;
+  text-align: right;
+font: normal normal normal 45px/54px Lato;
+letter-spacing: 0px;
+color: #FFFFFF;
+opacity: 1;
+   width: 100%;
+}
+.regplaceBusiness{
+  display: grid;
+  place-items:center;
+  text-align: right;
+font: normal normal normal 35px/45px Lato;
+letter-spacing: 0px;
+color: #FFFFFF;
+opacity: 1;
+   width: 100%;
+}
+.inputbox{
+    border-radius: 25px;
+    outline: none;
+    height: 35px;
+        text-align: center;
+    display: flex;
+    border-color:white;
+}
+.inputboxhidden{
+    border-radius: 25px;
+    outline: none;
+    height: 35px;
+        text-align: center;
+   display: none;
+    border-color:white;
+}
+.inputRegibox{
+    border-radius: 25px;
+    outline: none;
+    height: 35px;
+    border-color:white;
+    text-align: center;
+    margin-top: 17px;
+}
+.inputRegiboxhidden{
+    border-radius: 25px;
+    outline: none;
+    height: 35px;
+    display: none;
+    border-color:white;
+    text-align: center;
+    margin-top: 17px;
+}
+.inputPasswordbox{
+    border-radius: 25px;
+    outline: none;
+    margin-top: 28px;
+    height: 35px;
+        text-align: center;
+
+    border-color: white;
+}
+.loginBox{
+    display: grid;
+    place-items:center;
+    margin-top: 60px;
+   width: 100%;
+}
+.RegBox{
+    display: grid;
+    place-items:center;
+    margin-top: 20px;
+   width: 100%;
+}
+.RegBoxBusiness{
+    display: grid;
+    margin-top: 15px;
+    height: 200vh;
+    margin-left: 10px;
+    float: left;
+   width: 50%;
+}
+.RegBoxBusinessRight{
+    display: grid;
+    margin-top: 15px;
+    margin-left: 10px;
+    float:right;
+     width: 45%;
+}
+
+.logininput{
+     width: 22vw;
+     display: flex;
+     flex-direction: column;
+
+}
+.icon{
+   height: 28px;
+   width:30px;
+   margin-top: -5px;
+}
+.iconSign{
+   height: 25px;
+   width:30px;
+   margin-top: -5px;
+}
+.image {
+  align-self: center;
+  top: 10px;
+   width: 20vw;
+  height: 33vh;
+}
+.rightBox{
+  width: 45%;
+  height:100vh;
+  float:right;
+ 
+
+}
+.rightBox{
+  width: 45%;
+  height:100vh;
+  float:right;
+ 
+
+}
+.rightBoxBusiness{
+  width: 55%;
+  height:100vh;
+  float:right;
+
+}
+.rightBoxChoose{
+  width: 50%;
+  height:100vh;
+  float:right;
+
+}
+.bgGreen{
+  width: 100%;
+  height: 100%;
+  background-color:#0F81C7;
+}
+.bgRed{
+  width: 100%;
+  height: 1200%;
+  background-color:#0F81C7;
+
+}
+.imgRight{
+  width: 100%;
+  height: 100%;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  opacity: 0.5;
+    top: 0;
+  position: fixed;
+  
+}
+.imageAuth{
+  background-image: url("../../images/pexels-godisable-jacob-794064.jpg");
+  width: 100%;
+  height: 100%;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: absolute;
+  top: 0;
+  left:0;
+}
+.imageChooseLeft{
+  background-image: url("../../images/nesa-by-makers-IgUR1iX0mqM-unsplash.jpg");
+  width: 100%;
+  height: 100%;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: absolute;
+  top: 0;
+  left:0;
+}
+.imageChooseRight{
+  background-image: url("../../images/nqobile-vundla-3Cza3ttpzFs-unsplash.jpg");
+  width: 100%;
+  height: 100%;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: absolute;
+  top: 0;
+  left:50%;
+}
+.imageBusinessAuth{
+  background-image: url("../../images/nesa-by-makers-IgUR1iX0mqM-unsplash.jpg");
+  width: 100%;
+  height: 100%;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: absolute;
+  top: 0;
+  left:0;
+}
+.imageRegAuth{
+  background-image: url("../../images/pexels-alena-koval-886521.jpg");
+  width: 100%;
+  height: 100%;
+  background-position: 10% 50%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: absolute;
+  top: 0;
+  left:0;
+}
+.imageText{
+  font-size: 28px;
+  position: absolute;
+  color: #ffffff;
+
+}
+.imageText.bold{
+  font-weight: bold;
+}
+.imageText.style1{
+  top: 200px;
+  right: 20px;
+}
+.imageText.style2{
+  top: 250px;
+  left: 20px;
+}
+.box{
+  width: 100%;
+  height: 100%;
+
+
+}
+.loginemail {
+  background-color: #ffffff;
+  position: absolute;
+  top: 25%;
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+}
+.titleAuth{
+  font-size: 22px;
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 30px;
+  color: #116149;
+}
+.inputSBox{
+   width: 300px;
+  height: 48px;
+  border-bottom: 2px solid #d8d8d8;
+  margin-bottom:10px;
+}
+.inputS{
+  width: 100%;
+  height: 98%;
+  font-size:14px;
+  color: #37353f;
+  text-indent: 10px;
+  border:0;
+  outline: none;
+}
+
+@media only screen and (max-width: 768px) {
+  .authBox{
+    width: 100%;
+  }
+  .leftBox{
+    display: none;
+  }
+   .inputboxhidden{
+     display: flex;
+     margin-top: 10px;
+   }
+   .buttonshidden{
+     display: flex;
+   }
+   .inputRegiboxhidden{
+     display: flex;
+   }
+  .RegBoxBusinessRight{
+        display: none;
+
+  }
+   .RegBoxBusiness{
+    width: 100%;
+  }
+  .leftBoxBusiness{
+    display: none;
+  }
+  .leftRegBox{
+    display: none;
+  }
+  .rightBox{
+  width: 100%;
+  float:initial;
+  border:0;
+  }
+   .rightBoxBusiness{
+  width: 100%;
+  float:initial;
+  border:0;
+  }
+   .rightRegBox{
+  width: 100%;
+  float:initial;
+  border:0;
+  }
+  .logininput{
+    width:90%;
+  }
+  .image {
+     width: 200px;
+  height: 190px;
+}
+.toplogo{
+  place-items: center;
+  width: 100%;
+
+}
+ .facebookbutton{
+   margin-top: 10px;
+ }
+}
