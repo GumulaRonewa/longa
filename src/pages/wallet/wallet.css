@@ -5,6 +5,7 @@
 box-shadow: 10px 10px 6px #00000029;
 border: 10px solid #0F81C7;
 border-radius: 40px;
+overflow: auto;
 opacity: 1;
 }
 .walletround{
@@ -17,6 +18,22 @@ border-bottom-right-radius: 30px;
 border-bottom-left-radius: 30px;
 border-top-right-radius: 10px;
 border-top-left-radius: 10px;
+opacity: 1;
+}
+.listdiv{
+  width: 90%;
+height: 93px;
+display: flex;
+margin-right: 50px;
+margin-left: 40px;
+flex-direction: row;
+background: #FFFFFF 0% 0% no-repeat padding-box;
+border: 4px solid #0F81C7;
+
+border-bottom-right-radius: 20px;
+border-bottom-left-radius: 20px;
+border-top-right-radius: 20px;
+border-top-left-radius: 20px;
 opacity: 1;
 }
 .walletheadertext{
@@ -87,9 +104,7 @@ opacity: 1;
 	width: 100%;
 }
 @media only screen and (max-width: 768px) {
-  .walletround{
-    display: none;
-  }
+ 
   .walletbox{
   width: 100%;
   height: 100%;

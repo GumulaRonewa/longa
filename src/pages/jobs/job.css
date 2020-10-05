@@ -19,6 +19,22 @@ border-top-right-radius: 10px;
 border-top-left-radius: 10px;
 opacity: 1;
 }
+.joblistdiv{
+  width: 90%;
+height: 93px;
+display: flex;
+margin-right: 50px;
+margin-left: 40px;
+flex-direction: row;
+background: #FFFFFF 0% 0% no-repeat padding-box;
+border: 4px solid #0F81C7;
+
+border-bottom-right-radius: 20px;
+border-bottom-left-radius: 20px;
+border-top-right-radius: 20px;
+border-top-left-radius: 20px;
+opacity: 1;
+}
 .jobheadertext{
   text-align: left;
   align-self: center;

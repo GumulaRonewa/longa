@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import './wallet.css';
-
+import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
 export default class WalletScreen extends Component {
    constructor(props) {
     super(props);
@@ -22,7 +23,7 @@ export default class WalletScreen extends Component {
                 <div className={'columntext'}>
                   <div className={'rowtext'}>
                       <div className={'columntextfont1'}>Pending Payment</div>
-                      <div className={'columntextfont1'}>R 30</div>
+                      <div className={'columntextfont1'}>R 3000</div>
                   </div>
                   <div className={'rowtext'}>
                      <div className={'columntextfont'}>Rewards</div>
@@ -34,6 +35,17 @@ export default class WalletScreen extends Component {
                   </div>
                 </div>
              </div>
+             <List>
+                <ListItem>
+                  <div className={'listdiv'}>
+                  </div>
+                </ListItem>
+                 <ListItem>
+                  <div className={'listdiv'}>
+                  </div>
+                </ListItem>
+
+             </List>
           </div>
   	 	  </div>
   	 	)
