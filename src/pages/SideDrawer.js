@@ -260,7 +260,7 @@ const menuId = 'primary-search-account-menu';
         </ListItem>
         <div style={{height:7,backgroundColor:'#0F81C7'}}/>
         <ListItem
-           component={Link} to={"/Home"}
+           component={Link} to={"/messages"}
           style={{ height: "11vh" }}
           button
           key={3}

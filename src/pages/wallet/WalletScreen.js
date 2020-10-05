@@ -19,6 +19,20 @@ export default class WalletScreen extends Component {
            <div className={'walletbox'}>
              <div className={'walletround'}>
                 <p className={'walletheadertext'}>Wallet</p>
+                <div className={'columntext'}>
+                  <div className={'rowtext'}>
+                      <div className={'columntextfont1'}>Pending Payment</div>
+                      <div className={'columntextfont1'}>R 30</div>
+                  </div>
+                  <div className={'rowtext'}>
+                     <div className={'columntextfont'}>Rewards</div>
+                     <div className={'columntextfont3'}>None </div>
+                  </div> 
+                  <div className={'rowtext'}>
+                     <div className={'columntextfont'}>Total Paid</div>
+                     <div className={'columntextfont2'}>R 1200 </div>
+                  </div>
+                </div>
              </div>
           </div>
   	 	  </div>
