@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import './home.css';
+import './chat.css';
 
-export default class HomeScreen extends Component {
+export default class ChatScreen extends Component {
    constructor(props) {
     super(props);
 
@@ -15,10 +15,10 @@ export default class HomeScreen extends Component {
 
   render(){
   	 return(
-  	 	  <div className={'home'}>
-           <div className={'thebox'}>
-             <div className={'round'}>
-                <p className={'headertext'}>Campaigns</p>
+  	 	  <div className={'chathome'}>
+           <div className={'chatbox'}>
+             <div className={'chatround'}>
+                <p className={'headertext'}>Messages</p>
              </div>
           </div>
   	 	  </div>

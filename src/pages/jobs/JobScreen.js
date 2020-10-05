@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import './home.css';
+import './job.css';
 
-export default class HomeScreen extends Component {
+export default class JobScreen extends Component {
    constructor(props) {
     super(props);
 
@@ -15,10 +15,10 @@ export default class HomeScreen extends Component {
 
   render(){
   	 return(
-  	 	  <div className={'home'}>
-           <div className={'thebox'}>
-             <div className={'round'}>
-                <p className={'headertext'}>Campaigns</p>
+  	 	  <div className={'jobhome'}>
+           <div className={'jobbox'}>
+             <div className={'jobround'}>
+                <p className={'jobheadertext'}>My Jobs</p>
              </div>
           </div>
   	 	  </div>

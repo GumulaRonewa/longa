@@ -18,6 +18,10 @@ import Avatar from "@material-ui/core/Avatar";
 import clsx from "clsx";
 import { Switch, Route, Link, BrowserRouter } from "react-router-dom";
 import HomeScreen from './home/HomeScreen'
+import ChatScreen from './chat/ChatScreen'
+import JobScreen from './jobs/JobScreen'
+import FeedScreen from './feed/FeedScreen'
+import WalletScreen from './wallet/WalletScreen'
 import HomeIcon from '@material-ui/icons/Home';
 import MessageIcon from '@material-ui/icons/Message';
 import AccountBalanceWalletIcon from '@material-ui/icons/AccountBalanceWallet';
@@ -30,6 +34,7 @@ const useStyles = makeStyles((theme) => ({
     main: {
     display: "flex",
     flex: 1,
+    overflow:'hidden',
     padding: 0,
     "@global": {
       "*": {
@@ -138,6 +143,7 @@ const useStyles = makeStyles((theme) => ({
   },
   inputInput: {
     padding: theme.spacing(1, 1, 1, 0),
+    Color:"black",
     // vertical padding + font size from searchIcon
     paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
     transition: theme.transitions.create('width'),
@@ -245,7 +251,7 @@ const menuId = 'primary-search-account-menu';
         <div style={{height:7,backgroundColor:'#0F81C7'}}/>
 
         <ListItem
-          component={Link} to={"/Home"}
+          component={Link} to={"/feed"}
           style={{ height: "11vh" }}
           button
           key={2}
@@ -264,7 +270,8 @@ const menuId = 'primary-search-account-menu';
         </ListItem>
         <div style={{height:7,backgroundColor:'#0F81C7'}}/>
         <ListItem
-          to={"/Home"}
+         component={Link} 
+          to={"/wallet"}
           style={{ height: "11vh" }}
           button
           key={4}
@@ -274,6 +281,8 @@ const menuId = 'primary-search-account-menu';
         </ListItem>
         <div style={{height:7,backgroundColor:'#0F81C7'}}/>
         <ListItem
+          component={Link} 
+          to={"/jobs"}
           style={{ height: "11vh" }}
           button
           key={5}
@@ -384,8 +393,12 @@ function Main() {
             [classes.contentShift]: true,
           })}
         >
-          <div className="mainapp">
+          <div className="main">
             <Route path="/home" component={HomeScreen} />
+            <Route path="/feed" component={FeedScreen} />
+            <Route path="/jobs" component={JobScreen} />
+            <Route path="/wallet" component={WalletScreen} />
+            <Route path="/messages" component={ChatScreen} />
            
           </div>
         </main>

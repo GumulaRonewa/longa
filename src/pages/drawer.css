@@ -5,3 +5,9 @@
 .list{
 	background-color: white;
 }
+.main{
+	display: flex;
+	overflow: hidden;
+	height: 100%;
+	width: 100%;
+}
