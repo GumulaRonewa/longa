@@ -7,6 +7,62 @@ border: 10px solid #0F81C7;
 border-radius: 40px;
 opacity: 1;
 }
+.box{
+ width: 98%;
+ margin-top: 30px;
+  overflow: hidden;
+}
+.inputdiv{
+  margin-left: 20px;
+  width: 90%;
+  margin-right: 20px;
+}
+.emojibox{
+ width: 100%;
+ height: 60px;
+  overflow: hidden;
+}
+.emojirow{
+  display: flex;
+  flex-direction: row;
+}
+.theemojileftbox{
+  width: 90%;
+  height:55px;
+  float:left;
+  display: grid;
+  place-items:center;
+  position: relative;
+
+}
+.theemojirightbox{
+  width: 10%;
+  height:60px;
+  margin-top: 10px;
+  float:right;
+  position: relative;
+
+}
+.theleftbox{
+  width: 40%;
+  height:55vh;
+  float:left;
+  position: relative;
+
+}
+.therightbox{
+  width: 60%;
+  height:55vh;
+  float:right;
+  position: relative;
+  display: flex;
+  flex-direction: column-reverse;
+  border: 5px solid #0F81C7;
+  border-bottom-right-radius: 15px;
+border-bottom-left-radius: 15px;
+border-top-right-radius: 15px;
+border-top-left-radius: 15px;
+}
 .chatround{
   width: 100%;
 height: 99px;
@@ -34,4 +90,19 @@ opacity: 1;
 	background-color: white;
 	height: 100vh;
 	width: 100%;
+}
+@media only screen and (max-width: 768px) {
+   .theleftbox{
+    width: 100%;
+  }
+  .therightbox{
+    display: none;
+  }
+  .chatround{
+     height: 0px;
+  }
+  .chatbox{
+    border-radius: 0px;
+
+   }
 }

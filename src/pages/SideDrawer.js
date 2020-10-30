@@ -18,7 +18,11 @@ import Avatar from "@material-ui/core/Avatar";
 import clsx from "clsx";
 import { Switch, Route, Link, BrowserRouter } from "react-router-dom";
 import HomeScreen from './home/HomeScreen'
+import Welcome from './home/Welcome'
+import Linked from './home/Linked'
 import ChatScreen from './chat/ChatScreen'
+import Login from './login/Login'
+import Register from './login/Register'
 import JobScreen from './jobs/JobScreen'
 import FeedScreen from './feed/FeedScreen'
 import WalletScreen from './wallet/WalletScreen'
@@ -26,7 +30,7 @@ import HomeIcon from '@material-ui/icons/Home';
 import MessageIcon from '@material-ui/icons/Message';
 import AccountBalanceWalletIcon from '@material-ui/icons/AccountBalanceWallet';
 import WorkIcon from '@material-ui/icons/Work';
-import whitelogo from '../images/whitelogo.png'
+import notag from '../images/notag.png'
 import './drawer.css';
 const drawerWidth = 240;
 
@@ -61,7 +65,6 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up('sm')]: {
       width: `calc(100% - ${drawerWidth}px)`,
       marginLeft: drawerWidth,
-          backgroundColor:'white',
 
           height:75,
 
@@ -86,7 +89,7 @@ const useStyles = makeStyles((theme) => ({
     }),
     marginLeft: -drawerWidth,
        [theme.breakpoints.up('sm')]: {
-        marginTop:105,
+        marginTop:45,
 
     }
   },
@@ -221,13 +224,15 @@ const menuId = 'primary-search-account-menu';
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
+          <MenuItem onClick={handleMenuClose}>My Profile</MenuItem>
+
       <MenuItem onClick={handleMenuClose}>Sign Out</MenuItem>
     </Menu>
   );
   const drawer = (
 <div className="drawer">
       <div className={classes.drawerHeader}>
-                 <img alt="R" src={whitelogo} className={classes.drawerlogo} />
+                 <img alt="R" src={notag} className={classes.drawerlogo} />
 
       </div>
       <List
@@ -386,8 +391,15 @@ function Main() {
   return (
     <div className={classes.main}>
       <BrowserRouter>
-       <Drawing />
-
+       {    window.location.pathname !== "/links" &&
+          window.location.pathname !== "/welcome" &&
+          window.location.pathname !== "/register" &&
+          window.location.pathname !== "/reset" &&
+          window.location.pathname !== "/loginout" &&
+          window.location.pathname !== "/login" &&
+          window.location.pathname !== "/" &&
+          window.location.pathname !== "/details" &&
+          window.location.pathname !== "/loading" && <Drawing />}
         <main
           className={clsx(classes.content, {
             [classes.contentShift]: true,
@@ -396,6 +408,11 @@ function Main() {
           <div className="main">
             <Route path="/home" component={HomeScreen} />
             <Route path="/feed" component={FeedScreen} />
+                        <Route path={"/login"} component={Login} />
+                        <Route path={"/register"} component={Register} />
+                        <Route path={"/welcome"} component={Welcome} />
+                        <Route path={"/links"} component={Linked} />
+
             <Route path="/jobs" component={JobScreen} />
             <Route path="/wallet" component={WalletScreen} />
             <Route path="/messages" component={ChatScreen} />

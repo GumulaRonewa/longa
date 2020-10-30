@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import './wallet.css';
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
+import Avatar from "@material-ui/core/Avatar";
+import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 export default class WalletScreen extends Component {
    constructor(props) {
     super(props);
@@ -27,7 +29,6 @@ export default class WalletScreen extends Component {
                   </div>
                   <div className={'rowtext'}>
                      <div className={'columntextfont'}>Rewards</div>
-                     <div className={'columntextfont3'}>None </div>
                   </div> 
                   <div className={'rowtext'}>
                      <div className={'columntextfont'}>Total Paid</div>
@@ -37,11 +38,33 @@ export default class WalletScreen extends Component {
              </div>
              <List>
                 <ListItem>
-                  <div className={'listdiv'}>
+                  <div className={'walletlistdiv'}>
+                   <Avatar                            
+                   style={{ height: 60, width: 60, left: 20,top:10 }}
+                  src={'https://seeklogo.com/images/M/MTN-logo-459AAF9482-seeklogo.com.png'} />
+                  <div className={'promowname'}>MTN Yellow </div>
+                  <div className={'amount'}>R 800</div>
+                  <div className={'amount2'}>Paid</div>
                   </div>
                 </ListItem>
                  <ListItem>
-                  <div className={'listdiv'}>
+                  <div className={'walletlistdiv'}>
+                   <Avatar                            
+                   style={{ height: 60, width: 60, left: 20,top:10 }}
+                  src={'https://seeklogo.com/images/M/MTN-logo-459AAF9482-seeklogo.com.png'} />
+                  <div className={'promowname'}>MTN summer </div>
+                  <div className={'amount'}>R 400</div>
+                  <div className={'amount2'}>Paid</div>
+                  </div>
+                </ListItem>
+                <ListItem>
+                  <div className={'walletlistdiv'}>
+                   <Avatar                            
+                   style={{ height: 60, width: 60, left: 20,top:10 }}
+                  src={'https://seeklogo.com/images/M/MTN-logo-459AAF9482-seeklogo.com.png'} />
+                  <div className={'promowname'}>MTN summer </div>
+                  <div className={'amount'}>R 12400</div>
+                  <div className={'amount2'}>Paid</div>
                   </div>
                 </ListItem>
 
