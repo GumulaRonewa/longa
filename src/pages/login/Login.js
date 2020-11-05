@@ -6,6 +6,8 @@ import facebook from '../../images/facebook.svg'
 import google from '../../images/google.svg'
 import loading from '../../images/loading.svg'
 import axios from "axios";
+import profile_picture_without_slogan from '../../images/profile_picture_without_slogan.png'
+import notag from '../../images/notag.png'
 
 class Login extends Component {
   constructor(props) {
@@ -21,16 +23,24 @@ class Login extends Component {
   handleChange = (e) => {
     e.preventDefault();
     const { name, value } = e.target;
-    console.log(name);
     this.setState({ [name]: value });
   };
    handleLogin = (e) => {
     e.preventDefault();
-        this.setState({img: loading });
-       setTimeout(() => {
-        window.open("home", "_self");
-      }, 2000)
-  };
+            this.setState({img: loading });
+
+            const user = { email: this.state.email,password: this.state.password };
+         axios({
+      method: "POST",
+      url: `https://longa-money.herokuapp.com/api/user/login`,
+      data: user,
+      }).then((res) => {
+      localStorage.setItem('token',res.data['token']);
+
+               window.open("home", "_self");
+         
+      });
+       };
   render() {
     return (
       <div className="authBox">
@@ -43,7 +53,7 @@ class Login extends Component {
         <div className="rightBox">
            <div className="bgRed">
               <div className="logoplace">
-                 <img src={whitelogo} alt="L" className="image"/>
+                 <img src={notag} alt="L" style={{height:200,width:300}}className="image"/>
               </div>
               <div className="loginBox">
                  <div className="logininput">

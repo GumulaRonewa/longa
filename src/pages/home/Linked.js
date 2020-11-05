@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import './home.css';
-import whitelogo from '../../images/whitelogo.png'
+import profile_picture_without_slogan from '../../images/profile_picture_without_slogan.png'
 import facebookblack from '../../images/facebookblack.svg'
 import instagram from '../../images/instagram.svg'
 
@@ -23,7 +23,7 @@ export default class Linked extends Component {
         <div className="WelcomeBox">
         <div className="WelcomeleftBox">
           <div className="bgBlue">
-                    <img style={{height:200,width:200,marginLeft:40}} src={whitelogo} alt="l" />
+                    <img style={{height:230,width:230,marginLeft:20}} src={profile_picture_without_slogan} alt="l" />
 
           </div>
 
@@ -32,7 +32,7 @@ export default class Linked extends Component {
            <div className="bgWhite">
               <div>
                 <div className="accountsrow">
-                   <img src={instagram} style={{marginTop:-50,marginLeft:115}} className='accounticon' alt="b"/>
+                   <img src={instagram} style={{marginTop:-50,marginLeft:10}} className='accounticon' alt="b"/>
                 </div>
                    <input type='text' className="inputLinked" style={{width:300}}placeholder=" Username" />
                    <button className={"linkbutton"} style={{marginTop:30,marginLeft:85}}>

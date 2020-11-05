@@ -12,6 +12,8 @@ import share from '../../images/share.svg'
 import GavelIcon from '@material-ui/icons/Gavel';
 import MonetizationOnIcon from '@material-ui/icons/MonetizationOn';
 import PeopleIcon from '@material-ui/icons/People';
+import axios from "axios";
+
 const useStyles = makeStyles((theme) => ({
 
    expand: {
@@ -38,26 +40,29 @@ const phases=[
     {id:"2b",phase:"Phase 2",plan:"Automation",duration:"12 Weeks",image:"https://cdn.iconscout.com/icon/premium/png-512-thumb/setting-167-243672.png"},
 
 ]
-export default function HomeScreen(props) {
+ function HomeScreenfunct(props) {
 const [expanded, setExpanded] = React.useState(false);
+         console.log(props.Campaigns)
+         console.log(typeof phases)
+
   const classes = useStyles();
   const [selectedPromo, setPromo] = React.useState(null);
   const handleExpandButtonClick = (key) => () =>{
     setPromo(key)
     setExpanded(!expanded);
   };
-  	 return(
-  	 	  <div className={'home'}>
+     return(
+        <div className={'home'}>
            <div className={'thebox'}>
              <div className={'round'}>
                 <p className={'headertext'}>Campaigns</p>
              </div>
              <div className={'roundsmall'} />
               <List>
-                      {phases.map(({id,phase,plan,duration,image})=> (
+                      {props.Campaigns.map((item)=> (
 
                 <ListItem>
-                  <div className={selectedPromo === id && expanded ?'homelistdivexplore':'homelistdiv'}>
+                  <div className={selectedPromo === item.campaignID && expanded ?'homelistdivexplore':'homelistdiv'}>
                   <div className={'rowe'}>
                   <div>
                    <Avatar                            
@@ -65,10 +70,10 @@ const [expanded, setExpanded] = React.useState(false);
                        src={'https://seeklogo.com/images/M/MTN-logo-459AAF9482-seeklogo.com.png'} 
                     />
                     </div> 
-                   {selectedPromo === id && expanded &&
+                   {selectedPromo === item.campaignID && expanded &&
                     <div className={'rowe'}>
                       <div className={'expromo'}>
-                         MTN YELLO
+                        {item.name}
                       </div>
                       <div className={'hidebutton'}>
                        <button className="buttonsexpandblue">
@@ -81,7 +86,7 @@ const [expanded, setExpanded] = React.useState(false);
                          <div style={{marginLeft:6}}> Bid</div>
                         </button>
                         </div>
-                         <IconButton onClick={handleExpandButtonClick(id)}  className={selectedPromo === id ? clsx(classes.expand, {[classes.expandOpen]: expanded,}):'empty'} >
+                         <IconButton onClick={handleExpandButtonClick(item.campaignID)}  className={selectedPromo === item.campaignID ? clsx(classes.expand, {[classes.expandOpen]: expanded,}):'empty'} >
                     <ArrowForwardIosIcon  color={'primary'} style={{ height: 30, width: 30,marginTop:5,position:"abosolute"}} />
                   </IconButton>
                       </div>
@@ -89,14 +94,14 @@ const [expanded, setExpanded] = React.useState(false);
                   </div>
                    <ListItemText
                             style={{ marginLeft: 50,maxHeight:50 }}
-                            primary={expanded ? "":"MTN YELLO"}
-                            secondary={expanded ? "":"Lorem ipsum dolor sit amet, consetetur sa dolor sit amet, consetetur sa dolor sit amet, consetetur sa dolor sit amet, consetetur sa dolor sit amet, consetetur sa"}
+                            secondary={expanded ? "":`${item.description}`}
+                            primary={expanded ? "":`${item.name}`}
 
                         />
-                {selectedPromo === id && expanded &&
+                {selectedPromo === item.campaignID && expanded &&
                  <div>
                    <div  className={'ctextc'} style={{marginLeft:30}}>
-                    Lorem ipsum dolor sit amet, consetetur sa dolor sit amet, consetetur sa dolor sit amet, consetetur sa dolor sit amet, consetetur sa dolor sit amet, consetetur sa
+                     {item.description}
                    </div>
                    <div className={'line'}>
                    </div >
@@ -104,13 +109,13 @@ const [expanded, setExpanded] = React.useState(false);
                         <div className={'moneyside'}>
                           <MonetizationOnIcon  color={'primary'} style={{ height: 30, width: 30,marginLeft:20}} />
                           <div className={'textmon'}>
-                           R 4000
+                           R {item.budget}
                           </div>
                          </div>
                           <div className={'groupside'}>
                           <PeopleIcon  color={'primary'} style={{ marginLeft:20,height: 40, width: 30}} />
                            <div className={'textmon'}>
-                            4000
+                            {item.bids}
                           </div>
                          </div>
                    </div>
@@ -128,7 +133,7 @@ const [expanded, setExpanded] = React.useState(false);
                    </div>
                  }
                  {!expanded &&
-                  <IconButton onClick={handleExpandButtonClick(id)}  className={selectedPromo === id ? clsx(classes.expand, {[classes.expandOpen]: expanded,}):'empty'} >
+                  <IconButton onClick={handleExpandButtonClick(item.campaignID)}  className={selectedPromo === item.campaignID ? clsx(classes.expand, {[classes.expandOpen]: expanded,}):'empty'} >
                     <ArrowForwardIosIcon  color={'primary'} style={{ height: 30, width: 30,marginTop:5,position:"abosolute"}} />
                   </IconButton>
                   }
@@ -141,6 +146,36 @@ const [expanded, setExpanded] = React.useState(false);
               
              </List>
           </div>
-  	 	  </div>
-  	 	)
+        </div>
+      )
    }
+
+ export default class HomeScreen extends React.Component {
+   constructor(props) {
+    super(props);
+
+    this.state = {
+      Campaigns:[]
+    };
+  }
+  componentDidMount() {
+     axios({
+      method: 'GET',
+     url: `https://longa-money.herokuapp.com/api/campaigns`, // First page at 0
+       headers: {
+      "Authorization": `Bearer ${localStorage.getItem("token")}`,
+      
+      },
+    }).then(res =>{
+        this.setState({Campaigns:res.data})
+    })
+  }
+
+
+  render(){
+     return(
+
+        <HomeScreenfunct Campaigns={this.state.Campaigns} />
+      )
+  }
+ }

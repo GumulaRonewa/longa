@@ -123,6 +123,10 @@ letter-spacing: 0px;
  
 
 }
+.ctextc{
+   font-size: 18px;
+   margin-top:20px;
+}
 .thebox{
   width: 920px;
   height: 528px;
@@ -137,6 +141,7 @@ opacity: 1;
   border: 2px solid #0F81C7;
 margin-right: 40px;
 margin-left: 30px;
+margin-top: 30px;
 align-self: flex-end;
 
 }
@@ -174,6 +179,7 @@ opacity: 1;
 .accountsrow{
 	display: flex;
 	flex-direction: row;
+  margin-left: 120px;
 	margin-top: 20px;
 }
 .accounticon{
@@ -226,14 +232,14 @@ border-top-left-radius: 10px;
 opacity: 1;
 }
 .welcometext{
-	text-align: right;
+	text-align: center;
 font: normal normal normal 65px/82px Lato;
 letter-spacing: 0px;
 color: #0F81C7;
 opacity: 1;
 }
 .linktext{
-	text-align: center;
+	text-align: left;
 font: normal normal normal 22px/27px Lato;
 letter-spacing: 0px;
 color: #0F81C7;
@@ -318,12 +324,31 @@ opacity: 1;
   .hidebutton2{
   display: flex;
 }
+.accountsrow{
+  margin-left: 30px;
+}
 
   .hidebutton{
     display: none;
   }
   .expromo{
     margin-left: 30px;
+}
+.WelcomeleftBox{
+  display: none;
+}
+.WelcomerightBox{
+  width: 100%;
+}
+.linktext{
+    font: normal normal normal 18px/20px Lato;
+    margin-left: 15px;
+    margin-right: 15px;
+
+}
+.welcometext{
+  font: normal normal normal 25px/22px Lato;
+
 }
  .buttonsexpandblue{
    margin-left:30px;

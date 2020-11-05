@@ -164,11 +164,11 @@ const useStyles = makeStyles((theme) => ({
     },
   } ,
    drawerlogo: {
-    width: 180,
+    width: 190,
     height: 140,
     position: "fixed",
     top: 15,
-    left: 30,
+    left: 20,
   },
   drawerHeader: {
       height:30,
@@ -214,6 +214,11 @@ function Drawing(props) {
   };
   
 const menuId = 'primary-search-account-menu';
+    const Signout = () => {
+      var win=props.props;
+        win.open("login", "_self");
+
+}
   const renderMenu = (
     <Menu
       anchorEl={anchorEl}
@@ -226,7 +231,7 @@ const menuId = 'primary-search-account-menu';
     >
           <MenuItem onClick={handleMenuClose}>My Profile</MenuItem>
 
-      <MenuItem onClick={handleMenuClose}>Sign Out</MenuItem>
+      <MenuItem onClick={Signout}>Sign Out</MenuItem>
     </Menu>
   );
   const drawer = (
@@ -399,7 +404,7 @@ function Main() {
           window.location.pathname !== "/login" &&
           window.location.pathname !== "/" &&
           window.location.pathname !== "/details" &&
-          window.location.pathname !== "/loading" && <Drawing />}
+          window.location.pathname !== "/loading" && <Drawing props={window}/>}
         <main
           className={clsx(classes.content, {
             [classes.contentShift]: true,

@@ -20,21 +20,19 @@ class Register extends Component {
    handleChange = (e) => {
     e.preventDefault();
     const { name, value } = e.target;
-    console.log(name);
     this.setState({ [name]: value });
   };
   handleLogin = (e) => {
     e.preventDefault();
         const user = { email: this.state.email,name:this.state.name, password: this.state.password };
-                       this.props.history.push("/welcome");
-
+           console.log(user);
          axios({
       method: "POST",
       url: `https://longa-money.herokuapp.com/api/user/register`,
       data: user,
       }).then((res) => {
-           
-                       this.props.history.push("/welcome");
+                       console.log(res);
+                       //this.props.history.push("/welcome");
          
       });
   };
@@ -57,11 +55,11 @@ class Register extends Component {
               </div>
               <div className="RegBox">
                  <div className="logininput">
-                    <input type='text' name={'name'} className="inputbox" placeholder=" Name" />
+                    <input type='text' name={'name'} onChange={this.handleChange} className="inputbox" placeholder=" Name" />
                     <input type='text' className="inputRegibox" placeholder="Surname" /> 
                     <input type='text' className="inputRegibox" placeholder="Date of Birth" />
-                    <input type='text' name={'email'}  className="inputRegibox" placeholder="Email Address" />
-                    <input type='password' name={'password'}  className="inputRegibox" placeholder="Password" />
+                    <input type='text' name={'email'}  onChange={this.handleChange} className="inputRegibox" placeholder="Email Address" />
+                    <input type='password' name={'password'}  onChange={this.handleChange} className="inputRegibox" placeholder="Password" />
                     <input type='password' className="inputRegibox" placeholder="Confirm Password" />
                  </div>
                  <button onClick={this.handleLogin} className="buttons">
