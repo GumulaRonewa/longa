@@ -12,8 +12,20 @@ import share from '../../images/share.svg'
 import GavelIcon from '@material-ui/icons/Gavel';
 import MonetizationOnIcon from '@material-ui/icons/MonetizationOn';
 import PeopleIcon from '@material-ui/icons/People';
+import Menu from '@material-ui/core/Menu';
+ import MenuItem from '@material-ui/core/MenuItem';
 import axios from "axios";
-
+import {
+  FacebookShareButton,
+  InstapaperShareButton,
+  LinkedinShareButton,
+  PinterestShareButton,
+  RedditShareButton,
+  TelegramShareButton,
+  TwitterShareButton,
+  WhatsappShareButton,
+  WorkplaceShareButton
+} from "react-share";
 const useStyles = makeStyles((theme) => ({
 
    expand: {
@@ -28,25 +40,65 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const phases=[
-    {id:"1",phase:"Phase 1",plan:"Business plan",duration:"6 Weeks",image:"https://cdn.iconscout.com/icon/premium/png-512-thumb/setting-167-243672.png"},
-    {id:"2",phase:"Phase 2",plan:"Automation",duration:"12 Weeks",image:"https://cdn.iconscout.com/icon/premium/png-512-thumb/setting-167-243672.png"},
-    {id:"2e",phase:"Phase 2",plan:"Automation",duration:"12 Weeks",image:"https://cdn.iconscout.com/icon/premium/png-512-thumb/setting-167-243672.png"},
-    {id:"2d",phase:"Phase 2",plan:"Automation",duration:"12 Weeks",image:"https://cdn.iconscout.com/icon/premium/png-512-thumb/setting-167-243672.png"},
-    {id:"2x",phase:"Phase 2",plan:"Automation",duration:"12 Weeks",image:"https://cdn.iconscout.com/icon/premium/png-512-thumb/setting-167-243672.png"},
-    {id:"23",phase:"Phase 2",plan:"Automation",duration:"12 Weeks",image:"https://cdn.iconscout.com/icon/premium/png-512-thumb/setting-167-243672.png"},
-    {id:"2a",phase:"Phase 2",plan:"Automation",duration:"12 Weeks",image:"https://cdn.iconscout.com/icon/premium/png-512-thumb/setting-167-243672.png"},
-    {id:"21",phase:"Phase 2",plan:"Automation",duration:"12 Weeks",image:"https://cdn.iconscout.com/icon/premium/png-512-thumb/setting-167-243672.png"},
-    {id:"2b",phase:"Phase 2",plan:"Automation",duration:"12 Weeks",image:"https://cdn.iconscout.com/icon/premium/png-512-thumb/setting-167-243672.png"},
 
-]
  function HomeScreenfunct(props) {
 const [expanded, setExpanded] = React.useState(false);
          console.log(props.Campaigns)
          console.log(typeof phases)
-
+    const [anchorEl, setAnchorEl] = React.useState(null);
   const classes = useStyles();
   const [selectedPromo, setPromo] = React.useState(null);
+  var { SocialIcon } = require('react-social-icons');
+    const isMenuOpen = Boolean(anchorEl);
+  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
+
+  const handleShareMenuOpen = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const menuId = 'share-menu';
+   const handleMobileMenuClose = () => {
+    setMobileMoreAnchorEl(null);
+  };
+   const handleMenuClose = () => {
+    setAnchorEl(null);
+    handleMobileMenuClose();
+  };
+    const renderMenu = (
+    <Menu
+      anchorEl={anchorEl}
+      anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+      id={menuId}
+      keepMounted
+      transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+      open={isMenuOpen}
+      onClose={handleMenuClose}
+    >
+              <MenuItem>
+     <WhatsappShareButton url={"twiter.com"}>
+          <SocialIcon network="whatsapp" />
+          WhatsApp
+     </WhatsappShareButton>
+     </MenuItem>
+     <MenuItem>
+      <TwitterShareButton url={"twiter.com"}>
+        <SocialIcon network="twitter" />
+        Twitter
+      </TwitterShareButton>
+      </MenuItem>
+      <MenuItem>
+      <FacebookShareButton url={"twiter.com"}>
+        <SocialIcon network="facebook" />
+        Facebook
+      </FacebookShareButton>
+      </MenuItem>
+      <MenuItem>
+      <RedditShareButton url={"twiter.com"}>
+        <SocialIcon network="reddit" />
+        Reddit
+      </RedditShareButton>
+      </MenuItem>
+    </Menu>
+  );
   const handleExpandButtonClick = (key) => () =>{
     setPromo(key)
     setExpanded(!expanded);
@@ -58,6 +110,8 @@ const [expanded, setExpanded] = React.useState(false);
                 <p className={'headertext'}>Campaigns</p>
              </div>
              <div className={'roundsmall'} />
+
+              
               <List>
                       {props.Campaigns.map((item)=> (
 
@@ -76,7 +130,7 @@ const [expanded, setExpanded] = React.useState(false);
                         {item.name}
                       </div>
                       <div className={'hidebutton'}>
-                       <button className="buttonsexpandblue">
+                       <button className="buttonsexpandblue" onClick={handleShareMenuOpen}>
                                          <img src={share} className='iconex' alt="b"/>
                                          Share
 
@@ -85,6 +139,8 @@ const [expanded, setExpanded] = React.useState(false);
                         <GavelIcon className='iconex' />
                          <div style={{marginLeft:6}}> Bid</div>
                         </button>
+                                    {renderMenu}
+
                         </div>
                          <IconButton onClick={handleExpandButtonClick(item.campaignID)}  className={selectedPromo === item.campaignID ? clsx(classes.expand, {[classes.expandOpen]: expanded,}):'empty'} >
                     <ArrowForwardIosIcon  color={'primary'} style={{ height: 30, width: 30,marginTop:5,position:"abosolute"}} />

@@ -32,6 +32,17 @@ import AccountBalanceWalletIcon from '@material-ui/icons/AccountBalanceWallet';
 import WorkIcon from '@material-ui/icons/Work';
 import notag from '../images/notag.png'
 import './drawer.css';
+import {
+  FacebookShareButton,
+  InstapaperShareButton,
+  LinkedinShareButton,
+  PinterestShareButton,
+  RedditShareButton,
+  TelegramShareButton,
+  TwitterShareButton,
+  WhatsappShareButton,
+  WorkplaceShareButton
+} from "react-share";
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
