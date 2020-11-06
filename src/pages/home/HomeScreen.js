@@ -15,6 +15,10 @@ import PeopleIcon from '@material-ui/icons/People';
 import Menu from '@material-ui/core/Menu';
  import MenuItem from '@material-ui/core/MenuItem';
 import axios from "axios";
+import Button from "@material-ui/core/Button";
+import { withStyles } from "@material-ui/core/styles";
+import TextField from "@material-ui/core/TextField";
+
 import {
   FacebookShareButton,
   InstapaperShareButton,
@@ -39,21 +43,46 @@ const useStyles = makeStyles((theme) => ({
     transform: 'rotate(90deg)',
   }
 }));
+const StyledButton = withStyles({
+  root: {
+    background: "white",
+    borderRadius: 6,
+    border: 0,
+    color: "#0F81C7",
+    height: 48,
+    width:280,
+    left:10,
+    padding: "0 30px",
+    boxShadow: "0 3px 5px 2px #0F81C7",
+  },
+  label: {
+    textTransform: "capitalize",
+  },
+})(Button);
 
 
- function HomeScreenfunct(props) {
-const [expanded, setExpanded] = React.useState(false);
-         console.log(props.Campaigns)
-         console.log(typeof phases)
+function HomeScreenfunct(props) {
+  const [expanded, setExpanded] = React.useState(false);
+  const [payment, setPayment] = React.useState(false);
+        
     const [anchorEl, setAnchorEl] = React.useState(null);
+    const [anchorEl2, setAnchorEl2] = React.useState(null);
   const classes = useStyles();
   const [selectedPromo, setPromo] = React.useState(null);
   var { SocialIcon } = require('react-social-icons');
     const isMenuOpen = Boolean(anchorEl);
+    const isMenuOpen2 = Boolean(anchorEl2);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
   const handleShareMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
+  };
+   const handleBankMenuOpen = (event) => {
+    setAnchorEl2(event.currentTarget);
+  };
+
+   const handlePayment = (event) => {
+     setPayment(!payment)
   };
   const menuId = 'share-menu';
    const handleMobileMenuClose = () => {
@@ -63,6 +92,50 @@ const [expanded, setExpanded] = React.useState(false);
     setAnchorEl(null);
     handleMobileMenuClose();
   };
+    const handleMenuBClose = () => {
+    setAnchorEl2(null);
+    handleMobileMenuClose();
+  };
+    const renderBankingMenu = (
+    <Menu
+      anchorEl={anchorEl2}
+      anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+      id={'bank'}
+      keepMounted
+      transformOrigin={{ vertical: 'top', horizontal: 'center' }}
+      open={isMenuOpen2}
+      onClose={handleMenuBClose}
+    >
+     <div style={{height:400,width:300}}>
+     { !payment && 
+      <div>
+         <StyledButton onClick={handlePayment} >
+           Add Bank Card
+         </StyledButton >
+         <StyledButton style={{top:10}} >
+           Add MoMo Wallet
+         </StyledButton >
+         </div>
+       }
+         {payment &&
+          <div>
+         <p style={{ "font-size": "18px", paddingLeft: 3 }}>Bank Name*:</p>
+         <TextField  variant="outlined" style={{left:10,right:10,width:280}}/>
+         <p style={{ "font-size": "18px", paddingLeft: 3 }}> Account Number*:</p>
+         <TextField  variant="outlined" style={{left:10,right:10,width:280}}/>
+         <p style={{ "font-size": "18px", paddingLeft: 3 }}>Account Type*:</p>
+         <TextField  variant="outlined" style={{left:10,right:10,width:280}}/>
+         <p style={{ "font-size": "18px", paddingLeft: 3 }}>Branch Code*:</p>
+         <TextField  variant="outlined" style={{left:10,right:10,width:280}}/>
+         <StyledButton onClick={handleMenuBClose} style={{top:10,bottom:10}} >
+           Submit
+         </StyledButton >
+         <h3 style={{color:"transparent"}}>function dfffffff</h3>
+         </div>
+         }
+     </div>
+    </Menu>
+  );
     const renderMenu = (
     <Menu
       anchorEl={anchorEl}
@@ -135,10 +208,11 @@ const [expanded, setExpanded] = React.useState(false);
                                          Share
 
                         </button>
-                        <button className="buttonsexpandred">
-                        <GavelIcon className='iconex' />
+                        <button onClick={handleBankMenuOpen} className="buttonsexpandred">
+                        <GavelIcon  className='iconex' />
                          <div style={{marginLeft:6}}> Bid</div>
                         </button>
+                                    {renderBankingMenu}
                                     {renderMenu}
 
                         </div>
@@ -176,13 +250,13 @@ const [expanded, setExpanded] = React.useState(false);
                          </div>
                    </div>
                     <div className={'hidebutton2'}>
-                       <button className="buttonsexpandblue">
+                       <button onClick={handleShareMenuOpen} className="buttonsexpandblue">
                                          <img src={share} className='iconex' alt="b"/>
                                          Share
 
                         </button>
-                        <button className="buttonsexpandred">
-                        <GavelIcon className='iconex' />
+                        <button onClick={handleBankMenuOpen} className="buttonsexpandred">
+                        <GavelIcon  className='iconex' />
                          <div style={{marginLeft:6}}> Bid</div>
                         </button>
                         </div>
