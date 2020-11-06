@@ -13,7 +13,7 @@ opacity: 1;
   overflow: hidden;
 }
 .feedleftbox{
-  width: 50%;
+  width: 100%;
   height:55vh;
   float:left;
   overflow: auto;
