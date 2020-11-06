@@ -22,7 +22,9 @@ import Welcome from './home/Welcome'
 import Linked from './home/Linked'
 import ChatScreen from './chat/ChatScreen'
 import Login from './login/Login'
+import Choose from './login/Choose'
 import Register from './login/Register'
+import RegisterBussiness from './login/RegisterBussiness'
 import JobScreen from './jobs/JobScreen'
 import FeedScreen from './feed/FeedScreen'
 import WalletScreen from './wallet/WalletScreen'
@@ -411,6 +413,8 @@ function Main() {
           window.location.pathname !== "/welcome" &&
           window.location.pathname !== "/register" &&
           window.location.pathname !== "/reset" &&
+          window.location.pathname !== "/choose" &&
+          window.location.pathname !== "/registerbrands" &&
           window.location.pathname !== "/loginout" &&
           window.location.pathname !== "/login" &&
           window.location.pathname !== "/" &&
@@ -426,7 +430,9 @@ function Main() {
             <Route path="/feed" component={FeedScreen} />
                         <Route path={"/login"} component={Login} />
                         <Route path={"/register"} component={Register} />
+                        <Route path={"/registerbrands"} component={RegisterBussiness} />
                         <Route path={"/welcome"} component={Welcome} />
+                        <Route path={"/choose"} component={Choose} />
                         <Route path={"/links"} component={Linked} />
 
             <Route path="/jobs" component={JobScreen} />

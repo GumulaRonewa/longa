@@ -29,7 +29,7 @@ class RegisterBussiness extends Component {
         <div className="rightBoxBusiness">
            <div className="bgRed"> 
                  <div className="regplaceBusiness">
-                Register
+                Contact Us
               </div>
               <div>
               <div className="RegBoxBusiness">
