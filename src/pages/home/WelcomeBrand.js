@@ -3,9 +3,12 @@ import './home.css';
 import profile_picture_without_slogan from '../../images/profile_picture_without_slogan.png'
 import facebookblack from '../../images/facebookblack.svg'
 import instagram from '../../images/instagram.svg'
+import twitter from '../../images/twitter.svg'
+import linkedin from '../../images/linkedin.svg'
+import snapchat from '../../images/snapchat.svg'
+import IconButton from "@material-ui/core/IconButton";
 
-
-export default class Linked extends Component {
+export default class WelcomeBrand extends Component {
    constructor(props) {
     super(props);
 
@@ -16,13 +19,14 @@ export default class Linked extends Component {
       error: false,
     };
   }
-   handleLogin = (e) => {
+  handleLogin = (e) => {
     e.preventDefault();
     console.log(e);
-    this.props.history.push("/login");
+    this.props.history.push("/links");
 
     ;
   };
+
   render(){
   	 return(
 
@@ -37,13 +41,7 @@ export default class Linked extends Component {
         <div className="WelcomerightBox">
            <div className="bgWhite">
               <div>
-                <div className="accountsrow">
-                   <img src={instagram} style={{marginTop:-50,marginLeft:10}} className='accounticon' alt="b"/>
-                </div>
-                   <input type='text' className="inputLinked" style={{width:300}}placeholder=" Username" />
-                   <button onClick={this.handleLogin} className={"linkbutton"} style={{marginTop:30,marginLeft:85}}>
-                    <p style={{color:"transparent"}}>hjik</p>
-                   Link </button>
+                <div className="welcometext">Campaign Created Successfully </div>
                </div>
           </div>
         </div>

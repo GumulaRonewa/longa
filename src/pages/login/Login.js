@@ -36,8 +36,10 @@ class Login extends Component {
       data: user,
       }).then((res) => {
       localStorage.setItem('token',res.data['token']);
-
-               window.open("home", "_self");
+      var user=res.data['user'];
+      localStorage.setItem('image',user['image']);
+      localStorage.setItem('userId',user['_id']);
+             window.open("home", "_self");
          
       });
        };

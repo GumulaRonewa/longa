@@ -13,8 +13,7 @@ class Choose extends Component {
     
   };
   handleInfluencer = (e) => {
-  
-                       this.props.history.push("/register");
+  window.open("login", "_self");
          
     
   };

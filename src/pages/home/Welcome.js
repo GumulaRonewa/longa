@@ -41,7 +41,7 @@ export default class Welcome extends Component {
         <div className="WelcomerightBox">
            <div className="bgWhite">
               <div>
-                <div className="welcometext"> Welcome John </div>
+                <div className="welcometext"> Welcome {localStorage.getItem("name")} </div>
                 <div className="linktext">Please link one or more social media accounts to proceed</div>
                 <div className="accountsrow">
                   <IconButton name={"instagram"} onClick={this.handleLogin} style={{marginTop:-10}}>

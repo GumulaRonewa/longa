@@ -9,6 +9,8 @@ import IconButton from "@material-ui/core/IconButton";
 import clsx from 'clsx';
 import MonetizationOnIcon from '@material-ui/icons/MonetizationOn';
 import PeopleIcon from '@material-ui/icons/People';
+import axios from "axios";
+
 const useStyles = makeStyles((theme) => ({
 
    expand: {
@@ -29,10 +31,11 @@ const phases=[
 
 ]
 
-export default function JobScreen(props) {
+function JobScreenfunct(props) {
    const [expanded, setExpanded] = React.useState(false);
   const classes = useStyles();
   console.log(props);
+  var job=props.Jobs;
   const [selectedPromo, setPromo] = React.useState(null);
   const handleExpandButtonClick = (key) => () =>{
     setPromo(key)
@@ -47,24 +50,34 @@ export default function JobScreen(props) {
                 <p className={'jobheadertext'}>My Jobs</p>
              </div>
                       <List>
-             {phases.map(({id,phase,plan,duration,image})=> (
+             {job.map((item)=> (
 
                 <ListItem>
-                  <div className={selectedPromo === id && expanded ?'joblistdivexplore':'joblistdiv'}>
+                  <div className={selectedPromo === item._id && expanded ?'joblistdivexplore':'joblistdiv'}>
                   <div className={'rowe'}>
                    <Avatar                            
                    style={{ height: 60, width: 60, left: 20,top:10 }}
                   src={'https://seeklogo.com/images/M/MTN-logo-459AAF9482-seeklogo.com.png'} />
-                  <div className={'promojname'}>MTN Yello </div>
-                  <div className={'promojname'}>Stage: Bid  </div>
-                   <IconButton onClick={handleExpandButtonClick(id)}  className={selectedPromo === id ? clsx(classes.expand, {[classes.expandOpen]: expanded,}):'empty'} >
+                  <div className={'promojname'}>{item.campaignName} </div>
+                  <div className={'promojname'}>Stage: {item.stage}  </div>
+                   <IconButton onClick={handleExpandButtonClick(item._id)}  className={selectedPromo === item._id ? clsx(classes.expand, {[classes.expandOpen]: expanded,}):'empty'} >
                     <ArrowForwardIosIcon  color={'primary'} style={{ height: 30, width: 30,marginTop:-3,position:"abosolute"}} />
                   </IconButton>
                       </div>
-                {selectedPromo === id && expanded &&
+                {selectedPromo === item._id && expanded &&
                  <div>
                    <div  className={'ctextc'} style={{marginLeft:30,marginTop:25}}>
-                    Lorem ipsum dolor sit amet, consetetur sa dolor sit amet, consetetur sa dolor sit amet, consetetur sa dolor sit amet, consetetur sa dolor sit amet, consetetur sa
+                     <div>
+                     do's:{item.dos}
+                     </div>
+                     <div>
+                     dont's:{item.donts}
+                     </div>
+
+                     <div style={{marginTop:10}}>
+                       {item.description}
+                     </div>
+
                    </div>
                    <div className={'line'}>
                    </div >
@@ -72,13 +85,13 @@ export default function JobScreen(props) {
                         <div className={'moneyside'}>
                           <MonetizationOnIcon  color={'primary'} style={{ height: 30, width: 30,marginLeft:20}} />
                           <div className={'textmon'}>
-                           R 4000
+                           R {item.budget}
                           </div>
                          </div>
                           <div className={'groupside'}>
                           <PeopleIcon  color={'primary'} style={{ marginLeft:20,height: 40, width: 30}} />
                            <div className={'textmon'}>
-                            4000
+                            {item.bids}
                           </div>
                          </div>
                    </div>
@@ -95,4 +108,37 @@ export default function JobScreen(props) {
   	 	  </div>
   	 	)
   
+ }
+ export default class JobScreen extends React.Component {
+   constructor(props) {
+    super(props);
+
+    this.state = {
+      Jobs:[]
+    };
+  }
+  componentDidMount() {
+          var databit={userID:localStorage.getItem("userId")}
+
+     axios({
+      method: 'POST',
+     url: `https://longa-money.herokuapp.com/api/u/jobs`, // First page at 0
+       data:databit,
+       headers: {
+      "Authorization": `Bearer ${localStorage.getItem("token")}`,
+      
+      },
+    }).then(res =>{
+       console.log(res.data)
+        this.setState({Jobs:res.data})
+    })
+  }
+
+
+  render(){
+     return(
+
+        <JobScreenfunct window={window} Jobs={this.state.Jobs} />
+      )
+  }
  }

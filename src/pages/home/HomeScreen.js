@@ -64,11 +64,14 @@ const StyledButton = withStyles({
 function HomeScreenfunct(props) {
   const [expanded, setExpanded] = React.useState(false);
   const [payment, setPayment] = React.useState(false);
-        
+     var window=props.window;
+       window=window.location;
+      var href=window.href;
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [anchorEl2, setAnchorEl2] = React.useState(null);
   const classes = useStyles();
   const [selectedPromo, setPromo] = React.useState(null);
+  const [selectedPromoId, setPromoId] = React.useState(null);
   var { SocialIcon } = require('react-social-icons');
     const isMenuOpen = Boolean(anchorEl);
     const isMenuOpen2 = Boolean(anchorEl2);
@@ -87,6 +90,23 @@ function HomeScreenfunct(props) {
   const menuId = 'share-menu';
    const handleMobileMenuClose = () => {
     setMobileMoreAnchorEl(null);
+  };
+     const handleBid = () => {
+      var databid={userID:localStorage.getItem("userId"),id:selectedPromoId}
+      console.log(databid)
+       axios({
+      method: 'POST',
+     url: `https://longa-money.herokuapp.com/api/bid`, // First page at 0
+     data:databid,
+       headers: {
+      "Authorization": `Bearer ${localStorage.getItem("token")}`,
+      
+      },
+    }).then(res =>{
+       console.log(res)
+           setAnchorEl2(null);
+
+    })
   };
    const handleMenuClose = () => {
     setAnchorEl(null);
@@ -127,7 +147,7 @@ function HomeScreenfunct(props) {
          <TextField  variant="outlined" style={{left:10,right:10,width:280}}/>
          <p style={{ "font-size": "18px", paddingLeft: 3 }}>Branch Code*:</p>
          <TextField  variant="outlined" style={{left:10,right:10,width:280}}/>
-         <StyledButton onClick={handleMenuBClose} style={{top:10,bottom:10}} >
+         <StyledButton onClick={handleBid} style={{top:10,bottom:10}} >
            Submit
          </StyledButton >
          <h3 style={{color:"transparent"}}>function dfffffff</h3>
@@ -147,25 +167,25 @@ function HomeScreenfunct(props) {
       onClose={handleMenuClose}
     >
               <MenuItem>
-     <WhatsappShareButton url={"twiter.com"}>
+     <WhatsappShareButton url={`${href}/${selectedPromo}`}>
           <SocialIcon network="whatsapp" />
           WhatsApp
      </WhatsappShareButton>
      </MenuItem>
      <MenuItem>
-      <TwitterShareButton url={"twiter.com"}>
+      <TwitterShareButton url={`${href}/${selectedPromo}`}>
         <SocialIcon network="twitter" />
         Twitter
       </TwitterShareButton>
       </MenuItem>
       <MenuItem>
-      <FacebookShareButton url={"twiter.com"}>
+      <FacebookShareButton url={`${href}/${selectedPromo}`}>
         <SocialIcon network="facebook" />
         Facebook
       </FacebookShareButton>
       </MenuItem>
       <MenuItem>
-      <RedditShareButton url={"twiter.com"}>
+      <RedditShareButton url={`${href}/${selectedPromo}`}>
         <SocialIcon network="reddit" />
         Reddit
       </RedditShareButton>
@@ -173,7 +193,8 @@ function HomeScreenfunct(props) {
     </Menu>
   );
   const handleExpandButtonClick = (key) => () =>{
-    setPromo(key)
+    setPromo(key.campaignID);
+    setPromoId(key._id)
     setExpanded(!expanded);
   };
      return(
@@ -200,7 +221,7 @@ function HomeScreenfunct(props) {
                    {selectedPromo === item.campaignID && expanded &&
                     <div className={'rowe'}>
                       <div className={'expromo'}>
-                        {item.name}
+                        {item.campaignName}
                       </div>
                       <div className={'hidebutton'}>
                        <button className="buttonsexpandblue" onClick={handleShareMenuOpen}>
@@ -216,7 +237,7 @@ function HomeScreenfunct(props) {
                                     {renderMenu}
 
                         </div>
-                         <IconButton onClick={handleExpandButtonClick(item.campaignID)}  className={selectedPromo === item.campaignID ? clsx(classes.expand, {[classes.expandOpen]: expanded,}):'empty'} >
+                         <IconButton onClick={handleExpandButtonClick(item)}  className={selectedPromo === item.campaignID ? clsx(classes.expand, {[classes.expandOpen]: expanded,}):'empty'} >
                     <ArrowForwardIosIcon  color={'primary'} style={{ height: 30, width: 30,marginTop:5,position:"abosolute"}} />
                   </IconButton>
                       </div>
@@ -225,7 +246,7 @@ function HomeScreenfunct(props) {
                    <ListItemText
                             style={{ marginLeft: 50,maxHeight:50 }}
                             secondary={expanded ? "":`${item.description}`}
-                            primary={expanded ? "":`${item.name}`}
+                            primary={expanded ? "":`${item.campaignName}`}
 
                         />
                 {selectedPromo === item.campaignID && expanded &&
@@ -263,7 +284,7 @@ function HomeScreenfunct(props) {
                    </div>
                  }
                  {!expanded &&
-                  <IconButton onClick={handleExpandButtonClick(item.campaignID)}  className={selectedPromo === item.campaignID ? clsx(classes.expand, {[classes.expandOpen]: expanded,}):'empty'} >
+                  <IconButton onClick={handleExpandButtonClick(item)}  className={selectedPromo === item.campaignID ? clsx(classes.expand, {[classes.expandOpen]: expanded,}):'empty'} >
                     <ArrowForwardIosIcon  color={'primary'} style={{ height: 30, width: 30,marginTop:5,position:"abosolute"}} />
                   </IconButton>
                   }
@@ -297,6 +318,7 @@ function HomeScreenfunct(props) {
       
       },
     }).then(res =>{
+       console.log(res.data)
         this.setState({Campaigns:res.data})
     })
   }
@@ -305,7 +327,7 @@ function HomeScreenfunct(props) {
   render(){
      return(
 
-        <HomeScreenfunct Campaigns={this.state.Campaigns} />
+        <HomeScreenfunct window={window} Campaigns={this.state.Campaigns} />
       )
   }
  }

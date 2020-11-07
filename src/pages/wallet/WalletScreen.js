@@ -4,6 +4,8 @@ import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import Avatar from "@material-ui/core/Avatar";
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
+import axios from "axios";
+
 export default class WalletScreen extends Component {
    constructor(props) {
     super(props);
@@ -15,7 +17,25 @@ export default class WalletScreen extends Component {
       error: false,
     };
   }
+ componentDidMount(){
+            var databit={userID:localStorage.getItem("userId")}
+          console.log(databit)
+          console.log(databit)
 
+   axios({
+      method: 'GET',
+     url: `https://longa-money.herokuapp.com/api/u/wallet/jobs`, // First page at 0
+       data:databit,
+       headers: {
+      "Authorization": `Bearer ${localStorage.getItem("token")}`,
+      
+      },
+    }).then(res =>{
+       console.log(res.data)
+    })
+              console.log(databit)
+
+ }
   render(){
   	 return(
   	 	  <div className={'wallethome'}>
@@ -27,9 +47,7 @@ export default class WalletScreen extends Component {
                       <div className={'columntextfont1'}>Pending Payment</div>
                       <div className={'columntextfont1'}>R 3000</div>
                   </div>
-                  <div className={'rowtext'}>
-                     <div className={'columntextfont'}>Rewards</div>
-                  </div> 
+                  
                   <div className={'rowtext'}>
                      <div className={'columntextfont'}>Total Paid</div>
                      <div className={'columntextfont2'}>R 1200 </div>

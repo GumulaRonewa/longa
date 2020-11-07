@@ -13,7 +13,10 @@ class Register extends Component {
     this.state = {
       email: null,
       name:null,
+      surname:null,
+      dob:null,
       password: null,
+      phone: null,
       error: false,
     };
   }
@@ -24,15 +27,17 @@ class Register extends Component {
   };
   handleLogin = (e) => {
     e.preventDefault();
-        const user = { email: this.state.email,name:this.state.name, password: this.state.password };
+        const user = { email: this.state.email,name:this.state.name,surname:this.state.surname,dateOfBirth:this.state.dob,phone:"05393384", password: this.state.password };
            console.log(user);
          axios({
       method: "POST",
       url: `https://longa-money.herokuapp.com/api/user/register`,
       data: user,
       }).then((res) => {
+              localStorage.setItem('name',user.name);
+
                        console.log(res);
-                       //this.props.history.push("/welcome");
+                       this.props.history.push("/welcome");
          
       });
   };
@@ -56,8 +61,8 @@ class Register extends Component {
               <div className="RegBox">
                  <div className="logininput">
                     <input type='text' name={'name'} onChange={this.handleChange} className="inputbox" placeholder=" Name" />
-                    <input type='text' className="inputRegibox" placeholder="Surname" /> 
-                    <input type='text' className="inputRegibox" placeholder="Date of Birth" />
+                    <input type='text' name={'surname'} onChange={this.handleChange} className="inputRegibox" placeholder="Surname" /> 
+                    <input type='text'name={'dob'} onChange={this.handleChange} className="inputRegibox" placeholder="Date of Birth" />
                     <input type='text' name={'email'}  onChange={this.handleChange} className="inputRegibox" placeholder="Email Address" />
                     <input type='password' name={'password'}  onChange={this.handleChange} className="inputRegibox" placeholder="Password" />
                     <input type='password' className="inputRegibox" placeholder="Confirm Password" />

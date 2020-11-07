@@ -19,8 +19,10 @@ import clsx from "clsx";
 import { Switch, Route, Link, BrowserRouter } from "react-router-dom";
 import HomeScreen from './home/HomeScreen'
 import Welcome from './home/Welcome'
+import WelcomeBrand from './home/WelcomeBrand'
 import Linked from './home/Linked'
 import ChatScreen from './chat/ChatScreen'
+import ProfileScreen from './profile/ProfileScreen'
 import Login from './login/Login'
 import Choose from './login/Choose'
 import Register from './login/Register'
@@ -34,17 +36,7 @@ import AccountBalanceWalletIcon from '@material-ui/icons/AccountBalanceWallet';
 import WorkIcon from '@material-ui/icons/Work';
 import notag from '../images/notag.png'
 import './drawer.css';
-import {
-  FacebookShareButton,
-  InstapaperShareButton,
-  LinkedinShareButton,
-  PinterestShareButton,
-  RedditShareButton,
-  TelegramShareButton,
-  TwitterShareButton,
-  WhatsappShareButton,
-  WorkplaceShareButton
-} from "react-share";
+
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
@@ -232,6 +224,11 @@ const menuId = 'primary-search-account-menu';
         win.open("login", "_self");
 
 }
+    const profilecl = () => {
+      var win=props.props;
+        win.open("profile", "_self");
+
+}
   const renderMenu = (
     <Menu
       anchorEl={anchorEl}
@@ -242,7 +239,10 @@ const menuId = 'primary-search-account-menu';
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-          <MenuItem onClick={handleMenuClose}>My Profile</MenuItem>
+          <MenuItem onClick={profilecl}>My Profile</MenuItem>
+          <MenuItem onClick={profilecl}>My Rewards</MenuItem>
+          <MenuItem onClick={profilecl}>Settings</MenuItem>
+          <MenuItem onClick={profilecl}>About Us</MenuItem>
 
       <MenuItem onClick={Signout}>Sign Out</MenuItem>
     </Menu>
@@ -358,7 +358,7 @@ const menuId = 'primary-search-account-menu';
             >
              <Avatar
                 className={classes.avatar}
-                src={"k"}
+                src={localStorage.getItem("image")}
                 alt={"R"}
             />
             </IconButton>
@@ -418,6 +418,7 @@ function Main() {
           window.location.pathname !== "/loginout" &&
           window.location.pathname !== "/login" &&
           window.location.pathname !== "/" &&
+          window.location.pathname !== "/wb" &&
           window.location.pathname !== "/details" &&
           window.location.pathname !== "/loading" && <Drawing props={window}/>}
         <main
@@ -432,8 +433,10 @@ function Main() {
                         <Route path={"/register"} component={Register} />
                         <Route path={"/registerbrands"} component={RegisterBussiness} />
                         <Route path={"/welcome"} component={Welcome} />
-                        <Route path={"/choose"} component={Choose} />
+                        <Route path={"/wb"} component={WelcomeBrand} />
+                        <Route exact path={"/"} component={Choose} />
                         <Route path={"/links"} component={Linked} />
+                        <Route path={"/profile"} component={ProfileScreen} />
 
             <Route path="/jobs" component={JobScreen} />
             <Route path="/wallet" component={WalletScreen} />
