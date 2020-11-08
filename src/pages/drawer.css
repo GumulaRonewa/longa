@@ -11,3 +11,30 @@
 	height: 100%;
 	width: 100%;
 }
+.icorrow{
+	display: flex;
+	flex-direction: row;
+	margin:10px;
+	margin-left: 30px;
+}
+.notificationlabel{
+  text-align: left;
+  margin-left: 6px;
+font: normal normal normal 20px/25px Lato;
+letter-spacing: 0px;
+color: #000000;
+opacity: 1;
+}
+.notiftext{
+font: normal normal normal 16px/18 Lato;
+letter-spacing: 0px;
+color: #000000;
+opacity: 1;
+}
+@media only screen and (min-width: 1025px) {
+	.icorrow{
+	
+	margin-left: 120px;
+	margin-top: 20px;
+}
+}

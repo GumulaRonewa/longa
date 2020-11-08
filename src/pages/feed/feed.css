@@ -29,12 +29,18 @@ opacity: 1;
   display: flex;
   flex-direction: row;
 }
+.iconcol{
+  display: flex;
+  flex-direction: column;
+  margin-left: 10px;
+  align-self: flex-end;
+}
 .theemojileftbox{
   width: 90%;
   height:55px;
   float:left;
   display: grid;
-  place-items:center;
+  place-items:start;
   position: relative;
 
 }
@@ -59,11 +65,26 @@ letter-spacing: 0px;
 color: #0F81C7;
 opacity: 1;
 }
+.username{
+  margin-left: 10px;
+font: normal normal normal 20px/22px Lato;
+letter-spacing: 0px;
+color: black;
+opacity: 1;
+}
+.postext{
+  margin-left: 10px;
+font: normal normal normal 17px/19px ;
+letter-spacing: 0px;
+color: black;
+opacity: 1;
+}
 .feedmessagebox{
   width: 90%;
   height:28vh;
   position: relative;
   display: flex;
+  margin-top: 10px;
   margin-left:40px;
   flex-direction: column-reverse;
   border: 5px solid #0F81C7;
@@ -139,6 +160,11 @@ opacity: 1;
   flex-direction: column;
   height:60%;
   overflow: auto;
+}
+.postsection{
+  display: flex;
+  flex-direction: column;
+  width:85%;
 }
 @media only screen and (max-width: 1025px) {
   .feedround{

@@ -14,6 +14,7 @@ import Divider from "@material-ui/core/Divider";
 import IconButton from '@material-ui/core/IconButton';
 import Menu from '@material-ui/core/Menu';
 import Picker, { SKIN_TONE_MEDIUM_DARK } from 'emoji-picker-react';
+import ReplyIcon from '@material-ui/icons/Reply';
 
 const phases=[
     {id:"1",phase:" User 1",plan:"Business plan",duration:"6 Weeks",image:"https://cdn.iconscout.com/icon/premium/png-512-thumb/setting-167-243672.png"},
@@ -141,8 +142,32 @@ export default function FeedScreen(argument) {
              </div>
                 <div className={'sbox'}>
                <div className={'feedleftbox'} >
+                                      <Divider />
+
+                       <ListItem>
+                       <Avatar
+                           style={{ height: 60, width: 60, right: 2 }}
+                        src={'r'}
+                        alt={"T"}
+                      />
+                        <ListItemText
+                            style={{ marginLeft: 5 }}
+                            primary={"Admin :Pinned Post"}
+                            secondary={"Lorem ipsum dolor sit amet, consetetur sa"}
+                        />
+                       <IconButton onClick={like}>
+                        <Badge badgeContent={likes} max={99} color="secondary">
+                    <FavoriteIcon color={`${color}`} />
+
+                  </Badge>
+                  </IconButton>
+
+                     </ListItem>
+                                                           <Divider />
+
                <div className={'feedmessagebox'}>
                <div>
+
                  <div className={'feedinputdiv'}>
                  <TextField id="standard-basic" onChange={handleChange}    value={post} fullWidth placeholder={"What's on your mind?"}  />
                  </div>
@@ -186,27 +211,7 @@ export default function FeedScreen(argument) {
                  </div>
                   <div className={'liststyle'}>
                      <List className={'scroll'}>
-                                          <Divider />
-
-                       <ListItem>
-                       <Avatar
-                           style={{ height: 60, width: 60, right: 2 }}
-                        src={'r'}
-                        alt={"T"}
-                      />
-                        <ListItemText
-                            style={{ marginLeft: 5 }}
-                            primary={"Admin :Pinned Post"}
-                            secondary={"Lorem ipsum dolor sit amet, consetetur sa"}
-                        />
-                       <IconButton onClick={like}>
-                        <Badge badgeContent={likes} max={99} color="secondary">
-                    <FavoriteIcon color={`${color}`} />
-
-                  </Badge>
-                  </IconButton>
-
-                     </ListItem>
+                   
                                   {phases.map(({id,phase,plan,duration,image})=> (
                   <div>
                      <Divider />
@@ -216,16 +221,25 @@ export default function FeedScreen(argument) {
                         src={'r'}
                         alt={"T"}
                       />
-                        <ListItemText
-                            style={{ marginLeft: 5 }}
-                            primary={phase}
-                            secondary={"Lorem ipsum dolor sit amet, consetetur sa"}
-                        />
+                        <div className='postsection'>
+                          <div className={'username'}>{phase} </div>
+                          <div className={'postext'}> Lorem ipsum dolor sit amet, consetetur sa
+
+ 
+                          </div>
+                        </div>
+                        <div className='iconcol'>
                     <IconButton>
                         <Badge badgeContent={5} max={9} color="secondary">
                     <FavoriteIcon color="secondary" />
                   </Badge>
                   </IconButton>
+                   <IconButton>
+                        <Badge badgeContent={1} max={99} color="secondary">
+                    <ReplyIcon color="secondary" />
+                  </Badge>
+                  </IconButton>
+                  </div>
                      </ListItem>
                      <Divider/>
                                           </div>
