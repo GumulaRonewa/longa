@@ -51,11 +51,12 @@ opacity: 1;
 
 }
 .therightbox{
-  width: 60%;
-  height:55vh;
+  width: 55%;
+  height:49vh;
   float:right;
   position: relative;
   display: flex;
+  margin-right:10px ; 
   flex-direction: column-reverse;
   border: 5px solid #0F81C7;
   border-bottom-right-radius: 15px;

@@ -19,6 +19,7 @@ import clsx from "clsx";
 import { Switch, Route, Link, BrowserRouter } from "react-router-dom";
 import HomeScreen from './home/HomeScreen'
 import Welcome from './home/Welcome'
+import Conformation from './home/Conformation'
 import WelcomeBrand from './home/WelcomeBrand'
 import Linked from './home/Linked'
 import ChatScreen from './chat/ChatScreen'
@@ -480,7 +481,7 @@ function Main() {
           window.location.pathname !== "/" &&
           window.location.pathname !== "/wb" &&
           window.location.pathname !== "/details" &&
-          window.location.pathname !== "/loading" && <Drawing props={window}/>}
+          window.location.pathname !== "/validreg" && <Drawing props={window}/>}
         <main
           className={clsx(classes.content, {
             [classes.contentShift]: true,
@@ -491,6 +492,7 @@ function Main() {
             <Route path="/feed" component={FeedScreen} />
                         <Route path={"/login"} component={Login} />
                         <Route path={"/register"} component={Register} />
+                        <Route path={"/validreg"} component={Conformation} />
                         <Route path={"/registerbrands"} component={RegisterBussiness} />
                         <Route path={"/welcome"} component={Welcome} />
                         <Route path={"/wb"} component={WelcomeBrand} />

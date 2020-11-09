@@ -6,6 +6,7 @@
 	height: 100vh;
 	width: 100%;
 }
+
 .bottomdiv{
     display:flex;
     flex-direction: row;

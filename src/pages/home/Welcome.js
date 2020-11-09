@@ -39,7 +39,7 @@ export default class Welcome extends Component {
         <div className="WelcomerightBox">
            <div className="bgWhite">
               <div>
-                <div className="welcometext"> Welcome d </div>
+                <div className="welcometext"> Welcome {localStorage.getItem("name")}</div>
                 <div style={{color:"transparent"}}>gr</div>
                 <div className="linktext">Please link one or more social media accounts to proceed</div>
                 <div className="accountsrow">
