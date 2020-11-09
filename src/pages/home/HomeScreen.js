@@ -76,7 +76,7 @@ function HomeScreenfunct(props) {
     const isMenuOpen = Boolean(anchorEl);
     const isMenuOpen2 = Boolean(anchorEl2);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
-
+  var camps=props.Campaigns;
   const handleShareMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -156,6 +156,7 @@ function HomeScreenfunct(props) {
      </div>
     </Menu>
   );
+   var word="dfhj";
     const renderMenu = (
     <Menu
       anchorEl={anchorEl}
@@ -193,6 +194,10 @@ function HomeScreenfunct(props) {
     </Menu>
   );
   const handleExpandButtonClick = (key) => () =>{
+    var temp=camps.find(({ _id }) => _id === key._id);
+    var arr=[temp];
+    camps=arr;
+    console.log(camps);
     setPromo(key.campaignID);
     setPromoId(key._id)
     setExpanded(!expanded);
@@ -207,8 +212,8 @@ function HomeScreenfunct(props) {
 
               
               <List>
-                      {props.Campaigns.map((item)=> (
-
+            {camps.map((item)=> (
+               
                 <ListItem>
                   <div className={selectedPromo === item.campaignID && expanded ?'homelistdivexplore':'homelistdiv'}>
                   <div className={'rowe'}>
@@ -226,7 +231,7 @@ function HomeScreenfunct(props) {
                       <div className={'hidebutton'}>
                        <button className="buttonsexpandblue" onClick={handleShareMenuOpen}>
                                          <img src={share} className='iconex' alt="b"/>
-                                         Share
+                                         Share 
 
                         </button>
                         <button onClick={handleBankMenuOpen} className="buttonsexpandred">
@@ -249,10 +254,11 @@ function HomeScreenfunct(props) {
                             primary={expanded ? "":`${item.campaignName}`}
 
                         />
+
                 {selectedPromo === item.campaignID && expanded &&
                  <div>
                    <div  className={'ctextc'} style={{marginLeft:30}}>
-                     {item.description}
+                     {item.description} {word}
                    </div>
                    <div className={'line'}>
                    </div >
@@ -309,7 +315,7 @@ function HomeScreenfunct(props) {
       Campaigns:[]
     };
   }
-  componentDidMount() {
+  componentWillMount() {
      axios({
       method: 'GET',
      url: `https://longa-money.herokuapp.com/api/campaigns`, // First page at 0

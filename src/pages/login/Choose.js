@@ -23,22 +23,26 @@ class Choose extends Component {
         <div className="leftBoxChoose">
           
           <div className="imageChooseLeft">
+           <div className='hue' >
             <div className="brandtext">
               Brands
             </div>
             <button onClick={this.handleBrands} className="brandbttn">
              Start
             </button>
+            </div>
           </div>
         </div>
         <div className="rightBoxChoose">
          <div className="imageChooseRight">
+          <div className='hue2' >
             <div className="brandtext">
               Influencer
             </div>
             <button onClick={this.handleInfluencer} className="brandbttnwhite">
              Start
             </button>
+            </div>
           </div>
           </div>
       </div>

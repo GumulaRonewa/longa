@@ -233,13 +233,14 @@ opacity: 1;
 }
 .welcometext{
 	text-align: center;
-font: normal normal normal 65px/82px Lato;
+font: normal normal normal 85px/102px Lato;
 letter-spacing: 0px;
 color: #0F81C7;
 opacity: 1;
 }
 .linktext{
 	text-align: left;
+  margin-top: 15;
 font: normal normal normal 22px/27px Lato;
 letter-spacing: 0px;
 color: #0F81C7;
@@ -325,7 +326,7 @@ opacity: 1;
   display: flex;
 }
 .accountsrow{
-  margin-left: 30px;
+  margin-left: 50px;
 }
 
   .hidebutton{

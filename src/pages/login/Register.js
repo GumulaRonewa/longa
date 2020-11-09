@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import "./App.css";
 import minilogo from '../../images/minilogo.png'
 import axios from "axios";
-
+import Checkbox from '@material-ui/core/Checkbox';
+import DatePicker from "react-datepicker";
 import SendIcon from '@material-ui/icons/Send';
 
 
@@ -18,8 +19,12 @@ class Register extends Component {
       password: null,
       phone: null,
       error: false,
+      date:null,
     };
   }
+     componentWillMount() {
+      this.setState({date:new Date()})
+}
    handleChange = (e) => {
     e.preventDefault();
     const { name, value } = e.target;
@@ -62,10 +67,14 @@ class Register extends Component {
                  <div className="logininput">
                     <input type='text' name={'name'} onChange={this.handleChange} className="inputbox" placeholder=" Name" />
                     <input type='text' name={'surname'} onChange={this.handleChange} className="inputRegibox" placeholder="Surname" /> 
-                    <input type='text'name={'dob'} onChange={this.handleChange} className="inputRegibox" placeholder="Date of Birth" />
+                    <input type='date'name={'dob'} label={"DoB"} onChange={this.handleChange} className="inputRegibox" placeholder="Date of Birth" />
                     <input type='text' name={'email'}  onChange={this.handleChange} className="inputRegibox" placeholder="Email Address" />
                     <input type='password' name={'password'}  onChange={this.handleChange} className="inputRegibox" placeholder="Password" />
                     <input type='password' className="inputRegibox" placeholder="Confirm Password" />
+                    <div className='tc'>
+                      <Checkbox />
+                      <a href="#" style={{marginTop:10,color:"black"}}> Accept our terms & conditions </a>
+                    </div>
                  </div>
                  <button onClick={this.handleLogin} className="buttons">
                   <SendIcon className='iconSign' />

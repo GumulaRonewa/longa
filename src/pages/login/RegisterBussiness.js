@@ -2,9 +2,13 @@ import React, { Component } from "react";
 import "./App.css";
 import minilogo from '../../images/minilogo.png'
 import axios from "axios";
-
+import Select from "react-select";
+import makeAnimated from "react-select/animated";
 import SendIcon from '@material-ui/icons/Send';
+import { DateRangePicker } from "materialui-daterange-picker";
+import Checkbox from '@material-ui/core/Checkbox';
 
+const animatedComponents = makeAnimated();
 
 class RegisterBussiness extends Component {
   constructor(props) {
@@ -15,20 +19,40 @@ class RegisterBussiness extends Component {
        contactNumber:null,
        email:null,
        campaignName:null,
-       description:null,
+       description:1,
        duration:null,
        influencers:null,
        nameAndSurname:null,
        dos:null,
        donts:null,
+       options:[{ value: 'Yes', label: 'Yes' },{ value: 'No', label: 'No' }],
+       part:1,
+       open:false,
+       range:null,
 
     };
+  }
+  handleSelect =(e) =>{
+    console.log(this.state.range.startDate);
+    // {
+    //   selection: {
+    //     startDate: [native Date Object],
+    //     endDate: [native Date Object],
+    //   }
+    // }
   }
   handleChange = (e) => {
     e.preventDefault();
     const { name, value } = e.target;
     this.setState({ [name]: value });
   };
+    toggle= (e) => {
+    this.setState({ open: !this.state.open });
+  };
+  handleContinue =(e) =>{
+        this.setState({ part: 2 });
+
+  }
   handleSubmit= (e) => {
     console.log(this.state)
 axios({
@@ -40,6 +64,7 @@ axios({
       )
     }
   render() {
+ 
     return (
       <div className="authBox">
         <div className="leftBoxBusiness">
@@ -50,54 +75,72 @@ axios({
         </div>
         <div className="rightBoxBusiness">
            <div className="bgRed"> 
-                 <div className="regplaceBusiness">
+             <div className="regplaceBusiness">
+
                 Contact Us
               </div>
-              <div>
-              <div className="RegBoxBusiness">
-                 <div className="logininput">
-                    <input type='text' name="nameOfBrand"  onChange={this.handleChange}className="inputbox" placeholder=" Name of Brand" />
-                    <input type='text'  className="inputRegibox" placeholder="Has your brand used Influencer Marketing before?" /> 
+               <div>
+               <div className="RegBox">
+                { this.state.part===1 &&
+
+                <div className="logininput">
+
+                 <input type='text' name="nameOfBrand"  onChange={this.handleChange}className="inputbox" placeholder=" Name of Brand" />
+                    <div className='inputRegibox'>
+                    <Select
+                      name="Has your brand used Innfluencer Marketing before?"
+                      label="Has your brand used Influencer Marketing before?"
+                      closeMenuOnSelect={true}
+                      defaultValue={{ label: 'Has your brand used Influencer Marketing before?', value: 'default-value' }}
+                       components={animatedComponents}
+                      options={this.state.options}
+                       />
+                    </div>
                     <input type='text' name="nameAndSurname" onChange={this.handleChange} className="inputRegibox" placeholder="Name & Surname" />
                     <input type='text' name="email" onChange={this.handleChange}className="inputRegibox" placeholder="Email Address" />
                     <input type='text' name="contactNumber" onChange={this.handleChange} className="inputRegibox" placeholder="Contact Number" />
                     <input type='text' name="campaignName" onChange={this.handleChange} className="inputRegibox" placeholder="Name of Campaign" />
-                    <textarea  type='text' name="description" onChange={this.handleChange} style={{height:120,fontSize: 14}} multiline className="inputRegibox" placeholder="Description of Campaign" />
-                     <input type='text' name="duration" onChange={this.handleChange} className="inputboxhidden" placeholder="Duration of campaign" />
-                    <input type='text' name="influencers" onChange={this.handleChange} className="inputRegiboxhidden" placeholder="Number of influencers needed" /> 
-                    <textarea  type='text' name="dos" onChange={this.handleChange} style={{height:120,fontSize: 14}} multiline className="inputRegiboxhidden" placeholder="Do's for influencers" />
-                    <textarea  type='text' name="donts" onChange={this.handleChange} style={{height:120,fontSize: 14}} multiline className="inputRegiboxhidden" placeholder="Dont's for influencers" />
-                      <button onClick={this.handleSubmit} className="buttonshidden">
+                      <button onClick={this.handleContinue} className="buttons">
                   <SendIcon className='iconSign' />
-                   <p style={{color:'transparent'}}> e</p>
+                     Continue
+                 </button> 
+               
+                </div>
+               }
+                { this.state.part===2 &&
+
+                <div className="logininput">
+                <input type='text' name="duration" onFocus={this.toggle} className="inputbox" placeholder="Duration of campaign" />
+                   <DateRangePicker
+                       open={this.state.open}
+                       toggle={this.toggle}
+                       onChange={(range) => this.setState({range:range}) }
+                    />
+                    <textarea  type='text' name="description" onChange={this.handleChange} style={{heiht:110,fontSize: 14}} multiline className="inputRegibox" placeholder="Description of Campaign" />
+                    <input onFocus={this.handleSelect} type='text' name="influencers" onChange={this.handleChange} className="inputRegibox" placeholder="Number of influencers needed" /> 
+                     <textarea  type='text' name="dos" onChange={this.handleChange} style={{height:110,fontSize: 14}} multiline className="inputRegibox" placeholder="Do's for influencers" />
+                    <textarea  type='text' name="donts" onChange={this.handleChange} style={{height:110,fontSize: 14}} multiline className="inputRegibox" placeholder="Dont's for influencers" />
+                      <div className='tc'>
+                      <Checkbox />
+                      <a href="#" style={{marginTop:10,color:"black"}}> Accept our terms & conditions </a>
+                    </div>
+                      <button onClick={this.handleSubmit} className="buttons">
+                  <SendIcon className='iconSign' />
                      Submit
                  </button> 
-                 </div> 
-
-              </div>
-
-              <div className="RegBoxBusinessRight">
-                 <div className="logininput">
-                    <input type='text' name="duration" onChange={this.handleChange} className="inputbox" placeholder="Duration of campaign" />
-                    <input type='text' name="influencers" onChange={this.handleChange} className="inputRegibox" placeholder="Number of influencers needed" /> 
-                    <textarea  type='text'  name="dos" onChange={this.handleChange} style={{height:120,fontSize: 14}} multiline className="inputRegibox" placeholder="Do's for influencers" />
-                    <textarea  type='text' name="donts" onChange={this.handleChange} style={{height:120,fontSize: 14}} multiline className="inputRegibox" placeholder="Dont's for influencers" />
-                 </div>
-                 <div className='regbuttondiv'>
-                 <button onClick={this.handleSubmit}className="buttons">
-                  <SendIcon className='iconSign' />
-                   <p style={{color:'transparent'}}> e</p>
-                     Submit
-                 </button>
-                 </div>
-                 
-                 
+               
+                </div>
+               }
               </div>
               </div>
-          </div>
+                
+           </div> 
         </div>
       </div>
     );
   }
 }
 export default RegisterBussiness;
+
+              
+                   

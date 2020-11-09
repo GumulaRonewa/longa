@@ -1,12 +1,7 @@
 import React, { Component } from "react";
 import './home.css';
 import profile_picture_without_slogan from '../../images/profile_picture_without_slogan.png'
-import facebookblack from '../../images/facebookblack.svg'
-import instagram from '../../images/instagram.svg'
-import twitter from '../../images/twitter.svg'
-import linkedin from '../../images/linkedin.svg'
-import snapchat from '../../images/snapchat.svg'
-import IconButton from "@material-ui/core/IconButton";
+
 
 export default class WelcomeBrand extends Component {
    constructor(props) {
