@@ -62,7 +62,7 @@ function CustomizedTables() {
           {rows.map((row) => (
             <StyledTableRow key={row.date}>
               <StyledTableCell align="left" >
-                {row.name}
+                {row.date}
               </StyledTableCell>
               <StyledTableCell align="left">{row.campaign}</StyledTableCell>
               <StyledTableCell align="left">{row.desc}</StyledTableCell>
