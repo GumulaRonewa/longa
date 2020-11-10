@@ -185,12 +185,7 @@ function HomeScreenfunct(props) {
         Facebook
       </FacebookShareButton>
       </MenuItem>
-      <MenuItem>
-      <RedditShareButton url={`${href}/${selectedPromo}`}>
-        <SocialIcon network="reddit" />
-        Reddit
-      </RedditShareButton>
-      </MenuItem>
+     
     </Menu>
   );
   const handleExpandButtonClick = (key) => () =>{

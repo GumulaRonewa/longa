@@ -24,6 +24,7 @@ import WelcomeBrand from './home/WelcomeBrand'
 import Linked from './home/Linked'
 import ChatScreen from './chat/ChatScreen'
 import ProfileScreen from './profile/ProfileScreen'
+import Rewards from './profile/Rewards'
 import Login from './login/Login'
 import Choose from './login/Choose'
 import Register from './login/Register'
@@ -241,6 +242,11 @@ const menuId2= 'primary-search-account-menu';
         win.open("profile", "_self");
 
 }
+    const rewardscl = () => {
+      var win=props.props;
+        win.open("myrewards", "_self");
+
+}
   const renderNotifMenu = (
     <Menu
       anchorEl={anchorEl2}
@@ -284,7 +290,7 @@ const menuId2= 'primary-search-account-menu';
       onClose={handleMenuClose}
     >
           <MenuItem onClick={profilecl}>My Profile</MenuItem>
-          <MenuItem onClick={profilecl}>My Rewards</MenuItem>
+          <MenuItem onClick={rewardscl}>My Rewards</MenuItem>
           <MenuItem onClick={profilecl}>Settings</MenuItem>
           <MenuItem onClick={profilecl}>About Us</MenuItem>
 
@@ -493,6 +499,7 @@ function Main() {
                         <Route path={"/login"} component={Login} />
                         <Route path={"/register"} component={Register} />
                         <Route path={"/validreg"} component={Conformation} />
+                        <Route path={"/myrewards"} component={Rewards} />
                         <Route path={"/registerbrands"} component={RegisterBussiness} />
                         <Route path={"/welcome"} component={Welcome} />
                         <Route path={"/wb"} component={WelcomeBrand} />
@@ -518,6 +525,7 @@ export default class SideDrawer extends React.Component {
       window.location.pathname !== "/register" &&
       window.location.pathname !== "/login" &&
       window.location.pathname !== "/" &&
+      window.location.pathname !== "/validreg" &&
       window.location.pathname !== "/links" &&
 
       window.location.pathname !== "/welcome" &&
