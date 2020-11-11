@@ -39,7 +39,7 @@ export default function ProfileScreen(argument) {
                     <div className={'gentext'}>Email    : _Email_ </div>
                     <div className={'gentext'}>Phone Number: _Phone_ </div>
                     <div className={'gentext'}>Country : _Country_ </div>
-                    <div className={'gentext'}>Website : _Website_ </div>
+                    <div className={'gentext'}>Gender : _Gender_ </div>
                  </div>
                  <div className={'accountsbox'}>
                         <div className={'lntext'} >Social Accounts </div>
