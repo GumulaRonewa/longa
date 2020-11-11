@@ -36,7 +36,7 @@ export default class WelcomeBrand extends Component {
         <div className="WelcomerightBox">
            <div className="bgWhite">
               <div>
-                <div className="welcometext">Campaign Created Successfully </div>
+                <div className="welcometext">Thank you for your submission we will be in touch with you soon </div>
                </div>
           </div>
         </div>

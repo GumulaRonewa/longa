@@ -8,7 +8,7 @@
 }
 .profbox{
   width: 1050px;
-  height: 540px;
+  height: 550px;
   overflow: auto;;
   background: #FFFFFF 0% 0% no-repeat padding-box;
 box-shadow: 10px 10px 6px #00000029;
@@ -37,29 +37,173 @@ letter-spacing: 0px;
 color: #FFFFFF;
 opacity: 1;
 }
+.aboutsec{
+  text-align: center;
+font: normal normal normal 21px/21px Lato;
+margin-top: 10px;
+letter-spacing: 0px;
+opacity: 1;
+}
+.biotext{
+  text-align: left;
+font: normal normal normal 24px/25px Lato;
+margin-top: 4px;
+margin-left: 5px;
+letter-spacing: 0px;
+color: black;
+opacity: 1;
+}
+.biotext2{
+  text-align: left;
+font: normal normal normal 18px/19px Lato;
+margin-top: 14px;
+margin-left: 5px;
+letter-spacing: 0px;
+color: black;
+opacity: 1;
+}
+.rowx{
+  display: flex;
+  flex-direction: row;
+}
+.lntext{
+  text-align: left;
+font: normal normal normal 20px/22px Lato;
+margin-top: 9px;
+margin-left: 5px;
+letter-spacing: 0px;
+color: black;
+opacity: 1;
+}
+.iconbt{
+  margin-left: 7px;
+  height: 43px;
+}
+.reach{
+  margin-left: 7px;
+  background-color: #0F81C7;
+  display: grid;
+  padding-left: 4px;
+  color: white;
+  padding-right: 4px;
+  place-items:center;
+  font: normal normal normal 15px/16px Lato;
+
+  height: 43px;
+}
+.ident{
+  margin-top: 6px;
+    font: normal normal normal 17px/18px Lato;
+
+}
+.setedit{
+    outline: none;
+    margin-top: 3px;
+    height: 35px;
+    width: 100%;
+        text-align: center;
+
+    display: flex;
+    border-color: #707070;
+}
+.iconpl{
+  display: flex;
+  flex-direction: column;
+  margin-left: 5px;
+}
+.gentext{
+  text-align: left;
+font: normal normal normal 18px/20px Lato;
+margin-top: 9px;
+margin-left: 5px;
+letter-spacing: 0px;
+color: black;
+opacity: 1;
+}
 .pbox{
- width: 98%;
- margin-top: 30px;
+ width: 99%;
+ margin-top: 6px;
  margin-left: 10px;
  display: flex;
+ flex-direction: row;
   overflow: hidden;
 }
 .profimg{
-  margin-top: 14px;
+  margin-top: 10px;
 margin-left: 40px;
-width: 240px;
-height: 240px;
+width: 260px;
+height: 210px;
+display: grid;
+place-items:center;
 background: #FFFFFF 0% 0% no-repeat padding-box;
 border: 1px solid #707070;
 opacity: 1;
 }
+.biop{
+  margin-top: 10px;
+margin-left: 40px;
+width: 260px;
+height: 220px;
+display: grid;
+background: #FFFFFF 0% 0% no-repeat padding-box;
+border: 1px solid #707070;
+opacity: 1;
+}
+.accountsbox{
+  margin-top: 10px;
+margin-left: 40px;
+width: 294px;
+height: 100px;
+display: grid;
+background: #FFFFFF 0% 0% no-repeat padding-box;
+border: 1px solid #707070;
+opacity: 1;
+}
+.featured{
+  margin-top: 10px;
+margin-left: 40px;
+width: 280px;
+height: 440px;
+display: grid;
+background: #FFFFFF 0% 0% no-repeat padding-box;
+border: 1px solid #707070;
+opacity: 1;
+}
+.nameset{
+  margin-top: 10px;
+margin-left: 40px;
+display: flex;
+flex-direction: column;
+padding-left: 8px;
+padding-right: 8px;
+width: 280px;
+height: 440px;
+background: #FFFFFF 0% 0% no-repeat padding-box;
+border: 1px solid #707070;
+opacity: 1;
+}
+
+.general{
+  margin-top: 10px;
+margin-left: 40px;
+width: 290px;
+height: 220px;
+background: #FFFFFF 0% 0% no-repeat padding-box;
+border: 1px solid #707070;
+opacity: 1;
+}
+.imge{
+  height: 180px;
+  width: 180px;
+
+  border-radius: 100px;
+}
 .img{
-  margin-top: 330px;
-margin-left: 469px;
-width: 108px;
-height: 108px;
+  margin-top: 3px;
+margin-left: 9px;
+width: 10px;
+height: 10px;
 border-radius: 120px;
-background: #000000 0% 0% no-repeat padding-box;
 opacity: 1;
 }
 .bio{
@@ -76,9 +220,14 @@ opacity: 1;
     display: none;
 
   }
+  .pbox{
+    flex-direction: column;
+   }
   .profbox{
     width: 100%;
     border-radius: 40px;
+    border-radius: 0px;
+    height: 100%;
 
    }
 }

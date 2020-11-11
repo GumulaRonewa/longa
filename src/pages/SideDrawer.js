@@ -25,6 +25,8 @@ import Linked from './home/Linked'
 import ChatScreen from './chat/ChatScreen'
 import ProfileScreen from './profile/ProfileScreen'
 import Rewards from './profile/Rewards'
+import About from './profile/About'
+import Settings from './profile/Settings'
 import Login from './login/Login'
 import Choose from './login/Choose'
 import Register from './login/Register'
@@ -247,6 +249,16 @@ const menuId2= 'primary-search-account-menu';
         win.open("myrewards", "_self");
 
 }
+    const settingscl = () => {
+      var win=props.props;
+        win.open("settings", "_self");
+
+}
+   const aboutcl = () => {
+      var win=props.props;
+        win.open("aboutus", "_self");
+
+}
   const renderNotifMenu = (
     <Menu
       anchorEl={anchorEl2}
@@ -291,8 +303,8 @@ const menuId2= 'primary-search-account-menu';
     >
           <MenuItem onClick={profilecl}>My Profile</MenuItem>
           <MenuItem onClick={rewardscl}>My Rewards</MenuItem>
-          <MenuItem onClick={profilecl}>Settings</MenuItem>
-          <MenuItem onClick={profilecl}>About Us</MenuItem>
+          <MenuItem onClick={settingscl}>Settings</MenuItem>
+          <MenuItem onClick={aboutcl}>About Us</MenuItem>
 
       <MenuItem onClick={Signout}>Sign Out</MenuItem>
     </Menu>
@@ -499,7 +511,10 @@ function Main() {
                         <Route path={"/login"} component={Login} />
                         <Route path={"/register"} component={Register} />
                         <Route path={"/validreg"} component={Conformation} />
+                        <Route path={"/setting"} component={Settings} />
                         <Route path={"/myrewards"} component={Rewards} />
+                        <Route path={"/settings"} component={Settings} />
+                        <Route path={"/aboutus"} component={About} />
                         <Route path={"/registerbrands"} component={RegisterBussiness} />
                         <Route path={"/welcome"} component={Welcome} />
                         <Route path={"/wb"} component={WelcomeBrand} />

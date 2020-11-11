@@ -167,7 +167,11 @@ class Register extends Component {
                        )}
                     <div className='tc'>
                       <Checkbox   onChange={this.handleCheck}/>
-                      <a href="#" style={{marginTop:10,color:"black"}}> Accept our terms & conditions </a>
+                      <div  style={{marginTop:9,color:"black"}}> By Signing up you agree with our Accept our 
+                      <a href="#" style={{marginTop:10,color:"black"}}> Terms of service </a> 
+                        and
+                      <a href="#" style={{marginTop:10,color:"black"}}> Privacy policy </a>
+                       </div>
                     </div>
                  </div>
                  <button disabled={!this.state.check} onClick={this.handleLogin} className="buttonsreg">

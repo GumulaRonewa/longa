@@ -23,18 +23,23 @@ class RegisterBussiness extends Component {
        duration:1,
        influencers:null,
        nameAndSurname:null,
+       Budget:null,
        dos:null,
        donts:null,
        options:[{ value: 'Yes', label: 'Yes' },{ value: 'No', label: 'No' }],
        part:1,
        open:false,
-       range:null,
+       range:"Duration of campaign",
 
     };
   }
   handleSelect =(e) =>{
-    console.log(this.state.range.startDate);
-    // {
+        var msDiff =  new Date(e.endDate).getTime()-new Date(e.startDate).getTime() ;    //Future date - current date
+         var days= Math.floor(msDiff / (1000 * 60 * 60 * 24))+ " days";
+             this.setState({ range: days });
+    this.setState({ open: !this.state.open });
+
+     // {
     //   selection: {
     //     startDate: [native Date Object],
     //     endDate: [native Date Object],
@@ -75,6 +80,10 @@ axios({
         </div>
         <div className="rightBoxBusiness">
            <div className="bgRed"> 
+            <div className="toplogo">
+                 <img src={minilogo} alt="L" className="topSec"/>
+              </div>
+
              <div className="regplaceBusiness">
 
                 Contact Us
@@ -83,7 +92,7 @@ axios({
                <div className="RegBox">
                 { this.state.part===1 &&
 
-                <div className="logininput">
+                <div className="logininput2">
 
                  <input type='text' name="nameOfBrand"  onChange={this.handleChange}className="inputbox" placeholder=" Name of Brand" />
                     <div className='inputRegibox'>
@@ -98,8 +107,9 @@ axios({
                     </div>
                     <input type='text' name="nameAndSurname" onChange={this.handleChange} className="inputRegibox" placeholder="Name & Surname" />
                     <input type='text' name="email" onChange={this.handleChange}className="inputRegibox" placeholder="Email Address" />
-                    <input type='text' name="contactNumber" onChange={this.handleChange} className="inputRegibox" placeholder="Contact Number" />
+                    <input type='Number' name="contactNumber" onChange={this.handleChange} className="inputRegibox" placeholder="Contact Number" />
                     <input type='text' name="campaignName" onChange={this.handleChange} className="inputRegibox" placeholder="Name of Campaign" />
+                    <input type='Number' name="Budget" onChange={this.handleChange} className="inputRegibox" placeholder="Campaign Budget" />
                       <button onClick={this.handleContinue} className="buttons">
                   <SendIcon className='iconSign' />
                      Continue
@@ -109,20 +119,19 @@ axios({
                }
                 { this.state.part===2 &&
 
-                <div className="logininput">
-                <input type='text' name="duration" onFocus={this.toggle} className="inputbox" placeholder="Duration of campaign" />
+                <div className="logininput2">
+                <input type='text' name="duration" onFocus={this.toggle} className="inputbox"  placeholder={this.state.range} />
                    <DateRangePicker
                        open={this.state.open}
                        toggle={this.toggle}
-                       onChange={(range) => this.setState({range:range}) }
+                       onChange={(range) => this.handleSelect(range)}
                     />
                     <textarea  type='text' name="description" onChange={this.handleChange} style={{heiht:110,fontSize: 14}} multiline className="inputRegibox" placeholder="Description of Campaign" />
-                    <input onFocus={this.handleSelect} type='text' name="influencers" onChange={this.handleChange} className="inputRegibox" placeholder="Number of influencers needed" /> 
+                    <input onFocus={this.handleSelect} type='Number' name="influencers" onChange={this.handleChange} className="inputRegibox" placeholder="Number of influencers needed" /> 
                      <textarea  type='text' name="dos" onChange={this.handleChange} style={{height:110,fontSize: 14}} multiline className="inputRegibox" placeholder="Do's for influencers" />
                     <textarea  type='text' name="donts" onChange={this.handleChange} style={{height:110,fontSize: 14}} multiline className="inputRegibox" placeholder="Dont's for influencers" />
                       <div className='tc'>
-                      <Checkbox />
-                      <a href="#" style={{marginTop:10,color:"black"}}> Accept our terms & conditions </a>
+                      
                     </div>
                       <button onClick={this.handleSubmit} className="buttons">
                   <SendIcon className='iconSign' />

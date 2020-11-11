@@ -33,8 +33,8 @@ function createData(date, campaign, desc,status) {
 
 const rows = [
   createData('03-11-2020', "MTN #Remake2020", "R500  Takealot Voucher", "Pending"),
-  createData('01-04-2020', "Nike #JustDoIt", "Nike Downshifter Running Shoes", "Recieved"),
-  createData('23-10-2020', "KFC #KrispZinger","R 700 KFC Voucher", "Recieved"),
+  createData('01-04-2020', "Nike #JustDoIt", "Nike Downshifter Running Shoes", "Received"),
+  createData('23-10-2020', "KFC #KrispZinger","R 700 KFC Voucher", "Received"),
  
 ];
 
@@ -53,7 +53,7 @@ function CustomizedTables() {
         <TableHead>
           <TableRow>
             <StyledTableCell>Date</StyledTableCell>
-            <StyledTableCell align="left">Campain</StyledTableCell>
+            <StyledTableCell align="left">Campaign</StyledTableCell>
             <StyledTableCell align="left">Description</StyledTableCell>
             <StyledTableCell align="left">Status</StyledTableCell>
           </TableRow>

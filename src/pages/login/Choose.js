@@ -17,13 +17,20 @@ class Choose extends Component {
          
     
   };
+    componentWillMount() {
+      console.log(window)
+}
   render() {
     return (
       <div className="authBox">
         <div className="leftBoxChoose">
           
           <div className="imageChooseLeft">
+
+
            <div className='hue' >
+                                 <a href={'#'} style={{marginTop:"-18%",marginLeft:"-85%",fontSize:18,color:"white"}}>About Us</a>
+
             <div className="brandtext">
               Brands
             </div>
@@ -36,8 +43,10 @@ class Choose extends Component {
         <div className="rightBoxChoose">
          <div className="imageChooseRight">
           <div className='hue2' >
+                  <img src={notag} style={{height:120,width:155,marginTop:-50,marginLeft:"-100%"}} alt={'L'} />
+
             <div className="brandtext">
-              Influencer
+              Influencers
             </div>
             <button onClick={this.handleInfluencer} className="brandbttnwhite">
              Start
