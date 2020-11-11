@@ -223,11 +223,30 @@ opacity: 1;
   .pbox{
     flex-direction: column;
    }
+   .profimg{
+     width: 99%;
+   }
+   .biop{
+     width: 99%
+   }
+   .general{
+         width: 99%
+
+   }
+   .accountsbox{
+    width: 98%;
+   }
+   .featured{
+    width: 99%;
+   }
   .profbox{
     width: 100%;
     border-radius: 40px;
     border-radius: 0px;
     height: 100%;
 
+   }
+   .nameset{
+     width: 99%;
    }
 }
