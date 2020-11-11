@@ -5,6 +5,7 @@
   "dependencies": {
     "@material-ui/core": "^4.11.0",
     "@material-ui/icons": "^4.9.1",
+    "@material-ui/lab": "^4.0.0-alpha.56",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
@@ -20,13 +21,15 @@
     "react-datepicker": "^3.3.0",
     "react-dates": "^21.8.0",
     "react-dom": "^16.13.1",
+    "react-google-login": "^5.1.22",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.3",
     "react-select": "^3.1.0",
     "react-share": "^4.3.1",
     "react-social-icons": "^4.1.0",
     "react-step-progress-bar": "^1.0.3",
-    "shave": "^2.5.10"
+    "shave": "^2.5.10",
+    "tsutils": "^3.17.1"
   },
   "engines": {
     "node": "10.16.0",
