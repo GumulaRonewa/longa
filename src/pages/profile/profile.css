@@ -225,19 +225,28 @@ opacity: 1;
    }
    .profimg{
      width: 99%;
+    margin-left: 3px;
+
    }
    .biop{
-     width: 99%
+     width: 99%;
+    margin-left: 3px;
+
    }
    .general{
-         width: 99%
+         width: 99%;
+    margin-left: 3px;
 
    }
    .accountsbox{
     width: 98%;
+    margin-left: 3px;
+ 
    }
    .featured{
     width: 99%;
+    margin-left: 3px;
+  
    }
   .profbox{
     width: 100%;
@@ -248,5 +257,7 @@ opacity: 1;
    }
    .nameset{
      width: 99%;
+    margin-left: 3px;
+
    }
 }
