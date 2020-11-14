@@ -252,22 +252,22 @@ const menuId2= 'primary-search-account-menu';
 }
     const profilecl = () => {
       var win=props.props;
-        win.open("profile", "_self");
+        win.open("/profile", "_self");
 
 }
     const rewardscl = () => {
       var win=props.props;
-        win.open("myrewards", "_self");
+        win.open("/myrewards", "_self");
 
 }
     const settingscl = () => {
       var win=props.props;
-        win.open("settings", "_self");
+        win.open("/settings", "_self");
 
 }
    const aboutcl = () => {
       var win=props.props;
-        win.open("aboutus", "_self");
+        win.open("/about", "_self");
 
 }
   const renderNotifMenu = (
@@ -508,6 +508,7 @@ function Main() {
           window.location.pathname !== "/loginout" &&
           window.location.pathname !== "/login" &&
           window.location.pathname !== "/" &&
+          window.location.pathname !== "/aboutus" &&
           window.location.pathname !== "/wb" &&
           window.location.pathname !== "/details" &&
           window.location.pathname !== "/validreg" && <Drawing props={window}/>}
@@ -526,11 +527,12 @@ function Main() {
                         <Route path={"/setting"} component={Settings} />
                         <Route path={"/myrewards"} component={Rewards} />
                         <Route path={"/settings"} component={Settings} />
-                        <Route path={"/aboutus"} component={About} />
+                        <Route path={"/aboutus"} component={AboutUs} />
+                        <Route path={"/about"} component={About} />
                         <Route path={"/registerbrands"} component={RegisterBussiness} />
                         <Route path={"/welcome"} component={Welcome} />
                         <Route path={"/wb"} component={WelcomeBrand} />
-                        <Route exact path={"/"} component={AboutUs} />
+                        <Route exact path={"/"} component={Choose} />
                         <Route path={"/links"} component={Linked} />
                         <Route path={"/profile"} component={ProfileScreen} />
 
