@@ -1,11 +1,29 @@
 import React, { Component } from "react";
 import './profile.css';
-import TextField from '@material-ui/core/TextField';
+import Divider from "@material-ui/core/Divider";
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from "@material-ui/core/ListItemText";
+import PersonOutlineIcon from '@material-ui/icons/PersonOutline';
+import CreditCardIcon from '@material-ui/icons/CreditCard';
+import interfaceIcon from '../../images/interfaceIcon.svg'
+import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
+import { Switch, Route, Link } from "react-router-dom";
 import { withStyles } from "@material-ui/core/styles";
 import makeAnimated from "react-select/animated";
 import Select from "react-select";
 import Button from "@material-ui/core/Button";
-import { GoogleLogin } from 'react-google-login';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
+import TwitterIcon from '@material-ui/icons/Twitter';
+import YouTubeIcon from '@material-ui/icons/YouTube';
+import InstagramIcon from '@material-ui/icons/Instagram';
+import { red, pink, blue } from '@material-ui/core/colors';
+
+import IconButton from '@material-ui/core/IconButton';
+import CreateIcon from '@material-ui/icons/Create';
+
+const options=[{ value: 'Male', label: 'Male' },{ value: 'Female', label: 'Female' }];
+const animatedComponents = makeAnimated();
 
 const StyledButton = withStyles({
   root: {
@@ -15,193 +33,406 @@ const StyledButton = withStyles({
     color: "white",
     top:5,
     height: 40,
-    width:'100%',
+    width:100,
     padding: "0 30px",
   },
   label: {
     textTransform: "capitalize",
   },
 })(Button);
-const options=[{ value: 'Male', label: 'Male' },{ value: 'Female', label: 'Female' }];
-const optionsType=[{ value: 'Savings', label: 'Savings' },{ value: 'Cheque', label: 'Cheque' }];
-const animatedComponents = makeAnimated();
 
-export default function Settings(argument) {
-  const [payment, setPayment] = React.useState(false);
-  const [card, setCard] = React.useState(false);
-  const [momo, setMomo] = React.useState(false);
-  const [insta, setInsta] = React.useState(false);
-  const [tube, setTube] = React.useState(false);
-  const [twett, setTwitter] = React.useState(false);
-  const [edit, setedit] = React.useState(false);
- const handlePayment = (event) => {
-     setPayment(!payment);
-     setCard(!card);
+  function Settingsmain(props) {
+
+     const [edit, setEdit] = React.useState(false);
+     var window=props.window;
+     var path=window.location;
+           var href=path.pathname;
+
+  /*  if(){
+          setEdit(true);
+
+    }*/
+  const handleEdit = () => {
+    setEdit(!edit);
   };
-  const handleInsta= (event) => {
-     setedit(!edit);
-     setInsta(!insta);
-  };  
-   const handletube= (event) => {
-     setedit(!edit);
-     setTube(!insta);
-  };
-   const handletwit= (event) => {
-     setedit(!edit);
-     setTwitter(!twett);
-  };
-   const handleMomo= (event) => {
-     setPayment(!payment);
-     setMomo(!momo);
-  };  
-   
+  const EditDet =() =>{
+    return (
+         <div className={'divs'}>
+            <div className ={'settingheader'}> Edit Details </div>
+            <Divider />
+            <div className={'inputedit'}>
+                 <div className={'identi'}>Full Names</div>
+                  <input type='text' name="nameAndSurname" variant='outlined' className="setedit" placeholder="Name & Surname" />
+            </div>
+            <div className={'inputedit'}>
+                  <div className={'identi'}>Email</div>
+                  <input type='text' variant='outlined' name="email" className="setedit" placeholder="Email Address" />
+            </div>
+            <div className={'inputedit'}>
+                  <div className={'identi'}>Phone Number</div>
+                  <input type='number' name="contactNumber" variant='outlined' className="setedit" placeholder="Contact Number" />
+            </div>
+            <div className={'inputedit'}>
+                  <div className={'identi'}>Date of birth</div>
+                  <input type='date' name="campaignName" variant='outlined' style={{width:'100%'}} className="setedit" placeholder="Name of Campaign" />
+            </div>
+            <div className={'inputedit'}>
+                   <div className={'identi'}>Gender</div>
+                     <input type='text' variant='outlined' name="email" className="setedit" placeholder="Gender" />
+            </div>
+            <div className={'inputedit'}>
+                    <div className={'identi'}>Country</div>
+                     <input type='text' variant='outlined' name="email" className="setedit" placeholder="Country" />
+            </div>
+            <div className={'placebtn'}>
+               <StyledButton >
+                      Save
+                </StyledButton>
+            </div>
+
+
+         </div>
+
+      )
+  }
   	 return(
   	 	  <div className={'profhome'}>
            <div className={'profbox'}>
-             <div className={'profround'}>
-                <p className={'profheadertext'}>Settings</p>
-                 </div>
-                <div className={'pbox'}>
-               
-                 <div className={'nameset'}>
-                  <div className={'ident'}>Full Names</div>
-                  <input type='text' name="nameAndSurname" variant='outlined' className="setedit" placeholder="Name & Surname" />
-                   <div className={'ident'}>Email</div>
-                    <input type='text' variant='outlined' name="email" className="setedit" placeholder="Email Address" />
-                    <div className={'ident'}>Phone Number</div>
-                    <input type='number' name="contactNumber" variant='outlined' className="setedit" placeholder="Contact Number" />
-                    <div className={'ident'}>Date of birth</div>
-                    <input type='date' name="campaignName" variant='outlined' className="setedit" placeholder="Name of Campaign" />
-                    <div className={'ident'}>Gender</div>
-                    <Select
-                      name="Has your brand used Innfluencer Marketing before?"
-                      label="Has your brand used Influencer Marketing before?"
-                      closeMenuOnSelect={true}
-                      defaultValue={{ label: 'Select', value: 'default-value' }}
-                       components={animatedComponents}
-                      options={options}
-                       />
-                     <div className={'ident'}>Country</div>
-                     <input type='text' variant='outlined' name="email" className="setedit" placeholder="Country" />
-                     <StyledButton >
-                      Save
-                     </StyledButton>
+               <div className={href.length>9?'settingshid':'settings'}>
+                  <div className={'settingheader'}>Settings</div>
+                   <Divider/>
+                     <ListItem button onClick={handleEdit} component={Link} to={"/settings/editdetais"}>
+                       <PersonOutlineIcon style={{ marginLeft:5,height: 40, width: 30}}/>
+                      <ListItemText style={{marginLeft:6}} primary={'Edit Details'} />
+                      </ListItem>
+                      <Divider/>
+                      <ListItem button component={Link} to={"/settings/payment"}>
+                      <CreditCardIcon style={{ marginLeft:5,height: 40, width: 30}} />
+                      <ListItemText style={{marginLeft:6}} primary={'Payment Method'} />
+                      </ListItem>
+                      <Divider/>
+                      <ListItem button component={Link} to={"/settings/socials"}>
+                      <img src={interfaceIcon} alt={'alt'} style={{ marginLeft:5,marginTop:5,height: 23, width: 27,transform: 'rotate(-44deg)'}} />
+                      <ListItemText style={{marginLeft:6}} primary={'Social Accounts'} />
+                      </ListItem>
+                      <Divider/>
+                      <ListItem button>
+                      <HelpOutlineIcon style={{ marginLeft:5,height: 40, width: 30}} />
+                      <ListItemText  style={{marginLeft:6}} primary={'Help'} />
 
-                 </div>
-                 <div className={'nameset'}>
-                         { !payment && 
-                          <div>
-                             <StyledButton onClick={handlePayment} >
-                               Add/Edit Bank Card
-                             </StyledButton >
-                             <StyledButton onClick={handleMomo} style={{top:10}} >
-                               Add/Edit MoMo Wallet
-                             </StyledButton >
-                             </div>
-                           }
-                             {payment && card &&
-                              <div>
-                             <div className={'ident'}>Bank Name*:</div>
-                             <input  className="setedit" variant="outlined" />
-                             <div className={'ident'}>Account Number*:</div>
-                             <input className="setedit" variant="outlined" />
-                             <div className={'ident'}>Account Type*:</div>
-                             <Select
-                                  name="Has your brand used Innfluencer Marketing before?"
-                                 label="Has your brand used Influencer Marketing before?"
-                                   closeMenuOnSelect={true}
-                                defaultValue={{ label: 'Select', value: 'default-value' }}
-                                  components={animatedComponents}
-                                 options={optionsType}
-                               />
-                             <div className={'ident'}>Branch Code*:</div>
-                             <input fullWidth className="setedit" variant="outlined" />
-                             <StyledButton style={{top:10,bottom:10}} >
-                               Submit
-                             </StyledButton >
-                              <p style={{color:"transparent"}}>function dfffffff</p>
-                             <StyledButton onClick={handlePayment}  >
-                               Close
-                             </StyledButton  >
-                             </div>
-                             }
-                              {payment && momo &&
-                              <div>
-                             <div className={'ident'}>MoMo Number*:</div>
-                             <input type="number" className="setedit" placeholder={'+27 83X XXX XXX'} variant="outlined" />
-                            
-                             <StyledButton style={{top:10,bottom:10}} >
-                               Submit
-                             </StyledButton >
-                              <p style={{color:"transparent"}}>function dfffffff</p>
-                             <StyledButton onClick={handleMomo}  >
-                               Close
-                             </StyledButton  >
-                             </div>
-                             }
-                 </div>
-                 <div className={'nameset'}>
-                          { !edit && 
-                             <div>
-                              <StyledButton onClick={handleInsta} >
-                               Add/Update Instagram 
-                             </StyledButton >
-                             <StyledButton onClick={handletwit}  style={{top:10}} >
-                               Add/Update Twitter 
-                             </StyledButton >
-                             <StyledButton onClick={handletube} style={{top:20}} >
-                               Add/Update Youtube 
-                             </StyledButton >
-                             </div>
-                           }
-                            {edit && tube &&
-                              <div>
-                             <div className={'ident'}>Youtube Channel Name:</div>
-                             <input type="text"  value={"WatchMe"} className="setedit" placeholder={'+27 83X XXX XXX'} variant="outlined" />
-                            
-                             <StyledButton style={{top:10,bottom:10}} >
-                               Submit
-                             </StyledButton >
-                              <p style={{color:"transparent"}}>function dfffffff</p>
-                             <StyledButton onClick={handletube}  >
-                               Close
-                             </StyledButton  >
-                             </div>
-                             }
-                             {edit && insta &&
-                              <div>
-                             <div className={'ident'}>Instagram handle:</div>
-                             <input type="text"  value={"@WatchMe"} className="setedit" placeholder={'+27 83X XXX XXX'} variant="outlined" />
-                            
-                             <StyledButton style={{top:10,bottom:10}} >
-                               Submit
-                             </StyledButton >
-                              <p style={{color:"transparent"}}>function dfffffff</p>
-                             <StyledButton onClick={handleInsta}  >
-                               Close
-                             </StyledButton  >
-                             </div>
-                             }
-                             {edit && twett &&
-                              <div>
-                             <div className={'ident'}>Twitter handle:</div>
-                             <input type="text"  value={"@WatchMe1"} className="setedit" placeholder={'+27 83X XXX XXX'} variant="outlined" />
-                            
-                             <StyledButton style={{top:10,bottom:10}} >
-                               Submit
-                             </StyledButton >
-                              <p style={{color:"transparent"}}>function dfffffff</p>
-                             <StyledButton onClick={handletwit}  >
-                               Close
-                             </StyledButton  >
-                             </div>
-                             }
-                             
-
-                 </div>
-               </div>
+                      </ListItem>
+                      <Divider/>
+                </div>
+                  <div className={href.length>9?'none':'none'}>
+                <Switch>
+                  <Route
+                    exact
+                       path='/settings/editdetais'
+                          render={(props) => (
+                            <EditDetail />
+                            )}
+                         />
+                    <Route
+                    exact
+                       path='/settings/payment'
+                          render={(props) => (
+                            <EditPayments />
+                            )}
+                         />
+                      <Route
+                    exact
+                       path='/settings/socials'
+                          render={(props) => (
+                            <EditSocials />
+                            )}
+                         />
+                </Switch>
               </div>
+            </div>
+              
   	 	  </div>
   	 	)
   
  }
+  function EditPayments(argument) {
+         const [edit, setEdit] = React.useState(false);
+         const [editmomo, setEditMomo] = React.useState(false);
+         const handleEdit = () => {
+          setEdit(!edit);
+          setEditMomo(false);
+       };
+       const handleEditMoMo = () => {
+          setEdit(false);
+          setEditMomo(!editmomo);
+       };
+      return (
+         <div className={'divs'}>
+            <div className ={'settingheader'}> Edit Payment </div>
+                <Divider />
+                {!editmomo &&
+               <ListItem button onClick={handleEdit}>
+                      <ListItemText  style={{marginLeft:6}} primary={'Add/Edit Card details'} /> 
+                      <ListItemIcon>
+                    <IconButton edge="end" aria-label="delete">
+                      <CreateIcon />
+                    </IconButton>
+                  </ListItemIcon>
+               </ListItem> 
+             }
+               <Divider />
+                
+               {!edit &&
+                <div>
+               <ListItem button onClick={handleEditMoMo}>
+                      <ListItemText  style={{marginLeft:6}} primary={'Add/Edit MoMo'} /> 
+                      <ListItemIcon>
+                    <IconButton edge="end" aria-label="delete">
+                      <CreateIcon />
+                    </IconButton>
+                  </ListItemIcon>
+               </ListItem> 
+                 <Divider /> 
+                </div>         
+
+             }
+              {edit &&
+                 <div c>
+                 <div className={'inputedit'}>
+                 <div className={'identi'}>Bank Name</div>
+                  <input type='text' name="Bn" variant='outlined' className="setedit" placeholder="Bank Name" />
+                 </div>
+                 <div className={'inputedit'}>
+                  <div className={'identi'}>Account Number</div>
+                  <input type='number' variant='accn' name="email" className="setedit" placeholder="Account Number" />
+            </div>
+            <div className={'inputedit'}>
+                  <div className={'identi'}>Account Type</div>
+                  <input type='text' name="aty" variant='outlined' className="setedit" placeholder="Account Type" />
+            </div>
+            <div className={'inputedit'}>
+                  <div className={'identi'}>Branch Code</div>
+                  <input type='text' name="bc" variant='outlined' style={{width:'100%'}} className="setedit" placeholder="Branch Code" />
+            </div>
+            <div className={'placebtn'}>
+             <ListItem>
+               <ListItemText primary={""} />
+               <ListItemIcon>
+               <StyledButton >
+                      Save
+                </StyledButton>
+                 </ListItemIcon>
+              </ListItem>
+
+            </div>
+            </div>
+              }
+              {editmomo &&
+                 <div>
+                 <div className={'inputedit'}>
+                 <div className={'identi'}>Phone/MoMo Number</div>
+                  <input type='number' name="Bn" variant='outlined' className="setedit" placeholder="+27 83X XXX XXX" />
+                 </div>
+              
+            <div className={'placebtn'}>
+                  <ListItem>
+               <ListItemText primary={""} />
+               <ListItemIcon>
+               <StyledButton >
+                      Save
+                </StyledButton>
+                 </ListItemIcon>
+              </ListItem>
+            </div>
+            </div>
+              }
+             
+              
+           </div> 
+            )
+}
+ function EditDetail(argument) {
+   // body...
+     return (
+         <div className={'divs'}>
+            <div className ={'settingheader'}> Edit Details </div>
+            <Divider />
+            <div className={'inputedit'}>
+                 <div className={'identi'}>Full Names</div>
+                  <input type='text' name="nameAndSurname" variant='outlined' className="setedit" placeholder="Name & Surname" />
+            </div>
+            <div className={'inputedit'}>
+                  <div className={'identi'}>Email</div>
+                  <input type='text' variant='outlined' name="email" className="setedit" placeholder="Email Address" />
+            </div>
+            <div className={'inputedit'}>
+                  <div className={'identi'}>Phone Number</div>
+                  <input type='number' name="contactNumber" variant='outlined' className="setedit" placeholder="Contact Number" />
+            </div>
+            <div className={'inputedit'}>
+                  <div className={'identi'}>Date of birth</div>
+                  <input type='date' name="campaignName" variant='outlined' style={{width:'100%'}} className="setedit" placeholder="Name of Campaign" />
+            </div>
+            <div className={'inputedit'}>
+                   <div className={'identi'}>Gender</div>
+                     <input type='text' variant='outlined' name="email" className="setedit" placeholder="Gender" />
+            </div>
+            <div className={'inputedit'}>
+                    <div className={'identi'}>Country</div>
+                     <input type='text' variant='outlined' name="email" className="setedit" placeholder="Country" />
+            </div>
+            <div className={'placebtn'}>
+               <StyledButton >
+                      Save
+                </StyledButton>
+            </div>
+
+
+         </div>
+
+      )
+ }
+   function EditSocials(argument) {
+         const [editInsta, setEditInsta] = React.useState(false);
+         const [editTwitter, setEditTwitter] = React.useState(false);
+         const [editYoutube, setEditYoutube] = React.useState(false);
+        const handleInsta = () => {
+          setEditInsta(!editInsta);
+          setEditTwitter(false);
+          setEditYoutube(false);
+       };
+       const handleTwitter = () => {
+          setEditTwitter(!editTwitter);
+          setEditYoutube(false);
+          setEditInsta(false);
+          
+       };
+       const handleYoutube = () => {
+          setEditTwitter(false);
+          setEditYoutube(!editYoutube);
+          setEditInsta(false);
+          
+       };
+      return (
+         <div className={'divs'}>
+            <div className ={'settingheader'}> Edit Social Media Accounts  </div>
+                <Divider />
+                {!editTwitter && !editInsta &&
+               <div> 
+               <ListItem button onClick={handleYoutube}>
+                      <IconButton edge="end" aria-label="YouTubeIcon">
+                      <YouTubeIcon style={{ color: red[500] }} />
+                    </IconButton>
+                      <ListItemText  style={{marginLeft:6}} primary={'Add/Edit Youtube Channel'} /> 
+                      <ListItemIcon>
+                    <IconButton edge="end" aria-label="youtu">
+                      <CreateIcon />
+                    </IconButton>
+                  </ListItemIcon>
+               </ListItem> 
+                <Divider />
+                </div>
+                }
+                {!editTwitter && !editYoutube &&
+               <div>
+               <ListItem button onClick={handleInsta}>
+                     <IconButton edge="end" aria-label="Instagram">
+                      <InstagramIcon style={{ color: pink[300] }} />
+                    </IconButton>
+                      <ListItemText  style={{marginLeft:6}} primary={'Add/Edit Instagram Account'} /> 
+                      <ListItemIcon>
+                    <IconButton edge="end" aria-label="delete">
+                      <CreateIcon />
+                    </IconButton>
+                  </ListItemIcon>
+               </ListItem> 
+                 <Divider /> 
+                </div>
+              }
+               {!editInsta && !editYoutube &&
+                <div>
+                 <ListItem button onClick={handleTwitter}>
+                     <IconButton edge="end" aria-label="Twitter">
+                      <TwitterIcon style={{ color: blue[500] }}/>
+                    </IconButton>
+                      <ListItemText  style={{marginLeft:6}} primary={'Add/Edit Twitter Account'} /> 
+                      <ListItemIcon>
+                    <IconButton edge="end" aria-label="delete">
+                      <CreateIcon />
+                    </IconButton>
+                  </ListItemIcon>
+               </ListItem> 
+                 <Divider />
+              </div>
+            }
+            {editYoutube &&
+               <div>
+                 <div className={'inputedit'}>
+                 <div className={'identi'}>Youtube Channel</div>
+                  <input type='text' name="Bn" variant='outlined' className="setedit" placeholder="Youtube Channel" />
+                 </div>
+              
+            <div className={'placebtn'}>
+                  <ListItem>
+               <ListItemText primary={""} />
+               <ListItemIcon>
+               <StyledButton >
+                      Link
+                </StyledButton>
+                 </ListItemIcon>
+              </ListItem>
+            </div>
+            </div>
+            }
+            {editTwitter &&
+               <div>
+                 <div className={'inputedit'}>
+                 <div className={'identi'}>Twitter Account</div>
+                  <input type='text' name="Bn" variant='outlined' className="setedit" placeholder="Twitter Account" />
+                 </div>
+              
+            <div className={'placebtn'}>
+                  <ListItem>
+               <ListItemText primary={""} />
+               <ListItemIcon>
+               <StyledButton >
+                      Link
+                </StyledButton>
+                 </ListItemIcon>
+              </ListItem>
+            </div>
+            </div>
+            }
+            {editInsta &&
+               <div>
+                 <div className={'inputedit'}>
+                 <div className={'identi'}>Instagram Account</div>
+                  <input type='text' name="Bn" variant='outlined' className="setedit" placeholder="Instagram Account" />
+                 </div>
+              
+            <div className={'placebtn'}>
+                  <ListItem>
+               <ListItemText primary={""} />
+               <ListItemIcon>
+               <StyledButton >
+                      Link
+                </StyledButton>
+                 </ListItemIcon>
+              </ListItem>
+            </div>
+            </div>
+            }
+              
+           </div> 
+            
+ )
+}
+ export default class Settings extends React.Component {
+  componentWillMount(){
+    console.log(window)
+  }
+  
+  render() {
+    return <Settingsmain window={window}/>;
+  }
+}
+ 

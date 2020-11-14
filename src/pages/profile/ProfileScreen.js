@@ -5,13 +5,13 @@ import InstagramIcon from '@material-ui/icons/Instagram';
 import TwitterIcon from '@material-ui/icons/Twitter';
 import YouTubeIcon from '@material-ui/icons/YouTube';
 import IconButton from '@material-ui/core/IconButton';
+import { red, pink, blue } from '@material-ui/core/colors';
 
-export default function ProfileScreen(argument) {
+export default function ProfileScreen(props) {
   
-   
   	 return(
   	 	  <div className={'profhome'}>
-           <div className={'profbox'}>
+           <div className={'profilebox'}>
              <div className={'profround'}>
                 <p className={'profheadertext'}>Profile</p>
                  </div>
@@ -39,26 +39,32 @@ export default function ProfileScreen(argument) {
                     <div className={'gentext'}>Email    : _Email_ </div>
                     <div className={'gentext'}>Phone Number: _Phone_ </div>
                     <div className={'gentext'}>Country : _Country_ </div>
-                    <div className={'gentext'}>Website : _Website_ </div>
+                    <div className={'gentext'}>Gender : _Gender_ </div>
                  </div>
-                 <div className={'accountsbox'}>
+                
+                  <div className={'featured'}>
+                   <div className={'lntext'}>Featured Posts </div>
+                 </div>
+
+                 </div>
+                  <div className={'accountsbox'}>
                         <div className={'lntext'} >Social Accounts </div>
                         <div className={'rowx'}>
                           <button className={'iconbt'}>
                          <div className={'iconpl'} >
-                          <InstagramIcon size="large" />
+                          <InstagramIcon  style={{ color: pink[300]  }} size="large" />
                           <div>4.6m</div>
                           </div>
                            </button>
                            <button className={'iconbt'}>
                           <div className={'iconpl'} >
-                          <YouTubeIcon size="large" />
+                          <YouTubeIcon style={{ color: red[500] }} size="large" />
                           <div>460K</div>
                           </div>
                            </button>
                            <button className={'iconbt'}>
                           <div className={'iconpl'} >
-                          <TwitterIcon size="large" />
+                          <TwitterIcon style={{ color: blue[500] }} size="large" />
                            <div>4678</div>
                           </div>
                            </button>
@@ -68,10 +74,6 @@ export default function ProfileScreen(argument) {
 
                  </div>
                  <div>
-                  <div className={'featured'}>
-                   <div className={'lntext'}>Featured Posts </div>
-                 </div>
-                 </div>
                </div>
               </div>
   	 	  </div>

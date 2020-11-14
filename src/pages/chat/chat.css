@@ -1,10 +1,12 @@
 .chatbox{
-  width: 1050px;
-  height: 550px;
+    width: 99%;
+  height: 88vh;
+  margin-top: 76px;
   background: #FFFFFF 0% 0% no-repeat padding-box;
 box-shadow: 10px 10px 6px #00000029;
 border: 10px solid #0F81C7;
-border-radius: 40px;
+border-radius: 2px;
+overflow: auto;
 opacity: 1;
 }
 .box{
@@ -66,17 +68,15 @@ border-top-left-radius: 15px;
 }
 .chatround{
   width: 100%;
-height: 80px;
+height: 60px;
 display: grid;
   place-items:center;
 
 background: #0F81C7 0% 0% no-repeat padding-box;
 border-bottom-right-radius: 30px;
 border-bottom-left-radius: 30px;
-border-top-right-radius: 10px;
-border-top-left-radius: 10px;
-opacity: 1;
-}
+
+opacity: 1}
 .chatheadertext{
   text-align: left;
 font: normal normal normal 38px/46px Lato;

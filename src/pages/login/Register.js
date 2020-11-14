@@ -152,7 +152,7 @@ class Register extends Component {
                         name="dob"
                         id="dob"
                         type="date"
-                        defaultValue="2006-05-24"
+                        defaultValue="Birth"
                          onChange={this.handleChange}
                         className={"inputRegibox"}
                         InputLabelProps={{
@@ -168,7 +168,7 @@ class Register extends Component {
                     <div className='tc'>
                       <Checkbox   onChange={this.handleCheck}/>
                       <div  style={{marginTop:9,color:"black"}}> By Signing up you agree with our Accept our 
-                      <a href="#" style={{marginTop:10,color:"black"}}> Terms of service </a> 
+                      <a href="#" style={{marginTop:10,color:"black"}}> User Agreement </a> 
                         and
                       <a href="#" style={{marginTop:10,color:"black"}}> Privacy policy </a>
                        </div>

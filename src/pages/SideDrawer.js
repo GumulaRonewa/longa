@@ -30,6 +30,7 @@ import Settings from './profile/Settings'
 import Login from './login/Login'
 import Choose from './login/Choose'
 import Register from './login/Register'
+import AboutUs from './login/AboutUs'
 import RegisterBussiness from './login/RegisterBussiness'
 import JobScreen from './jobs/JobScreen'
 import FeedScreen from './feed/FeedScreen'
@@ -43,10 +44,22 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 import Badge from '@material-ui/core/Badge';
 import Divider from "@material-ui/core/Divider";
 import at from '../images/at.svg'
+import { createMuiTheme } from '@material-ui/core/styles';
 
 import './drawer.css';
 
-const drawerWidth = 240;
+const drawerWidth = 210;
+const theme = createMuiTheme({
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 700,
+      md: 960,
+      lg: 1280,
+      xl: 1920,
+    },
+  },
+})
 
 const useStyles = makeStyles((theme) => ({
     main: {
@@ -54,15 +67,7 @@ const useStyles = makeStyles((theme) => ({
     flex: 1,
     overflow:'hidden',
     padding: 0,
-    "@global": {
-      "*": {
-        "scrollbar-width": "thin",
-      },
-      "*::-webkit-scrollbar": {
-        width: "0px",
-        height: "0px",
-      },
-    },
+  
   },
   root: {
     display: 'flex',
@@ -97,17 +102,23 @@ const useStyles = makeStyles((theme) => ({
   },
   content: {
      flexGrow: 1,
+         overflow:'hidden',
+
     transition: theme.transitions.create("margin", {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
     marginLeft: -drawerWidth,
        [theme.breakpoints.up('sm')]: {
-        marginTop:45,
+        marginTop:0,
+                 overflow:'hidden',
+
 
     }
   },
    contentShift: {
+             overflow:'hidden',
+
     transition: theme.transitions.create("margin", {
       easing: theme.transitions.easing.easeOut,
       duration: theme.transitions.duration.enteringScreen,
@@ -170,8 +181,8 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   avatar:{
-       height: 40,
-        width:40 ,
+       height: 30,
+        width:30 ,
          [theme.breakpoints.up('md')]: {
       top: 13,
       left:160,
@@ -505,12 +516,13 @@ function Main() {
             [classes.contentShift]: true,
           })}
         >
-          <div className="main">
+          <div>
             <Route path="/home" component={HomeScreen} />
             <Route path="/feed" component={FeedScreen} />
                         <Route path={"/login"} component={Login} />
                         <Route path={"/register"} component={Register} />
                         <Route path={"/validreg"} component={Conformation} />
+
                         <Route path={"/setting"} component={Settings} />
                         <Route path={"/myrewards"} component={Rewards} />
                         <Route path={"/settings"} component={Settings} />
@@ -518,7 +530,7 @@ function Main() {
                         <Route path={"/registerbrands"} component={RegisterBussiness} />
                         <Route path={"/welcome"} component={Welcome} />
                         <Route path={"/wb"} component={WelcomeBrand} />
-                        <Route exact path={"/"} component={Choose} />
+                        <Route exact path={"/"} component={AboutUs} />
                         <Route path={"/links"} component={Linked} />
                         <Route path={"/profile"} component={ProfileScreen} />
 
@@ -540,6 +552,8 @@ export default class SideDrawer extends React.Component {
       window.location.pathname !== "/register" &&
       window.location.pathname !== "/login" &&
       window.location.pathname !== "/" &&
+      window.location.pathname !== "/settings" &&
+      window.location.pathname !== "/settings/wallet" &&
       window.location.pathname !== "/validreg" &&
       window.location.pathname !== "/links" &&
 
