@@ -309,6 +309,7 @@ opacity: 1;
   .pbox{
     flex-direction: column;
    }
+<<<<<<< HEAD
    .settings{
 
      width: 100%;
@@ -344,13 +345,38 @@ opacity: 1;
    }
    .general{
          width: 99%
+=======
+   .profimg{
+     width: 99%;
+    margin-left: 3px;
+
+   }
+   .biop{
+     width: 99%;
+    margin-left: 3px;
+
+   }
+   .general{
+         width: 99%;
+    margin-left: 3px;
+>>>>>>> fdbd89e523c7b877c456070736498bf444495e3e
 
    }
    .accountsbox{
     width: 98%;
+<<<<<<< HEAD
    }
    .featured{
     width: 98%;
+=======
+    margin-left: 3px;
+ 
+   }
+   .featured{
+    width: 99%;
+    margin-left: 3px;
+  
+>>>>>>> fdbd89e523c7b877c456070736498bf444495e3e
    }
   .profbox{
     width: 100%;
@@ -360,6 +386,14 @@ opacity: 1;
 
    }
    .nameset{
+<<<<<<< HEAD
      width: 98%;
    }
 }
+=======
+     width: 99%;
+    margin-left: 3px;
+
+   }
+}
+>>>>>>> fdbd89e523c7b877c456070736498bf444495e3e
