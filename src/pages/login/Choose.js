@@ -29,7 +29,7 @@ class Choose extends Component {
 
 
            <div className='hue' >
-                                 <a href={'#'} style={{marginTop:"-18%",marginLeft:"-85%",fontSize:18,color:"white"}}>About Us</a>
+                                 <a href={'/aboutus'} style={{marginTop:"-18%",marginLeft:"-85%",fontSize:18,color:"white"}}>About Us</a>
 
             <div className="brandtext">
               Brands
