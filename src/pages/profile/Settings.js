@@ -18,10 +18,10 @@ import TwitterIcon from '@material-ui/icons/Twitter';
 import YouTubeIcon from '@material-ui/icons/YouTube';
 import InstagramIcon from '@material-ui/icons/Instagram';
 import { red, pink, blue } from '@material-ui/core/colors';
-
+import axios from "axios";
 import IconButton from '@material-ui/core/IconButton';
 import CreateIcon from '@material-ui/icons/Create';
-
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 const options=[{ value: 'Male', label: 'Male' },{ value: 'Female', label: 'Female' }];
 const animatedComponents = makeAnimated();
 
@@ -47,7 +47,7 @@ const StyledButton = withStyles({
      var window=props.window;
      var path=window.location;
            var href=path.pathname;
-
+     var host=window.location.host;
   /*  if(){
           setEdit(true);
 
@@ -55,37 +55,103 @@ const StyledButton = withStyles({
   const handleEdit = () => {
     setEdit(!edit);
   };
+  var Settings=props.settings;
+
+ 
+
+
   const EditDet =() =>{
+       const [first, setfirst] = React.useState("");
+  const [last, setlast] = React.useState("");
+  const [phone, setPhone] = React.useState("");
+  const [date, setDate] = React.useState("");
+  const [email, setemail] = React.useState("");
+  const [gender, setGender] = React.useState("");
+  const [country, setCountry] = React.useState('');
+  const onSubmit =()=>{
+   
+                  var data={userID:localStorage.getItem("userId"),name:first,surname:last,country:country,email:email,phone:phone,gender:gender,dateOfBirth:date}
+  console.log(data);
+   axios({
+      method: 'POST',
+     url: `https://longa-money.herokuapp.com/api/u/update`, // First page at 0
+     data:data,
+       headers: {
+      "Authorization": `Bearer ${localStorage.getItem("token")}`,
+      
+      },
+    }).then(res =>{
+       console.log(res)
+
+    })
+  }
+     const handleChanges = (event) => {
+    console.log(event.target.name)
+    switch (event.target.name) {
+      case "first":
+        setfirst(event.target.value);
+        break;
+      case "last":
+        setlast(event.target.value);
+        break;
+      case "country":
+        setCountry(event.target.value);
+        break;
+      case "date":
+        setDate(event.target.value);
+        break;
+      case "contactNumber":
+        setPhone(event.target.value);
+        break;
+      case "gender":
+        setGender(event.target.value);
+        break;
+      case "email":
+        setemail(event.target.value);
+        break;
+      default:
+        break;
+    }
+  };
     return (
          <div className={'divs'}>
+            <div className={'rows'}>
+            <IconButton component={Link} to={'/settings'}>
+            		<ArrowBackIcon />
+            </IconButton>
             <div className ={'settingheader'}> Edit Details </div>
-            <Divider />
+            </div>
+            <Divider style={{marginTop:6}}/>
             <div className={'inputedit'}>
                  <div className={'identi'}>Full Names</div>
-                  <input type='text' name="nameAndSurname" variant='outlined' className="setedit" placeholder="Name & Surname" />
+                  <input  type='text' name="first" onChange={handleChanges} variant='outlined' defaultValue={Settings.name} className="setedit"  />
+            </div>
+              <div className={'inputedit'}>
+                 <div className={'identi'}>Last Names</div>
+                  <input type='text' defaultValue={Settings.surname} name="last"onChange={handleChanges} variant='outlined' className="setedit" />
             </div>
             <div className={'inputedit'}>
                   <div className={'identi'}>Email</div>
-                  <input type='text' variant='outlined' name="email" className="setedit" placeholder="Email Address" />
+                  <input type='text' variant='outlined' defaultValue={Settings.email} name="email" onChange={handleChanges} className="setedit" />
             </div>
             <div className={'inputedit'}>
                   <div className={'identi'}>Phone Number</div>
-                  <input type='number' name="contactNumber" variant='outlined' className="setedit" placeholder="Contact Number" />
+                  <input  type='number' name="contactNumber"  onChange={handleChanges} defaultValue={Settings.phone} variant='outlined' className="setedit" />
             </div>
             <div className={'inputedit'}>
                   <div className={'identi'}>Date of birth</div>
-                  <input type='date' name="campaignName" variant='outlined' style={{width:'100%'}} className="setedit" placeholder="Name of Campaign" />
+                  <input  type='date' value={ typeof Settings.dob==='undefined'?'':Settings.dob.substring(0,10)} name="date" onChange={handleChanges} variant='outlined' style={{width:'100%'}} className="setedit" />
             </div>
             <div className={'inputedit'}>
                    <div className={'identi'}>Gender</div>
-                     <input type='text' variant='outlined' name="email" className="setedit" placeholder="Gender" />
+                     <input  type='text' variant='outlined' defaultValue={Settings.gender} name="gender" onChange={handleChanges} className="setedit"  />
             </div>
             <div className={'inputedit'}>
                     <div className={'identi'}>Country</div>
-                     <input type='text' variant='outlined' name="email" className="setedit" placeholder="Country" />
+                     <input type='text' variant='outlined' defaultValue={Settings.country} name="country" onChange={handleChanges} className="setedit" />
             </div>
             <div className={'placebtn'}>
-               <StyledButton >
+               <StyledButton onClick={onSubmit}>
                       Save
                 </StyledButton>
             </div>
@@ -101,7 +167,7 @@ const StyledButton = withStyles({
                <div className={href.length>9?'settingshid':'settings'}>
                   <div className={'settingheader'}>Settings</div>
                    <Divider/>
-                     <ListItem button onClick={handleEdit} component={Link} to={"/settings/editdetais"}>
+                     <ListItem button onClick={handleEdit} component={Link} to={"/settings/editdetails"}>
                        <PersonOutlineIcon style={{ marginLeft:5,height: 40, width: 30}}/>
                       <ListItemText style={{marginLeft:6}} primary={'Edit Details'} />
                       </ListItem>
@@ -116,7 +182,7 @@ const StyledButton = withStyles({
                       <ListItemText style={{marginLeft:6}} primary={'Social Accounts'} />
                       </ListItem>
                       <Divider/>
-                      <ListItem button>
+                      <ListItem button component={Link} to={"/settings/help"}>
                       <HelpOutlineIcon style={{ marginLeft:5,height: 40, width: 30}} />
                       <ListItemText  style={{marginLeft:6}} primary={'Help'} />
 
@@ -127,16 +193,16 @@ const StyledButton = withStyles({
                 <Switch>
                   <Route
                     exact
-                       path='/settings/editdetais'
+                       path='/settings/editdetails'
                           render={(props) => (
-                            <EditDetail />
+                            <EditDet />
                             )}
                          />
                     <Route
                     exact
                        path='/settings/payment'
                           render={(props) => (
-                            <EditPayments />
+                            <EditPayments settings={Settings} />
                             )}
                          />
                       <Route
@@ -144,6 +210,13 @@ const StyledButton = withStyles({
                        path='/settings/socials'
                           render={(props) => (
                             <EditSocials />
+                            )}
+                         />
+                        <Route
+                    exact
+                       path='/settings/help'
+                          render={(props) => (
+                            <EditAccount />
                             )}
                          />
                 </Switch>
@@ -154,9 +227,50 @@ const StyledButton = withStyles({
   	 	)
   
  }
-  function EditPayments(argument) {
+  function EditPayments(props) {
          const [edit, setEdit] = React.useState(false);
          const [editmomo, setEditMomo] = React.useState(false);
+         const [name, setName] = React.useState('');
+         const [type, setType] = React.useState('');
+         const [number, setNumber] = React.useState('');
+         const [branch, setBranch] = React.useState('');
+         const [phone, setPhone] = React.useState('');
+           var Settings=props.settings;
+           Settings= Settings.bankingDetails;
+         const handleBank=()=>{
+         	var data={bankName:name,branchCode:branch,accountNumber:number,accountType:type,userID:localStorage.getItem("userId")}
+         	console.log(data)
+              axios({
+      method: 'POST',
+     url: `https://longa-money.herokuapp.com/api/u/settings/banking`, // First page at 0
+     data:data,
+       headers: {
+      "Authorization": `Bearer ${localStorage.getItem("token")}`,
+      
+      },
+    }).then(res =>{
+       console.log(res)
+
+    })
+         }
+           const handleMomo=()=>{
+         	var data={momo:phone,userID:localStorage.getItem("userId")}
+              axios({
+      method: 'POST',
+     url: `https://longa-money.herokuapp.com/api/u/settings/momo`, // First page at 0
+     data:data,
+       headers: {
+      "Authorization": `Bearer ${localStorage.getItem("token")}`,
+      
+      },
+    }).then(res =>{
+       console.log(res)
+
+    })
+         }
+         const handleBack =()=>{
+         	console.log(window)
+         }
          const handleEdit = () => {
           setEdit(!edit);
           setEditMomo(false);
@@ -165,10 +279,37 @@ const StyledButton = withStyles({
           setEdit(false);
           setEditMomo(!editmomo);
        };
+       const handleChange = (event) => {
+    switch (event.target.name) {
+      case "Bn":
+        setName(event.target.value);
+        break;
+      case "accn":
+        setNumber(event.target.value);
+        break;
+      case "aty":
+        setType(event.target.value);
+        break;
+      case "bc":
+        setBranch(event.target.value);
+        break;
+      case "contactNumber":
+        setPhone(event.target.value);
+        break;
+     
+      default:
+        break;
+    }
+  };
       return (
          <div className={'divs'}>
+         <div className={'rows'}>
+            <IconButton component={Link} to={'/settings'}>
+            		<ArrowBackIcon />
+            </IconButton>
             <div className ={'settingheader'}> Edit Payment </div>
-                <Divider />
+            </div>
+                <Divider style={{marginTop:6}} />
                 {!editmomo &&
                <ListItem button onClick={handleEdit}>
                       <ListItemText  style={{marginLeft:6}} primary={'Add/Edit Card details'} /> 
@@ -199,30 +340,33 @@ const StyledButton = withStyles({
                  <div c>
                  <div className={'inputedit'}>
                  <div className={'identi'}>Bank Name</div>
-                  <input type='text' name="Bn" variant='outlined' className="setedit" placeholder="Bank Name" />
+                  <input onChange={handleChange} type='text' defaultValue={Settings.bankName} name="Bn" variant='outlined' className="setedit" placeholder="Bank Name" />
                  </div>
                  <div className={'inputedit'}>
                   <div className={'identi'}>Account Number</div>
-                  <input type='number' variant='accn' name="email" className="setedit" placeholder="Account Number" />
+                  <input onChange={handleChange} type='number' defaultValue={Settings.accountNumber} variant='accn' name="accn" className="setedit" placeholder="Account Number" />
             </div>
             <div className={'inputedit'}>
                   <div className={'identi'}>Account Type</div>
-                  <input type='text' name="aty" variant='outlined' className="setedit" placeholder="Account Type" />
+                  <input onChange={handleChange} type='text' name="aty" defaultValue={Settings.accountType} variant='outlined' className="setedit" placeholder="Account Type" />
             </div>
             <div className={'inputedit'}>
                   <div className={'identi'}>Branch Code</div>
-                  <input type='text' name="bc" variant='outlined' style={{width:'100%'}} className="setedit" placeholder="Branch Code" />
+                  <input onChange={handleChange} type='number' name="bc" defaultValue={Settings.branchCode} variant='outlined' style={{width:'100%'}} className="setedit" placeholder="Branch Code" />
             </div>
             <div className={'placebtn'}>
              <ListItem>
                <ListItemText primary={""} />
                <ListItemIcon>
-               <StyledButton >
+               <StyledButton onClick={handleBank}>
                       Save
                 </StyledButton>
                  </ListItemIcon>
               </ListItem>
-
+          
+            </div>
+            <div style={{fontSize:20}}>
+             Longa Money will use the bank account information Above to ensure you receive payment for campains you participated in. Make sure the details Above are correct and up to date. These details are stored securely in our system and will never be shared with third parties.
             </div>
             </div>
               }
@@ -230,14 +374,14 @@ const StyledButton = withStyles({
                  <div>
                  <div className={'inputedit'}>
                  <div className={'identi'}>Phone/MoMo Number</div>
-                  <input type='number' name="Bn" variant='outlined' className="setedit" placeholder="+27 83X XXX XXX" />
+                  <input type='number' onChange={handleChange} name='contactNumber' defaultValue={Settings.settings['momo']} variant='outlined' className="setedit" placeholder="+27 83X XXX XXX" />
                  </div>
               
             <div className={'placebtn'}>
                   <ListItem>
                <ListItemText primary={""} />
                <ListItemIcon>
-               <StyledButton >
+               <StyledButton onClick={handleMomo}>
                       Save
                 </StyledButton>
                  </ListItemIcon>
@@ -295,6 +439,9 @@ const StyledButton = withStyles({
          const [editInsta, setEditInsta] = React.useState(false);
          const [editTwitter, setEditTwitter] = React.useState(false);
          const [editYoutube, setEditYoutube] = React.useState(false);
+         const [youtube, setYoutube] = React.useState("");
+         const [instagram, setInsta] = React.useState("");
+         const [twitter, setTwitter] = React.useState("");
         const handleInsta = () => {
           setEditInsta(!editInsta);
           setEditTwitter(false);
@@ -312,10 +459,31 @@ const StyledButton = withStyles({
           setEditInsta(false);
           
        };
+         const handleChange = (event) => {
+    switch (event.target.name) {
+      case "twitter":
+        setTwitter(event.target.value);
+        break;
+      case "tube":
+        setYoutube(event.target.value);
+        break;
+      case "insta":
+        setInsta(event.target.value);
+        break;
+     
+      default:
+        break;
+    }
+  };
       return (
          <div className={'divs'}>
+         <div className={'rows'}>
+            <IconButton component={Link} to={'/settings'}>
+            		<ArrowBackIcon />
+            </IconButton>
             <div className ={'settingheader'}> Edit Social Media Accounts  </div>
-                <Divider />
+            </div>
+                <Divider  style={{marginTop:6}}/>
                 {!editTwitter && !editInsta &&
                <div> 
                <ListItem button onClick={handleYoutube}>
@@ -368,7 +536,7 @@ const StyledButton = withStyles({
                <div>
                  <div className={'inputedit'}>
                  <div className={'identi'}>Youtube Channel</div>
-                  <input type='text' name="Bn" variant='outlined' className="setedit" placeholder="Youtube Channel" />
+                  <input type='text' onChange={handleChange} name="tube" variant='outlined' className="setedit" placeholder="Youtube Channel" />
                  </div>
               
             <div className={'placebtn'}>
@@ -387,7 +555,7 @@ const StyledButton = withStyles({
                <div>
                  <div className={'inputedit'}>
                  <div className={'identi'}>Twitter Account</div>
-                  <input type='text' name="Bn" variant='outlined' className="setedit" placeholder="Twitter Account" />
+                  <input type='text' onChange={handleChange} name="twitter" variant='outlined' className="setedit" placeholder="Twitter Account" />
                  </div>
               
             <div className={'placebtn'}>
@@ -406,7 +574,7 @@ const StyledButton = withStyles({
                <div>
                  <div className={'inputedit'}>
                  <div className={'identi'}>Instagram Account</div>
-                  <input type='text' name="Bn" variant='outlined' className="setedit" placeholder="Instagram Account" />
+                  <input type='text' onChange={handleChange} name="insta" variant='outlined' className="setedit" placeholder="Instagram Account" />
                  </div>
               
             <div className={'placebtn'}>
@@ -426,13 +594,207 @@ const StyledButton = withStyles({
             
  )
 }
+function EditAccount(argument) {
+         const [editInsta, setEditInsta] = React.useState(false);
+         const [editTwitter, setEditTwitter] = React.useState(false);
+         const [editYoutube, setEditYoutube] = React.useState(false);
+         const [valid, setValid] = React.useState(false);
+         const [password, setPassword] = React.useState("");
+         const [newP, setNew] = React.useState("");
+         const [newC, setNewC] = React.useState("");
+         const [del, setDel] = React.useState("");
+        const handleInsta = () => {
+          setEditInsta(!editInsta);
+          setEditTwitter(false);
+          setEditYoutube(false);
+       };
+        const handleUpdate=()=>{
+         	var data={oldPassword:password,newPassword:newP,userID:localStorage.getItem("userId")}
+          if (!valid) {
+              axios({
+      method: 'POST',
+     url: `https://longa-money.herokuapp.com/api/u/settings/change-password`, // First page at 0
+     data:data,
+       headers: {
+      "Authorization": `Bearer ${localStorage.getItem("token")}`,
+      
+      },
+    }).then(res =>{
+       console.log(res)
+
+    })
+  }
+         }
+         const handleDelete=()=>{
+         	var data={userID:localStorage.getItem("userId")}
+              axios({
+      method: 'POST',
+     url: `https://longa-money.herokuapp.com/api/u`, // First page at 0
+     data:data,
+       headers: {
+      "Authorization": `Bearer ${localStorage.getItem("token")}`,
+      
+      },
+    }).then(res =>{
+       console.log(res)
+
+    })
+         }
+      var error="Password don't match"
+         const handleChange = (event) => {
+    switch (event.target.name) {
+      case "password":
+        setPassword(event.target.value);
+        break;
+       case "delpassword":
+        setDel(event.target.value);
+        break;
+      case "new":
+        setNew(event.target.value);
+        break;
+      case "newC":
+        setValid(newP !==(event.target.value));
+            console.log(valid)
+
+        setNewC(event.target.value);
+        break;
+     
+      default:
+        break;
+    }
+  };
+       const handleTwitter = () => {
+          setEditTwitter(!editTwitter);
+          setEditYoutube(false);
+          setEditInsta(false);
+          
+       };
+       const handleYoutube = () => {
+          setEditTwitter(false);
+          setEditYoutube(!editYoutube);
+          setEditInsta(false);
+          
+       };
+      return (
+         <div className={'divs'}>
+            <div className={'rows'}>
+            <IconButton component={Link} to={'/settings'}>
+            		<ArrowBackIcon />
+            </IconButton>
+            <div className ={'settingheader'}> help  </div>
+            </div>
+                <Divider style={{marginTop:6}} />
+                {!editTwitter && !editInsta &&
+               <div> 
+               <ListItem button onClick={handleYoutube}>
+                      
+                      <ListItemText  style={{marginLeft:6}} primary={'Change Password'} /> 
+                      <ListItemIcon>
+                    <IconButton edge="end" aria-label="youtu">
+                      <CreateIcon />
+                    </IconButton>
+                  </ListItemIcon>
+               </ListItem> 
+                <Divider />
+                </div>
+                }
+                {!editTwitter && !editYoutube &&
+               <div>
+               <ListItem button onClick={handleInsta}>
+                    
+                      <ListItemText  style={{marginLeft:6}} primary={ 'Delete Account'} /> 
+                      <ListItemIcon>
+                    <IconButton edge="end" aria-label="delete">
+                      <CreateIcon />
+                    </IconButton>
+                  </ListItemIcon>
+               </ListItem> 
+                 <Divider /> 
+                </div>
+              }
+             
+            {editYoutube &&
+               <div className={'columnx'}>
+                 <div className={'columnx'}>
+                   <div className={'inputedit'}>
+                 <div className={'identi'}>Current Password</div>
+                  <input type='password' onChange={handleChange} name='password' variant='outlined' className="setedit" placeholder="Current Password" />
+                </div>
+                <div className={'inputedit'}>
+                  <div className={'identi'}>New Password</div>
+                  <input type='password' onChange={handleChange} variant='outlined' name="new" className="setedit" placeholder="New Password" />
+                  </div>
+                  <div className={'inputedit'}>
+                        <div className={'identi'}>Confirm Password</div>
+                        <input type='password' onChange={handleChange} name="newC" variant='outlined' className="setedit" placeholder="Confirm Password" />
+                  </div>
+                  
+                 </div>
+                 <div className={'placebtn'}>
+                                    {valid &&
+                                      <div style={{color:'red'}}>{error}</div>
+                                    }
+
+               <StyledButton onClick={handleUpdate} >
+                      Save
+                </StyledButton>
+            </div>
+            
+            </div>
+            }
+            {editInsta &&
+               <div className={'columnx'}>
+                 <div className={'columnx'}>
+                   <div className={'inputedit'}>
+                 <div className={'identi'}> Password</div>
+                  <input type='password' name='delpassword' variant='outlined' className="setedit" placeholder=" Password" />
+                </div>
+               
+                  
+                 </div>
+                 <div className={'placebtn'}>
+               <StyledButton onClick={handleDelete} >
+                      Delete
+                </StyledButton>
+            </div>
+            
+            </div>
+            }
+           
+           </div> 
+            
+ )
+}
  export default class Settings extends React.Component {
+ 	 constructor(props) {
+    super(props);
+
+    this.state = {
+      settings:[],
+    };
+  }
   componentWillMount(){
-    console.log(window)
+
+  	         	var data={userID:localStorage.getItem("userId")}
+            console.log(data)
+			    axios({
+			      method: 'POST',
+			      url: `https://longa-money.herokuapp.com/api/u/settings`, // First page at 0
+			      data:data,
+			       headers: {
+			      "Authorization": `Bearer ${localStorage.getItem("token")}`,
+			      
+			      },
+			    }).then(res =>{
+			    	        this.setState({settings:res.data})
+
+			       console.log(res.data)
+
+			    })
   }
   
   render() {
-    return <Settingsmain window={window}/>;
+    return <Settingsmain settings={this.state.settings} window={window}/>;
   }
 }
  

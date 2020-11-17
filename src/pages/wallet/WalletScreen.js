@@ -13,27 +13,29 @@ export default class WalletScreen extends Component {
     this.state = {
       email: null,
 
-      password: null,
+      wallet: [],
+      total:'',
+      pending:'',
       error: false,
     };
   }
  componentDidMount(){
-            var databit={userID:localStorage.getItem("userId")}
-          console.log(databit)
-          console.log(databit)
+            var data={userID:localStorage.getItem("userId")}
 
    axios({
-      method: 'GET',
+      method: 'POST',
      url: `https://longa-money.herokuapp.com/api/u/wallet/jobs`, // First page at 0
-       data:databit,
+       data:data,
        headers: {
       "Authorization": `Bearer ${localStorage.getItem("token")}`,
       
       },
     }).then(res =>{
-       console.log(res.data)
+                          this.setState({wallet:res.data['wallets']})
+                          this.setState({pending:res.data['balance']})
+                          this.setState({total:res.data['withdrawn']})
+
     })
-              console.log(databit)
 
  }
   render(){
@@ -45,46 +47,30 @@ export default class WalletScreen extends Component {
                 <div className={'columntext'}>
                   <div className={'rowtext'}>
                       <div className={'columntextfont1'}>Pending Payment</div>
-                      <div className={'columntextfont1'}>R 3000</div>
+                      <div className={'columntextfont1'}>R {this.state.pending}</div>
                   </div>
                   
                   <div className={'rowtext'}>
                      <div className={'columntextfont'}>Total Paid</div>
-                     <div className={'columntextfont2'}>R 1200 </div>
+                     <div className={'columntextfont2'}>R {this.state.total} </div>
                   </div>
                 </div>
              </div>
              <List>
+                         {this.state.wallet.map((item)=> (
+                  <div className={'walletlistdiv'}>
+
                 <ListItem>
-                  <div className={'walletlistdiv'}>
                    <Avatar                            
                    style={{ height: 60, width: 60, left: 20,top:10 }}
                   src={'https://seeklogo.com/images/M/MTN-logo-459AAF9482-seeklogo.com.png'} />
-                  <div className={'promowname'}>MTN Yellow </div>
-                  <div className={'amount'}>R 800</div>
-                  <div className={'amount2'}>Paid</div>
-                  </div>
+                  <div  style={{marginLeft:30,marginTop:10,fontSize:26}}>{item.campaignName} </div>
+                  <div  style={{marginLeft:20,marginTop:10,fontSize:23}}>{item.amount}</div>
+                  <div  style={{marginLeft:20,marginTop:10,fontSize:23}}>{item.status}</div>
                 </ListItem>
-                 <ListItem>
-                  <div className={'walletlistdiv'}>
-                   <Avatar                            
-                   style={{ height: 60, width: 60, left: 20,top:10 }}
-                  src={'https://seeklogo.com/images/M/MTN-logo-459AAF9482-seeklogo.com.png'} />
-                  <div className={'promowname'}>MTN summer </div>
-                  <div className={'amount'}>R 400</div>
-                  <div className={'amount2'}>Paid</div>
-                  </div>
-                </ListItem>
-                <ListItem>
-                  <div className={'walletlistdiv'}>
-                   <Avatar                            
-                   style={{ height: 60, width: 60, left: 20,top:10 }}
-                  src={'https://seeklogo.com/images/M/MTN-logo-459AAF9482-seeklogo.com.png'} />
-                  <div className={'promowname'}>MTN summer </div>
-                  <div className={'amount'}>R 12400</div>
-                  <div className={'amount2'}>Paid</div>
-                  </div>
-                </ListItem>
+                                  </div>
+
+                ))}
 
              </List>
           </div>

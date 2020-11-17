@@ -45,6 +45,7 @@ import Badge from '@material-ui/core/Badge';
 import Divider from "@material-ui/core/Divider";
 import at from '../images/at.svg'
 import { createMuiTheme } from '@material-ui/core/styles';
+import axios from "axios";
 
 import './drawer.css';
 
@@ -556,7 +557,6 @@ export default class SideDrawer extends React.Component {
       window.location.pathname !== "/" &&
       window.location.pathname !== "/aboutus" &&
       window.location.pathname !== "/settings" &&
-      window.location.pathname !== "/settings/wallet" &&
       window.location.pathname !== "/validreg" &&
       window.location.pathname !== "/links" &&
 
@@ -565,6 +565,22 @@ export default class SideDrawer extends React.Component {
     ) {
       if (localStorage.getItem("token") === null) {
         window.open("login", "_self");
+      }
+      else{
+                        var data={userID:localStorage.getItem("userId")}
+
+        axios({
+         method: 'POST',
+         url: `https://longa-money.herokuapp.com/api/u`, // First page at 0
+           data:data,
+
+       headers: {
+      "Authorization": `Bearer ${localStorage.getItem("token")}`,
+      
+      },
+    }).then(res =>{
+      console.log(res.data)
+    })
       }
   }
 }

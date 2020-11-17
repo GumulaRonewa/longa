@@ -40,11 +40,13 @@ class Register extends Component {
       surname:null,
       dob:null,
       password: null,
+
       cpassword:null,
       check: false,
        formErrors: {
         email: "",
         name: "",
+        form:"",
         cpassword: "",
         surname: "",
         dob: "",
@@ -107,7 +109,7 @@ class Register extends Component {
         const user = { email: this.state.email,name:this.state.name,surname:this.state.surname,dateOfBirth:this.state.dob,password: this.state.password };
           let formErrors = this.state.formErrors;
 
-    if (formValid(this.state.formErrors, user)) {
+    if (formValid(this.state.formErrors, user) && this.state.check) {
          axios({
             method: "POST",
             url: `https://longa-money.herokuapp.com/api/user/register`,
@@ -120,6 +122,8 @@ class Register extends Component {
          
             });
     } else {
+              const { formErrors } = this.state;
+
       console.log("errorMessage");
       formErrors.cpassword ="Form invalid";
     }
@@ -162,19 +166,20 @@ class Register extends Component {
                     <input type='text' name={'email'}  onChange={this.handleChange} className="inputRegibox" placeholder="Email Address" />
                     <input type='password' name={'password'}  onChange={this.handleChange} className="inputRegibox" placeholder="Password" />
                     <input type='password'  name={'cpassword'}  onChange={this.handleChange} className="inputRegibox" placeholder="Confirm Password" />
-                     {formErrors.cpassword.length > 0 && (
+                     {formErrors.cpassword.length >= 0 && (
                          <span className="errorMessage"> {formErrors.cpassword}</span>
                        )}
+                      
                     <div className='tc'>
                       <Checkbox   onChange={this.handleCheck}/>
-                      <div  style={{marginTop:9,color:"black"}}> By Signing up you agree with our Accept our 
-                      <a href="#" style={{marginTop:10,color:"black"}}> User Agreement </a> 
+                      <div  style={{marginTop:9,color:"black"}}> By Signing up you accept with our 
+                      <a href="https://www.dropbox.com/s/ltz49mxd0mu6rcj/LM%20User%20Agreement.pdf?dl=0" target='_blank' style={{marginTop:10,color:"black",textDecoration:'underline'}}> User Agreement </a> 
                         and
-                      <a href="#" style={{marginTop:10,color:"black"}}> Privacy policy </a>
+                      <a href="https://www.dropbox.com/s/jdp25froz375fdr/LM%20Privacy%20Policy_05_11_2020.pdf?dl=0" target='_blank' style={{marginTop:10,color:"black",textDecoration:'underline'}}> Privacy policy </a>
                        </div>
                     </div>
                  </div>
-                 <button disabled={!this.state.check} onClick={this.handleLogin} className="buttonsreg">
+                 <button onClick={this.handleLogin} className="buttonsreg">
                   <SendIcon className='iconSign' />
                    <p style={{color:'transparent'}}> e</p>
                      Submit

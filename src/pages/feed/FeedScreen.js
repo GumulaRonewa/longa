@@ -15,18 +15,9 @@ import IconButton from '@material-ui/core/IconButton';
 import Menu from '@material-ui/core/Menu';
 import Picker, { SKIN_TONE_MEDIUM_DARK } from 'emoji-picker-react';
 import ReplyIcon from '@material-ui/icons/Reply';
+import axios from "axios";
 
-const phases=[
-    {id:"1",phase:" User 1",plan:"Business plan",duration:"6 Weeks",image:"https://cdn.iconscout.com/icon/premium/png-512-thumb/setting-167-243672.png"},
-    {id:"2",phase:"User 2",plan:"Automation",duration:"12 Weeks",image:"https://cdn.iconscout.com/icon/premium/png-512-thumb/setting-167-243672.png"},
-    {id:"3",phase:"User 3",plan:"Automation",duration:"12 Weeks",image:"https://cdn.iconscout.com/icon/premium/png-512-thumb/setting-167-243672.png"},
-    {id:"21",phase:"User 4",plan:"Automation",duration:"12 Weeks",image:"https://cdn.iconscout.com/icon/premium/png-512-thumb/setting-167-243672.png"},
-    {id:"22",phase:"User 5",plan:"Automation",duration:"12 Weeks",image:"https://cdn.iconscout.com/icon/premium/png-512-thumb/setting-167-243672.png"},
-    {id:"24",phase:"User 6",plan:"Automation",duration:"12 Weeks",image:"https://cdn.iconscout.com/icon/premium/png-512-thumb/setting-167-243672.png"},
-    {id:"223",phase:"User 7",plan:"Automation",duration:"12 Weeks",image:"https://cdn.iconscout.com/icon/premium/png-512-thumb/setting-167-243672.png"},
-
-]
-export default function FeedScreen(argument) {
+ function Feed(props) {
   
    const [mobileOpen, setMobileOpen] = React.useState(false);
    const [anchorEl, setAnchorEl] = React.useState(null);
@@ -35,12 +26,14 @@ export default function FeedScreen(argument) {
   const [file, setfile] = React.useState(null);
   const [name, setName] = React.useState(null);
   const [post, setPost] = React.useState(null);
+  //const [feed, setFeed] = React.useState(null);
   const [color, setColor] = React.useState(null);
+  var feed=props.feed;
   const [likes, setlikes] = React.useState(46);
   const isMenuOpen = Boolean(anchorEl);
     const [anchorEl2, setAnchorEl2] = React.useState(null);
         const isMenuOpen2 = Boolean(anchorEl2);
-
+ 
    const handleEmojiOpen = (event) => {
     setAnchorEl2(event.currentTarget);
   };
@@ -48,6 +41,30 @@ export default function FeedScreen(argument) {
     setAnchorEl2(null);
     handleMobileMenuClose();
   };
+    const handleClick = () => {
+       const data = {
+          name:sessionStorage.getItem('name'),
+          surname:sessionStorage.getItem('surname'),
+          text:post
+    };
+    console.log(data);
+    
+    const fd = new FormData();
+    fd.append("data", JSON.stringify(data));
+    fd.append("file", file);
+     axios({
+      method: 'POST',
+     url: `https://longa-money.herokuapp.com/api/feed`, // First page at 0
+     data:data,
+       headers: {
+      "Authorization": `Bearer ${localStorage.getItem("token")}`,
+      
+      },
+    }).then(res =>{
+       console.log(res)
+
+    })
+}
   const handleProfileMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -199,7 +216,7 @@ export default function FeedScreen(argument) {
                         </div>
                       </div>
                       <div className={'theemojirightbox'}>
-                        < IconButton>
+                        < IconButton onClick={handleClick}>
                         <SendIcon color={'primary'}/>
                         </IconButton>
                       </div>
@@ -212,7 +229,7 @@ export default function FeedScreen(argument) {
                   <div className={'liststyle'}>
                      <List className={'scroll'}>
                    
-                                  {phases.map(({id,phase,plan,duration,image})=> (
+                                  {feed.map(({id,text,username})=> (
                   <div>
                      <Divider />
                         <ListItem>
@@ -222,8 +239,8 @@ export default function FeedScreen(argument) {
                         alt={"T"}
                       />
                         <div className='postsection'>
-                          <div className={'username'}>{phase} </div>
-                          <div className={'postext'}> Lorem ipsum dolor sit amet, consetetur sa
+                          <div className={'username'}>{username} </div>
+                          <div className={'postext'}> {text}
 
  
                           </div>
@@ -258,4 +275,33 @@ export default function FeedScreen(argument) {
   	 	  </div>
   	 	)
   
+ }
+  export default class FeedScreen extends React.Component {
+   constructor(props) {
+    super(props);
+
+    this.state = {
+      feed:[]
+    };
+  }
+  componentWillMount() {
+     axios({
+      method: 'GET',
+     url: `https://longa-money.herokuapp.com/api/feed`, // First page at 0
+       headers: {
+      "Authorization": `Bearer ${localStorage.getItem("token")}`,
+      
+      },
+    }).then(res =>{
+        this.setState({feed:res.data})
+    })
+  }
+
+
+  render(){
+     return(
+
+        <Feed window={window} feed={this.state.feed} />
+      )
+  }
  }

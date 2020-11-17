@@ -20,6 +20,10 @@ class Login extends Component {
       error: false,
     };
   }
+  componentWillMount(){
+    localStorage.clear();
+    sessionStorage.clear();
+  }
   handleChange = (e) => {
     e.preventDefault();
     const { name, value } = e.target;
@@ -28,7 +32,6 @@ class Login extends Component {
    handleLogin = (e) => {
     e.preventDefault();
             this.setState({img: loading });
-
             const user = { email: this.state.email,password: this.state.password };
          axios({
       method: "POST",
@@ -37,11 +40,22 @@ class Login extends Component {
       }).then((res) => {
       localStorage.setItem('token',res.data['token']);
       var user=res.data['user'];
-      localStorage.setItem('image',user['image']);
+      var banking=user['bankingDetails'];
+      banking=banking.accountNumber;
+      banking=banking==="";
+
+      sessionStorage.setItem('name',user['name']);
+      sessionStorage.setItem('bankings',banking);
+      sessionStorage.setItem('surname',user['surname']);
+      sessionStorage.setItem('image',user['image']);
       localStorage.setItem('userId',user['_id']);
-             window.open("home", "_self");
+      window.open("home", "_self");
          
+      }).catch((e) => {
+                    this.setState({img: login });
+
       });
+
        };
   render() {
     return (

@@ -32,9 +32,7 @@ function createData(date, campaign, desc,status) {
 }
 
 const rows = [
-  createData('03-11-2020', "MTN #Remake2020", "R500  Takealot Voucher", "Pending"),
-  createData('01-04-2020', "Nike #JustDoIt", "Nike Downshifter Running Shoes", "Received"),
-  createData('23-10-2020', "KFC #KrispZinger","R 700 KFC Voucher", "Received"),
+
  
 ];
 
@@ -80,7 +78,7 @@ export default function Rewards(argument) {
    
   	 return(
   	 	  <div className={'profhome'}>
-           <div className={'profbox'}>
+           <div className={'profilebox'}>
              <div className={'profround'}>
                 <p className={'profheadertext'}>My Rewards</p>
                  </div>

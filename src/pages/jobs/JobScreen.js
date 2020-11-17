@@ -1,5 +1,6 @@
 import React from "react";
 import './job.css';
+import '../home/home.css';
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import Avatar from "@material-ui/core/Avatar";
@@ -10,6 +11,8 @@ import clsx from 'clsx';
 import MonetizationOnIcon from '@material-ui/icons/MonetizationOn';
 import PeopleIcon from '@material-ui/icons/People';
 import axios from "axios";
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from "@material-ui/core/ListItemText";
 
 const useStyles = makeStyles((theme) => ({
 
@@ -36,10 +39,22 @@ function JobScreenfunct(props) {
   const classes = useStyles();
   console.log(props);
   var job=props.Jobs;
-  const [selectedPromo, setPromo] = React.useState(null);
-  const handleExpandButtonClick = (key) => () =>{
-    setPromo(key)
-    setExpanded(!expanded);
+  const [selectedPromo, setPromo] = React.useState('all');
+  const getDays=(day)=>{
+    var msDiff =  new Date(day).getTime()-new Date().getTime() ;    //Future date - current date
+         var days= Math.floor(msDiff / (1000 * 60 * 60 * 24))+ " days";
+         return days;
+  }
+  const handleExpandButtonClick = (key,location) => () =>{
+        if(location===1){
+
+    setPromo(key.campaignID)
+  }
+  else{
+    setPromo('all')
+  }
+      setExpanded(!expanded);
+
   };
   	 return(
   	 	  <div className={'jobhome'}>
@@ -52,40 +67,85 @@ function JobScreenfunct(props) {
                       <List>
              {job.map((item)=> (
 
-                <ListItem>
-                  <div className={selectedPromo === item._id && expanded ?'joblistdivexplore':'joblistdiv'}>
-                  <div className={'rowe'}>
-                   <Avatar                            
-                   style={{ height: 60, width: 60, left: 20,top:10 }}
-                  src={'https://seeklogo.com/images/M/MTN-logo-459AAF9482-seeklogo.com.png'} />
-                  <div className={'promojname'}>{item.campaignName} </div>
-                  <div className={'promojname'}>Stage: {item.stage}  </div>
-                   <IconButton onClick={handleExpandButtonClick(item._id)}  className={selectedPromo === item._id ? clsx(classes.expand, {[classes.expandOpen]: expanded,}):'empty'} >
-                    <ArrowForwardIosIcon  color={'primary'} style={{ height: 30, width: 30,marginTop:-3,position:"abosolute"}} />
-                  </IconButton>
+               <ListItem>
+                {selectedPromo==='all'&&
+                  <div className={'homelistdiv'}>
+                      <ListItem>
+                       <Avatar style={{ height: 80, width: 80, left: 4,top:4}}
+                       src={'https://seeklogo.com/images/M/MTN-logo-459AAF9482-seeklogo.com.png'} />
+                                             <div style={{marginLeft:10,fontSize:24}}>{item.campaignName}</div>
+                                             <div style={{marginLeft:20,fontSize:20}}>Stage : {item.stage}</div>
+                      <ListItemText style={{marginLeft:10,fontSize:20}} primary={''} />
+
+                      <ListItemIcon>
+                         <IconButton onClick={handleExpandButtonClick(item,1)}  className={selectedPromo === item.campaignID ? clsx(classes.expand, {[classes.expandOpen]: expanded,}):'empty'}  >
+                        <ArrowForwardIosIcon  style={{ marginLeft:5,height: 40, width: 30}}/>
+                         </IconButton>
+                      </ListItemIcon>
+                      </ListItem>
+                    
+                  </div>
+                }
+                  {selectedPromo===item.campaignID&&
+                  <div className={'homelistdivexplore'}>
+                      <ListItem>
+                       <Avatar style={{ height: 80, width: 80, left: 4,top:4}}
+                       src={'https://seeklogo.com/images/M/MTN-logo-459AAF9482-seeklogo.com.png'} />
+                     <div style={{marginLeft:10,fontSize:22}}>{item.campaignName}</div>
+                                             <div style={{marginLeft:20,fontSize:20}}>Stage : {item.stage}</div>
+                      <ListItemText style={{marginLeft:10,fontSize:20}} primary={''} />
+                      <ListItemIcon>
+                         <IconButton onClick={handleExpandButtonClick(item,2)}  className={selectedPromo === item.campaignID ? clsx(classes.expand, {[classes.expandOpen]: expanded,}):'empty'}  >
+                        <ArrowForwardIosIcon  style={{ marginLeft:5,height: 40, width: 30}}/>
+                         </IconButton>
+                      </ListItemIcon>
+                      </ListItem>
+                             
+                     <div className='table'>
+                        <div className={'inputedit'}>
+                           <div className={'identi'}>ID</div>
+                            <input type='text' name="nameAndSurname" value={item.campaignID} variant='outlined' className="setedit"  />
                       </div>
-                {selectedPromo === item._id && expanded &&
-                 <div>
-                   <div  className={'ctextc'} style={{marginLeft:30,marginTop:25}}>
-                     <div>
-                     do's:{item.dos}
+                      <div className={'inputedit'}>
+                            <div className={'identi'}>Task</div>
+                            <input type='text' variant='outlined' value={item.task}  name="email" className="setedit" />
+                      </div>
+                        <div className={'inputedit'}>
+                           <div className={'identi'}>Minimum Followers</div>
+                            <input type='text' name="nameAndSurname" variant='outlined' className="setedit"  />
+                      </div>
+                       <div className={'inputedit'}>
+                           <div className={'identi'}>Number of Imfluencers</div>
+                            <input type='text' value={item.numberOfInfluencers} name="nameAndSurname" variant='outlined' className="setedit"  />
+                      </div>
+                      <div className={'inputedit'}>
+                            <div className={'identi'}>Ends in</div>
+                            <input type='text' value={getDays(item.endDate)} variant='outlined' name="email" className="setedit"  />
+                      </div>
+                        <div className={'inputedit'}>
+                           <div className={'identi'}>Payment Time</div>
+                            <input type='text' name="nameAndSurname" variant='outlined' className="setedit" />
+                      </div>
+                      <div className={'inputedit'}>
+                            <div className={'identi'}>Description</div>
+                            <input type='text' variant='outlined'value={item.description} name="email" className="setedit"  />
+                      </div>
+                        <div className={'inputedit'}>
+                           <div className={'identi'}>Do's</div>
+                            <input type='text' multilines rows={2} value={item.dos} name="nameAndSurname" variant='outlined' className="setedit"  />
+                      </div>
+                      <div className={'inputedit'}>
+                            <div className={'identi'}>Dont's</div>
+                            <input type='text' rows={2} value={item.donts} variant='outlined' name="email" className="setedit" />
+                      </div>
+                  
                      </div>
-                     <div>
-                     dont's:{item.donts}
-                     </div>
-
-                     <div style={{marginTop:10}}>
-                       {item.description}
-                     </div>
-
-                   </div>
-                   <div className={'line'}>
-                   </div >
-                   <div className={'bottomdiv'}>
+                              <div className={'line'} style={{width:'94%'}}/>
+                               <div className={'bottomdiv'} style={{width:'90%'}}>
                         <div className={'moneyside'}>
                           <MonetizationOnIcon  color={'primary'} style={{ height: 30, width: 30,marginLeft:20}} />
                           <div className={'textmon'}>
-                           R {item.budget}
+                           R {item.earnings}
                           </div>
                          </div>
                           <div className={'groupside'}>
@@ -95,9 +155,9 @@ function JobScreenfunct(props) {
                           </div>
                          </div>
                    </div>
-                   </div>
-                 }
+
                   </div>
+                }
 
                 </ListItem>
               

@@ -2,7 +2,8 @@
 	display:grid;
   overflow: hidden;
 	place-items:center;
-	background-color: white;
+  background-color: #00000029;
+
 	height: 100vh;
 	width: 100%;
 }
@@ -15,9 +16,30 @@
   overflow-y: auto;
   height: 90%;
 }
+.tab{
+  display: flex;
+  flex-direction: column;
+  margin-top: 18px;
+  margin-left: 60px;
+}
+.buttns{
+  width: 100%;
+  height: 100%;
+  font-size: 100px;
+  background-color: #00000029;
+  display: grid;
+  place-items:center;
+}
+.columnx{
+  display: flex;
+    margin-top: 18px;
+
+  flex-direction: column;}
 .profbox{
   width: 99%;
   height: 88vh;
+    background-color: #00000029;
+
   margin-top: 76px;
   overflow: hidden;
   display: flex;
@@ -32,6 +54,8 @@ opacity: 1;
   height: 88vh;
   margin-top: 76px;
   overflow-x: scroll;
+    background-color: #00000029;
+
   overflow-y: scroll;
   background: #FFFFFF 0% 0% no-repeat padding-box;
 box-shadow: 10px 10px 6px #00000029;
@@ -58,6 +82,24 @@ font: normal normal normal 28px/30px Lato;
 letter-spacing: 0px;
 color: #FFFFFF;
 opacity: 1;
+}
+.summary{
+    text-align: left;
+font: normal normal normal 18px/20px Lato;
+letter-spacing: 0px;
+color: black;
+opacity: 1;
+}
+.username{
+   text-align: left;
+   margin-top: 40px;
+font: normal normal normal 24px/25px Lato;
+letter-spacing: 0px;
+}
+.userdet{
+  margin-left: 10px;
+  width: 100%;
+  height: auto;
 }
 .aboutsec{
   text-align: center;
@@ -158,6 +200,7 @@ opacity: 1;
 .pbox{
  width: 99%;
  margin-top: 6px;
+ 
  margin-left: 10px;
  display: flex;
  flex-direction: row;
@@ -171,13 +214,13 @@ opacity: 1;
 .profimg{
   margin-top: 10px;
 margin-left: 40px;
-width: 300px;
+width: 350px;
 height: 220px;
-display: grid;
+display: flex;
+flex-direction: column;
 place-items:center;
 background: #FFFFFF 0% 0% no-repeat padding-box;
-border: 1px solid #707070;
-opacity: 1;
+
 }
 .settings{
 width: 300px;
@@ -200,19 +243,18 @@ border: 1px solid #0F81C7;
 opacity: 1;
 }
 .biop{
-  margin-top: 10px;
 margin-left: 40px;
-width: 300px;
-height: 280px;
-display: grid;
+width: 350px;
+height: auto;
+display: flex;
+flex-direction: column;
+margin-top: 50px;
 background: #FFFFFF 0% 0% no-repeat padding-box;
-border: 1px solid #707070;
 opacity: 1;
 }
 .accountsbox{
   margin-top: 10px;
-margin-left: 40px;
-width: auto;
+width: 520px;
 padding-right:10px;
 height: 100px;
 display: grid;
@@ -246,7 +288,7 @@ opacity: 1;
 
 .general{
   margin-top: 10px;
-margin-left: 40px;
+margin-left: -40px;
 width: 290px;
 height: 220px;
 background: #FFFFFF 0% 0% no-repeat padding-box;
@@ -254,10 +296,12 @@ border: 1px solid #707070;
 opacity: 1;
 }
 .imge{
-  height: 180px;
-  width: 180px;
+  margin-top: 5px; 
+  margin-left: 30px;
+  height: 220px;
+  width: 220px;
+  border-radius: 180px;
 
-  border-radius: 100px;
 }
 .img{
   margin-top: 3px;
@@ -293,12 +337,19 @@ opacity: 1;
     display: none;
 
   }
+  .rows{
+    display: flex;
+    flex-direction: row;
+  }
   .profilebox{
     width: 100%;
     border-radius: 40px;
     border-radius: 0px;
     height: 100%;
 
+   }
+    .profimg{
+     width: 98%;
    }
   .identi{
     margin-left: 0px;
@@ -318,9 +369,23 @@ opacity: 1;
      border: 5px solid #0F81C7;
 
    }
+   .accountsbox{
+    height: auto;
+   }
+    .rowx{
+    flex-direction: column;
+
+   }
+   .tab{
+      width:90%;
+      margin-left: 4px;
+   }
+   .biop{
+     margin-left: 3px;
+   }
    .divs{
      width: 99vw;
-     
+     padding-left: 2px;
      padding-bottom: 26px;
      overflow-y: auto;
    }
