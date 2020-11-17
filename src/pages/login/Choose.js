@@ -43,7 +43,7 @@ class Choose extends Component {
         <div className="rightBoxChoose">
          <div className="imageChooseRight">
           <div className='hue2' >
-                  <img src={notag} style={{height:120,width:155,marginTop:-50,marginLeft:"-100%"}} alt={'L'} />
+                  <img src={notag} style={{height:190,width:250,marginTop:-80,marginLeft:"-100%"}} alt={'L'} />
 
             <div className="brandtext">
               Influencers
