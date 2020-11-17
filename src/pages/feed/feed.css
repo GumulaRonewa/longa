@@ -69,7 +69,8 @@ opacity: 1;
 }
 .usernamex{
   margin-left: 10px;
-font: normal normal normal 23px/24px Lato;
+ margin-top:-20px;
+font: normal normal normal 20px/22px Lato;
 letter-spacing: 0px;
 color: black;
 opacity: 1;
