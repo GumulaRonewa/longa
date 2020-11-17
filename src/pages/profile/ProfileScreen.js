@@ -76,7 +76,7 @@ const StyledButton2 = withStyles({
           const [bio, setBio] = React.useState('');
               var outliner = edit ? "outlined" : "standard";
               var profile=props.profile;
-          const [file, setfile] = React.useState('h');
+          const [file, setfile] = React.useState('https://www.pngitem.com/pimgs/m/522-5220445_anonymous-profile-grey-person-sticker-glitch-empty-profile.png');
           const onSub=()=>{
             var data={bio:bio,userID:localStorage.getItem("userId")}
           console.log(data)
