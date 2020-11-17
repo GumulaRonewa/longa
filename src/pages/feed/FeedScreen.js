@@ -239,7 +239,7 @@ import axios from "axios";
                         alt={"T"}
                       />
                         <div className='postsection'>
-                          <div className={'username'}>{username} </div>
+                          <div className={'usernamex'}>{username} </div>
                           <div className={'postext'}> {text}
 
  
