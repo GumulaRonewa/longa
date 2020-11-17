@@ -166,7 +166,7 @@ const StyledButton2 = withStyles({
                             </StyledButton2>
                          </ListItemIcon>
                       </ListItem>
-                      <div className={'username'}>Huey Freeman</div>
+                      <div className={'username'}>{profile.name} {profile.surname}</div>
                       <div className={'accountsbox'}>
                         <div className={'lntext'} >Social Accounts </div>
                         <div className={'rowx'}>
@@ -194,7 +194,7 @@ const StyledButton2 = withStyles({
                       <div className={'columnx'} >
                      <Tabs defaultActiveKey="Profile" id="uncontrolled-tab-example">
                       <Tab eventKey="Profile" title="About">
-                               <div className={'divs'}>
+                               <div className={'divs'} style={{width:'90%'}}>
                   <div className={'inputedit'}>
                        <div className={'identi'}>Full Names</div>
                         <input type='text'value={profile.name+' '+profile.surname} name="nameAndSurname" variant='outlined' className="setedit" placeholder="Name & Surname" />
