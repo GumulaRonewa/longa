@@ -118,7 +118,7 @@ class Register extends Component {
               localStorage.setItem('name',user.name);
 
                        console.log(res);
-                       window.open('https://longamoney.groundrabbit.co.za/')
+                       window.open('https://longamoney.groundrabbit.co.za/', "_self"))
          
             });
     } else {
