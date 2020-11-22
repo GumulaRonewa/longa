@@ -172,7 +172,7 @@ class Register extends Component {
                       
                     <div className='tc'>
                       <Checkbox   onChange={this.handleCheck}/>
-                      <div  style={{marginTop:9,color:"black"}}> By Signing up you accept with our 
+                      <div  style={{marginTop:9,color:"black"}}> By Signing up you agree with our 
                       <a href="https://www.dropbox.com/s/ltz49mxd0mu6rcj/LM%20User%20Agreement.pdf?dl=0" target='_blank' style={{marginTop:10,color:"black",textDecoration:'underline'}}> User Agreement </a> 
                         and
                       <a href="https://www.dropbox.com/s/jdp25froz375fdr/LM%20Privacy%20Policy_05_11_2020.pdf?dl=0" target='_blank' style={{marginTop:10,color:"black",textDecoration:'underline'}}> Privacy policy </a>
