@@ -69,14 +69,14 @@ const StyledButton = withStyles({
   console.log(props)
   const onSubmit =()=>{
    
-                  var data={userID:localStorage.getItem("userId"),name:first,surname:last,country:country,email:email,phone:phone,gender:gender,dateOfBirth:date}
+                  var data={userID:sessionStorage.getItem("userId"),name:first,surname:last,country:country,email:email,phone:phone,gender:gender,dateOfBirth:date}
   console.log(data);
    axios({
       method: 'POST',
      url: `https://longa-money.herokuapp.com/api/u/update`, // First page at 0
      data:data,
        headers: {
-      "Authorization": `Bearer ${localStorage.getItem("token")}`,
+      "Authorization": `Bearer ${sessionStorage.getItem("token")}`,
       
       },
     }).then(res =>{
@@ -246,14 +246,14 @@ const StyledButton = withStyles({
            var Settings=props.settings;
            Settings= Settings.bankingDetails;
          const handleBank=()=>{
-         	var data={bankName:name,branchCode:branch,accountNumber:number,accountType:type,userID:localStorage.getItem("userId")}
+         	var data={bankName:name,branchCode:branch,accountNumber:number,accountType:type,userID:sessionStorage.getItem("userId")}
          	console.log(data)
               axios({
       method: 'POST',
      url: `https://longa-money.herokuapp.com/api/u/settings/banking`, // First page at 0
      data:data,
        headers: {
-      "Authorization": `Bearer ${localStorage.getItem("token")}`,
+      "Authorization": `Bearer ${sessionStorage.getItem("token")}`,
       
       },
     }).then(res =>{
@@ -262,13 +262,13 @@ const StyledButton = withStyles({
     })
          }
            const handleMomo=()=>{
-         	var data={momo:phone,userID:localStorage.getItem("userId")}
+         	var data={momo:phone,userID:sessionStorage.getItem("userId")}
               axios({
       method: 'POST',
      url: `https://longa-money.herokuapp.com/api/u/settings/momo`, // First page at 0
      data:data,
        headers: {
-      "Authorization": `Bearer ${localStorage.getItem("token")}`,
+      "Authorization": `Bearer ${sessionStorage.getItem("token")}`,
       
       },
     }).then(res =>{
@@ -349,7 +349,7 @@ const StyledButton = withStyles({
               {edit &&
                  <div style={{width:"80%"}} >
                     <div style={{fontSize:20}}>
-             Longa Money will use the bank account information below to ensure you receive payment for campains you participated in. Make sure the details below are correct and up to date. These details are stored securely in our system and will never be shared with third parties.
+             Longa Money will use the bank account information below to ensure you receive payment for campaings you participated in. Make sure the details below are correct and up to date. These details are stored securely in our system and will never be shared with third parties.
             </div>
                  <div className={'inputedit'}>
                  <div className={'identi'}>Bank Name</div>
@@ -580,14 +580,14 @@ function EditAccount(props) {
           setEditYoutube(false);
        };
         const handleUpdate=()=>{
-         	var data={oldPassword:password,newPassword:newP,userID:localStorage.getItem("userId")}
+         	var data={oldPassword:password,newPassword:newP,userID:sessionStorage.getItem("userId")}
           if (!valid) {
               axios({
       method: 'POST',
      url: `https://longa-money.herokuapp.com/api/u/settings/change-password`, // First page at 0
      data:data,
        headers: {
-      "Authorization": `Bearer ${localStorage.getItem("token")}`,
+      "Authorization": `Bearer ${sessionStorage.getItem("token")}`,
       
       },
     }).then(res =>{
@@ -597,13 +597,13 @@ function EditAccount(props) {
   }
          }
          const handleDelete=()=>{
-         	var data={userID:localStorage.getItem("userId")}
+         	var data={userID:sessionStorage.getItem("userId")}
               axios({
       method: 'POST',
      url: `https://longa-money.herokuapp.com/api/u`, // First page at 0
      data:data,
        headers: {
-      "Authorization": `Bearer ${localStorage.getItem("token")}`,
+      "Authorization": `Bearer ${sessionStorage.getItem("token")}`,
       
       },
     }).then(res =>{
@@ -746,14 +746,14 @@ function EditAccount(props) {
   }
   componentWillMount(){
 
-  	         	var data={userID:localStorage.getItem("userId")}
+  	         	var data={userID:sessionStorage.getItem("userId")}
             console.log(data)
 			    axios({
 			      method: 'POST',
 			      url: `https://longa-money.herokuapp.com/api/u/settings`, // First page at 0
 			      data:data,
 			       headers: {
-			      "Authorization": `Bearer ${localStorage.getItem("token")}`,
+			      "Authorization": `Bearer ${sessionStorage.getItem("token")}`,
 			      
 			      },
 			    }).then(res =>{

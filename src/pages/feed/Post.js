@@ -24,7 +24,7 @@ const Posts = (feed) => {
         window.open(path,"_self");
 }
  const handleClick=()=>{
-            var databit={userID:localStorage.getItem("userId"),postID:feeds[2]}
+            var databit={userID:sessionStorage.getItem("userId"),postID:feeds[2]}
   if(value !== 'secondary'){
       setTotal(1+total);
 
@@ -34,7 +34,7 @@ const Posts = (feed) => {
      url: `https://longa-money.herokuapp.com/api/feed/like`, // First page at 0
        data:databit,
        headers: {
-      "Authorization": `Bearer ${localStorage.getItem("token")}`,
+      "Authorization": `Bearer ${sessionStorage.getItem("token")}`,
       
       },
     }).then(res =>{
@@ -51,7 +51,7 @@ const Posts = (feed) => {
      url: `https://longa-money.herokuapp.com/api/feed/like`, // First page at 0
        data:databit,
        headers: {
-      "Authorization": `Bearer ${localStorage.getItem("token")}`,
+      "Authorization": `Bearer ${sessionStorage.getItem("token")}`,
       
       },
     }).then(res =>{

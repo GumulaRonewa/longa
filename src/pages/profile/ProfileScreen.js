@@ -79,14 +79,14 @@ const StyledButton2 = withStyles({
               var profile=props.profile;
           const [file, setfile] = React.useState('https://pm1.narvii.com/6424/71de2b7b9611f0522cc2d88a04609cfdc0bc5936_00.jpg');
           const onSub=()=>{
-            var data={bio:bio,userID:localStorage.getItem("userId")}
+            var data={bio:bio,userID:sessionStorage.getItem("userId")}
           console.log(data)
               axios({
       method: 'POST',
      url: `https://longa-money.herokuapp.com/api/u/settings/bio`, // First page at 0
      data:data,
        headers: {
-      "Authorization": `Bearer ${localStorage.getItem("token")}`,
+      "Authorization": `Bearer ${sessionStorage.getItem("token")}`,
       
       },
     }).then(res =>{
@@ -318,7 +318,7 @@ function TitlebarGridList(props) {
     };
   }
   componentWillMount() {
-                var data={userID:localStorage.getItem("userId")}
+                var data={userID:sessionStorage.getItem("userId")}
         console.log(data);
 
      axios({
@@ -327,7 +327,7 @@ function TitlebarGridList(props) {
            data:data,
 
        headers: {
-      "Authorization": `Bearer ${localStorage.getItem("token")}`,
+      "Authorization": `Bearer ${sessionStorage.getItem("token")}`,
       
       },
     }).then(res =>{

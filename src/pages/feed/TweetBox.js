@@ -168,7 +168,7 @@ function TweetSheet() {
      url: `https://longa-money.herokuapp.com/api/feed`, // First page at 0
      data:form,
        headers: {
-      "Authorization": `Bearer ${localStorage.getItem("token")}`,
+      "Authorization": `Bearer ${sessionStorage.getItem("token")}`,
       
       },
     }).then(res =>{

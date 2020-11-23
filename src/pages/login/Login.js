@@ -38,7 +38,7 @@ class Login extends Component {
       url: `https://longa-money.herokuapp.com/api/user/login`,
       data: user,
       }).then((res) => {
-      localStorage.setItem('token',res.data['token']);
+      sessionStorage.setItem('token',res.data['token']);
       var user=res.data['user'];
       var banking=user['bankingDetails'];
       banking=banking.accountNumber;
@@ -48,7 +48,7 @@ class Login extends Component {
       sessionStorage.setItem('bankings',banking);
       sessionStorage.setItem('surname',user['surname']);
       sessionStorage.setItem('image',user['image']);
-      localStorage.setItem('userId',user['_id']);
+      sessionStorage.setItem('userId',user['_id']);
       window.open("home", "_self");
          
       }).catch((e) => {

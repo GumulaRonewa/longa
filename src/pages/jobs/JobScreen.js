@@ -189,14 +189,14 @@ function JobScreenfunct(props) {
     };
   }
   componentDidMount() {
-          var databit={userID:localStorage.getItem("userId")}
+          var databit={userID:sessionStorage.getItem("userId")}
 
      axios({
       method: 'POST',
      url: `https://longa-money.herokuapp.com/api/u/jobs`, // First page at 0
        data:databit,
        headers: {
-      "Authorization": `Bearer ${localStorage.getItem("token")}`,
+      "Authorization": `Bearer ${sessionStorage.getItem("token")}`,
       
       },
     }).then(res =>{

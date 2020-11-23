@@ -3,11 +3,11 @@ import Slider from "react-animated-slider";
 import "./about.css";
 import Divider from "@material-ui/core/Divider";
 import notag from '../../images/notag.png'
-import "react-animated-slider/build/vertical.css";
+import 'react-animated-slider/build/vertical.css';
 import "./slider-animations.css";
 const WhoAndWhat =() =>{
-	return(
-	<div className="slide-right">
+  return(
+  <div className="slide-right">
       <h1>Who we are. </h1>
       <p>Longa Money (LM) is a platform that makes it easier to identify influencers through a very 
       targeted search function, and we boast a variety of influencers to choose from. This sheer
@@ -25,7 +25,7 @@ const WhoAndWhat =() =>{
     )
 }
 const Apart =() =>{
-	return(
+  return(
   <div className="slide-left">
       <h1>What sets us apart. </h1>
        <p>a. We report back to brands:</p>
@@ -42,7 +42,7 @@ const Apart =() =>{
      )
 }
 const AppDesk = () => (
-	<div className={'slider'} >
+  <div className={'slider'} >
      <WhoAndWhat />
     <Divider />
      <Apart />
@@ -53,30 +53,38 @@ const AppDesk = () => (
        
 );
 export default function AboutUs(argument) {
-	// body...
-	return(
+  // body...
+  return(
          <App />
-		)
+    )
 }
-const pages=[{title:"WhoAndWhat",image:'"https://i.imgur.com/DCdBXcq.jpg',description:" <h1>What sets us apart. </h1>"
+const pages=[{page:"WhoAndWhat",image:'https://i.imgur.com/DCdBXcq.jpg'
 
-}];
+},{page:"Apart",image: "https://i.imgur.com/DCdBXcq.jpg"}];
 
 
 const App = () => (
   <div>
-    <Slider>
-{pages.map((item, index) => (
-  <div
-    key={index}
-    style={{ background: `url('${item.image}') no-repeat center center` }}
-  >
-    <div className="center">
-      <h1>{item.title}</h1>
-      <div>{(item.description).toHtmlObject}</div>
-    </div>
-  </div>
-))}
-</Slider>
+  
+    <Slider className="slider-wrapper"  direction="vertical" >
+      {pages.map((item, index) => (
+        <div
+          key={index}
+          style={{ background: `url('${item.image}') no-repeat center center`,overflow:'hidden',width:"100vw" }}
+        >
+        <div className={'desk'}>
+        
+        {item.page ==="WhoAndWhat" &&
+        <WhoAndWhat />
+   
+        }
+                {item.page ==="Apart" &&
+
+        <Apart/>
+    }
+        </div>
+        </div>
+      ))}
+    </Slider>
   </div>
 );

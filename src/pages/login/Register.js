@@ -6,6 +6,8 @@ import Checkbox from '@material-ui/core/Checkbox';
 import SendIcon from '@material-ui/icons/Send';
 import TextField from '@material-ui/core/TextField';
 import { withStyles } from "@material-ui/core/styles";
+import login from '../../images/login.svg'
+import loading from '../../images/loading.svg'
 
 const emailRegex = RegExp(
   /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
@@ -40,7 +42,7 @@ class Register extends Component {
       surname:null,
       dob:null,
       password: null,
-   
+       load:false,
       cpassword:null,
       check: false,
       submit: false,
@@ -110,8 +112,10 @@ class Register extends Component {
     e.preventDefault();
         const user = { email: this.state.email,name:this.state.name,surname:this.state.surname,dateOfBirth:this.state.dob,password: this.state.password };
           let formErrors = this.state.formErrors;
-    if (formValid(this.state.formErrors, user) && this.state.check) {
+                    this.setState({load:true})
 
+    if (formValid(this.state.formErrors, user) && this.state.check) {
+        
          axios({
             method: "POST",
             url: `https://longa-money.herokuapp.com/api/user/register`,
@@ -119,12 +123,18 @@ class Register extends Component {
              }).then((res) => {
               localStorage.setItem('name',user.name);
 
-                       console.log(res);
+                       console.log(res.data);
                        this.props.history.push("/validreg");
          
-            });
+            }).catch((res) => {
+                  console.log(res)
+                    this.setState({load: false });
+
+      })
     } else {
        console.log(formErrors);
+                 this.setState({load:false})
+
           this.setState({submit:true})
 
 
@@ -184,7 +194,13 @@ class Register extends Component {
                     </div>
                  </div>
                  <button onClick={this.handleLogin} className="buttonsreg">
-                  <SendIcon className='iconSign' />
+                   {this.state.load &&
+                     <img src={loading} className='iconSign' alt="b"/>
+                 
+                   }
+                   {!this.state.load &&
+                      <SendIcon className='iconSign' />
+                   }
                    <p style={{color:'transparent'}}> e</p>
                      Submit
                  </button>

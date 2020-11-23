@@ -52,7 +52,7 @@ import ListItem from "@material-ui/core/ListItem";
      url: `https://longa-money.herokuapp.com/api/feed`, // First page at 0
      data:data,
        headers: {
-      "Authorization": `Bearer ${localStorage.getItem("token")}`,
+      "Authorization": `Bearer ${sessionStorage.getItem("token")}`,
       
       },
     }).then(res =>{
@@ -155,7 +155,7 @@ import ListItem from "@material-ui/core/ListItem";
                                   {feed.map(({_id,text,username,likes,comments})=> (
                   <div>
                      <Divider />
-                      <Post feed={[username,text,_id,likes.includes(localStorage.getItem("userId")),likes.length,comments.length]} window={props.window} />
+                      <Post feed={[username,text,_id,likes.includes(sessionStorage.getItem("userId")),likes.length,comments.length]} window={props.window} />
                      <Divider/>
                                           </div>
 
@@ -182,7 +182,7 @@ import ListItem from "@material-ui/core/ListItem";
      url: `https://longa-money.herokuapp.com/api/feed/post`, // First page at 0
      data:data,
        headers: {
-      "Authorization": `Bearer ${localStorage.getItem("token")}`,
+      "Authorization": `Bearer ${sessionStorage.getItem("token")}`,
       
       },
     }).then(res =>{
@@ -230,7 +230,7 @@ import ListItem from "@material-ui/core/ListItem";
       method: 'GET',
      url: `https://longa-money.herokuapp.com/api/feed`, // First page at 0
        headers: {
-      "Authorization": `Bearer ${localStorage.getItem("token")}`,
+      "Authorization": `Bearer ${sessionStorage.getItem("token")}`,
       
       },
     }).then(res =>{
@@ -244,7 +244,7 @@ axios({
       method: 'GET',
      url: `https://longa-money.herokuapp.com/api/feed`, // First page at 0
        headers: {
-      "Authorization": `Bearer ${localStorage.getItem("token")}`,
+      "Authorization": `Bearer ${sessionStorage.getItem("token")}`,
       
       },
     }).then(res =>{
