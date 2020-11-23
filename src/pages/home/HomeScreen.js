@@ -64,6 +64,7 @@ const StyledButton = withStyles({
 function HomeScreenfunct(props) {
   const [expanded, setExpanded] = React.useState(false);
   const [payment, setPayment] = React.useState(false);
+  const [MoMo, setMomo] = React.useState(false);
    const [name, setName] = React.useState('');
          const [type, setType] = React.useState('');
          const [number, setNumber] = React.useState('');
@@ -105,6 +106,22 @@ function HomeScreenfunct(props) {
         break;
     }
   };
+   const handleMomoadd=()=>{
+          var data={momo:phone,userID:localStorage.getItem("userId")}
+              axios({
+      method: 'POST',
+     url: `https://longa-money.herokuapp.com/api/u/settings/momo`, // First page at 0
+     data:data,
+       headers: {
+      "Authorization": `Bearer ${localStorage.getItem("token")}`,
+      
+      },
+    }).then(res =>{
+       
+
+    })
+  }
+ 
    const handleBank=()=>{
           var data={bankName:name,branchCode:branch,accountNumber:number,accountType:type,userID:localStorage.getItem("userId")}
           console.log(data)
@@ -127,6 +144,7 @@ function HomeScreenfunct(props) {
   if(props.id !=="all"){
       selectedPromo=props.id;
     }
+
   const handleShareMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -142,6 +160,9 @@ function HomeScreenfunct(props) {
 
    const handlePayment = (event) => {
      setPayment(!payment)
+  };
+   const handleMomo1 = (event) => {
+     setMomo(!MoMo)
   };
   const getDays=(day)=>{
     var msDiff =  new Date(day).getTime()-new Date().getTime() ;    //Future date - current date
@@ -197,8 +218,11 @@ function HomeScreenfunct(props) {
          <StyledButton onClick={handlePayment} >
            Add Bank Card
          </StyledButton >
-         <StyledButton style={{top:10}} >
+         <StyledButton  onClick={handleMomo1} style={{top:10}} >
            Add MoMo Wallet
+         </StyledButton >
+         <StyledButton sonClick={handlePayment} tyle={{top:10}} >
+           Skip
          </StyledButton >
          </div>
        }
@@ -220,6 +244,15 @@ function HomeScreenfunct(props) {
          </StyledButton >
          <h3 style={{color:"transparent"}}>function dfffffff</h3>
          </div>
+         }
+         { MoMo &&
+            <div>
+            <p style={{ "font-size": "18px", paddingLeft: 3 }}>Momo Number*:</p>
+            <TextField  onChange={handleChange} variant="outlined" name={'contactNumber'} style={{left:10,right:10,width:280}}/>
+             <StyledButton onClick={handleMomoadd} style={{top:10,bottom:10}} >
+           Submit
+         </StyledButton >
+            </div>
          }
      </div>
     </Menu>
@@ -326,7 +359,7 @@ function HomeScreenfunct(props) {
                        <button onClick={handleShareMenuOpen} className="buttonsexpandblue"  >
                            Share
                          </button>
-                         <button onClick={handleBankMenuOpen} className="buttonsexpandred">
+                         <button onClick={handleBankMenuOpen} className={item.bidders.includes(localStorage.getItem("userId")) || bids.includes(selectedPromo)?'buttonsexpandgreen':"buttonsexpandred"}>
                          Bid
                         </button>
                       </div>

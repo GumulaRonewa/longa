@@ -28,9 +28,7 @@ function Run() {
       <Sidebar />
       <Main/>
     </div>
-      <div className={'bottomnav'}>
-       <SimpleBottomNavigation/>
-       </div>
+      
     </div>
   );
 }
@@ -45,9 +43,10 @@ export default function FinalRun(){
          <Route exact path="/" component={Choose} />
          <Route path="/registerbrands" component={RegisterBussiness} />
          <Route exact path="/register" component={Register} />
-         <Route  path="/" component={Run} />
-         <Route exact path="/aboutus" component={AboutUs} />
+          <Route exact path="/aboutus" component={AboutUs} />
         <Route path={"/validreg"} component={Conformation} />
+          <Route  path="/" component={Run} />
+        
 
   </Switch>
   </BrowserRouter>

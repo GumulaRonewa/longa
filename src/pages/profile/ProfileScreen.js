@@ -73,6 +73,7 @@ const StyledButton2 = withStyles({
 })(Button);
   function ProfileScreenmain(props) {
           const [edit, setEdit] = React.useState(false);
+          const [buttons, setbutton] = React.useState('Edit');
           const [bio, setBio] = React.useState('');
               var outliner = edit ? "outlined" : "standard";
               var profile=props.profile;
@@ -89,11 +90,21 @@ const StyledButton2 = withStyles({
       
       },
     }).then(res =>{
-       console.log(res)
+       console.log(res);
+                   setEdit(!edit)
+
+
 
     })
           }
           const onEdit =()=>{
+            if(!edit){
+              setbutton('Cancel')
+            }
+            else{
+              setbutton('Edit')
+            
+            }
             setEdit(!edit)
           }
           const onBio =(e)=>{
@@ -123,7 +134,7 @@ const StyledButton2 = withStyles({
                          <ListItemText primary={' '} secondary={''} />
                          <ListItemIcon>
                             <StyledButton2 onClick={onEdit}>
-                             Edit
+                             {buttons}
                             </StyledButton2>
                          </ListItemIcon>
                       </ListItem>
@@ -175,7 +186,7 @@ const StyledButton2 = withStyles({
                   </div>
                   <div style={{width:"100%"}}  className={'inputedits'}>
                         <div className={'identi'}>Phone Number</div>
-                        <div className={'identi'}>{profile.email}</div>
+                        <div className={'identi'}>{profile.phone}</div>
                   </div>
                 <div s className={'inputedits'}>
                       <div className={'identi'}>Date of birth</div>

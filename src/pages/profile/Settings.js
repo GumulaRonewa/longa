@@ -349,7 +349,7 @@ const StyledButton = withStyles({
               {edit &&
                  <div style={{width:"80%"}} >
                     <div style={{fontSize:20}}>
-             Longa Money will use the bank account information Above to ensure you receive payment for campains you participated in. Make sure the details Above are correct and up to date. These details are stored securely in our system and will never be shared with third parties.
+             Longa Money will use the bank account information below to ensure you receive payment for campains you participated in. Make sure the details below are correct and up to date. These details are stored securely in our system and will never be shared with third parties.
             </div>
                  <div className={'inputedit'}>
                  <div className={'identi'}>Bank Name</div>

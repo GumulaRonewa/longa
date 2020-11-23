@@ -60,6 +60,7 @@ class Register extends Component {
 }
    handleCheck =(e) =>{
           this.setState({check:!this.state.check})
+                 this.setState({submit:true})
 
 
    }
@@ -109,8 +110,8 @@ class Register extends Component {
     e.preventDefault();
         const user = { email: this.state.email,name:this.state.name,surname:this.state.surname,dateOfBirth:this.state.dob,password: this.state.password };
           let formErrors = this.state.formErrors;
- this.setState({submit:true})
     if (formValid(this.state.formErrors, user) && this.state.check) {
+
          axios({
             method: "POST",
             url: `https://longa-money.herokuapp.com/api/user/register`,
@@ -123,9 +124,11 @@ class Register extends Component {
          
             });
     } else {
+       console.log(formErrors);
+          this.setState({submit:true})
 
-      console.log("errorMessage");
-    }
+
+       }
         
   };
   render() {
@@ -168,8 +171,8 @@ class Register extends Component {
                      {formErrors.cpassword.length >= 0 && (
                          <span className="errorMessage"> {formErrors.cpassword}</span>
                        )}
-                       { !this.state.checked&&this.state.submit &&(
-                         <span className="errorMessage"> Form invalid ,Fill all the field and then submit</span>
+                       { !this.state.check && this.state.submit &&(
+                         <span className="errorMessage"> Error</span>
                        )}
                     <div className='tc'>
                       <Checkbox   onChange={this.handleCheck}/>

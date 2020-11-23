@@ -280,6 +280,7 @@ opacity: 1;
   }
   .large{
     display: flex;
+    margin-left: -160px;
   }
   .buttonsexpandblue{
    width: 105px;

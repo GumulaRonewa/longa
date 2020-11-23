@@ -122,7 +122,7 @@ const useStyles = makeStyles((theme) => ({
 }
   const signcl = () => {
       var win=props.props;
-        win.open("/myprofile", "_self");
+        win.open("/login", "_self");
 
 }
   const handleMobileMenuOpen = (event) => {
