@@ -7,8 +7,8 @@ import notag from '../../images/notag.png'
 class Choose extends Component {
      
      handleBrands = (e) => {
-  
-                       this.props.history.push("/registerbrands");
+    window.open("registerbrands", "_self");
+
          
     
   };
@@ -31,10 +31,10 @@ class Choose extends Component {
            <div className='hue' >
                                  <a href={'/aboutus'} style={{marginTop:"-18%",marginLeft:"-85%",fontSize:18,color:"white"}}>About Us</a>
 
-            <div className="brandtext">
+            <div className="brandtext" style={{marginTop:-100}}>
               Brands
             </div>
-            <button onClick={this.handleBrands} className="brandbttn">
+            <button onClick={this.handleBrands} style={{marginTop:20}} className="brandbttn">
              Start
             </button>
             </div>
@@ -43,12 +43,12 @@ class Choose extends Component {
         <div className="rightBoxChoose">
          <div className="imageChooseRight">
           <div className='hue2' >
-                  <img src={notag} style={{height:190,width:250,marginTop:-80,marginLeft:"-100%"}} alt={'L'} />
+                  <img src={notag} style={{height:190,width:250,marginTop:-90,marginLeft:"-100%"}} alt={'L'} />
 
-            <div className="brandtext">
+            <div className="brandtext"   style={{marginTop:-230}}>
               Influencers
             </div>
-            <button onClick={this.handleInfluencer} className="brandbttnwhite">
+            <button onClick={this.handleInfluencer} style={{marginTop:-60}}className="brandbttnwhite">
              Start
             </button>
             </div>

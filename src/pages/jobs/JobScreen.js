@@ -13,7 +13,12 @@ import PeopleIcon from '@material-ui/icons/People';
 import axios from "axios";
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from "@material-ui/core/ListItemText";
-
+import TwitterIcon from '@material-ui/icons/Twitter';
+import YouTubeIcon from '@material-ui/icons/YouTube';
+import InstagramIcon from '@material-ui/icons/Instagram';
+import FacebookIcon from '@material-ui/icons/Facebook';
+import { red, pink, blue } from '@material-ui/core/colors';
+import TimeLine from './TimeLine'
 const useStyles = makeStyles((theme) => ({
 
    expand: {
@@ -58,23 +63,17 @@ function JobScreenfunct(props) {
   };
   	 return(
   	 	  <div className={'jobhome'}>
-           <div className={'jobbox'}>
-                        <div className={'jobroundsmall'} />
-
-             <div className={'jobround'}>
-                <p className={'jobheadertext'}>My Jobs</p>
-             </div>
+         
                       <List>
              {job.map((item)=> (
 
                <ListItem>
                 {selectedPromo==='all'&&
-                  <div className={'homelistdiv'}>
+                  <div className={'homelistdivexplore'}>
                       <ListItem>
                        <Avatar style={{ height: 80, width: 80, left: 4,top:4}}
                        src={'https://seeklogo.com/images/M/MTN-logo-459AAF9482-seeklogo.com.png'} />
                                              <div style={{marginLeft:10,fontSize:24}}>{item.campaignName}</div>
-                                             <div style={{marginLeft:20,fontSize:20}}>Stage : {item.stage}</div>
                       <ListItemText style={{marginLeft:10,fontSize:20}} primary={''} />
 
                       <ListItemIcon>
@@ -83,7 +82,8 @@ function JobScreenfunct(props) {
                          </IconButton>
                       </ListItemIcon>
                       </ListItem>
-                    
+                                                                                       <TimeLine/>
+
                   </div>
                 }
                   {selectedPromo===item.campaignID&&
@@ -92,7 +92,6 @@ function JobScreenfunct(props) {
                        <Avatar style={{ height: 80, width: 80, left: 4,top:4}}
                        src={'https://seeklogo.com/images/M/MTN-logo-459AAF9482-seeklogo.com.png'} />
                      <div style={{marginLeft:10,fontSize:22}}>{item.campaignName}</div>
-                                             <div style={{marginLeft:20,fontSize:20}}>Stage : {item.stage}</div>
                       <ListItemText style={{marginLeft:10,fontSize:20}} primary={''} />
                       <ListItemIcon>
                          <IconButton onClick={handleExpandButtonClick(item,2)}  className={selectedPromo === item.campaignID ? clsx(classes.expand, {[classes.expandOpen]: expanded,}):'empty'}  >
@@ -100,43 +99,56 @@ function JobScreenfunct(props) {
                          </IconButton>
                       </ListItemIcon>
                       </ListItem>
-                             
+                                                                                          <TimeLine/>
+    
                      <div className='table'>
-                        <div className={'inputedit'}>
-                           <div className={'identi'}>ID</div>
-                            <input type='text' name="nameAndSurname" value={item.campaignID} variant='outlined' className="setedit"  />
+                       <div className={'inputedit'}>
+                           <div className={'identih'}>ID</div>
+                            <div className={'identih2'}  >{item.campaignID}</div>
                       </div>
                       <div className={'inputedit'}>
-                            <div className={'identi'}>Task</div>
-                            <input type='text' variant='outlined' value={item.task}  name="email" className="setedit" />
+                            <div className={'identih'}>Task</div>
+                            <div className={'identih2'}> 
+                            <div className={'colic'}>
+                            <FacebookIcon style={{ color: blue[400] }} /> 5 
+                            </div> 
+                            <div className={'colic'}>
+                            <InstagramIcon style={{ color: pink[300] }} /> 5 
+                            </div>
+                              <div className={'colic'}>
+                            <TwitterIcon style={{ color: blue[500] }}/> 5 
+                            </div>
+                            <div className={'colic'}>
+                            <YouTubeIcon style={{ color: red[500] }} /> 6</div>
+                            </div>
                       </div>
                         <div className={'inputedit'}>
-                           <div className={'identi'}>Minimum Followers</div>
-                            <input type='text' name="nameAndSurname" variant='outlined' className="setedit"  />
+                           <div className={'identih'}>Minimum Followers</div>
+                            <div className={'identihw'}  ></div>
                       </div>
                        <div className={'inputedit'}>
-                           <div className={'identi'}>Number of Imfluencers</div>
-                            <input type='text' value={item.numberOfInfluencers} name="nameAndSurname" variant='outlined' className="setedit"  />
+                           <div className={'identih'}>Number of Influencers</div>
+                           <div className={'identih2'}  >{item.numberOfInfluencers}</div>
                       </div>
                       <div className={'inputedit'}>
-                            <div className={'identi'}>Ends in</div>
-                            <input type='text' value={getDays(item.endDate)} variant='outlined' name="email" className="setedit"  />
+                            <div className={'identih'}>Ends in</div>
+                            <div className={'identih2'}  >{getDays(item.endDate)}</div>
                       </div>
                         <div className={'inputedit'}>
-                           <div className={'identi'}>Payment Time</div>
-                            <input type='text' name="nameAndSurname" variant='outlined' className="setedit" />
+                           <div className={'identih'}>Payment Time</div>
+                            <div className={'identih2'}  ></div>
                       </div>
                       <div className={'inputedit'}>
-                            <div className={'identi'}>Description</div>
-                            <input type='text' variant='outlined'value={item.description} name="email" className="setedit"  />
+                            <div className={'identih'}>Description</div>
+                            <div className={'identih2'}  >{item.description}</div>
                       </div>
                         <div className={'inputedit'}>
-                           <div className={'identi'}>Do's</div>
-                            <input type='text' multilines rows={2} value={item.dos} name="nameAndSurname" variant='outlined' className="setedit"  />
+                           <div className={'identih'}>Do's</div>
+                           <div className={'identih2'}  >{item.dos}</div>
                       </div>
                       <div className={'inputedit'}>
-                            <div className={'identi'}>Dont's</div>
-                            <input type='text' rows={2} value={item.donts} variant='outlined' name="email" className="setedit" />
+                            <div className={'identih'}>Dont's</div>
+                            <div className={'identih2'}  >{item.donts}</div>
                       </div>
                   
                      </div>
@@ -164,7 +176,6 @@ function JobScreenfunct(props) {
                 ))}
 
              </List>
-          </div>
   	 	  </div>
   	 	)
   

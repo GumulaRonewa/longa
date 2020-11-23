@@ -1,12 +1,21 @@
 .home{
 	display:grid;
   overflow: hidden;
-	place-items:center;
 	background-color: white;
-	height: 100vh;
+  display: flex;
+  flex-direction: column;
+	height: 100%;
 	width: 100%;
 }
+.colic{
+  height: 30px;
+  width:  40px;
+  margin-left: 9px;
+  display: flex;
+  place-items:center;
+    box-shadow: 2px 2px  2px 2px #888888;
 
+}
 .bottomdiv{
     display:flex;
     flex-direction: row;
@@ -95,7 +104,7 @@ opacity: 1;
 
 }
 .homelistdiv{
-  width: 90%;
+  width: 100%;
 height: 99px;
 display: flex;
 flex-direction: row;
@@ -103,7 +112,6 @@ margin-right: 50px;
 margin-left: 40px;
  background: #FFFFFF 0% 0% no-repeat padding-box;
 border: 4px solid #0F81C7;
-
 border-bottom-right-radius: 20px;
 border-bottom-left-radius: 20px;
 border-top-right-radius: 20px;
@@ -167,6 +175,7 @@ margin-right: 50px;
 margin-left: 40px;
 background: #FFFFFF 0% 0% no-repeat padding-box;
 border: 4px solid #0F81C7;
+padding-bottom: 10px;
 
 border-bottom-right-radius: 20px;
 border-bottom-left-radius: 20px;
@@ -272,6 +281,54 @@ opacity: 1;
   .large{
     display: flex;
   }
+  .buttonsexpandblue{
+   width: 105px;
+   height: 42px;
+   border-radius: 10px;
+   margin-top: 25px;
+   font-size: 18px;
+letter-spacing: 0px;
+   display: grid;
+   place-items:center;
+       outline: none;
+
+     color: white;
+     padding: 12px 16px; /* Some padding */
+   flex-direction: row;
+  background: #0F81C7 0% 0% no-repeat padding-box;
+}
+.buttonsexpandred{
+   width: 105px;
+   height: 42px;
+   border-radius: 10px;
+   margin-left: 1px;
+   margin-top: 25px;
+   font-size: 18px;
+letter-spacing: 0px;
+       outline: none;
+display: grid;
+   place-items:center;
+     color: white;
+     padding: 12px 16px; /* Some padding */
+   flex-direction: row;
+  background: #C70F0F 0% 0% no-repeat padding-box;
+}
+.buttonsexpandgreen{
+   width: 105px;
+   height: 42px;
+   border-radius: 10px;
+   margin-left: 10px;
+   margin-top: 25px;
+   font-size: 18px;
+letter-spacing: 0px;
+       outline: none;
+display: grid;
+   place-items:center;
+     color: white;
+     padding: 12px 16px; /* Some padding */
+   flex-direction: row;
+  background:green 0% 0% no-repeat padding-box;
+}
 @media only screen and (max-width: 568px) {
 
   .promoname{

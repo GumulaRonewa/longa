@@ -1,17 +1,36 @@
 .profhome{
 	display:grid;
   overflow: hidden;
-	place-items:center;
   background-color: #00000029;
 
 	height: 100vh;
 	width: 100%;
+}
+.proscreen{
+  display:grid;
+  overflow: hidden;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
 }
 .divs{
   display: flex;
   flex-direction: column;
   width:60vw;
   padding-right: 14px;
+  padding-bottom: 30px;
+     padding-left: 14px;
+  overflow-y: auto;
+  height: 90%;
+}
+.tabs{
+  display: flex;
+  flex-direction: column;
+  width:50vw;
+  padding-right: 14px;
+  padding-bottom: 30px;
      padding-left: 14px;
   overflow-y: auto;
   height: 90%;
@@ -33,8 +52,9 @@
 .columnx{
   display: flex;
     margin-top: 18px;
-
-  flex-direction: column;}
+ 
+  flex-direction: column;
+}
 .profbox{
   width: 99%;
   height: 88vh;
@@ -92,8 +112,8 @@ opacity: 1;
 }
 .username{
    text-align: left;
-   margin-top: 20px;
-font: normal normal normal 20px/21px Lato;
+   margin-top: 40px;
+font: normal normal normal 24px/25px Lato;
 letter-spacing: 0px;
 }
 .userdet{
@@ -173,6 +193,22 @@ opacity: 1;
     font: normal normal normal 17px/18px Lato;
 
 }
+.identih{
+  margin-top: 6px;
+  margin-left: 14px;
+   width: 200px;
+    font: normal normal normal 17px/18px Lato;
+
+}
+.identih2{
+  margin-top: 6px;
+  margin-left: 14px;
+  padding-right: 10px;
+  display: flex;
+  flex-direction: row;
+    font: normal normal normal 17px/18px Lato;
+
+}
 .setedit{
     outline: none;
     margin-top: 3px;
@@ -201,9 +237,24 @@ opacity: 1;
  width: 99%;
  margin-top: 6px;
  
- margin-left: 10px;
+ margin-left: 1px;
  display: flex;
  flex-direction: row;
+  overflow: hidden;
+}
+.toppro{
+  display: grid;
+  place-items:center;
+  width:100%;
+  height: 30%;
+}
+.probox{
+ width: 99%;
+ margin-top: 6px;
+ 
+ margin-left: 2px;
+ display: flex;
+ flex-direction: column;
   overflow: hidden;
 }
 .rightsett{
@@ -233,8 +284,8 @@ border: 1px solid #0F81C7;
 opacity: 1;
 }
 .settingshid{
-width: 300px;
-height: 88vh;
+width: 100%;
+height: 100vh;
 display: flex;
 padding-top: 6px;
 flex-direction: column;
@@ -298,8 +349,8 @@ opacity: 1;
 .imge{
   margin-top: 5px; 
   margin-left: 30px;
-  height: 220px;
-  width: 220px;
+  height: 250px;
+  width: 250px;
   border-radius: 180px;
 
 }
@@ -314,7 +365,7 @@ opacity: 1;
 .placebtn{
   display: flex;
   flex-direction: column;
-  align-self: flex-end;
+  margin-left: 70%;
   margin-top: 10px;
 }
 .bio{
@@ -332,21 +383,37 @@ opacity: 1;
     margin-top: 10px;
     width: 100%;
    }
+     .inputedits{
+    display: flex;
+    flex-direction: row;
+    margin-top: 10px;
+    width: 100%;
+   }
+     .settingshid2{
+         display: none;
+   }
+   .rows{
+    display: flex;
+    flex-direction: row;
+  }
 @media only screen and (max-width: 1025px) {
   .profround{
     display: none;
 
   }
-  .rows{
-    display: flex;
-    flex-direction: row;
-  }
+  .tabs{
+  width:90vw;
+  
+}
   .profilebox{
     width: 100%;
     border-radius: 40px;
     border-radius: 0px;
     height: 100%;
 
+   }
+   .identih2{
+     margin-top: 8px;
    }
     .profimg{
      width: 98%;
@@ -384,11 +451,12 @@ opacity: 1;
      margin-left: 3px;
    }
    .divs{
-     width: 99vw;
+     width:60%;
      padding-left: 2px;
      padding-bottom: 26px;
      overflow-y: auto;
    }
+  
     @media (max-width: 1025px) and (min-width: 599px){
      .divs{
      width: 60vw;
@@ -398,9 +466,7 @@ opacity: 1;
     display: flex;
     flex-direction: column;
    }
-  .settingshid{
-         display: none;
-   }
+ 
    .profimg{
      width: 98%;
    }

@@ -105,9 +105,9 @@ color: #FFFFFF;
   display: flex;
 }
 .mob{
-  display: none;
-  overflow-y: auto;
-}
+    display: flex;
+    overflow: auto;
+  }
 @media only screen and (max-width: 1100px) {
   .slide-right{
     width: 100vw;
@@ -122,10 +122,7 @@ color: #FFFFFF;
     overflow-y: auto;
     margin-bottom: 20px;
   }
-  .mob{
-    display: flex;
-    overflow: hidden;
-  }
+  
   
 }
 body {

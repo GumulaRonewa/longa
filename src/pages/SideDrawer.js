@@ -556,6 +556,7 @@ export default class SideDrawer extends React.Component {
       window.location.pathname !== "/login" &&
       window.location.pathname !== "/" &&
       window.location.pathname !== "/aboutus" &&
+      window.location.pathname !== "/feed" &&
       window.location.pathname !== "/settings" &&
       window.location.pathname !== "/validreg" &&
       window.location.pathname !== "/links" &&

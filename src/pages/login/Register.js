@@ -40,9 +40,10 @@ class Register extends Component {
       surname:null,
       dob:null,
       password: null,
-
+   
       cpassword:null,
       check: false,
+      submit: false,
        formErrors: {
         email: "",
         name: "",
@@ -108,7 +109,7 @@ class Register extends Component {
     e.preventDefault();
         const user = { email: this.state.email,name:this.state.name,surname:this.state.surname,dateOfBirth:this.state.dob,password: this.state.password };
           let formErrors = this.state.formErrors;
-
+ this.setState({submit:true})
     if (formValid(this.state.formErrors, user) && this.state.check) {
          axios({
             method: "POST",
@@ -118,14 +119,12 @@ class Register extends Component {
               localStorage.setItem('name',user.name);
 
                        console.log(res);
-                       window.open('/validreg', "_self")
+                       this.props.history.push("/validreg");
          
             });
     } else {
-              const { formErrors } = this.state;
 
       console.log("errorMessage");
-      formErrors.cpassword ="Form invalid";
     }
         
   };
@@ -140,11 +139,11 @@ class Register extends Component {
           </div>
         </div>
         <div className="rightRegBox">
-           <div className="bgRed"> 
+           <div className="bgRed" style={{marginTop:'-30'}}> 
              <div className="toplogo">
                  <img src={minilogo} alt="L" className="topSec"/>
               </div>
-              <div className="regplace">
+              <div className="regplace" style={{marginTop:'-40'}}>
                 Register
               </div>
               <div className="RegBox">
@@ -169,7 +168,9 @@ class Register extends Component {
                      {formErrors.cpassword.length >= 0 && (
                          <span className="errorMessage"> {formErrors.cpassword}</span>
                        )}
-                      
+                       { !this.state.checked&&this.state.submit &&(
+                         <span className="errorMessage"> Form invalid ,Fill all the field and then submit</span>
+                       )}
                     <div className='tc'>
                       <Checkbox   onChange={this.handleCheck}/>
                       <div  style={{marginTop:9,color:"black"}}> By Signing up you agree with our 

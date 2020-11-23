@@ -117,6 +117,21 @@ letter-spacing: 0px;
    flex-direction: row;
   background: #C70F0F 0% 0% no-repeat padding-box;
 }
+.buttons3{
+   width: 149px;
+   height: 44px;
+   border-radius: 10px;
+   margin-top: 25px;
+   font-size: 18px;
+letter-spacing: 0px;
+   display: flex;
+       outline: none;
+    padding-bottom: 5px;
+     color: white;
+     padding: 12px 16px; /* Some padding */
+   flex-direction: row;
+  background: #C70F0F 0% 0% no-repeat padding-box;
+}
 .buttonsreg{
    width: 149px;
    height: 44px;
@@ -262,7 +277,8 @@ opacity: 1;
 .RegBox{
     display: grid;
     place-items:center;
-    margin-top: 20px;
+    margin-top: 10px;
+    padding-bottom: 30px;
    width: 100%;
 }
 .RegBoxBusiness{
@@ -285,6 +301,7 @@ opacity: 1;
      width: 27vw;
      display: flex;
      flex-direction: column;
+     padding-bottom: -50px;
 
 }
 .logininput2{
@@ -585,6 +602,24 @@ opacity: 1;
   float:initial;
   border:0;
   }
+  .buttons3{
+   width: 149px;
+   height: 44px;
+   border-radius: 10px;
+   font-size: 18px;
+letter-spacing: 0px;
+   display: flex;
+       outline: none;
+    padding-bottom: 5px;
+     color: white;
+     padding: 12px 16px; /* Some padding */
+   flex-direction: row;
+  background: #C70F0F 0% 0% no-repeat padding-box;
+}
+.mmn{
+  display: flex;
+  flex-direction: row;
+}
    .rightBoxBusiness{
   width: 100%;
   float:initial;

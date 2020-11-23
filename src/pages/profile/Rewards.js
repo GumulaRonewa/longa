@@ -78,15 +78,9 @@ export default function Rewards(argument) {
    
   	 return(
   	 	  <div className={'profhome'}>
-           <div className={'profilebox'}>
-             <div className={'profround'}>
-                <p className={'profheadertext'}>My Rewards</p>
-                 </div>
-                <div className={'pbox'}>
+            
                
                  <CustomizedTables />
-               </div>
-              </div>
   	 	  </div>
   	 	)
   

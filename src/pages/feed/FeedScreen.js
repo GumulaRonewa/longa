@@ -1,21 +1,16 @@
 import React, { Component } from "react";
 import './feed.css';
 import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
-import Avatar from "@material-ui/core/Avatar";
-import ListItemText from "@material-ui/core/ListItemText";
-import TextField from '@material-ui/core/TextField';
-import Badge from "@material-ui/core/Badge";
-import FavoriteIcon from "@material-ui/icons/Favorite";
-import EmojiEmotionsOutlinedIcon from '@material-ui/icons/EmojiEmotionsOutlined';
-import AttachFileOutlinedIcon from '@material-ui/icons/AttachFileOutlined';
-import SendIcon from '@material-ui/icons/Send';
-import Divider from "@material-ui/core/Divider";
-import IconButton from '@material-ui/core/IconButton';
 import Menu from '@material-ui/core/Menu';
 import Picker, { SKIN_TONE_MEDIUM_DARK } from 'emoji-picker-react';
-import ReplyIcon from '@material-ui/icons/Reply';
 import axios from "axios";
+import Post from './Post';
+import Reply from './Reply';
+import Comment from './Comment';
+import TweetBox from './TweetBox';
+import Divider from "@material-ui/core/Divider";
+import { Switch, Route, Link } from "react-router-dom";
+import ListItem from "@material-ui/core/ListItem";
 
  function Feed(props) {
   
@@ -151,113 +146,16 @@ import axios from "axios";
         var m= e.target;
         setPost(m.value)
     }
-  	 return(
-  	 	  <div className={'feedhome'}>
-           <div className={'feedbox'}>
-             <div className={'feedround'}>
-                <p className={'feedheadertext'}>Feed</p>
-             </div>
-                <div className={'sbox'}>
-               <div className={'feedleftbox'} >
-                                      <Divider />
-
-                       <ListItem>
-                       <Avatar
-                           style={{ height: 60, width: 60, right: 2 }}
-                        src={'r'}
-                        alt={"T"}
-                      />
-                        <ListItemText
-                            style={{ marginLeft: 5 }}
-                            primary={"Admin :Pinned Post"}
-                            secondary={"Lorem ipsum dolor sit amet, consetetur sa"}
-                        />
-                       <IconButton onClick={like}>
-                        <Badge badgeContent={likes} max={99} color="secondary">
-                    <FavoriteIcon color={`${color}`} />
-
-                  </Badge>
-                  </IconButton>
-
-                     </ListItem>
-                                                           <Divider />
-
-               <div className={'feedmessagebox'}>
-               <div>
-
-                 <div className={'feedinputdiv'}>
-                 <TextField id="standard-basic" onChange={handleChange}    value={post} fullWidth placeholder={"What's on your mind?"}  />
-                 </div>
-                   <div className={'emojibox'} >
-                      <div className={'theemojileftbox'} >
-                        <div className={'emojirow'} >
-                        <IconButton
-                            aria-label="account of current user"
-                            aria-controls={"id2"}
-                            aria-haspopup="true"
-                            onClick={handleEmojiOpen}
-                            color="inherit"
-                        >
-                        <EmojiEmotionsOutlinedIcon />
-                        </IconButton>
-                         <IconButton>
-                        <div style={{fontSize:20,marginLeft:10}}>#</div>
-                        </IconButton>
-                        <IconButton
-                            aria-label="account of current user"
-                            aria-controls={"id"}
-                            aria-haspopup="true"
-                            onClick={handleProfileMenuOpen}
-                            color="inherit"
-                        >
-                        <AttachFileOutlinedIcon  style={{marginLeft:10}} />
-                        </IconButton>
-                        <div style={{marginTop:10}}>{name}</div>
-                        </div>
-                      </div>
-                      <div className={'theemojirightbox'}>
-                        < IconButton onClick={handleClick}>
-                        <SendIcon color={'primary'}/>
-                        </IconButton>
-                      </div>
-                      {renderMenu}
-                      {renderEmojiMenu}
-                   </div>
-                 </div>
-
-                 </div>
-                  <div className={'liststyle'}>
-                     <List className={'scroll'}>
+     return(
+        <div className={'feedhome'}>
+           <TweetBox />
+        
+                     <List>
                    
-                                  {feed.map(({id,text,username})=> (
+                                  {feed.map(({_id,text,username,likes,comments})=> (
                   <div>
                      <Divider />
-                        <ListItem>
-                       <Avatar
-                           style={{ height: 60, width: 60, right: 2 }}
-                        src={'r'}
-                        alt={"T"}
-                      />
-                        <div className='postsection'>
-                          <div className={'usernamex'}>{username} </div>
-                          <div className={'postext'}> {text}
-
- 
-                          </div>
-                        </div>
-                        <div className='iconcol'>
-                    <IconButton>
-                        <Badge badgeContent={5} max={9} color="secondary">
-                    <FavoriteIcon color="secondary" />
-                  </Badge>
-                  </IconButton>
-                   <IconButton>
-                        <Badge badgeContent={1} max={99} color="secondary">
-                    <ReplyIcon color="secondary" />
-                  </Badge>
-                  </IconButton>
-                  </div>
-                     </ListItem>
+                      <Post feed={[username,text,_id,likes.includes(localStorage.getItem("userId")),likes.length,comments.length]} window={props.window} />
                      <Divider/>
                                           </div>
 
@@ -265,17 +163,60 @@ import axios from "axios";
 
                  </List>
                 
-               </div>
-                 
-               </div>
-
-             
-             </div>
-          </div>
-  	 	  </div>
-  	 	)
+               
+        </div>
+      )
   
  }
+     const rep=[{name:"image"},{name:"image"}]
+
+  class Individual   extends React.Component{
+      componentWillMount(){
+      var path=window.location.pathname;
+      var id=path.substring(6,path.length)
+      console.log(id)
+        var data={postID:"5fbb5507ece625001761640c"}
+
+    axios({
+      method: 'GET',
+     url: `https://longa-money.herokuapp.com/api/feed/post`, // First page at 0
+     data:data,
+       headers: {
+      "Authorization": `Bearer ${localStorage.getItem("token")}`,
+      
+      },
+    }).then(res =>{
+         console.log(res.data)
+    })
+  }
+
+     
+    render(){
+       return(
+        <div className={'feedhome'}>
+                 <Divider />
+                  <Divider/>
+                  <Comment />
+                                  <Divider/>
+
+                     <List style={{marginTop:5}}>
+                   
+         {rep.map(({_id,text,username})=> (
+                  <div>
+                     <Reply />
+                    </div>
+
+              ))}
+
+                 </List>
+                
+               
+        </div>
+      )
+    }
+  
+ }
+  
   export default class FeedScreen extends React.Component {
    constructor(props) {
     super(props);
@@ -284,8 +225,8 @@ import axios from "axios";
       feed:[]
     };
   }
-  componentWillMount() {
-     axios({
+  componentWillMount(){
+    axios({
       method: 'GET',
      url: `https://longa-money.herokuapp.com/api/feed`, // First page at 0
        headers: {
@@ -293,15 +234,46 @@ import axios from "axios";
       
       },
     }).then(res =>{
-        this.setState({feed:res.data})
+         console.log(res.data['posts'])
+        this.setState({feed:res.data['posts']})
     })
+  }
+  componentDidMount() {
+ /*   const update =()=>{
+axios({
+      method: 'GET',
+     url: `https://longa-money.herokuapp.com/api/feed`, // First page at 0
+       headers: {
+      "Authorization": `Bearer ${localStorage.getItem("token")}`,
+      
+      },
+    }).then(res =>{
+         console.log(res.data['posts'])
+        this.setState({feed:res.data['posts']})
+    })
+    }
+    setInterval(update,5000);*/
   }
 
 
   render(){
      return(
-
-        <Feed window={window} feed={this.state.feed} />
+ <Switch>
+              <Route
+                exact
+                path="/feed"
+                render={(props) => (
+                  <Feed window={window} feed={this.state.feed} />
+                )}
+              />
+              <Route
+                exact
+                path="/feed/:id"
+                render={(props) => (
+                  <Individual />
+                )}
+              />
+         </Switch>
       )
   }
  }

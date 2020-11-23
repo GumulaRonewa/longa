@@ -3,7 +3,7 @@ import Slider from "react-animated-slider";
 import "./about.css";
 import Divider from "@material-ui/core/Divider";
 import notag from '../../images/notag.png'
-import "react-animated-slider/build/horizontal.css";
+import "react-animated-slider/build/vertical.css";
 import "./slider-animations.css";
 const WhoAndWhat =() =>{
 	return(
@@ -58,36 +58,25 @@ export default function AboutUs(argument) {
          <App />
 		)
 }
-const pages=[{page:"WhoAndWhat",image:'https://i.imgur.com/ZXBtVw7.jpg'
+const pages=[{title:"WhoAndWhat",image:'"https://i.imgur.com/DCdBXcq.jpg',description:" <h1>What sets us apart. </h1>"
 
-},{page:"Apart",image: "https://i.imgur.com/DCdBXcq.jpg"}];
+}];
 
 
 const App = () => (
   <div>
-  
-    <Slider className="slider-wrapper" touchDisabled='true' infinite='true' >
-      {pages.map((item, index) => (
-        <div
-          key={index}
-          style={{ background: `url('${item.image}') no-repeat center center`,overflow:'hidden',width:"100vw" }}
-        >
-        <div className={'desk'}>
-           <WhoAndWhat />
-           <Apart/>
-        </div>
-        <div className={'mob'}>
-        {item.page ==="WhoAndWhat" &&
-        <WhoAndWhat />
-   
-        }
-                {item.page ==="Apart" &&
-
-        <Apart/>
-    }
-        </div>
-        </div>
-      ))}
-    </Slider>
+    <Slider>
+{pages.map((item, index) => (
+  <div
+    key={index}
+    style={{ background: `url('${item.image}') no-repeat center center` }}
+  >
+    <div className="center">
+      <h1>{item.title}</h1>
+      <div>{(item.description).toHtmlObject}</div>
+    </div>
+  </div>
+))}
+</Slider>
   </div>
 );

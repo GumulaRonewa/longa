@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.background.paper,
   },
   gridList: {
-    width: 500,
+    width: "70%",
     height: 450,
   },
   icon: {
@@ -76,7 +76,7 @@ const StyledButton2 = withStyles({
           const [bio, setBio] = React.useState('');
               var outliner = edit ? "outlined" : "standard";
               var profile=props.profile;
-          const [file, setfile] = React.useState('https://www.pngitem.com/pimgs/m/522-5220445_anonymous-profile-grey-person-sticker-glitch-empty-profile.png');
+          const [file, setfile] = React.useState('https://pm1.narvii.com/6424/71de2b7b9611f0522cc2d88a04609cfdc0bc5936_00.jpg');
           const onSub=()=>{
             var data={bio:bio,userID:localStorage.getItem("userId")}
           console.log(data)
@@ -110,55 +110,16 @@ const StyledButton2 = withStyles({
         }
             console.log(profile.dateOfBirth)
   	 return(
-  	 	    <div className={'profhome'}>
-           <div className={'profilebox'}>
-             <div className={'profround'}>
-                <p className={'profheadertext'}>Profile</p>
-
-                 </div>
+  	 	    <div className={'proscreen'}>
+             
                  {isNule &&
                    <Loading loading={false} />
 
                  }
                 {isNule !==true &&
-                 <div className={'pbox'}>
-                    <div className={'biop'}>
-                       <img src={file} className='imge' alt='' />
-                       {edit &&
-                       <input
-          type="file"
-           accept="image/x-png,image/gif,image/jpeg"
-           onChange={handleFile}
-          style={{width:'100%'}}                
-          id="customFile"
-         /> }
-                       <Rating style={{marginLeft:80,marginTop:5}} value={5} />
-                       <div style={{marginTop:5,marginLeft:-20}} >
-                       <TextField
-                            id="role"
-                            name="role"
-                            fullWidth
-                            variant={outliner}
-                            multiline
-                            defaultValue={profile.bio}
-                            onChange={onBio}
-                            variant="outlined"
-                            rows={10}
-                            InputProps={{
-                              readOnly: !edit,
-                              disableUnderline: true,
-                            }}
-                          />
-                      {edit &&
-                      <StyledButton  onClick={onSub} style={{top:10,bottom:10}} >
-                             Save
-                      </StyledButton >
-                    }
-                    </div>
-         
-                    </div>
-                    <div className={'tab'}>
-                      <ListItem style={{width:"90%"}}>
+                 <div className={'probox'}>
+                   <div className={'toppro'}>
+                    <ListItem style={{width:"70%"}}>
                          <ListItemText primary={' '} secondary={''} />
                          <ListItemIcon>
                             <StyledButton2 onClick={onEdit}>
@@ -166,74 +127,82 @@ const StyledButton2 = withStyles({
                             </StyledButton2>
                          </ListItemIcon>
                       </ListItem>
-                      <div className={'username'}>{profile.name} {profile.surname}</div>
-                      <div className={'accountsbox'}>
-                        <div className={'lntext'} >Social Accounts </div>
-                        <div className={'rowx'}>
-                          <button className={'iconbt'}>
-                         <div className={'iconpl'} >
-                          <InstagramIcon  style={{ color: pink[300]  }} size="large" />
-                          <div>4.6m</div>
-                          </div>
-                           </button>
-                           <button className={'iconbt'}>
-                          <div className={'iconpl'} >
-                          <YouTubeIcon style={{ color: red[500] }} size="large" />
-                          <div>460K</div>
-                          </div>
-                           </button>
-                           <button className={'iconbt'}>
-                          <div className={'iconpl'} >
-                          <TwitterIcon style={{ color: blue[500] }} size="large" />
-                           <div>4678</div>
-                          </div>
-                           </button>
-                           <div className={'reach'}>Reach ~ 5.12m</div>
-                        </div>
-                 </div>
-                      <div className={'columnx'} >
-                     <Tabs defaultActiveKey="Profile" id="uncontrolled-tab-example">
-                      <Tab eventKey="Profile" title="About">
-                               <div className={'divs'} style={{width:'90%'}}>
-                  <div className={'inputedit'}>
-                       <div className={'identi'}>Full Names</div>
-                        <input type='text'value={profile.name+' '+profile.surname} name="nameAndSurname" variant='outlined' className="setedit" placeholder="Name & Surname" />
+                     <img src={file} className='imge' alt='' />
+                             {edit &&
+                       <input
+                         type="file"
+                         accept="image/x-png,image/gif,image/jpeg"
+                         onChange={handleFile}
+                         id="customFile"
+                        /> }
+                    <Rating style={{marginLeft:30,marginTop:5}} readOnly value={5} />
+                         <div style={{marginTop:5,width:"70%"}} >
+                             <TextField
+                                id="role"
+                                name="role"
+                                fullWidth
+                                variant={outliner}
+                                multiline
+                                defaultValue={profile.bio}
+                                onChange={onBio}
+                                variant={edit?"outlined":"standard"}
+                                rows={5}
+                                InputProps={{
+                                  readOnly: !edit,
+                                  disableUnderline: true,
+                                }}
+                               />
+                             {edit &&
+                            <StyledButton  onClick={onSub} style={{top:10,bottom:10}} >
+                                Save
+                             </StyledButton >
+                            }
+                      </div>
+                       <div className={'columnx'} >
+                     <Tabs defaultActiveKey="posts" id="uncontrolled-tab-example">
+                     <Tab eventKey="posts" title="Featured Post">
+                        <TitlebarGridList edit={edit} />
+                      </Tab>
+                      <Tab  eventKey="Profile" title="About">
+                               <div   className={'tabs'}>
+                  <div  className={'inputedits'}>
+                       <div className={'identi'}>Full Names:</div>
+                       <div className={'identi'}>{profile.name +" " +profile.surname}</div>
                   </div>
-                  <div className={'inputedit'}>
+                  <div className={'inputedits'}>
                         <div className={'identi'}>Email</div>
-                        <input type='text' value={profile.email} variant='outlined' name="email" className="setedit" placeholder="Email Address" />
+                        <div className={'identi'}>{profile.email}</div>
                   </div>
-                  <div className={'inputedit'}>
+                  <div style={{width:"100%"}}  className={'inputedits'}>
                         <div className={'identi'}>Phone Number</div>
-                        <input type='number' name="contactNumber" variant='outlined' className="setedit" placeholder="Contact Number" />
+                        <div className={'identi'}>{profile.email}</div>
                   </div>
-                <div className={'inputedit'}>
+                <div s className={'inputedits'}>
                       <div className={'identi'}>Date of birth</div>
-                      <input type='date'value={profile.dateOfBirth.substring(0,10)} name="campaignName" variant='outlined' style={{width:'100%'}} className="setedit" placeholder="Name of Campaign" />
+                    <div className={'identi'}>{profile.dateOfBirth.substring(0,10)}</div>
                 </div>
-                <div className={'inputedit'}>
+                <div style={{width:"80%"}}  className={'inputedits'}>
                        <div className={'identi'}>Gender</div>
-                         <input type='text' variant='outlined' value={profile.gender} name="email" className="setedit" placeholder="Gender" />
+                         <div className={'identi'}>{profile.gender}</div>
                 </div>
-                <div className={'inputedit'}>
+                <div style={{width:"80%",marginBottom:6}}  className={'inputedits'}>
                         <div className={'identi'}>Country</div>
-                         <input type='text' variant='outlined' value={profile.country} name="email" className="setedit" placeholder="Country" />
+                           <div className={'identi'}>{profile.country} </div>
+
                 </div>
                 
 
 
              </div>
                           </Tab>
-                      <Tab eventKey="posts" title="Social Media Post">
-                        <TitlebarGridList edit={edit} />
-                      </Tab>
+                      
                       
                     </Tabs>
                     </div>
-                    </div>
+                   </div>
+
                  </div>
                }
-              </div>
         </div>
   	 	)
   

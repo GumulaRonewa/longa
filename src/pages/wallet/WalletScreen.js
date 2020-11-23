@@ -31,7 +31,9 @@ export default class WalletScreen extends Component {
       
       },
     }).then(res =>{
-                          this.setState({wallet:res.data['wallets']})
+        var data=res.data['wallets'];
+   
+                          this.setState({wallet:data})
                           this.setState({pending:res.data['balance']})
                           this.setState({total:res.data['withdrawn']})
 
@@ -41,21 +43,13 @@ export default class WalletScreen extends Component {
   render(){
   	 return(
   	 	  <div className={'wallethome'}>
-           <div className={'walletbox'}>
-             <div className={'walletround'}>
-                <p className={'walletheadertext'}>Wallet</p>
-                <div className={'columntext'}>
-                  <div className={'rowtext'}>
-                      <div className={'columntextfont1'}>Pending Payment</div>
-                      <div className={'columntextfont1'}>R {this.state.pending}</div>
-                  </div>
-                  
-                  <div className={'rowtext'}>
-                     <div className={'columntextfont'}>Total Paid</div>
-                     <div className={'columntextfont2'}>R {this.state.total} </div>
-                  </div>
+                <div className={'walletround'} >
+                 Pending Amount<br/><br/>
+                  R {this.state.pending}
+                 <br/><br/>
+                 Total Amount<br/><br/>
+                  R {this.state.total}
                 </div>
-             </div>
              <List>
                          {this.state.wallet.map((item)=> (
                   <div className={'walletlistdiv'}>
@@ -73,8 +67,7 @@ export default class WalletScreen extends Component {
                 ))}
 
              </List>
-          </div>
-  	 	  </div>
+ 	 	  </div>
   	 	)
   }
  }

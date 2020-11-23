@@ -52,15 +52,13 @@ const StyledButton = withStyles({
           setEdit(true);
 
     }*/
-  const handleEdit = () => {
-    setEdit(!edit);
-  };
+ 
   var Settings=props.settings;
 
  
 
 
-  const EditDet =() =>{
+  const EditDet =(props) =>{
        const [first, setfirst] = React.useState("");
   const [last, setlast] = React.useState("");
   const [phone, setPhone] = React.useState("");
@@ -68,6 +66,7 @@ const StyledButton = withStyles({
   const [email, setemail] = React.useState("");
   const [gender, setGender] = React.useState("");
   const [country, setCountry] = React.useState('');
+  console.log(props)
   const onSubmit =()=>{
    
                   var data={userID:localStorage.getItem("userId"),name:first,surname:last,country:country,email:email,phone:phone,gender:gender,dateOfBirth:date}
@@ -113,10 +112,11 @@ const StyledButton = withStyles({
         break;
     }
   };
+
     return (
-         <div className={'divs'}>
+         <div style={{width:"90%"}} className={'divs'}>
             <div className={'rows'}>
-            <IconButton component={Link} to={'/settings'}>
+            <IconButton component={Link} onClick={props.handle} to={'/settings'}>
             		<ArrowBackIcon />
             </IconButton>
             <div className ={'settingheader'}> Edit Details </div>
@@ -161,67 +161,75 @@ const StyledButton = withStyles({
 
       )
   }
+
+    const [classn, setcln] = React.useState('settingshid');
+ const handleEdit = () => {
+    setEdit(!edit);
+    setcln("settingshid2")
+  };
+  const handleEditOut = () => {
+    setEdit(!edit);
+    setcln("settingshid")
+  };
   	 return(
   	 	  <div className={'profhome'}>
-           <div className={'profbox'}>
-               <div className={href.length>9?'settingshid':'settings'}>
+               <div className={`${classn}`}>
                   <div className={'settingheader'}>Settings</div>
                    <Divider/>
                      <ListItem button onClick={handleEdit} component={Link} to={"/settings/editdetails"}>
-                       <PersonOutlineIcon style={{ marginLeft:5,height: 40, width: 30}}/>
+                       <PersonOutlineIcon  style={{ marginLeft:5,height: 40, width: 30}}/>
                       <ListItemText style={{marginLeft:6}} primary={'Edit Details'} />
                       </ListItem>
                       <Divider/>
-                      <ListItem button component={Link} to={"/settings/payment"}>
+                      <ListItem button onClick={handleEdit} component={Link} to={"/settings/payment"}>
                       <CreditCardIcon style={{ marginLeft:5,height: 40, width: 30}} />
                       <ListItemText style={{marginLeft:6}} primary={'Payment Method'} />
                       </ListItem>
                       <Divider/>
-                      <ListItem button component={Link} to={"/settings/socials"}>
+                      <ListItem button onClick={handleEdit} component={Link} to={"/settings/socials"}>
                       <img src={interfaceIcon} alt={'alt'} style={{ marginLeft:5,marginTop:5,height: 23, width: 27,transform: 'rotate(-44deg)'}} />
                       <ListItemText style={{marginLeft:6}} primary={'Social Accounts'} />
                       </ListItem>
                       <Divider/>
-                      <ListItem button component={Link} to={"/settings/help"}>
+                      <ListItem button onClick={handleEdit} component={Link} to={"/settings/help"}>
                       <HelpOutlineIcon style={{ marginLeft:5,height: 40, width: 30}} />
                       <ListItemText  style={{marginLeft:6}} primary={'Help'} />
 
                       </ListItem>
                       <Divider/>
                 </div>
-                  <div className={href.length>9?'none':'none'}>
+                  <div className={'settingshid'}>
                 <Switch>
                   <Route
                     exact
                        path='/settings/editdetails'
                           render={(props) => (
-                            <EditDet />
+                            <EditDet handle={handleEditOut} />
                             )}
                          />
                     <Route
                     exact
                        path='/settings/payment'
                           render={(props) => (
-                            <EditPayments settings={Settings} />
+                            <EditPayments handle={handleEditOut} settings={Settings} />
                             )}
                          />
                       <Route
                     exact
                        path='/settings/socials'
                           render={(props) => (
-                            <EditSocials />
+                            <EditSocials handle={handleEditOut} />
                             )}
                          />
                         <Route
                     exact
                        path='/settings/help'
                           render={(props) => (
-                            <EditAccount />
+                            <EditAccount handle={handleEditOut} />
                             )}
                          />
                 </Switch>
               </div>
-            </div>
               
   	 	  </div>
   	 	)
@@ -301,17 +309,19 @@ const StyledButton = withStyles({
         break;
     }
   };
+  var sett=props.settings['settings'];
+   
       return (
          <div className={'divs'}>
          <div className={'rows'}>
-            <IconButton component={Link} to={'/settings'}>
+            <IconButton component={Link} onClick={props.handle} to={'/settings'}>
             		<ArrowBackIcon />
             </IconButton>
             <div className ={'settingheader'}> Edit Payment </div>
             </div>
                 <Divider style={{marginTop:6}} />
                 {!editmomo &&
-               <ListItem button onClick={handleEdit}>
+               <ListItem button style={{width:"85%"}} onClick={handleEdit}>
                       <ListItemText  style={{marginLeft:6}} primary={'Add/Edit Card details'} /> 
                       <ListItemIcon>
                     <IconButton edge="end" aria-label="delete">
@@ -324,7 +334,7 @@ const StyledButton = withStyles({
                 
                {!edit &&
                 <div>
-               <ListItem button onClick={handleEditMoMo}>
+               <ListItem button style={{width:"85%"}} onClick={handleEditMoMo}>
                       <ListItemText  style={{marginLeft:6}} primary={'Add/Edit MoMo'} /> 
                       <ListItemIcon>
                     <IconButton edge="end" aria-label="delete">
@@ -337,7 +347,10 @@ const StyledButton = withStyles({
 
              }
               {edit &&
-                 <div c>
+                 <div style={{width:"80%"}} >
+                    <div style={{fontSize:20}}>
+             Longa Money will use the bank account information Above to ensure you receive payment for campains you participated in. Make sure the details Above are correct and up to date. These details are stored securely in our system and will never be shared with third parties.
+            </div>
                  <div className={'inputedit'}>
                  <div className={'identi'}>Bank Name</div>
                   <input onChange={handleChange} type='text' defaultValue={Settings.bankName} name="Bn" variant='outlined' className="setedit" placeholder="Bank Name" />
@@ -365,16 +378,14 @@ const StyledButton = withStyles({
               </ListItem>
           
             </div>
-            <div style={{fontSize:20}}>
-             Longa Money will use the bank account information Above to ensure you receive payment for campains you participated in. Make sure the details Above are correct and up to date. These details are stored securely in our system and will never be shared with third parties.
-            </div>
+         
             </div>
               }
               {editmomo &&
-                 <div>
+                 <div style={{width:"80%"}}>
                  <div className={'inputedit'}>
                  <div className={'identi'}>Phone/MoMo Number</div>
-                  <input type='number' onChange={handleChange} name='contactNumber' defaultValue={Settings.settings['momo']} variant='outlined' className="setedit" placeholder="+27 83X XXX XXX" />
+                  <input type='number' onChange={handleChange} name='contactNumber'  variant='outlined' className="setedit" placeholder="+27 83X XXX XXX" />
                  </div>
               
             <div className={'placebtn'}>
@@ -394,48 +405,8 @@ const StyledButton = withStyles({
            </div> 
             )
 }
- function EditDetail(argument) {
-   // body...
-     return (
-         <div className={'divs'}>
-            <div className ={'settingheader'}> Edit Details </div>
-            <Divider />
-            <div className={'inputedit'}>
-                 <div className={'identi'}>Full Names</div>
-                  <input type='text' name="nameAndSurname" variant='outlined' className="setedit" placeholder="Name & Surname" />
-            </div>
-            <div className={'inputedit'}>
-                  <div className={'identi'}>Email</div>
-                  <input type='text' variant='outlined' name="email" className="setedit" placeholder="Email Address" />
-            </div>
-            <div className={'inputedit'}>
-                  <div className={'identi'}>Phone Number</div>
-                  <input type='number' name="contactNumber" variant='outlined' className="setedit" placeholder="Contact Number" />
-            </div>
-            <div className={'inputedit'}>
-                  <div className={'identi'}>Date of birth</div>
-                  <input type='date' name="campaignName" variant='outlined' style={{width:'100%'}} className="setedit" placeholder="Name of Campaign" />
-            </div>
-            <div className={'inputedit'}>
-                   <div className={'identi'}>Gender</div>
-                     <input type='text' variant='outlined' name="email" className="setedit" placeholder="Gender" />
-            </div>
-            <div className={'inputedit'}>
-                    <div className={'identi'}>Country</div>
-                     <input type='text' variant='outlined' name="email" className="setedit" placeholder="Country" />
-            </div>
-            <div className={'placebtn'}>
-               <StyledButton >
-                      Save
-                </StyledButton>
-            </div>
 
-
-         </div>
-
-      )
- }
-   function EditSocials(argument) {
+   function EditSocials(props) {
          const [editInsta, setEditInsta] = React.useState(false);
          const [editTwitter, setEditTwitter] = React.useState(false);
          const [editYoutube, setEditYoutube] = React.useState(false);
@@ -478,7 +449,7 @@ const StyledButton = withStyles({
       return (
          <div className={'divs'}>
          <div className={'rows'}>
-            <IconButton component={Link} to={'/settings'}>
+            <IconButton component={Link} onClick={props.handle} to={'/settings'}>
             		<ArrowBackIcon />
             </IconButton>
             <div className ={'settingheader'}> Edit Social Media Accounts  </div>
@@ -486,7 +457,7 @@ const StyledButton = withStyles({
                 <Divider  style={{marginTop:6}}/>
                 {!editTwitter && !editInsta &&
                <div> 
-               <ListItem button onClick={handleYoutube}>
+               <ListItem button style={{width:"85%"}} onClick={handleYoutube}>
                       <IconButton edge="end" aria-label="YouTubeIcon">
                       <YouTubeIcon style={{ color: red[500] }} />
                     </IconButton>
@@ -502,7 +473,7 @@ const StyledButton = withStyles({
                 }
                 {!editTwitter && !editYoutube &&
                <div>
-               <ListItem button onClick={handleInsta}>
+               <ListItem button style={{width:"85%"}} onClick={handleInsta}>
                      <IconButton edge="end" aria-label="Instagram">
                       <InstagramIcon style={{ color: pink[300] }} />
                     </IconButton>
@@ -518,7 +489,7 @@ const StyledButton = withStyles({
               }
                {!editInsta && !editYoutube &&
                 <div>
-                 <ListItem button onClick={handleTwitter}>
+                 <ListItem button style={{width:"85%"}} onClick={handleTwitter}>
                      <IconButton edge="end" aria-label="Twitter">
                       <TwitterIcon style={{ color: blue[500] }}/>
                     </IconButton>
@@ -594,7 +565,7 @@ const StyledButton = withStyles({
             
  )
 }
-function EditAccount(argument) {
+function EditAccount(props) {
          const [editInsta, setEditInsta] = React.useState(false);
          const [editTwitter, setEditTwitter] = React.useState(false);
          const [editYoutube, setEditYoutube] = React.useState(false);
@@ -678,7 +649,7 @@ function EditAccount(argument) {
       return (
          <div className={'divs'}>
             <div className={'rows'}>
-            <IconButton component={Link} to={'/settings'}>
+            <IconButton component={Link} onClick={props.handle} to={'/settings'}>
             		<ArrowBackIcon />
             </IconButton>
             <div className ={'settingheader'}> help  </div>

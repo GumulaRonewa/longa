@@ -30,46 +30,15 @@ import {
   TwitterShareButton,
   WhatsappShareButton,
 } from "react-share";
-const useStyles = makeStyles((theme) => ({
 
-   expand: {
-    transform: 'rotate(0deg)',
-    marginLeft: 'auto',
-    transition: theme.transitions.create('transform', {
-      duration: theme.transitions.duration.shortest,
-    }),
-  },
-  expandOpen: {
-    transform: 'rotate(90deg)',
-  }
-}));
-const StyledButton = withStyles({
-  root: {
-    background: "white",
-    borderRadius: 6,
-    border: 0,
-    color: "#0F81C7",
-    height: 48,
-    width:280,
-    left:10,
-    padding: "0 30px",
-    boxShadow: "0 3px 5px 2px #0F81C7",
-  },
-  label: {
-    textTransform: "capitalize",
-  },
-})(Button);
-
-
-function HomeScreenfunct(props) {
-  const [expanded, setExpanded] = React.useState(false);
+function Campaign(){
+    const [expanded, setExpanded] = React.useState(false);
   const [payment, setPayment] = React.useState(false);
    const [name, setName] = React.useState('');
          const [type, setType] = React.useState('');
          const [number, setNumber] = React.useState('');
          const [branch, setBranch] = React.useState('');
          const [phone, setPhone] = React.useState('');
-         const [bids, setBids] = React.useState([]);
      var window=props.window;
        window=window.location;
       var width=props.window['innerWidth'];
@@ -154,8 +123,6 @@ function HomeScreenfunct(props) {
   };
      const handleBid = () => {
       sessionStorage.setItem("bankings",false)
-      setBids(old =>[...old,selectedPromo]);
-      console.log(bids)
       var databid={userID:localStorage.getItem("userId"),id:selectedPromoId}
       console.log(databid)
        axios({
@@ -270,32 +237,8 @@ function HomeScreenfunct(props) {
 
     }
   };
-     return(
-        <div className={'home'}>
-           
-    
-              <List>
-            {camps.map((item)=> (
-                
-                <ListItem>
-                {selectedPromo==='all'&&
-                  <div className={'homelistdivexplore'}>
-                      <ListItem>
-                       <Avatar style={{ height: 80, width: 80, left: 4,top:4}}
-                       src={'https://seeklogo.com/images/M/MTN-logo-459AAF9482-seeklogo.com.png'} />
-                                            <div style={{marginLeft:10,fontSize:22}}>{item.campaignName}</div>
-                      <ListItemText style={{marginLeft:6}} primary={''} />
-                      <ListItemIcon>
-                         <IconButton onClick={handleExpandButtonClick(item,1)}  className={selectedPromo === item.campaignID ? clsx(classes.expand, {[classes.expandOpen]: expanded,}):'empty'}  >
-                        <ArrowForwardIosIcon  style={{ marginLeft:5,height: 40, width: 30}}/>
-                         </IconButton>
-                      </ListItemIcon>
-                      </ListItem>
-                    
-                  </div>
-                }
-                  {selectedPromo===item.campaignID&&
-                  <div className={'homelistdivexplore'}>
+	return(
+      <div className={'homelistdivexplore'}>
                       <ListItem>
                        <Avatar style={{ height: 80, width: 80, left: 4,top:4}}
                        src={'https://seeklogo.com/images/M/MTN-logo-459AAF9482-seeklogo.com.png'} />
@@ -309,7 +252,7 @@ function HomeScreenfunct(props) {
                          </button>
                       </ListItemIcon>
                       <ListItemIcon>
-                        <button onClick={handleBankMenuOpen} className={item.bidders.includes(localStorage.getItem("userId")) || bids.includes(selectedPromo)?'buttonsexpandgreen':"buttonsexpandred"}>
+                        <button onClick={handleBankMenuOpen} style={{backgroundColor:'green'}}className="buttonsexpandred">
                          Bid
                         </button>
                       </ListItemIcon>
@@ -398,65 +341,5 @@ function HomeScreenfunct(props) {
                    </div>
 
                   </div>
-                }
-
-                </ListItem>
-                    ))}
-
-              
-             </List>
-        </div>
-      )
-   }
-
- export default class HomeScreen extends React.Component {
-   constructor(props) {
-    super(props);
-
-    this.state = {
-      Campaigns:[],
-      id:null,
-    };
-  }
-  componentWillMount() {
-     console.log(window)
-        var  id= this.props.location.pathname;
-        id =id.substring(6,id.length);
-              this.setState({id:id})
-
-     axios({
-      method: 'GET',
-     url: `https://longa-money.herokuapp.com/api/campaigns`, // First page at 0
-       headers: {
-      "Authorization": `Bearer ${localStorage.getItem("token")}`,
-      
-      },
-    }).then(res =>{
-       console.log(res.data)
-       var data=res.data;
-               this.setState({Campaigns:data})
-    })
-  }
-
-
-  render(){
-     return(
-        <Switch>
-              <Route
-                exact
-                path="/home"
-                render={(props) => (
-                  <HomeScreenfunct window={window} id={'all'} Campaigns={this.state.Campaigns}/>
-                )}
-              />
-              <Route
-                exact
-                path="/home/:id"
-                render={(props) => (
-                  <HomeScreenfunct window={window} id={this.state.id} Campaigns={this.state.Campaigns}/>
-                )}
-              />
-         </Switch>
-      )
-  }
- }
+	)
+}
