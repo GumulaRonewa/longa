@@ -23,7 +23,7 @@ const defaultOptions2 = {
 
 const Loading = ({loading}) => {
   return (
-    <div style={{marginTop: '10rem'}}>
+    <div style={{marginTop: 10}}>
       {!loading ? (
         <Lottie options={defaultOptions} height={150} width={150} />
       ) : (

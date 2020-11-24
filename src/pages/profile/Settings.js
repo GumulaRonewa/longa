@@ -16,12 +16,16 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import TwitterIcon from '@material-ui/icons/Twitter';
 import YouTubeIcon from '@material-ui/icons/YouTube';
+import FacebookIcon from '@material-ui/icons/Facebook';
 import InstagramIcon from '@material-ui/icons/Instagram';
 import { red, pink, blue } from '@material-ui/core/colors';
 import axios from "axios";
 import IconButton from '@material-ui/core/IconButton';
 import CreateIcon from '@material-ui/icons/Create';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import Menu from '@material-ui/core/Menu';
+import Loading from "../loading/loading";
+
 const options=[{ value: 'Male', label: 'Male' },{ value: 'Female', label: 'Female' }];
 const animatedComponents = makeAnimated();
 
@@ -45,6 +49,7 @@ const StyledButton = withStyles({
 
      const [edit, setEdit] = React.useState(false);
      var window=props.window;
+     var win=props.window;
      var path=window.location;
            var href=path.pathname;
      var host=window.location.host;
@@ -66,10 +71,23 @@ const StyledButton = withStyles({
   const [email, setemail] = React.useState("");
   const [gender, setGender] = React.useState("");
   const [country, setCountry] = React.useState('');
+  const [instagram, setInsta] = React.useState("");
+         const [message, setMessage] = React.useState("Updating your details");
+                  const [load, setLoad] = React.useState(false);
+
+         const [twitter, setTwitter] = React.useState("");
+             const [anchorEl, setAnchorEl] = React.useState(null);
   console.log(props)
-  const onSubmit =()=>{
-   
-                  var data={userID:sessionStorage.getItem("userId"),name:first,surname:last,country:country,email:email,phone:phone,gender:gender,dateOfBirth:date}
+  const onSubmit =(event)=>{
+             handlePopMenuOpen(event)
+
+                  var data={userID:sessionStorage.getItem("userId"),name:first===""?Settings.name:first
+                  ,surname:last===""?Settings.surname:last
+                  ,country:country===""?Settings.country:country,
+                  phone:phone===""?Settings.phone:phone,
+                  gender:gender===""?Settings.gender:gender,
+                  dateOfBirth:date===""?Settings.dob:date
+                }
   console.log(data);
    axios({
       method: 'POST',
@@ -81,9 +99,58 @@ const StyledButton = withStyles({
       },
     }).then(res =>{
        console.log(res)
+        setTimeout(() => {
+             setLoad(true)
+          setMessage('Updating your details');
+      setTimeout(() => {
+                             handleMenuClose();
+                                          setLoad(false)
 
-    })
+      }, 800);
+    }, 1000);
+                  setMessage('Adding your account');
+
+
+    }).catch((e) => {
+              console.log(e);
+                     handleMenuClose()
+
+
+      });
   }
+
+                      const isMenuOpen = Boolean(anchorEl);
+
+         const handlePopMenuOpen = (event) => {
+             setAnchorEl(event.currentTarget);
+         };
+         const handleMenuClose = () => {
+    setAnchorEl(null);
+  };
+    const renderMenu = (
+    <Menu
+      anchorEl={anchorEl}
+      anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+      id={'1'}
+      keepMounted
+      transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+      open={isMenuOpen}
+      onClose={handleMenuClose}
+    >
+     <div style={{width:200,height:200,backgroundColor:"transparent"}}>
+
+      <p>  {message}</p>
+       <Loading loading={load} />
+
+                   
+     </div>
+     
+    </Menu>
+  );
+    const onBack=()=>{
+      props.handle();
+      win.open("settings","_self")
+    }
      const handleChanges = (event) => {
     console.log(event.target.name)
     switch (event.target.name) {
@@ -116,7 +183,7 @@ const StyledButton = withStyles({
     return (
          <div style={{width:"90%"}} className={'divs'}>
             <div className={'rows'}>
-            <IconButton component={Link} onClick={props.handle} to={'/settings'}>
+            <IconButton onClick={onBack} >
             		<ArrowBackIcon />
             </IconButton>
             <div className ={'settingheader'}> Edit Details </div>
@@ -130,10 +197,7 @@ const StyledButton = withStyles({
                  <div className={'identi'}>Last Names</div>
                   <input type='text' defaultValue={Settings.surname} name="last"onChange={handleChanges} variant='outlined' className="setedit" />
             </div>
-            <div className={'inputedit'}>
-                  <div className={'identi'}>Email</div>
-                  <input type='text' variant='outlined' defaultValue={Settings.email} name="email" onChange={handleChanges} className="setedit" />
-            </div>
+           
             <div className={'inputedit'}>
                   <div className={'identi'}>Phone Number</div>
                   <input  type='number' name="contactNumber"  onChange={handleChanges} defaultValue={Settings.phone} variant='outlined' className="setedit" />
@@ -150,6 +214,7 @@ const StyledButton = withStyles({
                     <div className={'identi'}>Country</div>
                      <input type='text' variant='outlined' defaultValue={Settings.country} name="country" onChange={handleChanges} className="setedit" />
             </div>
+            {renderMenu}
             <div className={'placebtn'}>
                <StyledButton onClick={onSubmit}>
                       Save
@@ -211,21 +276,21 @@ const StyledButton = withStyles({
                     exact
                        path='/settings/payment'
                           render={(props) => (
-                            <EditPayments handle={handleEditOut} settings={Settings} />
+                            <EditPayments handle={handleEditOut} window={win} settings={Settings} />
                             )}
                          />
                       <Route
                     exact
                        path='/settings/socials'
                           render={(props) => (
-                            <EditSocials handle={handleEditOut} />
+                            <EditSocials handle={handleEditOut} window={win}  />
                             )}
                          />
                         <Route
                     exact
                        path='/settings/help'
                           render={(props) => (
-                            <EditAccount handle={handleEditOut} />
+                            <EditAccount handle={handleEditOut} window={win}  />
                             )}
                          />
                 </Switch>
@@ -245,8 +310,14 @@ const StyledButton = withStyles({
          const [phone, setPhone] = React.useState('');
            var Settings=props.settings;
            Settings= Settings.bankingDetails;
+                var window=props.window;
+
          const handleBank=()=>{
-         	var data={bankName:name,branchCode:branch,accountNumber:number,accountType:type,userID:sessionStorage.getItem("userId")}
+         	var data={bankName:name===""?Settings.bankName:name
+          ,branchCode:branch===""?Settings.branchCode:branch,
+          accountNumber:number===""?Settings.accountNumber:number,
+          accountType:type===""?Settings.accountType:type,
+          userID:sessionStorage.getItem("userId")}
          	console.log(data)
               axios({
       method: 'POST',
@@ -276,9 +347,10 @@ const StyledButton = withStyles({
 
     })
          }
-         const handleBack =()=>{
-         	console.log(window)
-         }
+          const onBack=()=>{
+      props.handle();
+      window.open("/settings","_self")
+    }
          const handleEdit = () => {
           setEdit(!edit);
           setEditMomo(false);
@@ -310,11 +382,11 @@ const StyledButton = withStyles({
     }
   };
   var sett=props.settings['settings'];
-   
+     console.log(props.settings)
       return (
-         <div className={'divs'}>
+         <div style={{width:"97%"}} className={'divs'}>
          <div className={'rows'}>
-            <IconButton component={Link} onClick={props.handle} to={'/settings'}>
+            <IconButton onClick={onBack}>
             		<ArrowBackIcon />
             </IconButton>
             <div className ={'settingheader'}> Edit Payment </div>
@@ -385,7 +457,7 @@ const StyledButton = withStyles({
                  <div style={{width:"80%"}}>
                  <div className={'inputedit'}>
                  <div className={'identi'}>Phone/MoMo Number</div>
-                  <input type='number' onChange={handleChange} name='contactNumber'  variant='outlined' className="setedit" placeholder="+27 83X XXX XXX" />
+                  <input type='number' onChange={handleChange} name='contactNumber' defaultValue={props.settings.momo}  variant='outlined' className="setedit" placeholder="+27 83X XXX XXX" />
                  </div>
               
             <div className={'placebtn'}>
@@ -410,23 +482,176 @@ const StyledButton = withStyles({
          const [editInsta, setEditInsta] = React.useState(false);
          const [editTwitter, setEditTwitter] = React.useState(false);
          const [editYoutube, setEditYoutube] = React.useState(false);
+         const [load, setLoad] = React.useState(false);
+         const [editFacebook, setEditFacebook] = React.useState(false);
          const [youtube, setYoutube] = React.useState("");
          const [instagram, setInsta] = React.useState("");
+         const [message, setMessage] = React.useState("Adding your account");
          const [twitter, setTwitter] = React.useState("");
+             const [anchorEl, setAnchorEl] = React.useState(null);
+          
+
+         const AddInsta =(event)=>{
+          handlePopMenuOpen(event)
+              var data={username:instagram,userID:sessionStorage.getItem("userId")}
+              console.log(data)
+              axios({
+      method: 'GET',
+     url: `https://longa-money.herokuapp.com/api/i`, // First page at 0
+     data:data,
+       headers: {
+      "Authorization": `Bearer ${sessionStorage.getItem("token")}`,
+      
+      },
+    }).then(res =>{
+       console.log(res)
+        setTimeout(() => {
+             setLoad(true)
+          setMessage('Your account has been added');
+      setTimeout(() => {
+                             handleMenuClose();
+                                          setLoad(false)
+
+      }, 800);
+    }, 1000);
+                  setMessage('Adding your account');
+
+
+    }).catch((e) => {
+              console.log(e);
+                     handleMenuClose()
+
+
+      });
+
+
+         }
+
+         const AddYoutube =(event)=>{
+          handlePopMenuOpen(event)
+              var data={username:youtube,userID:sessionStorage.getItem("userId")}
+              console.log(data)
+              axios({
+      method: 'GET',
+     url: `https://longa-money.herokuapp.com/api/y`, // First page at 0
+     data:data,
+       headers: {
+      "Authorization": `Bearer ${sessionStorage.getItem("token")}`,
+      
+      },
+    }).then(res =>{
+       console.log(res)
+        setTimeout(() => {
+             setLoad(true)
+          setMessage('Your account has been added');
+      setTimeout(() => {
+                             handleMenuClose();
+                                          setLoad(false)
+
+      }, 800);
+    }, 1000);
+                          setMessage('Adding your account');
+
+
+    }).catch((e) => {
+              console.log(e);
+                     handleMenuClose()
+
+
+      });
+
+
+         }
+         const AddTwitter =(event)=>{
+          handlePopMenuOpen(event)
+              var data={handle:twitter,userID:sessionStorage.getItem("userId")}
+              console.log(data)
+              axios({
+      method: 'POST',
+     url: `https://longa-money.herokuapp.com/api/t/handle`, // First page at 0
+     data:data,
+       headers: {
+      "Authorization": `Bearer ${sessionStorage.getItem("token")}`,
+      
+      },
+    }).then(res =>{
+       console.log(res)
+        setTimeout(() => {
+             setLoad(true)
+          setMessage('Your account has been added');
+      setTimeout(() => {
+                             handleMenuClose();
+                                          setLoad(false)
+
+      }, 800);
+    }, 1000);
+                          setMessage('Adding your account');
+
+
+    }).catch((e) => {
+              console.log(e);
+                     handleMenuClose()
+
+
+      });
+
+
+         }
+              
+                      const isMenuOpen = Boolean(anchorEl);
+
+         const handlePopMenuOpen = (event) => {
+             setAnchorEl(event.currentTarget);
+         };
+         const handleMenuClose = () => {
+    setAnchorEl(null);
+  };
+    const renderMenu = (
+    <Menu
+      anchorEl={anchorEl}
+      anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+      id={'1'}
+      keepMounted
+      transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+      open={isMenuOpen}
+      onClose={handleMenuClose}
+    >
+     <div style={{width:200,height:200,backgroundColor:"transparent"}}>
+
+      <p>  {message}</p>
+       <Loading loading={load} />
+
+                   
+     </div>
+     
+    </Menu>
+  );
         const handleInsta = () => {
           setEditInsta(!editInsta);
           setEditTwitter(false);
-          setEditYoutube(false);
+          setEditYoutube(false);          setEditFacebook(false);
+
        };
        const handleTwitter = () => {
           setEditTwitter(!editTwitter);
           setEditYoutube(false);
           setEditInsta(false);
+                    setEditFacebook(false);
+
           
        };
        const handleYoutube = () => {
           setEditTwitter(false);
           setEditYoutube(!editYoutube);
+                    setEditFacebook(false);
+
+          setEditInsta(false);
+          
+       };
+          const handleFacebook = () => {
+          setEditTwitter(false);
+          setEditYoutube(false);
+          setEditFacebook(!editFacebook);
           setEditInsta(false);
           
        };
@@ -447,7 +672,7 @@ const StyledButton = withStyles({
     }
   };
       return (
-         <div className={'divs'}>
+         <div style={{width:"97%"}} className={'divs'}>
          <div className={'rows'}>
             <IconButton component={Link} onClick={props.handle} to={'/settings'}>
             		<ArrowBackIcon />
@@ -455,13 +680,13 @@ const StyledButton = withStyles({
             <div className ={'settingheader'}> Edit Social Media Accounts  </div>
             </div>
                 <Divider  style={{marginTop:6}}/>
-                {!editTwitter && !editInsta &&
+                 {!editTwitter && !editInsta && !editYoutube&&
                <div> 
-               <ListItem button style={{width:"85%"}} onClick={handleYoutube}>
+               <ListItem button style={{width:"85%"}} onClick={handleFacebook}>
                       <IconButton edge="end" aria-label="YouTubeIcon">
-                      <YouTubeIcon style={{ color: red[500] }} />
+                      <FacebookIcon style={{ color: blue[300] }} />
                     </IconButton>
-                      <ListItemText  style={{marginLeft:6}} primary={'Add/Edit Youtube Channel'} /> 
+                      <ListItemText  style={{marginLeft:6}} primary={'Add/Edit Facebook account'} /> 
                       <ListItemIcon>
                     <IconButton edge="end" aria-label="youtu">
                       <CreateIcon />
@@ -471,7 +696,7 @@ const StyledButton = withStyles({
                 <Divider />
                 </div>
                 }
-                {!editTwitter && !editYoutube &&
+                    {!editTwitter && !editYoutube && !editFacebook &&
                <div>
                <ListItem button style={{width:"85%"}} onClick={handleInsta}>
                      <IconButton edge="end" aria-label="Instagram">
@@ -487,7 +712,8 @@ const StyledButton = withStyles({
                  <Divider /> 
                 </div>
               }
-               {!editInsta && !editYoutube &&
+              {renderMenu}
+               {!editInsta && !editYoutube && !editFacebook &&
                 <div>
                  <ListItem button style={{width:"85%"}} onClick={handleTwitter}>
                      <IconButton edge="end" aria-label="Twitter">
@@ -503,60 +729,87 @@ const StyledButton = withStyles({
                  <Divider />
               </div>
             }
+                {!editTwitter && !editInsta && !editFacebook&&
+               <div> 
+               <ListItem button style={{width:"85%"}} onClick={handleYoutube}>
+                      <IconButton edge="end" aria-label="YouTubeIcon">
+                      <YouTubeIcon style={{ color: red[500] }} />
+                    </IconButton>
+                      <ListItemText  style={{marginLeft:6}} primary={'Add/Edit Youtube Channel'} /> 
+                      <ListItemIcon>
+                    <IconButton edge="end" aria-label="youtu">
+                      <CreateIcon />
+                    </IconButton>
+                  </ListItemIcon>
+               </ListItem> 
+                <Divider />
+                </div>
+                }
+
+            
+              
             {editYoutube &&
                <div>
-                 <div className={'inputedit'}>
+                 <div className={'inputeditor'}>
                  <div className={'identi'}>Youtube Channel</div>
                   <input type='text' onChange={handleChange} name="tube" variant='outlined' className="setedit" placeholder="Youtube Channel" />
                  </div>
               
             <div className={'placebtn'}>
-                  <ListItem>
-               <ListItemText primary={""} />
+               <ListItemIcon>
+               <StyledButton onClick={AddYoutube}>
+                      Link
+                </StyledButton>
+                 </ListItemIcon>
+            </div>
+            </div>
+            }
+             {editFacebook &&
+               <div>
+                 <div className={'inputeditor'}>
+                 <div className={'identi'}>Facebook account</div>
+                  <input type='text' onChange={handleChange} name="tube" variant='outlined' className="setedit" placeholder="Facebook account" />
+                 </div>
+              
+            <div className={'placebtn'}>
                <ListItemIcon>
                <StyledButton >
                       Link
                 </StyledButton>
                  </ListItemIcon>
-              </ListItem>
             </div>
             </div>
             }
             {editTwitter &&
                <div>
-                 <div className={'inputedit'}>
+                 <div className={'inputeditor'}>
                  <div className={'identi'}>Twitter Account</div>
                   <input type='text' onChange={handleChange} name="twitter" variant='outlined' className="setedit" placeholder="Twitter Account" />
                  </div>
               
             <div className={'placebtn'}>
-                  <ListItem>
-               <ListItemText primary={""} />
                <ListItemIcon>
-               <StyledButton >
+               <StyledButton onClick={AddTwitter}>
                       Link
                 </StyledButton>
                  </ListItemIcon>
-              </ListItem>
             </div>
             </div>
             }
             {editInsta &&
                <div>
-                 <div className={'inputedit'}>
+                 <div className={'inputeditor'}>
                  <div className={'identi'}>Instagram Account</div>
                   <input type='text' onChange={handleChange} name="insta" variant='outlined' className="setedit" placeholder="Instagram Account" />
                  </div>
               
             <div className={'placebtn'}>
-                  <ListItem>
-               <ListItemText primary={""} />
+               
                <ListItemIcon>
-               <StyledButton >
+               <StyledButton  onClick={AddInsta}  >
                       Link
                 </StyledButton>
                  </ListItemIcon>
-              </ListItem>
             </div>
             </div>
             }
@@ -573,12 +826,16 @@ function EditAccount(props) {
          const [password, setPassword] = React.useState("");
          const [newP, setNew] = React.useState("");
          const [newC, setNewC] = React.useState("");
+             const [anchorEl, setAnchorEl] = React.useState(null);
          const [del, setDel] = React.useState("");
+                         var window=props.window;
+
         const handleInsta = () => {
           setEditInsta(!editInsta);
           setEditTwitter(false);
           setEditYoutube(false);
        };
+
         const handleUpdate=()=>{
          	var data={oldPassword:password,newPassword:newP,userID:sessionStorage.getItem("userId")}
           if (!valid) {
@@ -591,7 +848,8 @@ function EditAccount(props) {
       
       },
     }).then(res =>{
-       console.log(res)
+       console.log(res);
+       window.open('/login',"_self")
 
     })
   }
@@ -607,6 +865,7 @@ function EditAccount(props) {
       
       },
     }).then(res =>{
+
        console.log(res)
 
     })
@@ -634,6 +893,40 @@ function EditAccount(props) {
         break;
     }
   };
+              const isMenuOpen = Boolean(anchorEl);
+
+         const handlePopMenuOpen = (event) => {
+             setAnchorEl(event.currentTarget);
+         };
+         const handleMenuClose = () => {
+    setAnchorEl(null);
+  };
+    const renderMenu = (
+    <Menu
+      anchorEl={anchorEl}
+      anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+      id={'1'}
+      keepMounted
+      transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+      open={isMenuOpen}
+      onClose={handleMenuClose}
+    >
+     <div style={{width:400,height:200,backgroundColor:"transparent",paddingRight:10,paddingLeft:10}}>
+        <div className={'delText'}>Are you sure you want delete your Longa Money account? Other influencers will not be able to see your profile or communicate with you.</div>
+       <div className={'rowx'}>
+       <StyledButton style={{marginLeft:10,marginTop:10}} onClick={handleDelete} >
+                      Confirm
+                </StyledButton> 
+                <StyledButton style={{marginLeft:190,marginTop:10}} onClick={handleMenuClose} >
+                      Cancel
+                </StyledButton>
+       </div>
+
+                   
+     </div>
+     
+    </Menu>
+  );
        const handleTwitter = () => {
           setEditTwitter(!editTwitter);
           setEditYoutube(false);
@@ -647,7 +940,7 @@ function EditAccount(props) {
           
        };
       return (
-         <div className={'divs'}>
+         <div  style={{width:"97%"}} className={'divs'}>
             <div className={'rows'}>
             <IconButton component={Link} onClick={props.handle} to={'/settings'}>
             		<ArrowBackIcon />
@@ -723,8 +1016,9 @@ function EditAccount(props) {
                
                   
                  </div>
+                 {renderMenu}
                  <div className={'placebtn'}>
-               <StyledButton onClick={handleDelete} >
+               <StyledButton style={{marginLeft:20}} onClick={handlePopMenuOpen} >
                       Delete
                 </StyledButton>
             </div>

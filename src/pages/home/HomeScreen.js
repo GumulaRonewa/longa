@@ -118,6 +118,7 @@ function HomeScreenfunct(props) {
       },
     }).then(res =>{
        
+                     handleBid();
 
     })
   }
@@ -213,7 +214,7 @@ function HomeScreenfunct(props) {
       onClose={handleMenuBClose}
     >
      <div style={{height:400,width:300}}>
-     { !payment && 
+     { !payment && !MoMo &&
       <div>
          <StyledButton onClick={handlePayment} >
            Add Bank Card
@@ -221,7 +222,7 @@ function HomeScreenfunct(props) {
          <StyledButton  onClick={handleMomo1} style={{top:10}} >
            Add MoMo Wallet
          </StyledButton >
-         <StyledButton sonClick={handlePayment} tyle={{top:50}} >
+         <StyledButton sonClick={handlePayment} style={{top:90}} >
            Skip
          </StyledButton >
          </div>
@@ -229,7 +230,7 @@ function HomeScreenfunct(props) {
          {payment  &&
           <div>
           <div style={{fontSize:20}}>
-             Longa Money will use the bank account information Above to ensure you receive payment for campains you participated in. Make sure the details Above are correct and up to date. These details are stored securely in our system and will never be shared with third parties.
+             Longa Money will use the bank account information below to ensure you receive payment for campaings you participated in. Make sure the details below are correct and up to date. These details are stored securely in our system and will never be shared with third parties.
             </div>
          <p style={{ "font-size": "18px", paddingLeft: 3 }}>Bank Name*:</p>
          <TextField  onChange={handleChange} variant="outlined" name={'Bn'} style={{left:10,right:10,width:280}}/>
@@ -372,16 +373,16 @@ function HomeScreenfunct(props) {
                             <div className={'identih'}>Task</div>
                             <div className={'identih2'}> 
                             <div className={'colic'} style={{marginLeft:-2}}>
-                            <FacebookIcon style={{ color: blue[400] }} /> 5 
+                            <FacebookIcon style={{ color: blue[400] }} /> {item.task.facebook}
                             </div> 
                             <div className={'colic'}>
-                            <InstagramIcon style={{ color: pink[300] }} /> 5 
+                            <InstagramIcon style={{ color: pink[300] }} />  {item.task.instagram}
                             </div>
                               <div className={'colic'}>
-                            <TwitterIcon style={{ color: blue[500] }}/> 5 
+                            <TwitterIcon style={{ color: blue[500] }}/>  {item.task.twitter}
                             </div>
                             <div className={'colic'}>
-                            <YouTubeIcon style={{ color: red[500] }} /> 6</div>
+                            <YouTubeIcon style={{ color: red[500] }} />  {item.task.youtube}</div>
                             </div>
                       </div>
                         <div className={'inputedit'}>

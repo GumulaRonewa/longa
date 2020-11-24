@@ -83,7 +83,7 @@ class Register extends Component {
 
       case "password":
         formErrors.password =
-          value.length < 8 ? "minimum 8 characaters required" : "";
+          value.length < 6 ? "minimum 8 characaters required" : "";
 
         break;
 

@@ -389,6 +389,13 @@ opacity: 1;
     margin-top: 10px;
     width: 100%;
    }
+
+     .inputeditor{
+    display: flex;
+    flex-direction: row;
+    margin-top: 10px;
+    width: 60%;
+   }
      .settingshid2{
          display: none;
    }
@@ -466,7 +473,11 @@ opacity: 1;
     display: flex;
     flex-direction: column;
    }
- 
+   .inputeditor{
+    display: flex;
+    flex-direction: column;
+    width: 100%
+   }
    .profimg{
      width: 98%;
    }

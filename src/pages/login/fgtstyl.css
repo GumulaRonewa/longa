@@ -1,0 +1,92 @@
+.forgotpass{
+
+width: 100%;
+height: 100vh;
+display: grid;
+place-items:center;
+background: #0F81C7 0% 0% no-repeat padding-box;
+padding-bottom: 20px;
+opacity: 1;
+}
+.forgotext{
+width: 100%;
+height: 63px;
+
+text-align: center;
+font: normal normal normal 50px/63px Bariol;
+letter-spacing: 0px;
+color: #FFFFFF;
+opacity: 1
+}
+.logoim{
+	margin-top: -10%;
+	width: 425px;
+   height: 390px;
+}
+.holder{
+	display: grid;
+	place-items:center;
+	margin-top: -30%;
+}
+@media (min-height: 800px) {
+  .logoim{
+  	margin-top: -10%; 
+  } 
+
+}
+@media (max-width: 500px) {
+  .forgotpass{
+  	width: 140%; 
+  } 
+
+}
+.prompt{
+
+width: 100%;
+height: 27px;
+margin-top: 30px;
+font: normal normal normal 26px/27px Bariol;
+text-align: center;
+letter-spacing: 0px;
+color: #FFFFFF;
+opacity: 1;
+}
+
+.send{
+	margin-top: 520px;
+margin-left: 663px;
+width: 41px;
+height: 22px;
+text-align: left;
+font: normal normal bold 20px/22px Bariol;
+letter-spacing: 0px;
+color: #FFFFFF;
+opacity: 1;
+}
+.btfg{
+	background-color: white;
+	color: #0F81C7;
+	font: normal normal bold 14px/22px Bariol;
+    margin-top: 20px;
+	width: 150px;
+	height: 50px;
+	text-align: center;
+}
+.btfg:hover {
+  background: #47a7f5 radial-gradient(circle, transparent 1%, #47a7f5 1%) center/15000%;
+}
+.btfg:active {
+  background-color: #6eb9f7;
+  background-size: 100%;
+  transition: background 0s;
+}
+.field{
+
+width: 400px;
+height: 53px;
+text-align: center;
+margin-top: 30px;
+background: #FFFFFF 0% 0% no-repeat padding-box;
+border-radius: 27px;
+opacity: 1;
+}

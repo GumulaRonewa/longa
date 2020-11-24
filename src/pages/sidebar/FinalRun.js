@@ -8,15 +8,11 @@ import PrimarySearchAppBar from './PrimarySearchAppBar'
 import SimpleBottomNavigation from "./SimpleBottomNavigation"
 import Choose from '../login/Choose'
 import Register from '../login/Register'
+import Reset from '../login/Reset'
+import Forgot from '../login/Forgot'
 import AboutUs from '../login/AboutUs'
 import RegisterBussiness from '../login/RegisterBussiness'
 import Conformation from '../home/Conformation'
-import HomeScreen from '../home/HomeScreen';
-import JobScreen from '../jobs/JobScreen';
-import WalletScreen from '../wallet/WalletScreen';
-import FeedScreen from '../feed/FeedScreen';
-import Settings from '../profile/Settings';
-import ProfileScreen from '../profile/ProfileScreen';
 import WelcomeBrand from '../home/WelcomeBrand'
 
 function Run() {
@@ -48,7 +44,8 @@ function FinalRun1(){
          <Route path="/registerbrands" component={RegisterBussiness} />
          <Route exact path="/register" component={Register} />
           <Route exact path="/aboutus" component={AboutUs} />
-        <Route path={"/validreg"} component={Conformation} />
+          <Route exact path="/forgot" component={Conformation} />
+          <Route exact path="/Reset" component={Reset} />
           <Route  path="/" component={Run} />
         
 
@@ -65,8 +62,10 @@ export default class FinalRun extends React.Component {
       window.location.pathname !== "/register" &&
       window.location.pathname !== "/login" &&
       window.location.pathname !== "/" &&
+      window.location.pathname !== "/forgot" &&
       window.location.pathname !== "/aboutus" &&
       window.location.pathname !== "/feed" &&
+      window.location.pathname !== "/reset" &&
       window.location.pathname !== "/validreg" &&
       window.location.pathname !== "/links" &&
 

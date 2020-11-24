@@ -31,7 +31,41 @@ const StyledTextField = withStyles({
   }
 })(TextField);
 class Conformation extends Component {
+   constructor(props) {
+    super(props);
 
+    this.state = {
+      email: null,
+      password: null,
+      error: false,
+    };
+  }
+  componentWillMount(){
+    localStorage.clear();
+    sessionStorage.clear();
+  }
+  handleChange = (e) => {
+    e.preventDefault();
+    const { name, value } = e.target;
+    this.setState({ [name]: value });
+  };
+   handleLogin = (e) => {
+    e.preventDefault();
+            const user = { email: this.state.email};
+        axios({
+      method: 'POST',
+     url: `https://longa-money.herokuapp.com/api/user/password-reset`, // First page at 0
+     data:user,
+    
+    }).then((res) => {
+      
+      window.open("https://longamoney.groundrabbit.co.za/password-link.html", "_self");
+         
+      }).catch((e) => {
+
+      });
+
+       };
   render() {
     return (
       <div className="authBox">
@@ -44,20 +78,24 @@ class Conformation extends Component {
         <div className="rightRegBox">
            <div className="bgRed"> 
              <div className="toplogo">
-                 <img src={minilogo} alt="L" className="topSec"/>
+                 <img src={minilogo} style={{height:170,width:170}} alt="L" className="topSec"/>
               </div>
               
-              <div className="RegBox">
-                 <div className="conftext">
-                    <div className={"conformationtext"}>
-                     Thank you 
-                     Please check your emails 
-                     <br/>
-                     and verify the account.
-                    </div>
-                    <h3 style={{color:'transparent'}}>Transparent Text</h3>
+              <div style={{marginTop:"20%"}} className="RegBox">
+                 <div className={'forgotext'}>
+              Forgot Password?
+            </div>
+             <div className={"prompt"}>
+            Please enter your email address and a reset link will be sent to you.
+            </div>
+              <div className="loginBox">
+                 <div className="logininput">
+                    <input type='text' name={'email'} onChange={this.handleChange} className="inputbox" placeholder="Email Address" />
                  </div>
-                  <a href="/login" className={'conreg'} style={{marginTop:10,color:"white"}}> Login </a>
+                 <button onClick={this.handleLogin} className="btfg">
+                    Submit                      
+                 </button>
+              </div>
                  
               </div>
                
