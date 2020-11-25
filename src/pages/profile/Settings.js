@@ -74,9 +74,9 @@ const StyledButton = withStyles({
   const [instagram, setInsta] = React.useState("");
          const [message, setMessage] = React.useState("Updating your details");
                   const [load, setLoad] = React.useState(false);
+             const [anchorEl, setAnchorEl] = React.useState(null);
 
          const [twitter, setTwitter] = React.useState("");
-             const [anchorEl, setAnchorEl] = React.useState(null);
   console.log(props)
   const onSubmit =(event)=>{
              handlePopMenuOpen(event)
@@ -308,11 +308,17 @@ const StyledButton = withStyles({
          const [number, setNumber] = React.useState('');
          const [branch, setBranch] = React.useState('');
          const [phone, setPhone] = React.useState('');
+          const [load, setLoad] = React.useState(false);
+             const [anchorEl, setAnchorEl] = React.useState(null);
+                      const [message, setMessage] = React.useState("Updating your payment details");
+
            var Settings=props.settings;
            Settings= Settings.bankingDetails;
                 var window=props.window;
 
-         const handleBank=()=>{
+         const handleBank=(event)=>{
+                       handlePopMenuOpen(event)
+
          	var data={bankName:name===""?Settings.bankName:name
           ,branchCode:branch===""?Settings.branchCode:branch,
           accountNumber:number===""?Settings.accountNumber:number,
@@ -329,10 +335,27 @@ const StyledButton = withStyles({
       },
     }).then(res =>{
        console.log(res)
+        setTimeout(() => {
+             setLoad(true)
+          setMessage('Your payment details have benn updated');
+      setTimeout(() => {
+                             handleMenuClose();
+                                          setLoad(false)
 
-    })
+      }, 800);
+    }, 1000);
+                  setMessage('Updating your payment details');
+
+
+    }).catch((e) => {
+              console.log(e);
+                     handleMenuClose()
+
+
+      });
          }
-           const handleMomo=()=>{
+           const handleMomo=(event)=>{
+            handlePopMenuOpen(event)
          	var data={momo:phone,userID:sessionStorage.getItem("userId")}
               axios({
       method: 'POST',
@@ -344,9 +367,26 @@ const StyledButton = withStyles({
       },
     }).then(res =>{
        console.log(res)
+        setTimeout(() => {
+             setLoad(true)
+          setMessage('Your payment details have benn updated');
+      setTimeout(() => {
+                             handleMenuClose();
+                                          setLoad(false)
 
-    })
-         }
+      }, 800);
+    }, 1000);
+                  setMessage('Updating your payment details');
+
+
+    }).catch((e) => {
+              console.log(e);
+                     handleMenuClose()
+
+
+      });
+  }
+         
           const onBack=()=>{
       props.handle();
       window.open("/settings","_self")
@@ -359,6 +399,34 @@ const StyledButton = withStyles({
           setEdit(false);
           setEditMomo(!editmomo);
        };
+                    const isMenuOpen = Boolean(anchorEl);
+
+         const handlePopMenuOpen = (event) => {
+             setAnchorEl(event.currentTarget);
+         };
+         const handleMenuClose = () => {
+    setAnchorEl(null);
+  };
+    const renderMenu = (
+    <Menu
+      anchorEl={anchorEl}
+      anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+      id={'1'}
+      keepMounted
+      transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+      open={isMenuOpen}
+      onClose={handleMenuClose}
+    >
+     <div style={{width:200,height:200,backgroundColor:"transparent"}}>
+
+      <p>  {message}</p>
+       <Loading loading={load} />
+
+                   
+     </div>
+     
+    </Menu>
+  );
        const handleChange = (event) => {
     switch (event.target.name) {
       case "Bn":
@@ -440,6 +508,7 @@ const StyledButton = withStyles({
                   <input onChange={handleChange} type='number' name="bc" defaultValue={Settings.branchCode} variant='outlined' style={{width:'100%'}} className="setedit" placeholder="Branch Code" />
             </div>
             <div className={'placebtn'}>
+            {renderMenu}
              <ListItem>
                <ListItemText primary={""} />
                <ListItemIcon>
@@ -459,7 +528,7 @@ const StyledButton = withStyles({
                  <div className={'identi'}>Phone/MoMo Number</div>
                   <input type='number' onChange={handleChange} name='contactNumber' defaultValue={props.settings.momo}  variant='outlined' className="setedit" placeholder="+27 83X XXX XXX" />
                  </div>
-              
+              {renderMenu}
             <div className={'placebtn'}>
                   <ListItem>
                <ListItemText primary={""} />
@@ -855,10 +924,10 @@ function EditAccount(props) {
   }
          }
          const handleDelete=()=>{
-         	var data={userID:sessionStorage.getItem("userId")}
+         	var data={password:del,userID:sessionStorage.getItem("userId")}
               axios({
       method: 'POST',
-     url: `https://longa-money.herokuapp.com/api/u`, // First page at 0
+     url: `https://longa-money.herokuapp.com/api/u/delete`, // First page at 0
      data:data,
        headers: {
       "Authorization": `Bearer ${sessionStorage.getItem("token")}`,
@@ -868,7 +937,12 @@ function EditAccount(props) {
 
        console.log(res)
 
-    })
+    }).catch((e) => {
+              console.log(e);
+
+
+      });
+
          }
       var error="Password don't match"
          const handleChange = (event) => {

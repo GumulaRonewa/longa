@@ -26,6 +26,8 @@ class Login extends Component {
   }
   handleChange = (e) => {
     e.preventDefault();
+                        this.setState({error: false });
+
     const { name, value } = e.target;
     this.setState({ [name]: value });
   };
@@ -52,8 +54,10 @@ class Login extends Component {
       window.open("home", "_self");
          
       }).catch((e) => {
+                 console.log(e);
                     this.setState({img: login });
-
+                    this.setState({error: true });
+             
       });
 
        };
@@ -77,6 +81,9 @@ class Login extends Component {
                     <input type='text' name={'email'} onChange={this.handleChange} className="inputbox" placeholder="Email Address" />
                     <input type='password'name={'password'} onChange={this.handleChange} className="inputPasswordbox" placeholder="Password" />
                  </div>
+                    {this.state.error  && (
+                         <span className="errorMessage">Invalid Email or Password</span>
+                       )}
                  <button onClick={this.handleLogin
                  } className="buttons">
                   <img src={this.state.img} className='iconSign' alt="b"/>
