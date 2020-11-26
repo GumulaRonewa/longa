@@ -61,6 +61,7 @@ function JobScreenfunct(props) {
       setExpanded(!expanded);
 
   };
+   console.log("fh")
   	 return(
   	 	  <div className={'jobhome'}>
          
@@ -73,7 +74,7 @@ function JobScreenfunct(props) {
                       <ListItem>
                        <Avatar style={{ height: 80, width: 80, left: 4,top:4}}
                        src={'https://seeklogo.com/images/M/MTN-logo-459AAF9482-seeklogo.com.png'} />
-                                             <div style={{marginLeft:10,fontSize:24}}>{item.campaignName}</div>
+                                             <div style={{marginLeft:10,fontSize:24}}>{item.campaign.campaignName}</div>
                       <ListItemText style={{marginLeft:10,fontSize:20}} primary={''} />
 
                       <ListItemIcon>
@@ -82,7 +83,7 @@ function JobScreenfunct(props) {
                          </IconButton>
                       </ListItemIcon>
                       </ListItem>
-                                                                                       <TimeLine/>
+                         <TimeLine time={item.status}/>
 
                   </div>
                 }
@@ -91,7 +92,7 @@ function JobScreenfunct(props) {
                       <ListItem>
                        <Avatar style={{ height: 80, width: 80, left: 4,top:4}}
                        src={'https://seeklogo.com/images/M/MTN-logo-459AAF9482-seeklogo.com.png'} />
-                     <div style={{marginLeft:10,fontSize:22}}>{item.campaignName}</div>
+                     <div style={{marginLeft:10,fontSize:22}}>{item.campaign.campaignName}</div>
                       <ListItemText style={{marginLeft:10,fontSize:20}} primary={''} />
                       <ListItemIcon>
                          <IconButton onClick={handleExpandButtonClick(item,2)}  className={selectedPromo === item.campaignID ? clsx(classes.expand, {[classes.expandOpen]: expanded,}):'empty'}  >
@@ -99,27 +100,27 @@ function JobScreenfunct(props) {
                          </IconButton>
                       </ListItemIcon>
                       </ListItem>
-                                                                                          <TimeLine/>
+                                                                                          <TimeLine time={item.status}/>
     
                      <div className='table'>
                        <div className={'inputedit'}>
                            <div className={'identih'}>ID</div>
-                            <div className={'identih2'}  >{item.campaignID}</div>
+                            <div className={'identih2'}  >{item.campaign.campaignID}</div>
                       </div>
                       <div className={'inputedit'}>
                             <div className={'identih'}>Task</div>
                             <div className={'identih2'}> 
                             <div className={'colic'}>
-                            <FacebookIcon style={{ color: blue[400] }} /> 5 
+                            <FacebookIcon style={{ color: blue[400] }} /> {item.campaign.task.facebook} 
                             </div> 
                             <div className={'colic'}>
-                            <InstagramIcon style={{ color: pink[300] }} /> 5 
+                            <InstagramIcon style={{ color: pink[300] }} /> {item.campaign.task.instagram}
                             </div>
                               <div className={'colic'}>
-                            <TwitterIcon style={{ color: blue[500] }}/> 5 
+                            <TwitterIcon style={{ color: blue[500] }}/> {item.campaign.task.instagram}
                             </div>
                             <div className={'colic'}>
-                            <YouTubeIcon style={{ color: red[500] }} /> 6</div>
+                            <YouTubeIcon style={{ color: red[500] }} /> {item.campaign.task.youtube}</div>
                             </div>
                       </div>
                         <div className={'inputedit'}>
@@ -128,11 +129,11 @@ function JobScreenfunct(props) {
                       </div>
                        <div className={'inputedit'}>
                            <div className={'identih'}>Number of Influencers</div>
-                           <div className={'identih2'}  >{item.numberOfInfluencers}</div>
+                           <div className={'identih2'}  >{item.campaign.numberOfInfluencers}</div>
                       </div>
                       <div className={'inputedit'}>
                             <div className={'identih'}>Ends in</div>
-                            <div className={'identih2'}  >{getDays(item.endDate)}</div>
+                            <div className={'identih2'}  >{getDays(item.campaign.endDate)}</div>
                       </div>
                         <div className={'inputedit'}>
                            <div className={'identih'}>Payment Time</div>
@@ -140,15 +141,15 @@ function JobScreenfunct(props) {
                       </div>
                       <div className={'inputedit'}>
                             <div className={'identih'}>Description</div>
-                            <div className={'identih2'}  >{item.description}</div>
+                            <div className={'identih2'}  >{item.campaign.description}</div>
                       </div>
                         <div className={'inputedit'}>
                            <div className={'identih'}>Do's</div>
-                           <div className={'identih2'}  >{item.dos}</div>
+                           <div className={'identih2'}  >{item.campaign.dos}</div>
                       </div>
                       <div className={'inputedit'}>
                             <div className={'identih'}>Dont's</div>
-                            <div className={'identih2'}  >{item.donts}</div>
+                            <div className={'identih2'}  >{item.campaign.donts}</div>
                       </div>
                   
                      </div>
@@ -157,13 +158,13 @@ function JobScreenfunct(props) {
                         <div className={'moneyside'}>
                           <MonetizationOnIcon  color={'primary'} style={{ height: 30, width: 30,marginLeft:20}} />
                           <div className={'textmon'}>
-                           R {item.earnings}
+                           R {item.campaign.earnings}
                           </div>
                          </div>
                           <div className={'groupside'}>
                           <PeopleIcon  color={'primary'} style={{ marginLeft:20,height: 40, width: 30}} />
                            <div className={'textmon'}>
-                            {item.bids}
+                            {item.campaign.bids}
                           </div>
                          </div>
                    </div>

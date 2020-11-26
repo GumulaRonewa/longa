@@ -14,7 +14,17 @@ import AboutUs from '../login/AboutUs'
 import RegisterBussiness from '../login/RegisterBussiness'
 import Conformation from '../home/Conformation'
 import WelcomeBrand from '../home/WelcomeBrand'
+import profile_picture_without_slogan from '../../images/profile_picture_without_slogan.png'
 
+function Branding() {
+  return(
+  <div className={'trends'}>
+    <div className={'imagediv'}>
+      <img src={profile_picture_without_slogan} style={{height:150,width:150,boxShadow: "8px 8px 5px 5px #e6ecf0"}} />
+      </div>
+  </div>
+   )
+}
 function Run() {
   return (
     <div className={'top'}>
@@ -24,9 +34,12 @@ function Run() {
     <div className="twitter">
     
       <Sidebar />
+                   <Branding />
+
       <Main/>
+
     </div>
-      
+
     </div>
   );
 }

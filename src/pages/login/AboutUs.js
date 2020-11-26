@@ -75,10 +75,10 @@ class Apart extends React.Component{
                     </IconButton>
                            - Longa_Money <br/>
                           <IconButton edge="end" onClick={()=>{
-                         window.open("https://twitter.com/@Longa_Money")   }} aria-label="Twitter">
+                         window.open("https://twitter.com/@LongaMoney")   }} aria-label="Twitter">
                       <TwitterIcon style={{ color: blue[500], height:40,width:40}}/>
                     </IconButton>
-                          - @Longa_Money<br/>
+                          - @LongaMoney<br/>
                            <IconButton edge="end"  onClick={()=>{
                          window.open("https://www.facebook.com/LongaMoney")   }} aria-label="YouTubeIcon">
                       <FacebookIcon style={{ color: blue[300], height:40,width:40 }} />
@@ -93,7 +93,7 @@ class Apart extends React.Component{
 export default function AboutUs(argument) {
   // body...
   return(
-  <AwesomeSlider animation="cubeAnimation" mobileTouch={true} cssModule={AwesomeSliderStyles} fillParent ={true}>
+  <AwesomeSlider animation="cubeAnimation" cssModule={AwesomeSliderStyles} fillParent ={true}>
     <div>
      <WhoAndWhat />
     </div>

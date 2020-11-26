@@ -12,6 +12,7 @@ body {
   
 
 }
+
 .twitter{
   padding-bottom: 2px
 }
@@ -19,6 +20,9 @@ body {
    color: white;
    background-color: black;
 }*/
+.hider{
+  display: none;
+}
 .twitter ul li a {
   color: white;
 }
@@ -66,6 +70,31 @@ body {
   font-size: 18px;
 }
 .sidebar ul li a:hover {
+  background: #e8f5fe;
+  color: #1da1f2;
+}
+.sidebar2 {
+  width: 30%;
+  position: fixed;
+  background-color: white;
+  padding-top: 20px;
+  left: 0;
+  height: 90%;
+
+  border-right: 1px solid #e6ecf0;
+}
+.sidebar2 ul {
+  list-style-type: none;
+}
+.sidebar2 ul li a {
+  display: flex;
+  text-decoration: none;
+  color: #000;
+  padding: 18px 35px;
+  font-weight: 700;
+  font-size: 18px;
+}
+.sidebar2 ul li a:hover {
   background: #e8f5fe;
   color: #1da1f2;
 }
@@ -215,6 +244,9 @@ body {
 .postss__details__img img {
   width: 100%;
 }
+.hider2{
+  display: flex;
+}
 .reactions {
   display: flex;
   margin: 8px 0;
@@ -222,8 +254,34 @@ body {
   align-items: center;
   color: silver;
 }
+.imagediv{
+  height: 300px;
+  position: fixed;
+       z-index: 1;
+
+       align-self: center;
+  padding-right: 10%px;
+  width: 300px;
+
+}
 .trends {
   width: 25%;
+   position: fixed;
+   float: right;
+   margin-top: 8%;
+
+     border-left: 1px solid #e6ecf0;
+
+   z-index: 1;
+  padding-left: 10%;   
+  right: 0;
+  height: 100vh;
+}
+@media only screen and (max-width: 1200px) {
+  .imagediv{
+     margin-top: 10%;
+     margin-left: -3%;
+  }
 }
 @media only screen and (max-width: 1025px) {
   .trends{
@@ -312,6 +370,12 @@ body {
  @media only screen and (max-width: 917px) {
     .bottomnav{
       display: flex;
+    }
+    .hider{
+      display: flex;
+    }
+    .hider2{
+      display: none;
     }
     .sidebar{
     width:0%;

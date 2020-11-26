@@ -14,6 +14,8 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
+import Sidebar2 from './Sidebar2';
+import minilogo from '../../images/minilogo.png'
 
 const useStyles = makeStyles((theme) => ({
     toolbar: theme.mixins.toolbar,
@@ -47,7 +49,7 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
     [theme.breakpoints.up('sm')]: {
       marginLeft: theme.spacing(3),
-      width: 'auto',
+      width: '30%',
     },
   },
   searchIcon: {
@@ -88,6 +90,7 @@ const useStyles = makeStyles((theme) => ({
  function PrimarySearchAppBarfun(props) {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const [siderbar, setDrawer] = React.useState(false);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
   const isMenuOpen = Boolean(anchorEl);
@@ -125,8 +128,8 @@ const useStyles = makeStyles((theme) => ({
         win.open("/login", "_self");
 
 }
-  const handleMobileMenuOpen = (event) => {
-    setMobileMoreAnchorEl(event.currentTarget);
+  const handleOpen = (event) => {
+    setDrawer(!siderbar);
   };
 
   const menuId = 'primary-search-account-menu';
@@ -190,17 +193,22 @@ const useStyles = makeStyles((theme) => ({
   );
 
   return (
+    <div>
     <div className={classes.toolbar}>
       <AppBar position="fixed">
         <Toolbar position="fixed">
+         <div className="hider" >
           <IconButton
             edge="start"
             className={classes.menuButton}
             color="inherit"
             aria-label="open drawer"
+            onClick={handleOpen}
           >
             <MenuIcon />
           </IconButton>
+          </div>
+           <img src={minilogo} style={{height:90,width:90,marginTop:-14}} className={'hider2'} alt={'L'} />
           <Typography className={classes.title} variant="h6" noWrap>
             Longa Money
           </Typography>
@@ -241,6 +249,11 @@ const useStyles = makeStyles((theme) => ({
       </AppBar>
       {renderMobileMenu}
       {renderMenu}
+    </div>
+    {siderbar &&
+      <Sidebar2 className="hider" />
+
+    }
     </div>
   );
 }
