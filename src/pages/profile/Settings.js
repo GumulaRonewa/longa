@@ -574,21 +574,10 @@ const StyledButton = withStyles({
       },
     }).then(res =>{
        console.log(res)
-        setTimeout(() => {
-             setLoad(true)
-          setMessage('Your account has been added');
-      setTimeout(() => {
-                             handleMenuClose();
-                                          setLoad(false)
-
-      }, 800);
-    }, 1000);
-                  setMessage('Adding your account');
-
+       
 
     }).catch((e) => {
               console.log(e);
-                     handleMenuClose()
 
 
       });
@@ -597,72 +586,67 @@ const StyledButton = withStyles({
          }
 
          const AddYoutube =(event)=>{
-          handlePopMenuOpen(event)
               var data={username:youtube,userID:sessionStorage.getItem("userId")}
               console.log(data)
               axios({
-      method: 'GET',
-     url: `https://longa-money.herokuapp.com/api/y`, // First page at 0
-     data:data,
-       headers: {
-      "Authorization": `Bearer ${sessionStorage.getItem("token")}`,
+                method: 'GET',
+                url: `https://longa-money.herokuapp.com/api/y`, // First page at 0
+                data:data,
+                 headers: {
+                "Authorization": `Bearer ${sessionStorage.getItem("token")}`,
       
-      },
-    }).then(res =>{
-       console.log(res)
-        setTimeout(() => {
-             setLoad(true)
-          setMessage('Your account has been added');
-      setTimeout(() => {
-                             handleMenuClose();
-                                          setLoad(false)
+                },
+                 }).then(res =>{
+                        console.log(res)
+          
 
-      }, 800);
-    }, 1000);
-                          setMessage('Adding your account');
-
-
-    }).catch((e) => {
-              console.log(e);
-                     handleMenuClose()
-
-
-      });
+                 }).catch((e) => {
+                console.log(e);
+                });
 
 
          }
          const AddTwitter =(event)=>{
-          handlePopMenuOpen(event)
               var data={handle:twitter,userID:sessionStorage.getItem("userId")}
               console.log(data)
-              axios({
-      method: 'POST',
-     url: `https://longa-money.herokuapp.com/api/t/handle`, // First page at 0
-     data:data,
-       headers: {
-      "Authorization": `Bearer ${sessionStorage.getItem("token")}`,
-      
-      },
-    }).then(res =>{
-       console.log(res)
-        setTimeout(() => {
-             setLoad(true)
-          setMessage('Your account has been added');
-      setTimeout(() => {
-                             handleMenuClose();
-                                          setLoad(false)
-
-      }, 800);
-    }, 1000);
-                          setMessage('Adding your account');
+                axios({
+                   method: 'POST',
+                   url: `https://longa-money.herokuapp.com/api/t/handle`, // First page at 0
+                     data:data,
+                headers: {
+           "Authorization": `Bearer ${sessionStorage.getItem("token")}`,
+          
+                    },
+                  }).then(res =>{
+                        console.log(res)
+          
+                        }).catch((e) => {
+                     console.log(e);
 
 
-    }).catch((e) => {
-              console.log(e);
-                     handleMenuClose()
+                   });
 
 
-      });
+         }
+             const AddFacebook =(event)=>{
+              var data={userID:sessionStorage.getItem("userId")}
+              console.log(data)
+                axios({
+                   method: 'POST',
+                   url: `https://longa-money.herokuapp.com/api/fb`, // First page at 0
+                     data:data,
+                headers: {
+           "Authorization": `Bearer ${sessionStorage.getItem("token")}`,
+          
+                    },
+                  }).then(res =>{
+                        console.log(res)
+          
+                        }).catch((e) => {
+                     console.log(e);
+
+
+                   });
 
 
          }
@@ -820,66 +804,44 @@ const StyledButton = withStyles({
             {editYoutube &&
                <div>
                  <div className={'inputeditor'}>
-                 <div className={'identi'}>Youtube Channel</div>
-                  <input type='text' onChange={handleChange} name="tube" variant='outlined' className="setedit" placeholder="Youtube Channel" />
+                  <StyledButton  style={{width:"70%"}} onClick={AddYoutube}>
+                      Link Youtube
+                </StyledButton>
                  </div>
               
-            <div className={'placebtn'}>
-               <ListItemIcon>
-               <StyledButton onClick={AddYoutube}>
-                      Link
-                </StyledButton>
-                 </ListItemIcon>
-            </div>
+          
             </div>
             }
              {editFacebook &&
                <div>
                  <div className={'inputeditor'}>
-                 <div className={'identi'}>Facebook account</div>
-                  <input type='text' onChange={handleChange} name="tube" variant='outlined' className="setedit" placeholder="Facebook account" />
+                       <StyledButton style={{width:"70%"}} onClick={AddFacebook}>
+                      Link Facebook
+                </StyledButton>
                  </div>
               
-            <div className={'placebtn'}>
-               <ListItemIcon>
-               <StyledButton >
-                      Link
-                </StyledButton>
-                 </ListItemIcon>
-            </div>
+            
             </div>
             }
             {editTwitter &&
                <div>
                  <div className={'inputeditor'}>
-                 <div className={'identi'}>Twitter Account</div>
-                  <input type='text' onChange={handleChange} name="twitter" variant='outlined' className="setedit" placeholder="Twitter Account" />
+                  <StyledButton style={{width:"70%"}} onClick={AddTwitter}>
+                      Link Twitter
+                </StyledButton>
                  </div>
               
-            <div className={'placebtn'}>
-               <ListItemIcon>
-               <StyledButton onClick={AddTwitter}>
-                      Link
-                </StyledButton>
-                 </ListItemIcon>
-            </div>
+           
             </div>
             }
             {editInsta &&
                <div>
                  <div className={'inputeditor'}>
-                 <div className={'identi'}>Instagram Account</div>
-                  <input type='text' onChange={handleChange} name="insta" variant='outlined' className="setedit" placeholder="Instagram Account" />
-                 </div>
-              
-            <div className={'placebtn'}>
-               
-               <ListItemIcon>
-               <StyledButton  onClick={AddInsta}  >
-                      Link
+                  <StyledButton style={{width:"70%"}} onClick={AddInsta}  >
+                      Link Instagram
                 </StyledButton>
-                 </ListItemIcon>
-            </div>
+                 </div>
+           
             </div>
             }
               

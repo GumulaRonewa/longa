@@ -11,6 +11,8 @@ import TweetBox from './TweetBox';
 import Divider from "@material-ui/core/Divider";
 import { Switch, Route, Link } from "react-router-dom";
 import ListItem from "@material-ui/core/ListItem";
+import { Main, NavBar, BoxContent, Content } from "./styled";
+import 'font-awesome/css/font-awesome.min.css';
 
  function Feed(props) {
   
@@ -67,102 +69,18 @@ import ListItem from "@material-ui/core/ListItem";
   const handleMobileMenuClose = () => {
     setMobileMoreAnchorEl(null);
   };
-    const like = () => {
-      if(color===null){
-              setlikes(likes+1)
-              setColor("secondary")
-      }
-      else{
-         if(likes>4){
-                        setlikes(likes-1)
-              setColor(null)
 
-         }
-      }
-  };
-  const handleMenuClose = () => {
-    setAnchorEl(null);
-    handleMobileMenuClose();
-  };
-  const handleFile = (e)=> {
-      setfile(e.target.files[0])
-      var v=e.target.files[0];
-      setName(v.name)
-   }
-
-  const handleDrawerToggle = () => {
-    setMobileOpen(!mobileOpen);
-  };
-  
-  const App = () => {
-    const [chosenEmoji, setChosenEmoji] = React.useState(null);
-
-    const onEmojiClick = (event, emojiObject) => {
-              setPost(`${post}${emojiObject.emoji}`)
-
-        setChosenEmoji(emojiObject);
-    }
-
-    return (
-        <div>
-            <Picker onEmojiClick={onEmojiClick} disableAutoFocus={true} skinTone={SKIN_TONE_MEDIUM_DARK} groupNames={{smileys_people:"PEOPLE"}}/>
-        </div>
-    );
-};
-  const renderEmojiMenu = (
-    <Menu
-      anchorEl={anchorEl2}
-      anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
-      id={'id2'}
-      keepMounted
-      transformOrigin={{ vertical: 'top', horizontal: 'center' }}
-      open={isMenuOpen2}
-      onClose={handleEmojiClose}
-    >
-       <App />
-    </Menu>
-  );
-  const renderMenu = (
-    <Menu
-      anchorEl={anchorEl}
-      anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
-      id={"id"}
-      keepMounted
-      transformOrigin={{ vertical: 'top', horizontal: 'center' }}
-      open={isMenuOpen}
-      onClose={handleMenuClose}
-    >
-      <input
-          type="file"
-           accept="image/x-png,image/gif,image/jpeg"
-           onChange={handleFile}
-          style={{width:'100%'}}                
-          id="customFile"
-         />  
-    </Menu>
-  );
-
-    const handleChange = (e) => {
-        var m= e.target;
-        setPost(m.value)
-    }
+ 
      return(
         <div className={'feedhome'}>
-           <TweetBox />
-        
-                     <List>
-                   
-                                  {feed.map(({_id,text,username,likes,comments})=> (
-                  <div>
-                     <Divider />
-                      <Post feed={[username,text,_id,likes.includes(sessionStorage.getItem("userId")),likes.length,comments.length]} window={props.window} />
-                     <Divider/>
-                                          </div>
+                 <TweetBox/>
+                      <Content.HorizontalTab>
+               {feed.map(({_id,text,username,likes,comments,url})=> (
+                  <Post feed={[username,text,_id,likes.includes(sessionStorage.getItem("userId")),likes.length,comments.length,url,comments]} window={props.window}/>
+              ))}
 
-                                ))}
+        </Content.HorizontalTab>
 
-                 </List>
-                
                
         </div>
       )
@@ -171,22 +89,33 @@ import ListItem from "@material-ui/core/ListItem";
      const rep=[{name:"image"},{name:"image"}]
 
   class Individual   extends React.Component{
-      componentWillMount(){
+     constructor(props) {
+    super(props);
+
+    this.state = {
+       id:null,
+       post:null
+
+    };
+  }
+      componentDidMount(){
       var path=window.location.pathname;
       var id=path.substring(6,path.length)
-      console.log(id)
-        var data={postID:"5fbb5507ece625001761640c"}
-
+     var post={postID:id}
+     console.log(post)
+     this.setState({id:id})
     axios({
-      method: 'GET',
+      method: 'POST',
      url: `https://longa-money.herokuapp.com/api/feed/post`, // First page at 0
-     data:data,
+     data:post,
        headers: {
       "Authorization": `Bearer ${sessionStorage.getItem("token")}`,
       
       },
     }).then(res =>{
          console.log(res.data)
+              this.setState({post:res.data})
+
     })
   }
 
@@ -196,7 +125,8 @@ import ListItem from "@material-ui/core/ListItem";
         <div className={'feedhome'}>
                  <Divider />
                   <Divider/>
-                  <Comment />
+                <Post/>
+                  <Comment id={this.state.id}/>
                                   <Divider/>
 
                      <List style={{marginTop:5}}>
@@ -226,7 +156,7 @@ import ListItem from "@material-ui/core/ListItem";
     };
   }
   componentWillMount(){
-    axios({
+   axios({
       method: 'GET',
      url: `https://longa-money.herokuapp.com/api/feed`, // First page at 0
        headers: {

@@ -19,6 +19,9 @@ import InstagramIcon from '@material-ui/icons/Instagram';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import { red, pink, blue } from '@material-ui/core/colors';
 import TimeLine from './TimeLine'
+import circle from '../../images/circle.svg'
+import GroupIcon from '@material-ui/icons/Group';
+import ScheduleIcon from '@material-ui/icons/Schedule';
 const useStyles = makeStyles((theme) => ({
 
    expand: {
@@ -71,6 +74,8 @@ function JobScreenfunct(props) {
                <ListItem>
                 {selectedPromo==='all'&&
                   <div className={'homelistdivexplore'}>
+                                      <div  className={'cardsxe'}>
+
                       <ListItem>
                        <Avatar style={{ height: 80, width: 80, left: 4,top:4}}
                        src={'https://seeklogo.com/images/M/MTN-logo-459AAF9482-seeklogo.com.png'} />
@@ -83,12 +88,18 @@ function JobScreenfunct(props) {
                          </IconButton>
                       </ListItemIcon>
                       </ListItem>
+                      </div>
+                                          <div  className={'cardsxen'}>
+
                          <TimeLine time={item.status}/>
+                         </div>
 
                   </div>
                 }
                   {selectedPromo===item.campaignID&&
                   <div className={'homelistdivexplore'}>
+                                                                            <div  className={'cardsxe'}>
+
                       <ListItem>
                        <Avatar style={{ height: 80, width: 80, left: 4,top:4}}
                        src={'https://seeklogo.com/images/M/MTN-logo-459AAF9482-seeklogo.com.png'} />
@@ -99,58 +110,90 @@ function JobScreenfunct(props) {
                         <ArrowForwardIosIcon  style={{ marginLeft:5,height: 40, width: 30}}/>
                          </IconButton>
                       </ListItemIcon>
-                      </ListItem>
-                                                                                          <TimeLine time={item.status}/>
+                      </ListItem>                            </div>
+
+                                                                <div  className={'cardsxen'}>
+
+                            <TimeLine time={item.status}/>
+                            </div>
     
                      <div className='table'>
-                       <div className={'inputedit'}>
-                           <div className={'identih'}>ID</div>
-                            <div className={'identih2'}  >{item.campaign.campaignID}</div>
-                      </div>
-                      <div className={'inputedit'}>
-                            <div className={'identih'}>Task</div>
-                            <div className={'identih2'}> 
-                            <div className={'colic'}>
-                            <FacebookIcon style={{ color: blue[400] }} /> {item.campaign.task.facebook} 
-                            </div> 
-                            <div className={'colic'}>
-                            <InstagramIcon style={{ color: pink[300] }} /> {item.campaign.task.instagram}
+                       <div className={'rowx'}>
+                    <div  className={'cardsx'}>
+                      <div className={'cardtext'}>Followers </div>
+                      <div> <GroupIcon style={{height:70,width:70}} /></div>
+                                            <div className={'cardtext'}>{item.campaign.bids}</div>
+
+                    </div>
+                    <div className={'cardsxc'}>
+                      <div className={'cardtext'}> Influencers </div>
+                      <div> <img src={circle} alt='' style={{height:70,width:70}}/> </div>
+                                            <div className={'cardtext'}>{item.campaign.numberOfInfluencers}</div>
+
+                    </div>
+                     <div className={'cardsxc'}>
+                      <div className={'cardtext'}> Tasks </div>
+                                                 < div className={'rowx'}>
+
+                      <div className={'colic'} style={{marginLeft:-2}}>
+                            <FacebookIcon style={{ color: blue[400] ,width:30,height:30}} /> {item.campaign.task.facebook}
                             </div>
-                              <div className={'colic'}>
-                            <TwitterIcon style={{ color: blue[500] }}/> {item.campaign.task.instagram}
-                            </div>
                             <div className={'colic'}>
-                            <YouTubeIcon style={{ color: red[500] }} /> {item.campaign.task.youtube}</div>
+                            <InstagramIcon style={{ color: pink[300] ,width:30,height:30 }} />  {item.campaign.task.instagram}
                             </div>
-                      </div>
-                        <div className={'inputedit'}>
-                           <div className={'identih'}>Minimum Followers</div>
-                            <div className={'identihw'}  ></div>
-                      </div>
-                       <div className={'inputedit'}>
-                           <div className={'identih'}>Number of Influencers</div>
-                           <div className={'identih2'}  >{item.campaign.numberOfInfluencers}</div>
-                      </div>
-                      <div className={'inputedit'}>
-                            <div className={'identih'}>Ends in</div>
-                            <div className={'identih2'}  >{getDays(item.campaign.endDate)}</div>
-                      </div>
-                        <div className={'inputedit'}>
-                           <div className={'identih'}>Payment Time</div>
-                            <div className={'identih2'}  ></div>
-                      </div>
-                      <div className={'inputedit'}>
-                            <div className={'identih'}>Description</div>
-                            <div className={'identih2'}  >{item.campaign.description}</div>
-                      </div>
-                        <div className={'inputedit'}>
-                           <div className={'identih'}>Do's</div>
-                           <div className={'identih2'}  >{item.campaign.dos}</div>
-                      </div>
-                      <div className={'inputedit'}>
-                            <div className={'identih'}>Dont's</div>
-                            <div className={'identih2'}  >{item.campaign.donts}</div>
-                      </div>
+                            </div>
+                                                 < div className={'rowx'}>
+
+                                      <div className={'colic'}>
+                            <YouTubeIcon style={{ color: red[500],width:30,height:30}} />  {item.campaign.task.youtube}</div>
+                            <div className={'colic'}>
+                            <TwitterIcon style={{ color: blue[500] }}/>  {item.campaign.task.twitter}
+                            </div>
+                            </div>
+                            </div>
+
+                    </div>
+                          <div className={'rowx'}>
+                    <div  className={'cardsx'}>
+                      <div className={'cardtext'}>Ends in </div>
+                      <div> <ScheduleIcon style={{height:70,width:70}} /></div>
+                                            <div className={'cardtext'}>{getDays(item.campaign.endDate)}</div>
+
+                    </div>
+                    <div className={'cardsxc'}>
+                      <div className={'cardtext'}> Payment Time </div>
+                      <div> <ScheduleIcon style={{height:70,width:70}}/> </div>
+                                            <div className={'cardtext'}></div>
+
+                    </div>
+                     <div className={'cardsxc'}>
+                      <div className={'cardtext'}> Payment </div>
+                                               <div> <MonetizationOnIcon style={{height:70,width:70}}/> </div>
+                                            <div className={'cardtext'}>R {item.campaign.earnings}</div>
+
+                            </div>
+
+                    </div>
+                    <div className={'rowx'}>
+                    <div  className={'cardsxd'}>
+                      <div className={'cardtext'}>Do's </div>
+                                            <div className={'cardtextb'}>{item.campaign.dos}</div>
+
+                    </div>
+                    <div className={'cardsxd'}>
+                      <div className={'cardtext'}> Dont's </div>
+                                            <div className={'cardtextb'}>{item.campaign.donts}</div>
+
+                    </div>
+                     
+                    </div>
+                     <div className={'cardsxe'}>
+                      <div className={'cardtext'}> Description </div>
+                                            <div className={'cardtextb'}>{item.campaign.description}</div>
+
+                    </div>
+                     
+                    
                   
                      </div>
                               <div className={'line'} style={{width:'94%'}}/>

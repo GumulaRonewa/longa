@@ -16,6 +16,7 @@
     "date-fns": "^2.16.1",
     "emoji-mart": "^3.0.0",
     "emoji-picker-react": "^3.2.4",
+    "font-awesome": "^4.7.0",
     "materialui-daterange-picker": "^1.1.92",
     "moment": "^2.29.1",
     "node-sass": "^4.14.1",
@@ -37,6 +38,7 @@
     "react-social-icons": "^4.1.0",
     "react-step-progress-bar": "^1.0.3",
     "shave": "^2.5.10",
+    "styled-components": "^5.2.1",
     "tsutils": "^3.17.1"
   },
   "engines": {

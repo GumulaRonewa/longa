@@ -140,10 +140,10 @@ axios({
                        toggle={this.toggle}
                        onChange={(range) => this.handleSelect(range)}
                     />
-                    <textarea  type='text' name="description" onChange={this.handleChange} style={{heiht:110,fontSize: 14}} multiline className="inputRegibox" placeholder="Description of Campaign" />
-                    <input type='Number' name="influencers" onChange={this.handleChange} className="inputRegibox" placeholder="Number of influencers needed" /> 
-                     <textarea  type='text' name="dos" onChange={this.handleChange} style={{height:110,fontSize: 14}} multiline className="inputRegibox" placeholder="Do's for influencers" />
-                    <textarea  type='text' name="donts" onChange={this.handleChange} style={{height:110,fontSize: 14}} multiline className="inputRegibox" placeholder="Dont's for influencers" />
+                    <textarea  type='text'  value={this.state.description} name="description" onChange={this.handleChange} style={{heiht:110,fontSize: 14}} multiline className="inputRegibox" placeholder="Description of Campaign" />
+                    <input value={this.state.influencers} type='Number' name="influencers" onChange={this.handleChange} className="inputRegibox" placeholder="Number of influencers needed" /> 
+                     <textarea value={this.state.dos}   type='text' name="dos" onChange={this.handleChange} style={{height:110,fontSize: 14}} multiline className="inputRegibox" placeholder="Do's for influencers" />
+                    <textarea  value={this.state.donts}  type='text' name="donts" onChange={this.handleChange} style={{height:110,fontSize: 14}} multiline className="inputRegibox" placeholder="Dont's for influencers" />
                      <div className='tc'>
                       <div>
                     <button onClick={this.handleBack} className="buttons">

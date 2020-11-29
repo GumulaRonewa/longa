@@ -2,168 +2,67 @@ import React, { useRef, useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 import { Picker } from "emoji-mart";
 import axios from "axios";
-import "emoji-mart/css/emoji-mart.css";
+import "emoji-mart/css/emoji-mart.css"
+import TextField from '@material-ui/core/TextField';
+import { makeStyles } from '@material-ui/core/styles';
+import Paper from '@material-ui/core/Paper';
+import InputBase from '@material-ui/core/InputBase';
+import Divider from '@material-ui/core/Divider';
+import IconButton from '@material-ui/core/IconButton';
+import MenuIcon from '@material-ui/icons/Menu';
+import SearchIcon from '@material-ui/icons/Search';
+import DirectionsIcon from '@material-ui/icons/Directions';
+import AttachFileIcon from '@material-ui/icons/AttachFile';
+import SendIcon from '@material-ui/icons/Send';
+import Menu from '@material-ui/core/Menu';
 
-const ImgIcon = () => (
-  <svg focusable="false" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-    <path d="M0 0h24v24H0z" fill="none" />
-    <path d="M14 13l4 5H6l4-4 1.79 1.78L14 13zm-6.01-2.99A2 2 0 0 0 8 6a2 2 0 0 0-.01 4.01zM22 5v14a3 3 0 0 1-3 2.99H5c-1.64 0-3-1.36-3-3V5c0-1.64 1.36-3 3-3h14c1.65 0 3 1.36 3 3zm-2.01 0a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h7v-.01h7a1 1 0 0 0 1-1V5z" />
-  </svg>
-);
+const useStyles = makeStyles((theme) => ({
+  root: {
+    padding: '2px 4px',
+    display: 'flex',
+    alignItems: 'center',
+    width: "98%",
+    marginLeft:10,
+    height:150,
+    borderRadius:1,
+  },
+  input: {
+    marginLeft: theme.spacing(1),
+    flex: 1,
+  },
+  iconButton: {
+    padding: 10,
+  },
+  divider: {
+    height: "95%",
+    margin: 4,
+  },
+}));
 
-const FileInput = ({ onChange, children }) => {
-  const fileRef = useRef();
-  const onPickFile = event => {
-    onChange([...event.target.files]);
+ function CustomizedInputBase() {
+  const classes = useStyles();
+   const [selected, setSelect] = React.useState(null);
+      const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const [file, setfile] = React.useState(null);
+  const [name, setName] = React.useState(null);
+  const [text, setText] = React.useState("");
+ const handleMenuOpen = (event) => {
+    setAnchorEl(event.currentTarget);
   };
-  return (
-    <div
-      style={{
-        width: "35px",
-        height: "35px",
-        borderRadius: "3px"
-      }}
-      onClick={() => fileRef.current.click()}
-    >
-      {children}
-      <input
-        multiple
-        ref={fileRef}
-        onChange={onPickFile}
-        type="file"
-        style={{ visibility: "hidden" }}
-      />
-    </div>
-  );
-};
 
-const Img = ({ file, onRemove, index }) => {
-  const [fileUrl, setFileUrl] = useState(null);
-  useEffect(() => {
-    if (file) {
-      setFileUrl(URL.createObjectURL(file));
-    }
-  }, [file]);
-
-  return fileUrl ? (
-    <div style={{ position: "relative", maxWidth: "230px", maxHeight: "95px" }}>
-      <img
-        style={{
-          display: "block",
-          maxWidth: "230px",
-          maxHeight: "95px",
-          width: "auto",
-          height: "auto"
-        }}
-        alt="pic"
-        src={fileUrl}
-      />
-      {onRemove && (
-        <div
-          onClick={() => onRemove(index)}
-          style={{
-            position: "absolute",
-            right: 0,
-            top: 0,
-            width: "20px",
-            height: "20px",
-            borderRadius: "50%",
-            background: "black",
-            color: "white",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center"
-          }}
-        >
-          x
-        </div>
-      )}
-    </div>
-  ) : null;
-};
-
-const EmojiPicker = ({ onSelect }) => {
-  console.log("emoji")
-  const [show, setShow] = useState(false);
-  return (
-    <>
-      <button
-        onClick={() => setShow(oldState => !oldState)}
-        style={{
-          width: "30px",
-          height: "30px",
-          borderRadius: "4px",
-          border: "3px solid",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          background: "transparent"
-        }}
-      >
-        ej
-      </button>
-      {ReactDOM.createPortal(
-        show && <Picker onSelect={onSelect} />,
-        document.body
-      )}
-    </>
-  );
-};
-
-const Tweet = ({ tweet: { text, images } }) => (
-  <div
-    style={{
-      margin: "20px",
-      border: "1px solid grey",
-      width: "600px",
-      padding: "20px"
-    }}
-  >
-    <div>{text}</div>
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "row",
-        flexWrap: "wrap",
-        background: "fbfbfb"
-      }}
-    >
-      {images.map((img, i) => (
-        <Img key={i} file={img} index={i} />
-      ))}
-    </div>
-  </div>
-);
-
-function TweetSheet() {
-  const [text, setText] = useState("");
-  const [pics, setPics] = useState([]);
-  const textAreaRef = useRef();
-  const [tweets, setTweets] = useState([]); // array of object of shape {text: '', images: []}
-  const insertAtPos = value => {
-    const { current: taRef } = textAreaRef;
-    let startPos = taRef.selectionStart;
-    let endPos = taRef.selectionEnd;
-    setText(
-      taRef.value.substring(0, startPos) +
-        value.native +
-        taRef.value.substring(endPos, taRef.value.length)
-    );
+  const handleMenuClose = () => {
+    setAnchorEl(null);
   };
-  const onClickTweet = () => {
-    if (text) {
-      setTweets(oldState => [...oldState, { text, images: [...pics] }]);
-   
-      if(pics.length>0){
-              const form= new FormData();
-  
-      form.append("name", sessionStorage.getItem('name'));
+      const isMenuOpen = Boolean(anchorEl);
+const handlePost =() =>{
+                const form= new FormData();
+
+    form.append("name", sessionStorage.getItem('name'));
       form.append("surname", sessionStorage.getItem('surname'));
       form.append("text", text);
-      form.append("file", pics[0]);
-      console.log(form.get("file"))
-
-      axios({
+      form.append("file",file);
+       axios({
       method: 'POST',
      url: `https://longa-money.herokuapp.com/api/feed`, // First page at 0
      data:form,
@@ -174,95 +73,68 @@ function TweetSheet() {
     }).then(res =>{
        console.log(res)
  setText("");
-    setPics([]);
+    setfile(null);
     })
-    }
-    }
-   
-  };
-  return (
-    <>
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          border: "3px solid",
-          borderRadius: "5px",
-          borderColor:"rgb(0,0,160)",
-          width: "100%",
-          minHeight: "200px",
-          padding: "20px"
-        }}
-      >
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            flex: 1,
-            border: "1px solid",
-            borderRadius: "5px",
-            borderColor:"rgb(0,0,160)",
-            margin: "0px"
-          }}
-        >
-          <textarea
-            ref={textAreaRef}
-            rows={1}
-            max-rows={8}
-            value={text}
-            style={{ flex: 1, border: "none",fontSize:20}}
-            onChange={e => setText(e.target.value)}
-          />
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              flexWrap: "wrap",
-              background: "fbfbfb"
-            }}
-          >
-            {pics.map((picFile, index) => (
-              <Img
-                key={index}
-                index={index}
-                file={picFile}
-                onRemove={rmIndx =>
-                  setPics(pics.filter((pic, index) => index !== rmIndx))
-                }
-              />
-            ))}
-          </div>
-        </div>
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            alignItems: "center",
-            marginTop: "20px"
-          }}
-        >
-          <div style={{ marginRight: "20px" }}>
-            <FileInput onChange={pics => setPics(pics)}>
-              <ImgIcon />
-            </FileInput>
-          </div>
-          <div
-            style={{
-              flex: 1,
-              display: "flex",
-              flexDirection: "row",
-              alignItems: "center",
-              justifyContent: "flex-end"
-            }}
-          >
-            <button onClick={onClickTweet} style={{ fontSize: "20px",textColor:'red',backgroundColor:"#0F81C7" }}>
-              Post
-            </button>
-          </div>
-        </div>
-      </div>
       
-    </>
+}
+const handleText=(e)=>{
+  setText(e.target.value)
+}
+  const handleFile = (e)=> {
+      setfile(e.target.files[0])
+      var v=e.target.files[0];
+      console.log(v)
+      setName(v.name)
+   }
+     const renderMenu = (
+    <Menu
+      anchorEl={anchorEl}
+      anchorOrigin={{ vertical: 'right', horizontal: 'center' }}
+      id={"id"}
+      keepMounted
+      transformOrigin={{ vertical: 'right', horizontal: 'center' }}
+      open={isMenuOpen}
+      onClose={handleMenuClose}
+    >
+     <div style={{height:300,width:400}}>
+     {file &&
+
+      <img style={{height:300,width:"100%"}} src={URL.createObjectURL(file)} alt={''} />
+     }
+      <input
+          type="file"
+           onChange={handleFile}
+          style={{width:'100%'}}                
+          id="customFile"
+         /> 
+      </div> 
+      {file &&
+              <button onClick={handleMenuClose} >Add</button>
+
+      }
+    </Menu>
+  );
+  return (
+    <Paper component="form" className={classes.root}>
+      <IconButton onClick ={handleMenuOpen} className={classes.iconButton} aria-label="menu">
+        <AttachFileIcon />
+      </IconButton>
+      
+      <InputBase
+        className={classes.input}
+        multiline
+        rowsMax={7}
+        onChange={handleText}
+        placeholder="What's on your mind?"
+        inputProps={{ 'aria-label': 'search google maps' }}
+      />
+      
+      <Divider className={classes.divider} orientation="vertical" />
+      <IconButton onClick={handlePost} color="primary" className={classes.iconButton} aria-label="directions">
+        <SendIcon />
+      </IconButton>
+      {renderMenu}
+    </Paper>
   );
 }
 
@@ -278,7 +150,7 @@ export default function TweetBox() {
         flexDirection: "column"
       }}
     >
-      <TweetSheet />
+      <CustomizedInputBase />
     </div>
   );
 }

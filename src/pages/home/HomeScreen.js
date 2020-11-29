@@ -23,7 +23,10 @@ import YouTubeIcon from '@material-ui/icons/YouTube';
 import InstagramIcon from '@material-ui/icons/Instagram';
 import { red, pink, blue } from '@material-ui/core/colors';
 import FacebookIcon from '@material-ui/icons/Facebook';
-
+import DirectionsRunIcon from '@material-ui/icons/DirectionsRun';
+import circle from '../../images/circle.svg'
+import GroupIcon from '@material-ui/icons/Group';
+import ScheduleIcon from '@material-ui/icons/Schedule';
 import {
   FacebookShareButton,
   
@@ -314,6 +317,8 @@ function HomeScreenfunct(props) {
                 <ListItem>
                 {selectedPromo==='all'&&
                   <div className={'homelistdivexplore'}>
+                    <div  className={'cardsxe'}>
+
                       <ListItem>
                        <Avatar style={{ height: 80, width: 80, left: 4,top:4}}
                        src={'https://seeklogo.com/images/M/MTN-logo-459AAF9482-seeklogo.com.png'} />
@@ -325,11 +330,49 @@ function HomeScreenfunct(props) {
                          </IconButton>
                       </ListItemIcon>
                       </ListItem>
-                    
+                    </div>
+                    <div className={'rowsz'}>
+                    <div  className={'cardsx'}>
+                      <div className={'cardtext'}>Followers </div>
+                      <div> <GroupIcon style={{height:70,width:70}} /></div>
+                                            <div className={'cardtext'}>8 </div>
+
+                    </div>
+                    <div className={'cardsxc'}>
+                      <div className={'cardtext'}> Influencers </div>
+                      <div> <img src={circle} alt='' style={{height:70,width:70}}/> </div>
+                                            <div className={'cardtext'}>{item.numberOfInfluencers}</div>
+
+                    </div>
+                     <div className={'cardsxc'}>
+                      <div className={'cardtext'}> Tasks </div>
+                                                 < div className={'rowsz'}>
+
+                      <div className={'colic'} style={{marginLeft:-2}}>
+                            <FacebookIcon style={{ color: blue[400] ,width:30,height:30}} /> {item.task.facebook}
+                            </div>
+                            <div className={'colic'}>
+                            <InstagramIcon style={{ color: pink[300] ,width:30,height:30 }} />  {item.task.instagram}
+                            </div>
+                            </div>
+                                                 < div className={'rowsz'}>
+
+                                      <div className={'colic'}>
+                            <YouTubeIcon style={{ color: red[500],width:30,height:30}} />  {item.task.youtube}</div>
+                            <div className={'colic'}>
+                            <TwitterIcon style={{ color: blue[500] }}/>  {item.task.twitter}
+                            </div>
+                            </div>
+                            </div>
+
+                    </div>
+
                   </div>
                 }
                   {selectedPromo===item.campaignID&&
                   <div className={'homelistdivexplore'}>
+                                       <div className={'cardsxe'}>
+
                       <ListItem>
                        <Avatar style={{ height: 80, width: 80, left: 4,top:4}}
                        src={'https://seeklogo.com/images/M/MTN-logo-459AAF9482-seeklogo.com.png'} />
@@ -364,72 +407,87 @@ function HomeScreenfunct(props) {
                          Bid
                         </button>
                       </div>
+                    </div>
                      <div className='table'>
-                        <div className={'inputedit'}>
-                           <div className={'identih'}>ID</div>
-                            <div className={'identih2'}  >{item.campaignID}</div>
-                      </div>
-                      <div className={'inputedit'}>
-                            <div className={'identih'}>Task</div>
-                            <div className={'identih2'}> 
-                            <div className={'colic'} style={{marginLeft:-2}}>
-                            <FacebookIcon style={{ color: blue[400] }} /> {item.task.facebook}
-                            </div> 
-                            <div className={'colic'}>
-                            <InstagramIcon style={{ color: pink[300] }} />  {item.task.instagram}
+                       <div className={'rowx'}>
+                    <div  className={'cardsx'}>
+                      <div className={'cardtext'}>Followers </div>
+                      <div> <GroupIcon style={{height:70,width:70}} /></div>
+                                            <div className={'cardtext'}>{item.bids}</div>
+
+                    </div>
+                    <div className={'cardsxc'}>
+                      <div className={'cardtext'}> Influencers </div>
+                      <div> <img src={circle} alt='' style={{height:70,width:70}}/> </div>
+                                            <div className={'cardtext'}>{item.numberOfInfluencers}</div>
+
+                    </div>
+                     <div className={'cardsxc'}>
+                      <div className={'cardtext'}> Tasks </div>
+                                                 < div className={'rowx'}>
+
+                      <div className={'colic'} style={{marginLeft:-2}}>
+                            <FacebookIcon style={{ color: blue[400] ,width:30,height:30}} /> {item.task.facebook}
                             </div>
-                              <div className={'colic'}>
+                            <div className={'colic'}>
+                            <InstagramIcon style={{ color: pink[300] ,width:30,height:30 }} />  {item.task.instagram}
+                            </div>
+                            </div>
+                                                 < div className={'rowx'}>
+
+                                      <div className={'colic'}>
+                            <YouTubeIcon style={{ color: red[500],width:30,height:30}} />  {item.task.youtube}</div>
+                            <div className={'colic'}>
                             <TwitterIcon style={{ color: blue[500] }}/>  {item.task.twitter}
                             </div>
-                            <div className={'colic'}>
-                            <YouTubeIcon style={{ color: red[500] }} />  {item.task.youtube}</div>
                             </div>
-                      </div>
-                        <div className={'inputedit'}>
-                           <div className={'identih'}>Minimum Followers</div>
-                            <div className={'identihw'}  ></div>
-                      </div>
-                       <div className={'inputedit'}>
-                           <div className={'identih'}>Number of Influencers</div>
-                           <div className={'identih2'}  >{item.numberOfInfluencers}</div>
-                      </div>
-                      <div className={'inputedit'}>
-                            <div className={'identih'}>Ends in</div>
-                            <div className={'identih2'}  >{getDays(item.endDate)}</div>
-                      </div>
-                        <div className={'inputedit'}>
-                           <div className={'identih'}>Payment Time</div>
-                            <div className={'identih2'}  > 4 days after completion</div>
-                      </div>
-                      <div className={'inputedit'}>
-                            <div className={'identih'}>Description</div>
-                            <div className={'identih2'}  >{item.description}</div>
-                      </div>
-                        <div className={'inputedit'}>
-                           <div className={'identih'}>Do's</div>
-                           <div className={'identih2'}  >{item.dos}</div>
-                      </div>
-                      <div className={'inputedit'}>
-                            <div className={'identih'}>Dont's</div>
-                            <div className={'identih2'}  >{item.donts}</div>
-                      </div>
+                            </div>
+
+                    </div>
+                          <div className={'rowx'}>
+                    <div  className={'cardsx'}>
+                      <div className={'cardtext'}>Ends in </div>
+                      <div> <ScheduleIcon style={{height:70,width:70}} /></div>
+                                            <div className={'cardtext'}>{getDays(item.endDate)}</div>
+
+                    </div>
+                    <div className={'cardsxc'}>
+                      <div className={'cardtext'}> Payment Time </div>
+                      <div> <ScheduleIcon style={{height:70,width:70}}/> </div>
+                                            <div className={'cardtext'}></div>
+
+                    </div>
+                     <div className={'cardsxc'}>
+                      <div className={'cardtext'}> Payment </div>
+                                               <div> <MonetizationOnIcon style={{height:70,width:70}}/> </div>
+                                            <div className={'cardtext'}>R {item.earnings}</div>
+
+                            </div>
+
+                    </div>
+                    <div className={'rowx'}>
+                    <div  className={'cardsxd'}>
+                      <div className={'cardtext'}>Do's </div>
+                                            <div className={'cardtextb'}>{item.dos}</div>
+
+                    </div>
+                    <div className={'cardsxd'}>
+                      <div className={'cardtext'}> Dont's </div>
+                                            <div className={'cardtextb'}>{item.donts}</div>
+
+                    </div>
+                     
+                    </div>
+                     <div className={'cardsxe'}>
+                      <div className={'cardtext'}> Description</div>
+                                            <div className={'cardtextb'}>{item.description}</div>
+
+                    </div>
+                     
+                    
                   
                      </div>
-                              <div className={'line'} style={{width:'94%'}}/>
-                               <div className={'bottomdiv'} style={{width:'90%'}}>
-                        <div className={'moneyside'}>
-                          <MonetizationOnIcon  color={'primary'} style={{ height: 30, width: 30,marginLeft:20}} />
-                          <div className={'textmon'}>
-                           R {item.earnings}
-                          </div>
-                         </div>
-                          <div className={'groupside'}>
-                          <PeopleIcon  color={'primary'} style={{ marginLeft:20,height: 40, width: 30}} />
-                           <div className={'textmon'}>
-                            {item.bids}
-                          </div>
-                         </div>
-                   </div>
+                      
 
                   </div>
                 }
