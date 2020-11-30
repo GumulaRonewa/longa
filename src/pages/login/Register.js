@@ -124,7 +124,7 @@ class Register extends Component {
               localStorage.setItem('name',user.name);
 
                        console.log(res.data);
-                       this.props.history.push("/validreg");
+                       window.open("https://longamoney.groundrabbit.co.za","_self");
          
             }).catch((res) => {
                   console.log(res)
