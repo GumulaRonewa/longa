@@ -6,6 +6,7 @@ import WalletScreen from '../wallet/WalletScreen';
 import FeedScreen from '../feed/FeedScreen';
 import Settings from '../profile/Settings';
 import ProfileScreen from '../profile/ProfileScreen';
+import Notification from './Notification';
 import Rewards from '../profile/Rewards';
 import './side.css'
 const Main = () => {
@@ -21,6 +22,7 @@ const Main = () => {
      <Route path="/settings" component={Settings} />
      <Route path="/feed" component={FeedScreen} />
      <Route path="/myjobs" component={JobScreen} />
+     <Route path="/notification" component={Notification} />
   </Switch>
   </BrowserRouter>
     </div>

@@ -111,6 +111,11 @@ const useStyles = makeStyles((theme) => ({
         win.open("/myrewards", "_self");
 
 }
+    const notifications = () => {
+      var win=props.props;
+        win.open("/notification", "_self");
+
+}
     const settingscl = () => {
       var win=props.props;
         win.open("/settings", "_self");
@@ -119,6 +124,11 @@ const useStyles = makeStyles((theme) => ({
   const procl = () => {
       var win=props.props;
         win.open("/myprofile", "_self");
+
+}
+  const abouts = () => {
+      var win=props.props;
+        win.open("/aboutus", "_self");
 
 }
   const signcl = () => {
@@ -144,7 +154,7 @@ const useStyles = makeStyles((theme) => ({
       <MenuItem onClick={procl}>My Profile</MenuItem>
       <MenuItem onClick={rewardscl}>My Rewards</MenuItem>
       <MenuItem onClick={settingscl}>Settings</MenuItem>
-      <MenuItem>About Us</MenuItem>
+      <MenuItem onClick={abouts}>About Us</MenuItem>
       <MenuItem onClick={signcl}>Sign Out</MenuItem>
     </Menu>
   );
@@ -226,8 +236,8 @@ const useStyles = makeStyles((theme) => ({
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
             
-            <IconButton aria-label="show 17 new notifications" color="inherit">
-              <Badge badgeContent={17} color="secondary">
+            <IconButton onClick={notifications} aria-label="show 17 new notifications" color="inherit">
+              <Badge color="secondary">
                 <NotificationsIcon />
               </Badge>
             </IconButton>

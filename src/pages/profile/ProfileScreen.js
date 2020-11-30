@@ -30,11 +30,14 @@ const useStyles = makeStyles((theme) => ({
     flexWrap: 'wrap',
     justifyContent: 'space-around',
     overflow: 'hidden',
-    backgroundColor: theme.palette.background.paper,
+    backgroundColor:"#535353",
   },
   gridList: {
     width: "70%",
     height: 450,
+  },
+   input: {
+    color: "white"
   },
   icon: {
     color: 'rgba(255, 255, 255, 0.54)',
@@ -77,7 +80,9 @@ const StyledButton2 = withStyles({
           const [bio, setBio] = React.useState('');
               var outliner = edit ? "outlined" : "standard";
               var profile=props.profile;
-          const [file, setfile] = React.useState('https://pm1.narvii.com/6424/71de2b7b9611f0522cc2d88a04609cfdc0bc5936_00.jpg');
+          const [file, setfile] = React.useState(null);
+          const [image, setimage] = React.useState(profile.image);
+          console.log(profile.image)
           const onSub=()=>{
             var data={bio:bio,userID:sessionStorage.getItem("userId")}
           console.log(data)
@@ -97,6 +102,30 @@ const StyledButton2 = withStyles({
 
     })
           }
+               const onUpload=()=>{
+                                const form= new FormData();
+
+                form.append("userID",sessionStorage.getItem("userId"));
+      form.append("image",file);
+          
+              axios({
+      method: 'POST',
+     url: `https://longa-money.herokuapp.com/api/u/profile-pic`, // First page at 0
+     data:form,
+       headers: {
+      "Authorization": `Bearer ${sessionStorage.getItem("token")}`,
+      
+      },
+    }).then(res =>{
+       console.log(res);
+                   setEdit(!edit)
+
+
+
+    })
+          }
+            const classes = useStyles();
+
           const onEdit =()=>{
             if(!edit){
               setbutton('Cancel')
@@ -111,7 +140,8 @@ const StyledButton2 = withStyles({
             setBio(e.target.value)
           }
  const handleFile = (e)=> {
-      setfile(URL.createObjectURL(e.target.files[0]));
+      setfile(e.target.files[0]);
+      setimage(URL.createObjectURL(e.target.files[0]));
     
    } 
    var dob='';
@@ -138,27 +168,40 @@ const StyledButton2 = withStyles({
                             </StyledButton2>
                          </ListItemIcon>
                       </ListItem>
-                     <img src={file} className='imge' alt='' />
+                     <img src={image} className='imge' alt={image} />
                              {edit &&
+                        <div className={'rowsz'}>
                        <input
                          type="file"
                          accept="image/x-png,image/gif,image/jpeg"
                          onChange={handleFile}
                          id="customFile"
-                        /> }
-                    <Rating style={{marginLeft:30,marginTop:5}} readOnly value={5} />
-                         <div style={{marginTop:5,width:"70%"}} >
+
+                        />
+                               <StyledButton2 onClick={onUpload}>
+                              upload
+                            </StyledButton2>                 </div>
+
+                         }
+                    <Rating style={{marginLeft:30,marginTop:5}} readOnly value={profile.rating} />
+                      <div className={'reach'}>
+                        Reach~
+                      </div>
+                         <div style={{marginTop:5,width:"70%",color:'white'}} >
                              <TextField
                                 id="role"
                                 name="role"
                                 fullWidth
                                 variant={outliner}
                                 multiline
+
+                                style={{Color:'white'}}
                                 defaultValue={profile.bio}
                                 onChange={onBio}
                                 variant={edit?"outlined":"standard"}
                                 rows={5}
                                 InputProps={{
+                                  className: classes.input,
                                   readOnly: !edit,
                                   disableUnderline: true,
                                 }}
@@ -172,33 +215,33 @@ const StyledButton2 = withStyles({
                        <div className={'columnx'} >
                      <Tabs defaultActiveKey="posts" id="uncontrolled-tab-example">
                      <Tab eventKey="posts" title="Featured Post">
-                        <TitlebarGridList edit={edit} />
+                        <TitlebarGridList  style={{backgroundColor:"#535353"}} edit={edit} />
                       </Tab>
                       <Tab  eventKey="Profile" title="About">
                                <div   className={'tabs'}>
                   <div  className={'inputedits'}>
-                       <div className={'identi'}>Full Names:</div>
-                       <div className={'identi'}>{profile.name +" " +profile.surname}</div>
+                       <div style={{color:'white'}} className={'identi'}>Full Names:</div>
+                       <div style={{color:'white'}} className={'identi'}>{profile.name +" " +profile.surname}</div>
                   </div>
                   <div className={'inputedits'}>
-                        <div className={'identi'}>Email</div>
-                        <div className={'identi'}>{profile.email}</div>
+                        <div style={{color:'white'}} className={'identi'}>Email</div>
+                        <div style={{color:'white'}} className={'identi'}>{profile.email}</div>
                   </div>
                   <div style={{width:"100%"}}  className={'inputedits'}>
-                        <div className={'identi'}>Phone Number</div>
-                        <div className={'identi'}>{profile.phone}</div>
+                        <div style={{color:'white'}} className={'identi'}>Phone Number</div>
+                        <div style={{color:'white'}} className={'identi'}>{profile.phone}</div>
                   </div>
                 <div s className={'inputedits'}>
-                      <div className={'identi'}>Date of birth</div>
-                    <div className={'identi'}>{profile.dateOfBirth.substring(0,10)}</div>
+                      <div style={{color:'white'}} className={'identi'}>Date of birth</div>
+                    <div style={{color:'white'}} className={'identi'}>{profile.dateOfBirth.substring(0,10)}</div>
                 </div>
                 <div style={{width:"80%"}}  className={'inputedits'}>
-                       <div className={'identi'}>Gender</div>
-                         <div className={'identi'}>{profile.gender}</div>
+                       <div style={{color:'white'}} className={'identi'}>Gender</div>
+                         <div style={{color:'white'}} className={'identi'}>{profile.gender}</div>
                 </div>
                 <div style={{width:"80%",marginBottom:6}}  className={'inputedits'}>
-                        <div className={'identi'}>Country</div>
-                           <div className={'identi'}>{profile.country} </div>
+                        <div style={{color:'white'}} className={'identi'}>Country</div>
+                           <div style={{color:'white'}} className={'identi'}>{profile.country} </div>
 
                 </div>
                 
@@ -286,22 +329,14 @@ function TitlebarGridList(props) {
         </GridListTile>
         {tileData.map((tile) => (
           <GridListTile key={tile.img}>
-            <img src={tile.img} alt={tile.title} />
-            <GridListTileBar
-              title={tile.title}
-              subtitle={<span>From: {tile.author}</span>}
-              actionIcon={
-                <IconButton aria-label={`info about ${tile.title}`} className={classes.icon}>
-                  <InfoIcon />
-                </IconButton>
-              }
-            />
+           <GridListTile>
+        <button style={{width:250}} onClick={handleBankMenuOpen} className={'buttns'}>+</button>
+
+        </GridListTile>
           </GridListTile>
         ))}
         <GridListTile>
-        { props.edit &&
         <button onClick={handleBankMenuOpen} className={'buttns'}>+</button>
-      }
         </GridListTile>
         
       </GridList>

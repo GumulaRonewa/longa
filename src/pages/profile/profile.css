@@ -8,7 +8,6 @@
 .proscreen{
   display:grid;
   overflow: hidden;
-  background-color: #b3b3b3;
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -176,10 +175,11 @@ opacity: 1;
   padding-left: 4px;
   color: white;
   padding-right: 4px;
+  margin-top: 10px;
   place-items:center;
   font: normal normal normal 15px/16px Lato;
-
-  height: 59px;
+  width: 110px;
+  height: 40px;
 }
 .ident{
   margin-top: 6px;
