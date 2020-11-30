@@ -37,7 +37,12 @@ const handleRep=(e)=>{
 }
  const handlePost =() =>{
                 const form= new FormData();
-
+var use=sessionStorage.getItem('surname') +" "+sessionStorage.getItem('name');
+    console.log(use)
+    console.log("top")
+      form.append("username", use);
+      form.append("name", sessionStorage.getItem('name'));
+      form.append("surname", sessionStorage.getItem('surname'));
       form.append("userID", sessionStorage.getItem("userId"));
       form.append("postID", feeds[2]);
       form.append("text", text);
@@ -99,8 +104,7 @@ const handleRep=(e)=>{
                 <div className="user-box">
                   <Avatar
                    style={{width:40,height:40}}
-                    src={'https://pm1.narvii.com/6424/71de2b7b9611f0522cc2d88a04609cfdc0bc5936_00.jpg'}
-                    alt="R"
+                    src={'L'} alt={'L'}
                   />
                   <div>
                     <span style={{fontSize:15}}>{feeds[0]}</span>
@@ -162,18 +166,17 @@ const handleRep=(e)=>{
               }
               {rep &&
               <div>
-              {replies.map(({_id,text})=> (
+              {replies.map(({_id,text,username})=> (
               <div style={{width:"50%"}} className={'comment'}>
                <div>
                <Avatar
                     style={{width:40,height:40}}
-                    src={'https://pm1.narvii.com/6424/71de2b7b9611f0522cc2d88a04609cfdc0bc5936_00.jpg'}
-                    alt="profile-2"
+                    src={'L'} alt={'L'}
                   />
                </div>
               <div>     
-                         <p>
-                          <span>{feeds[0]}</span>
+                         <p style={{color:"black"}}>
+                          <span>{username}</span>
                           {text}</p>
 
               </div>

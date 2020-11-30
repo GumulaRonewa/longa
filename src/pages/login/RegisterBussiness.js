@@ -23,7 +23,8 @@ class RegisterBussiness extends Component {
        duration:1,
        influencers:null,
        nameAndSurname:null,
-       Budget:null,
+       followers:null,
+       budget:null,
        dos:null,
        donts:null,
        options:[{ value: 'Yes', label: 'Yes' },{ value: 'No', label: 'No' }],
@@ -68,6 +69,7 @@ class RegisterBussiness extends Component {
 
   }
   handleSubmit= (e) => {
+     console.log(this.state)
         if(this.state.duration ===null ||this.state.description ===null){
 
         }
@@ -124,7 +126,7 @@ axios({
                     <input type='text' value={this.state.email} name="email" onChange={this.handleChange}className="inputRegibox" placeholder="Email Address*" />
                     <input type='Number' value={this.state.contactNumber} name="contactNumber" onChange={this.handleChange} className="inputRegibox" placeholder="Contact Number*" />
                     <input type='text' value={this.state.campaignName} name="campaignName" onChange={this.handleChange} className="inputRegibox" placeholder="Name of Campaign" />
-                    <input type='Number' value={this.state.Budget} name="Budget" onChange={this.handleChange} className="inputRegibox" placeholder="Campaign Budget" />
+                    <input type='Number' value={this.state.Budget} name="budget" onChange={this.handleChange} className="inputRegibox" placeholder="Campaign Budget" />
                       <button onClick={this.handleContinue} className="buttons">
                      Continue
                  </button> 
@@ -142,6 +144,8 @@ axios({
                     />
                     <textarea  type='text'  value={this.state.description} name="description" onChange={this.handleChange} style={{heiht:110,fontSize: 14}} multiline className="inputRegibox" placeholder="Description of Campaign" />
                     <input value={this.state.influencers} type='Number' name="influencers" onChange={this.handleChange} className="inputRegibox" placeholder="Number of influencers needed" /> 
+                     <input type='Number' value={this.state.followers} name="followers" onChange={this.handleChange} className="inputRegibox" placeholder="Minimum number of followers" />
+                  
                      <textarea value={this.state.dos}   type='text' name="dos" onChange={this.handleChange} style={{height:110,fontSize: 14}} multiline className="inputRegibox" placeholder="Do's for influencers" />
                     <textarea  value={this.state.donts}  type='text' name="donts" onChange={this.handleChange} style={{height:110,fontSize: 14}} multiline className="inputRegibox" placeholder="Dont's for influencers" />
                      <div className='tc'>

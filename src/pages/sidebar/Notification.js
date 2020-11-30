@@ -13,11 +13,9 @@ import ListItemText from '@material-ui/core/ListItemText';
   }
   componentWillMount() {
                 var data={userID:sessionStorage.getItem("userId")}
-        console.log(data);
-
      axios({
          method: 'Get',
-         url: `https://longa-money.herokuapp.com/api/notification`, // First page at 0
+         url: `https://longa-money.herokuapp.com/api/notifications`, // First page at 0
            data:data,
 
        headers: {
@@ -35,7 +33,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 
   render(){
      return(
-          <div className={'proscreen'}>
+          <div className={'profhome'}>
           </div>
       )
   }

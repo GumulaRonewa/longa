@@ -76,6 +76,7 @@ const StyledButton2 = withStyles({
 })(Button);
   function ProfileScreenmain(props) {
           const [edit, setEdit] = React.useState(false);
+          const [changed, setchanged] = React.useState(false);
           const [buttons, setbutton] = React.useState('Edit');
           const [bio, setBio] = React.useState('');
               var outliner = edit ? "outlined" : "standard";
@@ -142,6 +143,7 @@ const StyledButton2 = withStyles({
  const handleFile = (e)=> {
       setfile(e.target.files[0]);
       setimage(URL.createObjectURL(e.target.files[0]));
+      setchanged(true);
     
    } 
    var dob='';
@@ -168,7 +170,7 @@ const StyledButton2 = withStyles({
                             </StyledButton2>
                          </ListItemIcon>
                       </ListItem>
-                     <img src={image} className='imge' alt={image} />
+                     <img src={!changed?profile.image:image} className='imge' alt={image} />
                              {edit &&
                         <div className={'rowsz'}>
                        <input

@@ -321,7 +321,7 @@ function HomeScreenfunct(props) {
 
                       <ListItem>
                        <Avatar style={{ height: 80, width: 80, left: 4,top:4}}
-                       src={'https://seeklogo.com/images/M/MTN-logo-459AAF9482-seeklogo.com.png'} />
+                       src={'L'} alt={'L'}/>
                                             <div style={{marginLeft:10,fontSize:22}}>{item.campaignName}</div>
                       <ListItemText style={{marginLeft:6}} primary={''} />
                       <ListItemIcon>
@@ -331,7 +331,7 @@ function HomeScreenfunct(props) {
                       </ListItemIcon>
                       </ListItem>
                     </div>
-                    <div className={'rowsz'}>
+                    <div className={'rowx'}>
                     <div  className={'cardsx'}>
                       <div className={'cardtext'}>Followers </div>
                       <div> <GroupIcon style={{height:70,width:70}} /></div>
@@ -375,7 +375,7 @@ function HomeScreenfunct(props) {
 
                       <ListItem>
                        <Avatar style={{ height: 80, width: 80, left: 4,top:4}}
-                       src={'https://seeklogo.com/images/M/MTN-logo-459AAF9482-seeklogo.com.png'} />
+                       src={'L'} alt={'L'} />
                                             <div style={{marginLeft:10,fontSize:22}}>{item.campaignName}</div>
 
                       <ListItemText style={{marginLeft:6}} primary={''} />

@@ -35,7 +35,11 @@ export default function Comment(props) {
   const [text, setText] = React.useState("");
   const handlePost =() =>{
                 const form= new FormData();
-
+    var use=sessionStorage.getItem('surname') +" "+sessionStorage.getItem('name');
+    console.log(use)
+    console.log("top")
+      form.append("username", use);
+      
       form.append("userID", sessionStorage.getItem("userId"));
       form.append("postID", props.id);
       form.append("text", text);
