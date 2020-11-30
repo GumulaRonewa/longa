@@ -18,8 +18,6 @@ import Sidebar2 from './Sidebar2';
 import minilogo from '../../images/minilogo.png'
 
 const useStyles = makeStyles((theme) => ({
-    toolbar: theme.mixins.toolbar,
-
   grow: {
     flexGrow: 1,
     marginTop:1,
@@ -195,7 +193,7 @@ const useStyles = makeStyles((theme) => ({
   return (
     <div>
     <div className={classes.toolbar}>
-      <AppBar position="fixed">
+      <AppBar position="fixed" style={{backgroundColor:"#121212",borderBottom:"1px solid white"}}>
         <Toolbar position="fixed">
          <div className="hider" >
           <IconButton

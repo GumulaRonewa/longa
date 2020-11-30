@@ -196,21 +196,7 @@ function JobScreenfunct(props) {
                     
                   
                      </div>
-                              <div className={'line'} style={{width:'94%'}}/>
-                               <div className={'bottomdiv'} style={{width:'90%'}}>
-                        <div className={'moneyside'}>
-                          <MonetizationOnIcon  color={'primary'} style={{ height: 30, width: 30,marginLeft:20}} />
-                          <div className={'textmon'}>
-                           R {item.campaign.earnings}
-                          </div>
-                         </div>
-                          <div className={'groupside'}>
-                          <PeopleIcon  color={'primary'} style={{ marginLeft:20,height: 40, width: 30}} />
-                           <div className={'textmon'}>
-                            {item.campaign.bids}
-                          </div>
-                         </div>
-                   </div>
+                          
 
                   </div>
                 }

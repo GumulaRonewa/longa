@@ -45,7 +45,7 @@ class Login extends Component {
       var banking=user['bankingDetails'];
       banking=banking.accountNumber;
       banking=banking==="";
-
+sessionStorage.setItem('value',0);
       sessionStorage.setItem('name',user['name']);
       sessionStorage.setItem('bankings',banking);
       sessionStorage.setItem('surname',user['surname']);

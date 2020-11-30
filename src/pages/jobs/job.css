@@ -84,8 +84,8 @@ opacity: 1;
 .jobhome{
 display:grid;
   overflow: auto;
-  background-color: white;
-  height: 100%;
+  background-color: #535353;
+  min-height: 100vh;
   width: 100%;
 }
 @media only screen and (max-width: 1025px) {

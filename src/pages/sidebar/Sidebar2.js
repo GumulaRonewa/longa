@@ -9,11 +9,9 @@ FaAt,
 } from "react-icons/fa";
 import './side.css'
 const Sidebar2 = () => {
-    const [value, setValue] = React.useState(parseInt(sessionStorage.getItem('value')));
-
-  const clicked =()=>{
-    console.log('clicked');
-    // sessionStorage.setItem('value',val)
+  const [value, setValue] = React.useState(parseInt(sessionStorage.getItem('value')));
+  const clicked =(e)=>{
+     sessionStorage.setItem('value',e.target.name)
   }
   return (
     <div style={{overflow:"hiden"}}>
@@ -21,7 +19,7 @@ const Sidebar2 = () => {
       <ul>
        
         <li style={{background: value===0?'#d3eff8':""}}>
-          <a onClick={clicked} href="/home">
+          <a onClick={clicked} name='0' href="/home">
             <FaHome className="icons" />
             <p className={'hide'}>
             Home
@@ -29,23 +27,23 @@ const Sidebar2 = () => {
           </a>
         </li>
         <li style={{background: value===1?'#d3eff8':""}} >
-          <a onClick={clicked} href="/feed">
+          <a onClick={clicked} name='1' href="/feed" >
             <FaAt className="icons" /> <p className={'hide'}> Feed</p>
           </a>
         </li>
      
         <li style={{background: value===2?'#d3eff8':""}}>
-          <a onClick={clicked} href="/Home">
+          <a onClick={clicked} name='2' href="/Home">
             <FaRegEnvelope className="icons" /> <p className={'hide'}>Message</p>
           </a>
         </li>
         <li style={{background: value===3?'#d3eff8':""}}>
-          <a onClick={clicked} href="/wallet">
+          <a onClick={clicked} name='3' href="/wallet">
             <FaWallet className="icons" /> <p className={'hide'}> Wallet </p>
           </a>
         </li>
          <li style={{background: value===4?'#d3eff8':""}}>
-          <a onClick={clicked} href="/myjobs">
+          <a onClick={clicked} name='4' href="/myjobs">
             <FaBriefcase className="icons" /> <p className={'hide'}> My Jobs </p>
           </a>
         </li>

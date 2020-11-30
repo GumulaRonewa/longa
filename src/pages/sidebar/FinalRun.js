@@ -20,7 +20,7 @@ function Branding() {
   return(
   <div className={'trends'}>
     <div className={'imagediv'}>
-      <img src={profile_picture_without_slogan} style={{height:150,width:150,boxShadow: "8px 8px 5px 5px #e6ecf0"}} />
+      <img src={profile_picture_without_slogan} style={{height:150,width:150,marginTop:40}} />
       </div>
   </div>
    )

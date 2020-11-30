@@ -56,7 +56,12 @@ padding-top: 10px;
 padding-bottom: 10px;
 font: normal normal normal 24px/25px Lato;
 color: white;
-background: #0F81C7 0% 0% no-repeat padding-box;
+background-image:
+     radial-gradient(
+      circle at top right,
+      #0F81C7 ,
+      #f06d06
+    );
 border-bottom-right-radius: 30px;
 border-bottom-left-radius: 30px;
 
@@ -141,8 +146,9 @@ opacity: 1;
 .wallethome{
   display:grid;
   overflow: auto;
-  background-color: white;
-  height: 100%;
+  background-color: #535353;
+  min-height: 100vh;
+
   width: 100%;
 }
 @media only screen and (max-width: 1025px) {

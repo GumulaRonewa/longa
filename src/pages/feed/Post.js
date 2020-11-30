@@ -1,11 +1,5 @@
 import React from "react";
-import {
-  FaComment,
-  FaRegChartBar,
-    FaHeart,
-  FaLeaf,
-  FaFlag
-} from "react-icons/fa";
+
 import Avatar from "@material-ui/core/Avatar";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import IconButton from '@material-ui/core/IconButton';
@@ -67,7 +61,7 @@ const handleRep=(e)=>{
   if(value !== 'null'){
       setTotal(1+total);
 
-   setValue('secondary');
+   setValue('fas fa-heart pink');
     axios({
       method: 'POST',
      url: `https://longa-money.herokuapp.com/api/feed/like`, // First page at 0
@@ -82,7 +76,7 @@ const handleRep=(e)=>{
     })
   }
   else{
-       setValue('');
+       setValue('fas fa-heart');
         setTotal(total-1);
 
      axios({
@@ -109,7 +103,7 @@ const handleRep=(e)=>{
                     alt="R"
                   />
                   <div>
-                    <span>{feeds[0]}</span>
+                    <span style={{fontSize:15}}>{feeds[0]}</span>
 
                   </div>
                 </div>
@@ -121,7 +115,8 @@ const handleRep=(e)=>{
                 <img
                     src={feeds[6]}
                     alt="profile"
-                    style={{width:'90%'}}
+
+                    style={{width:'90%',marginLeft:10}}
                   />
                 }
               {false &&
@@ -135,9 +130,9 @@ const handleRep=(e)=>{
                 <div className="likes-box">
                   
                   <i className="fas fa-heart pink"></i>
-                  <span className="likes-span">{feeds[4]} likes.</span>
-                  <i className="far fa-comments" />
-                  <span onClick={handleRep} className="likes-span">{feeds[5]} Comments</span>
+                  <span style={{color:'white'}} className="likes-span">{feeds[4]} likes.</span>
+                  <i className="far fa-comments" style={{color:'white'}} />
+                  <span style={{color:'white'}} onClick={handleRep} className="likes-span">{feeds[5]} Comments</span>
                 </div>
               </div>
               <div className="media-actions-container">
@@ -145,11 +140,11 @@ const handleRep=(e)=>{
                   <i onClick={handleClick} className={value}>
                     <h2 className="blue">Like</h2>
                   </i>
-                  <i onClick={handleComment} className="far fa-comments">
-                    <span>Comments</span>
+                  <i onClick={handleComment} style={{color:'white'}} className="far fa-comments">
+                    <span style={{color:'white'}}>Comments</span>
                   </i>
-                  <i className="fas fa-share">
-                    <h2>Share</h2>
+                  <i style={{color:'white'}} className="fas fa-share">
+                    <h2 style={{color:'white'}}>Share</h2>
                   </i>
                 </div>
                {comment &&

@@ -340,8 +340,7 @@ export const Content = {
     }
   `,
   HorizontalTab: styled.div`
-    margin: 30px 0 0 30px;
-    width: 93%;
+    width: 100%;
     @media screen and (max-width: 1010px) {
       width: 90%;
     }
@@ -434,7 +433,7 @@ export const Content = {
       p {
       margin-left: 10px;
       font-family: "Roboto", sans-serif;
-      color: rgba(0, 0, 0, 0.7);
+      color: rgba(255,255,255);
       font-size: 12px;
       }
     }
@@ -442,7 +441,6 @@ export const Content = {
       margin-top: 15px;
       height: auto;
       width: 100%;
-      border: 1px solid rgba(0, 0, 0, 0.3);
     }
     .profile-nav {
       width: 100%;
@@ -461,7 +459,7 @@ export const Content = {
         margin: 0;
         font-size: 11px;
         font-family: "Roboto", sans-serif;
-        color: rgba(0, 0, 0, 0.6);
+        color: white;
       }
     }
     .user-box {
@@ -478,7 +476,7 @@ export const Content = {
       margin: 10px 0 0 10px;
       font-size: 15px;
       font-family: "Roboto", sans-serif;
-      color: rgba(0, 0, 0, 0.9);
+      color: white;
     }
     .likes-box {
       margin-left: 5px;
@@ -528,7 +526,10 @@ export const Content = {
     }
     .blue {
       color: #0077b5 !important;
-    } 
+    }
+     .pink {
+      color: red !important;
+    }  
     .comments-container {
       display: flex;
       margin: 20px 10px 10px 0;

@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import './feed.css';
 import List from "@material-ui/core/List";
 import Menu from '@material-ui/core/Menu';
-import Picker, { SKIN_TONE_MEDIUM_DARK } from 'emoji-picker-react';
 import axios from "axios";
 import Post from './Post';
 import Reply from './Reply';
@@ -10,12 +9,22 @@ import Comment from './Comment';
 import TweetBox from './TweetBox';
 import Divider from "@material-ui/core/Divider";
 import { Switch, Route, Link } from "react-router-dom";
-import ListItem from "@material-ui/core/ListItem";
 import { Main, NavBar, BoxContent, Content } from "./styled";
 import 'font-awesome/css/font-awesome.min.css';
+import { makeStyles } from '@material-ui/core/styles';
 
+const useStyles = makeStyles({
+  root: {
+    background: 'white',
+   
+    color: 'white',
+    height: 2,
+    padding: '0 30px',
+  },
+});
  function Feed(props) {
-  
+    const classes = useStyles();
+
    const [mobileOpen, setMobileOpen] = React.useState(false);
    const [anchorEl, setAnchorEl] = React.useState(null);
    const [selected, setSelect] = React.useState(null);
@@ -74,9 +83,16 @@ import 'font-awesome/css/font-awesome.min.css';
      return(
         <div className={'feedhome'}>
                  <TweetBox/>
+                                                    <Divider style={{marginTop:10}} className={classes.root}/>
+
                       <Content.HorizontalTab>
                {feed.map(({_id,text,username,likes,comments,url})=> (
-                  <Post feed={[username,text,_id,likes.includes(sessionStorage.getItem("userId")),likes.length,comments.length,url,comments]} window={props.window}/>
+                <div>
+                  <Post style={{paddingTop:10}} feed={[username,text,_id,likes.includes(sessionStorage.getItem("userId")),likes.length,comments.length,url,comments]} window={props.window}/>
+                                                    <Divider className={classes.root}/>
+                                                    <Divider/>
+                </div>
+
               ))}
 
         </Content.HorizontalTab>
@@ -137,7 +153,7 @@ import 'font-awesome/css/font-awesome.min.css';
                     </div>
 
               ))}
-
+ 
                  </List>
                 
                
