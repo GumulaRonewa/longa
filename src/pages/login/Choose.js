@@ -125,7 +125,7 @@ const   handleInfluencer = () => {
 class Mobile extends React.Component{
   render(){
     return(
-  <AwesomeSlider animation="cubeAnimation" mobileTouch={false} cssModule={AwesomeSliderStyles} fillParent ={true}>
+  <AwesomeSlider animation="cubeAnimation" mobileTouch={true} cssModule={AwesomeSliderStyles} fillParent ={true}>
     <div>
      <Influencers window={window} />
 
