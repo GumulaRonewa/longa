@@ -280,8 +280,9 @@ margin-top: 20px;
 height: auto;
 display: flex;
 flex-direction: column;
+padding-right:10px;
 margin-right: 50px;
-margin-left: 40px;
+margin-left: 20px;
 box-shadow: 0 0 5px 5px #00000029;
 
 background: #b3b3b3 0% 0% no-repeat padding-box;
