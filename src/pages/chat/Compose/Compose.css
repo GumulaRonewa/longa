@@ -1,11 +1,10 @@
 .compose {
   padding: 10px;
   display: flex;
-  align-items: center;
   background: white;
   border-top: 1px solid #eeeef1;
   position: fixed;
-  width: calc(100% - 20px);
+  width: 50%;
   bottom: 0px;
 }
 
@@ -16,7 +15,16 @@
     backdrop-filter: blur(20px);
   }
 }
-
+@media only screen and (max-width: 1025px) {
+  .compose{
+    width: 82%;
+  }
+}
+ @media only screen and (max-width: 917px) {
+  .compose{
+    width: 98%;
+  }
+}
 .compose-input {
   flex: 1;
   border: none;

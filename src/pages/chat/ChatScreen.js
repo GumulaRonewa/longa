@@ -1,14 +1,9 @@
 import React, { Component } from "react";
 import './chat.css';
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
-import Avatar from "@material-ui/core/Avatar";
-import ListItemText from "@material-ui/core/ListItemText";
-import TextField from '@material-ui/core/TextField';
-import EmojiEmotionsOutlinedIcon from '@material-ui/icons/EmojiEmotionsOutlined';
-import AttachFileOutlinedIcon from '@material-ui/icons/AttachFileOutlined';
-import SendIcon from '@material-ui/icons/Send';
-import Messenger from './Messenger';
+import MessageList from './MessageList';
+
+import ConversationList from './ConversationList';
+import { Switch, Route, Link } from "react-router-dom";
 
 export default class ChatScreen extends Component {
    constructor(props) {
@@ -25,12 +20,22 @@ export default class ChatScreen extends Component {
   render(){
   	 return(
   	 	  <div className={'chathome'}>
-           <div className={'chatbox'}>
-             <div className={'chatround'}>
-                <p className={'headertext'}>Messages</p>
-             </div>
-             <Messenger />        
-            </div>
+             <Switch>
+              <Route
+                exact
+                path="/chat"
+                render={(props) => (
+                  <ConversationList/>
+                )}
+              />
+              <Route
+                exact
+                path="/chat/:id"
+                render={(props) => (
+                  <MessageList/>
+                )}
+              />
+         </Switch>
   	 	   </div>
   	 	)
   }

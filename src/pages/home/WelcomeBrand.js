@@ -28,7 +28,11 @@ export default class WelcomeBrand extends Component {
         <div className="WelcomeBox">
         <div className="WelcomeleftBox">
           <div className="bgBlue">
+                   <button onClick={()=>{
+                    window.open("/","_self")
+                   }} style={{backgroundColor:"transparent",width:24,marginLeft:20,height:240}}>
                     <img style={{height:230,width:230,marginLeft:20}} src={profile_picture_without_slogan} alt="l" />
+                    </button>
 
           </div>
 
@@ -36,8 +40,14 @@ export default class WelcomeBrand extends Component {
         <div className="WelcomerightBox">
            <div className="bgWhite">
               <div>
-                <div className="welcometext">Thank you for your submission we will be in touch with you soon </div>
+                <div className="welcometext">Thank you for your submission, we will be in touch with you soon. </div>
                </div>
+               <div style={{marginLeft:"60%",marginTop:"5%"}}>
+                 <a className="welcometext2"  href={'/registerbrands'}>
+                 Add another Campaign.
+                 </a>
+               </div>
+
           </div>
         </div>
       </div>

@@ -33,14 +33,8 @@ class Choose extends Component {
 
   
            <div className='hue' >
-                                 <a href={'/aboutus'} style={{marginTop:"-18%",marginLeft:"-85%",fontSize:18,color:"white"}}>About Us</a>
-
-            <div className="brandtext" style={{marginTop:-100}}>
-              Brands
-            </div>
-            <button onClick={this.handleBrands} style={{marginTop:20}} className="brandbttn">
-             Start 
-            </button>
+                                 <a href={'/aboutus'} style={{marginTop:"-78%",marginLeft:"-82%",fontSize:26,color:"white"}}>About Us</a>
+          
             </div>
 
           </div>
@@ -49,13 +43,27 @@ class Choose extends Component {
          <div className="imageChooseRight">
           <div className='hue2' >
                   <img src={notag} style={{height:190,width:250,marginTop:-90,marginLeft:"-100%"}} alt={'L'} />
-
-            <div className="brandtext"   style={{marginTop:-230}}>
+           <div style={{marginLeft:"-100%",display:'flex',flexDirection:"row"}}>
+            <div className="brandtext"  style={{marginLeft:"-30%"}}>
+              Brands
+            </div>
+            <div className="brandtext" style={{marginLeft:"65%"}}>
               Influencers
             </div>
-            <button onClick={this.handleInfluencer} style={{marginTop:-60}}className="brandbttnwhite">
+            </div>
+            
+            <div style={{marginLeft:"-100%",display:'flex',flexDirection:"row"}}>
+            <div>
+            <button onClick={this.handleBrands} style={{marginLeft:"-100%"}} className="brandbttn">
+             Start 
+            </button>
+            </div>
+            <div>
+            <button onClick={this.handleInfluencer} style={{marginLeft:"200%"}}className="brandbttnwhite">
              Start
             </button>
+            </div>
+            </div>
             </div>
           </div>
           </div>
@@ -125,7 +133,7 @@ const   handleInfluencer = () => {
 class Mobile extends React.Component{
   render(){
     return(
-  <AwesomeSlider animation="cubeAnimation" mobileTouch={false} cssModule={AwesomeSliderStyles} fillParent ={true}>
+  <AwesomeSlider animation="cubeAnimation" mobileTouch={true} cssModule={AwesomeSliderStyles} fillParent ={true}>
     <div>
      <Influencers window={window} />
 
