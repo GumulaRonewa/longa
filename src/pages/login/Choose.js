@@ -36,6 +36,7 @@ class Choose extends Component {
                     About Us
                   </a>
 
+<<<<<<< HEAD
                   <div className="brandtext" style={{ marginTop: -100 }}>
                     Brands
                   </div>
@@ -48,6 +49,12 @@ class Choose extends Component {
                   </button>
                 </div>
               </div>
+=======
+  
+           <div className='hue' >
+                                 <a href={'/aboutus'} style={{marginTop:"-78%",marginLeft:"-82%",fontSize:26,color:"white"}}>About Us</a>
+          
+>>>>>>> 96c949bdea6afd86d3cef00be7905576d6d316cd
             </div>
             <div className="rightBoxChoose">
               <div className="imageChooseRight">
@@ -63,6 +70,7 @@ class Choose extends Component {
                     alt={"L"}
                   />
 
+<<<<<<< HEAD
                   <div className="brandtext" style={{ marginTop: -230 }}>
                     Influencers
                   </div>
@@ -76,6 +84,37 @@ class Choose extends Component {
                 </div>
               </div>
             </div>
+=======
+          </div>
+        </div>
+        <div className="rightBoxChoose">
+         <div className="imageChooseRight">
+          <div className='hue2' >
+                  <img src={notag} style={{height:190,width:250,marginTop:-90,marginLeft:"-100%"}} alt={'L'} />
+           <div style={{marginLeft:"-100%",display:'flex',flexDirection:"row"}}>
+            <div className="brandtext"  style={{marginLeft:"-30%"}}>
+              Brands
+            </div>
+            <div className="brandtext" style={{marginLeft:"65%"}}>
+              Influencers
+            </div>
+            </div>
+            
+            <div style={{marginLeft:"-100%",display:'flex',flexDirection:"row"}}>
+            <div>
+            <button onClick={this.handleBrands} style={{marginLeft:"-100%"}} className="brandbttn">
+             Start 
+            </button>
+            </div>
+            <div>
+            <button onClick={this.handleInfluencer} style={{marginLeft:"200%"}}className="brandbttnwhite">
+             Start
+            </button>
+            </div>
+            </div>
+            </div>
+          </div>
+>>>>>>> 96c949bdea6afd86d3cef00be7905576d6d316cd
           </div>
         </div>
         <div className={"smalldev"}>
@@ -162,6 +201,18 @@ function Influencers(props) {
           </div>
         </div>
       </div>
+<<<<<<< HEAD
+=======
+  )
+}
+class Mobile extends React.Component{
+  render(){
+    return(
+  <AwesomeSlider animation="cubeAnimation" mobileTouch={true} cssModule={AwesomeSliderStyles} fillParent ={true}>
+    <div>
+     <Influencers window={window} />
+
+>>>>>>> 96c949bdea6afd86d3cef00be7905576d6d316cd
     </div>
   );
 }

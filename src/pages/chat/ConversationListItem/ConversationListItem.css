@@ -18,14 +18,15 @@
 }
 
 .conversation-title {
-  font-size: 14px;
+  font-size: 18px;
   font-weight: bold;
   text-transform: capitalize;
   margin: 0;
 }
 
 .conversation-snippet {
-  font-size: 14px;
+  font-size: 18px;
+  width: 100%;
   color: #888;
   margin: 0;
 }

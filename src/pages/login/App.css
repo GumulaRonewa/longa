@@ -430,9 +430,56 @@
   color: #ffffff;
   opacity: 1;
 }
+<<<<<<< HEAD
 .hue {
   background-color: rgba(0, 0, 233, 0.3);
   width: 100%;
+=======
+.brandbttn{
+
+width: 149px;
+height: 44px;
+color: white;
+background: #C70F0F 0% 0% no-repeat padding-box;
+border-radius: 10px;
+opacity: 1;
+}
+.brandbttnwhite{
+
+width: 149px;
+height: 44px;
+color: #C70F0F;
+
+background: white 0% 0% no-repeat padding-box;
+border-radius: 10px;
+opacity: 1;
+}
+.brandtext{
+  
+width: 317px;
+height: 96px;
+margin-top: -210px;
+text-align: left;
+font: normal normal 900 80px/96px Lato;
+letter-spacing: 0px;
+color: #FFFFFF;
+opacity: 1;
+}
+.brandtext2{
+  
+width: 317px;
+height: 96px;
+margin-top: 100px;
+text-align: left;
+font: normal normal 900 80px/96px Lato;
+letter-spacing: 0px;
+color: #FFFFFF;
+opacity: 1;
+}
+.hue{
+   background-color: rgba(0,0,233,0.3);
+ width: 100%;
+>>>>>>> 96c949bdea6afd86d3cef00be7905576d6d316cd
   height: 100%;
   display: grid;
   place-items: center;

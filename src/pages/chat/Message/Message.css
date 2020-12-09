@@ -14,8 +14,10 @@
 }
 
 .message .bubble-container {
-  font-size: 14px;
+  font-size: 19px;
   display: flex;
+    border-radius: 14px 14px 14px 0;
+
 }
 
 .message.mine .bubble-container {

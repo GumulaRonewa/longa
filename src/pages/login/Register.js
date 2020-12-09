@@ -118,10 +118,28 @@ class Register extends Component {
     this.setState({ load: true });
 
     if (formValid(this.state.formErrors, user) && this.state.check) {
+<<<<<<< HEAD
       axios({
         method: "POST",
         url: `http://localhost:5000/api/user/register`,
         data: user,
+=======
+        
+         axios({
+            method: "POST",
+            url: `https://longa-money.herokuapp.com/api/user/register`,
+             data: user,
+             }).then((res) => {
+              localStorage.setItem('name',user.name);
+
+                       console.log(res.data);
+                       window.open("https://longamoney.groundrabbit.co.za","_self");
+         
+            }).catch((res) => {
+                  console.log(res)
+                    this.setState({load: false });
+
+>>>>>>> 96c949bdea6afd86d3cef00be7905576d6d316cd
       })
         .then((res) => {
           localStorage.setItem("name", user.name);
@@ -244,6 +262,7 @@ class Register extends Component {
                   </div>
                 </div>
               </div>
+<<<<<<< HEAD
               <button onClick={this.handleLogin} className="buttonsreg">
                 {this.state.load && (
                   <img src={loading} className="iconSign" alt="b" />
@@ -253,6 +272,56 @@ class Register extends Component {
                 Submit
               </button>
             </div>
+=======
+              <div className="RegBox">
+                 <div className="logininput">
+                    <input type='text' name={'name'} onChange={this.handleChange} className="inputbox" placeholder=" Name" />
+                    <input type='text' name={'surname'} onChange={this.handleChange} className="inputRegibox" placeholder="Surname" /> 
+                       <StyledTextField
+                       helperText="Select your Date of Birth"
+                        name="dob"
+                        id="dob"
+                        type="date"
+                        defaultValue="Birth"
+                         onChange={this.handleChange}
+                        className={"inputRegibox"}
+                        InputLabelProps={{
+                          shrink: true,
+                        }}
+                      />
+                    <input type='text' name={'email'}  onChange={this.handleChange} className="inputRegibox" placeholder="Email Address" />
+                    <input type='password' name={'password'}  onChange={this.handleChange} className="inputRegibox" placeholder="Password" />
+                    <input type='password'  name={'cpassword'}  onChange={this.handleChange} className="inputRegibox" placeholder="Confirm Password" />
+                     {formErrors.cpassword.length >= 0 && (
+                         <span className="errorMessage"> {formErrors.cpassword}</span>
+                       )}
+                       { !this.state.check && this.state.submit &&(
+                         <span className="errorMessage"> Error</span>
+                       )}
+                    <div className='tc'>
+                      <Checkbox   onChange={this.handleCheck}/>
+                      <div  style={{marginTop:9,color:"black"}}> By Signing up you agree with our 
+                      <a href="/useragreement" target='_blank' style={{marginTop:10,color:"black",textDecoration:'underline'}}> User Agreement </a> 
+                        and
+                      <a href="/privacy" target='_blank' style={{marginTop:10,color:"black",textDecoration:'underline'}}> Privacy policy </a>
+                       </div>
+                    </div>
+                 </div>
+                 <button onClick={this.handleLogin} className="buttonsreg">
+                   {this.state.load &&
+                     <img src={loading} className='iconSign' alt="b"/>
+                 
+                   }
+                   {!this.state.load &&
+                      <SendIcon className='iconSign' />
+                   }
+                   <p style={{color:'transparent'}}> e</p>
+                     Submit
+                 </button>
+                 
+              </div>
+               
+>>>>>>> 96c949bdea6afd86d3cef00be7905576d6d316cd
           </div>
         </div>
       </div>

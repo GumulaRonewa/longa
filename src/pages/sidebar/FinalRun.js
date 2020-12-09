@@ -11,6 +11,8 @@ import Register from '../login/Register'
 import Reset from '../login/Reset'
 import Forgot from '../login/Forgot'
 import AboutUs from '../login/AboutUs'
+import Privacy from '../login/Privacy'
+import Agreement from '../login/Agreement'
 import RegisterBussiness from '../login/RegisterBussiness'
 import Conformation from '../home/Conformation'
 import WelcomeBrand from '../home/WelcomeBrand'
@@ -56,6 +58,8 @@ function FinalRun1(){
 
          <Route path="/registerbrands" component={RegisterBussiness} />
          <Route exact path="/register" component={Register} />
+         <Route exact path="/privacy" component={Privacy} />
+         <Route exact path="/useragreement" component={Agreement} />
           <Route exact path="/aboutus" component={AboutUs} />
           <Route exact path="/forgot" component={Conformation} />
           <Route exact path="/Reset" component={Reset} />
@@ -77,7 +81,8 @@ export default class FinalRun extends React.Component {
       window.location.pathname !== "/" &&
       window.location.pathname !== "/forgot" &&
       window.location.pathname !== "/aboutus" &&
-      window.location.pathname !== "/feed" &&
+      window.location.pathname !== "/privacy" &&
+      window.location.pathname !== "/useragreement" &&
       window.location.pathname !== "/reset" &&
       window.location.pathname !== "/validreg" &&
       window.location.pathname !== "/links" &&
