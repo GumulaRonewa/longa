@@ -74,7 +74,7 @@ function FinalRun1(){
          <Route exact path="/privacy" component={Privacy} />
          <Route exact path="/useragreement" component={Agreement} />
           <Route exact path="/aboutus" component={AboutUs} />
-          <Route exact path="/forgot" component={Conformation} />
+          <Route exact path="/forgot" component={Forgot} />
           <Route exact path="/Reset" component={Reset} />
           <Route  path="/" component={Run} />
         

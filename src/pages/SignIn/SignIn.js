@@ -8,8 +8,8 @@ const SignIn = () => {
   return (
     <Container>
       <Wrapper>
-        <Sidebar />
         <Main />
+       <Sidebar />
       </Wrapper>
     </Container>
   );

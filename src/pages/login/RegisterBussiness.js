@@ -70,19 +70,7 @@ class RegisterBussiness extends Component {
   }
   handleSubmit= (e) => {
      console.log(this.state)
-        if(this.state.duration ===null ||this.state.description ===null){
-
-        }
-        else{
-
-axios({
-      method: "POST",
-      url: `https://longa-money.herokuapp.com/api/brand/new`,
-      data: this.state,
-      }).then((res) => {     this.props.history.push("/wb");
-  }
-      )
-        }
+        
 
     }
   render() {

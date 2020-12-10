@@ -5,8 +5,8 @@ const Main = () => {
   return (
     <Container>
       <h1>
-        Join The <br />
-        Team
+        Welcome <br />
+        Back
       </h1>
     </Container>
   );

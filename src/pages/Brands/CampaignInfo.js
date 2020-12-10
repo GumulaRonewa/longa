@@ -13,6 +13,7 @@ const CampaignInfo = ({ formData, setForm, navigation }) => {
     descriptionofCampaign,
     duration,
     influencers,
+    dos,donts
   } = formData;
   
   return (
@@ -50,6 +51,18 @@ const CampaignInfo = ({ formData, setForm, navigation }) => {
           onChange={setForm}
           value={descriptionofCampaign}
           name="descriptionofCampaign"
+        />
+        <TextArea
+          placeholder="Campaign Do's"
+          onChange={setForm}
+          value={dos}
+          name="dos"
+        />
+        <TextArea
+          placeholder="Campaign Dont's"
+          onChange={setForm}
+          value={donts}
+          name="donts"
         />
         <Duration>Duration</Duration>
         <DateRange change={setForm} name={"duration"} val={duration} />
