@@ -19,7 +19,7 @@ export default function ConversationList(props) {
           return {
             photo: result.picture.large,
             name: `${result.name.first} ${result.name.last}`,
-            text: 'Hello world! This is a long message that is are we g d dvdf dt  needs to be truncated .'
+            text: 'Hello world! This is a long message that needs to be truncated.'
           };
         });
         setConversations([...conversations, ...newConversations])
@@ -28,17 +28,22 @@ export default function ConversationList(props) {
 
     return (
       <div className="conversation-list">
-      
+        <Toolbar
+          title="Messenger"
+          leftItems={[
+            <ToolbarButton key="cog" icon="ion-ios-cog" />
+          ]}
+          rightItems={[
+            <ToolbarButton key="add" icon="ion-ios-add-circle-outline" />
+          ]}
+        />
         <ConversationSearch />
-        <div style={{color:"transparent"}}>fff</div>
         {
           conversations.map(conversation =>
-          <a href={`chat/${conversation.name}`} style={{textDecoration:"none"}}>
             <ConversationListItem
               key={conversation.name}
               data={conversation}
             />
-          </a>
           )
         }
       </div>

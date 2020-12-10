@@ -135,6 +135,8 @@ constructor(props) {
   };
 
   render(){
+            const { formErrors } = this.state;
+
     return (
     <Container>
       <LogoWrapper>
@@ -149,6 +151,9 @@ constructor(props) {
         <Input name={'cpassword'} type="password" placeholder="Confirm Password" onChange={this.handleChange}/>
         <DoB>Date of Birth*</DoB>
         <DateSelect name={'dob'} state={this}/>
+        {formErrors.cpassword.length >= 0 && (
+                         <span className="errorMessage"> {formErrors.cpassword}</span>
+                       )}
         {this.state.load &&(
             <Loading style={{position:'absolute',zIndex:2}} loading={false} />
           )}

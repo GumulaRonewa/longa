@@ -15,7 +15,7 @@ export default function Message(props) {
     return (
       <div className={[
         'message',
-        `${isMine ? 'mine' : ''}`,
+        `${isMine ? 'mine' : 'not'}`,
         `${startsSequence ? 'start' : ''}`,
         `${endsSequence ? 'end' : ''}`
       ].join(' ')}>

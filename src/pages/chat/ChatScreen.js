@@ -25,7 +25,7 @@ export default class ChatScreen extends Component {
                 exact
                 path="/chat"
                 render={(props) => (
-                  <ConversationList/>
+                  <MessageList/>
                 )}
               />
               <Route

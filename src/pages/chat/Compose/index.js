@@ -1,3 +1,4 @@
+  
 import React, { useRef, useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 import { Picker } from "emoji-mart";
@@ -37,24 +38,66 @@ const useStyles = makeStyles((theme) => ({
 
  export default function Compose() {
   const classes = useStyles();
- 
+    const [file, setfile] = React.useState(null);
+            const [text, setText] = React.useState('');
+   var id=sessionStorage.getItem("userId")
+  const handleText =(e)=>{
+            setText(e.target.value)
+          }
+            const handlePost = () => {
+    const form = new FormData();
+
+    form.append("userID",id);
+    form.append("senderID", id);
+    form.append("text", text);
+
+    axios({
+      method: "POST",
+      url: `https://longa-money.herokuapp.com/api/messages`, // First page at 0
+      data: form,
+      headers: {
+        Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+      },
+    }).then((res) => {
+      console.log(res);
+      setText("");
+
+      setfile(null);
+    });
+
+  };
+  const handleFile = (e) => {
+    setfile(e.target.files[0]);
+   
+
+  };
   return (
     <div className={'compose'}>
     <Paper component="form" className={classes.root}>
-      <IconButton className={classes.iconButton} aria-label="menu">
-        <AttachFileIcon />
-      </IconButton>
-      
+      <IconButton>
+          <input type="file"
+          accept="image/x-png,image/gif,image/jpeg,video/mp4,video/x-m4v,video/*"
+          onChange={handleFile}
+          style={{ width:40,color:'transparent',backgroundColor:"transparent",opacity:0 }}
+          id="customFile" />
+            <AttachFileIcon style={{marginLeft:-25}} />
+            
+          </IconButton>
+       {file &&
+          <img src={URL.createObjectURL(file)} style={{width:40,height:40}} alt={'r'} />
+        }
       <InputBase
         className={classes.input}
+        onChange={handleText}
         multiline
+        value={text}
         rowsMax={7}
-        placeholder="What's on your mind?"
+        placeholder="Type a message"
         inputProps={{ 'aria-label': 'search google maps' }}
       />
       
       <Divider className={classes.divider} orientation="vertical" />
-      <IconButton color="primary" aria-label="directions">
+      <IconButton onClick={handlePost} color="primary" aria-label="directions">
         <SendIcon />
       </IconButton>
     </Paper>

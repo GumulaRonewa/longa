@@ -1,8 +1,8 @@
 .toolbar {
   display: flex;
   align-items: center;
-
-  background-color: white;
+  min-height: 40px;
+  background-color: #007aff;
   font-weight: 500;
   border-bottom: 1px solid #eeeef1;
 

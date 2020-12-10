@@ -25,9 +25,6 @@ export default function Messenger(props) {
           ]}
         /> */}
 
-        <div className="scrollable sidebar">
-          <ConversationList />
-        </div>
 
         <div className="scrollable content">
           <MessageList />
