@@ -76,7 +76,6 @@ function HomeScreenfunct(props) {
          const [bids, setBids] = React.useState([]);
      var window=props.window;
        window=window.location;
-      var width=props.window['innerWidth'];
       var href=window.href;
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [anchorEl2, setAnchorEl2] = React.useState(null);
@@ -128,7 +127,6 @@ function HomeScreenfunct(props) {
  
    const handleBank=()=>{
           var data={bankName:name,branchCode:branch,accountNumber:number,accountType:type,userID:sessionStorage.getItem("userId")}
-          console.log(data)
               axios({
       method: 'POST',
      url: `https://longa-money.herokuapp.com/api/u/settings/banking`, // First page at 0
@@ -140,7 +138,6 @@ function HomeScreenfunct(props) {
     }).then(res =>{
               handleBid();
 
-       console.log(res)
 
     })
   }
@@ -153,7 +150,8 @@ function HomeScreenfunct(props) {
     setAnchorEl(event.currentTarget);
   };
    const handleBankMenuOpen = (event) => {
-    if(sessionStorage.getItem("bankings")==="true"){
+
+        if(sessionStorage.getItem("bankings")==="true"){
           setAnchorEl2(event.currentTarget);
 
     }
@@ -164,6 +162,12 @@ function HomeScreenfunct(props) {
 
    const handlePayment = (event) => {
      setPayment(!payment)
+  };
+   const handleSkip = (event) => {
+            handleBid();
+                 setAnchorEl2(null);
+     
+
   };
    const handleMomo1 = (event) => {
      setMomo(!MoMo)
@@ -209,14 +213,15 @@ function HomeScreenfunct(props) {
 
     <Menu
       anchorEl={anchorEl2}
-      anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+      anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
       id={'bank'}
       keepMounted
-      transformOrigin={{ vertical: 'top', horizontal: 'center' }}
+            transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+
       open={isMenuOpen2}
       onClose={handleMenuBClose}
     >
-     <div style={{height:400,width:300}}>
+     <div style={{height:400,width:320, background: 'rgba(250,250,250,.5)'}} className="overlay">
      { !payment && !MoMo &&
       <div>
          <StyledButton onClick={handlePayment} >
@@ -225,25 +230,25 @@ function HomeScreenfunct(props) {
          <StyledButton  onClick={handleMomo1} style={{top:10}} >
            Add MoMo Wallet
          </StyledButton >
-         <StyledButton sonClick={handlePayment} style={{top:90}} >
+         <StyledButton onClick={handleSkip} style={{top:90}} >
            Skip
          </StyledButton >
          </div>
        }
          {payment  &&
           <div>
-          <div style={{fontSize:20}}>
+          <div style={{fontSize:20,paddingLeft:10,paddingRight:10}}>
              Longa Money will use the bank account information below to ensure you receive payment for Campaings you participate in. Make sure the details below are correct and up to date. These details are stored securely in our system and will never be shared with third parties.
             </div>
-         <p style={{ "font-size": "18px", paddingLeft: 3 }}>Bank Name*:</p>
+         <p style={{ "font-size": "18px", paddingLeft: 10 }}>Bank Name*:</p>
          <TextField  onChange={handleChange} variant="outlined" name={'Bn'} style={{left:10,right:10,width:280}}/>
-         <p style={{ "font-size": "18px", paddingLeft: 3 }}> Account Number*:</p>
+         <p style={{ "font-size": "18px", paddingLeft: 10 }}> Account Number*:</p>
          <TextField onChange={handleChange} variant="outlined" name="accn" style={{left:10,right:10,width:280}}/>
-         <p style={{ "font-size": "18px", paddingLeft: 3 }}>Account Type*:</p>
+         <p style={{ "font-size": "18px", paddingLeft:  10}}>Account Type*:</p>
          <TextField onChange={handleChange} variant="outlined"  name="aty"style={{left:10,right:10,width:280}}/>
-         <p style={{ "font-size": "18px", paddingLeft: 3 }}>Branch Code*:</p>
+         <p style={{ "font-size": "18px", paddingLeft: 10 }}>Branch Code*:</p>
          <TextField onChange={handleChange} variant="outlined"  name="bc"style={{left:10,right:10,width:280}}/>
-         <StyledButton onClick={handleBid} style={{top:10,bottom:10}} >
+         <StyledButton onClick={handleBank} style={{top:10,bottom:10}} >
            Submit
          </StyledButton >
          <h3 style={{color:"transparent"}}>function dfffffff</h3>
@@ -251,7 +256,7 @@ function HomeScreenfunct(props) {
          }
          { MoMo &&
             <div>
-            <p style={{ "font-size": "18px", paddingLeft: 3 }}>Momo Number*:</p>
+            <p style={{ "font-size": "18px", paddingLeft: 10 }}>Momo Number*:</p>
             <TextField  onChange={handleChange} variant="outlined" name={'contactNumber'} style={{left:10,right:10,width:280}}/>
              <StyledButton onClick={handleMomoadd} style={{top:10,bottom:10}} >
            Submit
@@ -272,6 +277,7 @@ function HomeScreenfunct(props) {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
+    <div className={"rowsz"}>
               <MenuItem>
      <WhatsappShareButton url={`${href}/${selectedPromo}`}>
           <SocialIcon network="whatsapp" />
@@ -288,7 +294,7 @@ function HomeScreenfunct(props) {
         <SocialIcon network="facebook" />
       </FacebookShareButton>
       </MenuItem>
-     
+     </div>
     </Menu>
   );
   const handleExpandButtonClick = (key,location) => () =>{
@@ -378,9 +384,8 @@ function HomeScreenfunct(props) {
                        src={'L'} alt={'L'} />
                                             <div style={{marginLeft:10,fontSize:22}}>{item.campaignName}</div>
 
-                      <ListItemText style={{marginLeft:6}} primary={''} />
                       <div className={'large'} >
-                      <ListItemIcon>
+                      <ListItemIcon style={{marginLeft:-20}}>
                          <button onClick={handleShareMenuOpen} className="buttonsexpandblue"  >
                            Share
                          </button>
@@ -393,7 +398,7 @@ function HomeScreenfunct(props) {
                       </div>
                       <ListItemIcon>
                          <IconButton onClick={handleExpandButtonClick(item,2)}  className={selectedPromo === item.campaignID ? clsx(classes.expand, {[classes.expandOpen]: expanded,}):'empty'}  >
-                        <ArrowForwardIosIcon  style={{ marginLeft:5,height: 40, width: 30}}/>
+                        <ArrowForwardIosIcon  style={{ marginLeft:-15,height: 40, width: 30}}/>
                          </IconButton>
                       </ListItemIcon>
                       </ListItem>

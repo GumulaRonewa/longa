@@ -16,6 +16,13 @@
     box-shadow: 2px 2px  2px 2px #888888;
 
 }
+.overlay {
+ 
+  width: 100%;
+  height: 100%;
+  background: rgba(250,250,250,.5);
+
+}
 .bottomdiv{
     display:flex;
     flex-direction: row;
@@ -185,8 +192,8 @@ margin-top: 20px;
  background-image:
      radial-gradient(
       circle at top right,
-      yellow,
-      #f06d06
+      #0F81C7,
+      #0F81C7
     );
 }
 .cardsxd{
@@ -204,8 +211,8 @@ margin-top: 20px;
  background-image:
      radial-gradient(
       circle at top right,
-      yellow,
-      #f06d06
+      #0F81C7,
+      #0F81C7
     );
 }
 .cardsxe{
@@ -224,7 +231,7 @@ margin-top: 20px;
      radial-gradient(
       circle at top right,
       #0F81C7,
-      orange
+      #0F81C7
     );
 }
 .rowsz{
@@ -246,7 +253,7 @@ margin-top: 20px;
      radial-gradient(
       circle at top right,
       #0F81C7,
-      orange
+      #0F81C7
     );
 }
 .cardsxc{
@@ -263,16 +270,19 @@ margin-top: 20px;
  background-image:
      radial-gradient(
       circle at top right,
-      blue,
-      #f06d06
+      #0F81C7,
+      #0F81C7
     );
 }
 .cardtext{
   font: normal normal normal 23px/30px Lato;
+  margin-left: 10px;
 
 }
 .cardtextb{
   font: normal normal normal 18px/30px Lato;
+    margin-left: 14px;
+
 
 }
 .homelistdivexplore{
@@ -284,7 +294,7 @@ margin-right: 50px;
 margin-left: 40px;
 box-shadow: 0 0 5px 5px #00000029;
 
-background: #b3b3b3 0% 0% no-repeat padding-box;
+background: white 0% 0% no-repeat padding-box;
 padding-bottom: 10px;
 
 

@@ -50,14 +50,14 @@ export default class WalletScreen extends Component {
                  Total Amount<br/><br/>
                   R {this.state.total}
                 </div>
-             <List>
+             <List style={{marginTop:"-34%"}}>
                          {this.state.wallet.map((item)=> (
-                  <div className={'walletlistdiv'}>
+                  <div className={'cardsxe'}>
 
                 <ListItem>
                    <Avatar                            
                    style={{ height: 60, width: 60, left: 20,top:10 }}
-                  src={'https://seeklogo.com/images/M/MTN-logo-459AAF9482-seeklogo.com.png'} />
+                  src={'L'} alt={'L'} />
                   <div  style={{marginLeft:30,marginTop:10,fontSize:26}}>{item.campaignName} </div>
                   <div  style={{marginLeft:20,marginTop:10,fontSize:23}}>{item.amount}</div>
                   <div  style={{marginLeft:20,marginTop:10,fontSize:23}}>{item.status}</div>

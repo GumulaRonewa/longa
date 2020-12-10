@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import SideDrawer from './pages/SideDrawer';
 import Linked from './pages/home/Linked'
 import Welcome from './pages/home/Welcome'
 import * as serviceWorker from './serviceWorker';

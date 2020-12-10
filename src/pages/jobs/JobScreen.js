@@ -54,14 +54,15 @@ function JobScreenfunct(props) {
          return days;
   }
   const handleExpandButtonClick = (key,location) => () =>{
+          setExpanded(!expanded);
+         console.log(key)
         if(location===1){
 
-    setPromo(key.campaignID)
+    setPromo(key)
   }
   else{
     setPromo('all')
   }
-      setExpanded(!expanded);
 
   };
    console.log("fh")
@@ -83,7 +84,7 @@ function JobScreenfunct(props) {
                       <ListItemText style={{marginLeft:10,fontSize:20}} primary={''} />
 
                       <ListItemIcon>
-                         <IconButton onClick={handleExpandButtonClick(item,1)}  className={selectedPromo === item.campaignID ? clsx(classes.expand, {[classes.expandOpen]: expanded,}):'empty'}  >
+                         <IconButton onClick={handleExpandButtonClick(item.campaign.campaignID,1)}  className={selectedPromo === item.campaign.campaignID ? clsx(classes.expand, {[classes.expandOpen]: expanded,}):'empty'}  >
                         <ArrowForwardIosIcon  style={{ marginLeft:5,height: 40, width: 30}}/>
                          </IconButton>
                       </ListItemIcon>
@@ -96,7 +97,7 @@ function JobScreenfunct(props) {
 
                   </div>
                 }
-                  {selectedPromo===item.campaignID&&
+                  {selectedPromo===item.campaign.campaignID&&
                   <div className={'homelistdivexplore'}>
                                                                             <div  className={'cardsxe'}>
 
@@ -106,7 +107,7 @@ function JobScreenfunct(props) {
                      <div style={{marginLeft:10,fontSize:22}}>{item.campaign.campaignName}</div>
                       <ListItemText style={{marginLeft:10,fontSize:20}} primary={''} />
                       <ListItemIcon>
-                         <IconButton onClick={handleExpandButtonClick(item,2)}  className={selectedPromo === item.campaignID ? clsx(classes.expand, {[classes.expandOpen]: expanded,}):'empty'}  >
+                         <IconButton onClick={handleExpandButtonClick(item,2)}  className={selectedPromo === item.campaign.campaignID ? clsx(classes.expand, {[classes.expandOpen]: expanded,}):'empty'}  >
                         <ArrowForwardIosIcon  style={{ marginLeft:5,height: 40, width: 30}}/>
                          </IconButton>
                       </ListItemIcon>

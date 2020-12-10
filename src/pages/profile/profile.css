@@ -5,6 +5,16 @@
 	height: 100vh;
 	width: 100%;
 }
+.pictureandname{
+  margin-left: 5%;
+  border-bottom-right-radius: 0px;
+border-bottom-left-radius: 20px;
+border-top-right-radius: 20px;
+border-top-left-radius: 20px;
+  width: 90%;
+  height: 40vh;
+  background-color:white;
+}
 .proscreen{
   display:grid;
   overflow: hidden;

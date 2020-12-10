@@ -1,12 +1,11 @@
 import React, { Component } from "react";
-import './profile.css'
+import './new.css'
 import Rating from "@material-ui/lab/Rating";
 import InstagramIcon from '@material-ui/icons/Instagram';
 import TwitterIcon from '@material-ui/icons/Twitter';
 import YouTubeIcon from '@material-ui/icons/YouTube';
 import IconButton from '@material-ui/core/IconButton';
 import { red, pink, blue } from '@material-ui/core/colors';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import TextField from "@material-ui/core/TextField";
 import {Tab,Tabs} from 'react-bootstrap';
 import GridList from '@material-ui/core/GridList';
@@ -23,21 +22,34 @@ import ListItemText from "@material-ui/core/ListItemText";
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import axios from "axios";
 import Loading from "../loading/loading";
+import Avatar from "@material-ui/core/Avatar";
+import CreateIcon from '@material-ui/icons/Create';
+import Divider from "@material-ui/core/Divider";
+import FacebookIcon from '@material-ui/icons/Facebook';
+import Card from '@material-ui/core/Card';
+import CardHeader from '@material-ui/core/CardHeader';
+import CardMedia from '@material-ui/core/CardMedia';
 
 const useStyles = makeStyles((theme) => ({
+  roots: {
+    maxWidth: 345,
+  },
+  media: {
+    height: 0,
+    paddingTop: '56.25%', // 16:9
+  },
   root: {
     display: 'flex',
     flexWrap: 'wrap',
     justifyContent: 'space-around',
     overflow: 'hidden',
-    backgroundColor:"#535353",
   },
   gridList: {
-    width: "70%",
+    width: "80%",
     height: 450,
   },
    input: {
-    color: "white"
+    color: "black"
   },
   icon: {
     color: 'rgba(255, 255, 255, 0.54)',
@@ -50,8 +62,8 @@ const StyledButton = withStyles({
     borderRadius: 6,
     border: 0,
     color: "white",
-    height: 48,
-    width:280,
+    height: 38,
+    width:150,
     left:10,
     padding: "0 30px",
   },
@@ -76,6 +88,7 @@ const StyledButton2 = withStyles({
 })(Button);
   function ProfileScreenmain(props) {
           const [edit, setEdit] = React.useState(false);
+          const [edit2, setEdit2] = React.useState(false);
           const [changed, setchanged] = React.useState(false);
           const [buttons, setbutton] = React.useState('Edit');
           const [bio, setBio] = React.useState('');
@@ -119,13 +132,17 @@ const StyledButton2 = withStyles({
       },
     }).then(res =>{
        console.log(res);
-                   setEdit(!edit)
+                   setEdit2(!edit2)
 
 
 
     })
           }
             const classes = useStyles();
+          const onEdit2 =()=>{
+                        setEdit2(!edit2)
+
+          }
 
           const onEdit =()=>{
             if(!edit){
@@ -146,6 +163,44 @@ const StyledButton2 = withStyles({
       setchanged(true);
     
    } 
+    const [anchorEl2, setAnchorEl2] = React.useState(null);
+
+    const handleMenuBClose = () => {
+    setAnchorEl2(null);
+  }
+    const handleBankMenuOpen = (event) => {
+          setAnchorEl2(event.currentTarget);
+    
+  };
+      const isMenuOpen2 = Boolean(anchorEl2);
+
+  const renderBankingMenu = (
+
+    <Menu
+      anchorEl={anchorEl2}
+      anchorOrigin={{ vertical: 'center', horizontal: 'center' }}
+      id={'bank'}
+      keepMounted
+      transformOrigin={{ vertical: 'center', horizontal: 'center' }}
+      open={isMenuOpen2}
+      onClose={handleMenuBClose}
+    >
+     <div style={{height:200,width:300}}>
+  
+          <div>
+                   <h3 style={{color:"transparent"}}>function dfffffff</h3>
+
+         <TextField placeholder={'Media url'} style={{left:10,right:10,width:280}}/>
+         
+         <StyledButton  style={{top:10,bottom:10}} >
+           Save
+         </StyledButton >
+         <h3 style={{color:"transparent"}}>function dfffffff</h3>
+         </div>
+         
+     </div>
+    </Menu>
+  );
    var dob='';
                var isNule = typeof profile.dateOfBirth=== 'undefined';
         if(!isNule){
@@ -153,25 +208,22 @@ const StyledButton2 = withStyles({
         }
             console.log(profile.dateOfBirth)
   	 return(
-  	 	    <div className={'proscreen'}>
-             
-                 {isNule &&
-                   <Loading loading={false} />
+  	 	    <div>
+             <div className="wrapper">
 
-                 }
-                {isNule !==true &&
-                 <div className={'probox'}>
-                   <div className={'toppro'}>
-                    <ListItem style={{width:"70%"}}>
-                         <ListItemText primary={' '} secondary={''} />
-                         <ListItemIcon>
-                            <StyledButton2 onClick={onEdit}>
-                             {buttons}
-                            </StyledButton2>
-                         </ListItemIcon>
-                      </ListItem>
-                     <img src={!changed?profile.image:image} className='imge' alt={image} />
-                             {edit &&
+  
+  <div className="profile-card js-profile-card" style={{marginTop:10}}>
+    <ListItem >
+<ListItemText  style={{marginLeft:6}} primary={''} /> 
+                      <ListItemIcon>
+                    <IconButton onClick={onEdit2} edge="end" aria-label="youtu">
+                      <CreateIcon />
+                    </IconButton>
+                  </ListItemIcon>
+               </ListItem> 
+    <div className="imgages">
+      <Avatar style={{width:200,height:200}} src={!changed?profile.image:image} alt="profile card" />
+        {edit2 &&
                         <div className={'rowsz'}>
                        <input
                          type="file"
@@ -185,87 +237,136 @@ const StyledButton2 = withStyles({
                             </StyledButton2>                 </div>
 
                          }
-                    <Rating style={{marginLeft:30,marginTop:5}} readOnly value={profile.rating} />
-                      <div className={'reach'}>
+         <div className="profile-card__name">{profile.name +" " +profile.surname}</div>
+                             <Rating style={{marginLeft:10,marginTop:5}} readOnly value={2} />
+
+
+    </div>
+
+    <div className="profile-card__cnt js-profile-cnt">
+     
+ <div className="imgages">
+        <div className={"rowing"} >
+      
+        <div style={{marginLeft:10}}>
+
+                  <div className={'reach'}>
                         Reach~
                       </div>
-                         <div style={{marginTop:5,width:"70%",color:'white'}} >
-                             <TextField
+          </div>
+      </div>
+</div>
+      <div className="profile-card-social">
+       
+    <div className="imgages">
+        <div className={"rowing"} >
+        <a href="https://twitter.com/" className="profile-card-social__item twitter" target="_blank">
+          <span >
+          </span>
+        </a>
+
+        <a href="https://www.instagram.com/" className="profile-card-social__item instagram" target="_blank">
+          <span className="icon-font">
+           <InstagramIcon style={{ color: pink[300],width:36,height:36}}/>
+
+          </span>
+        </a>
+       <a href="https://www.instagram.com/" className="profile-card-social__item instagram" target="_blank">
+          <span className="icon-font">
+                     <TwitterIcon style={{width:36,height:36,color: blue[500] }}/>
+
+          </span>
+        </a>
+ 
+      
+
+
+        <a href="https://codepen.io/JavaScriptJunkie" className="profile-card-social__item codepen" target="_blank">
+          <span className="icon-font">
+          <YouTubeIcon style={{width:36,height:36,color: red[500] }} />
+            
+          </span>
+        </a>
+
+        <a href="https://Facebook.com.tr/" className="profile-card-social__item link" target="_blank">
+          <span className="icon-font">
+          <FacebookIcon style={{ color: blue[300],width:36,height:36}} />
+          </span>
+        </a>
+
+      </div>
+      </div>
+      </div>
+
+      
+    </div>
+
+    
+
+  </div>
+ <div className="profile-card2 js-profile-card" style={{marginTop:10}}>
+    
+                           <ListItem >
+<ListItemText  style={{marginLeft:6}} primary={'Bio'} /> 
+                      <ListItemIcon>
+                    <IconButton onClick={onEdit} edge="end" aria-label="youtu">
+                      <CreateIcon />
+                    </IconButton>
+                  </ListItemIcon>
+               </ListItem> 
+                      <Divider/>
+           <TextField
                                 id="role"
                                 name="role"
                                 fullWidth
                                 variant={outliner}
                                 multiline
 
-                                style={{Color:'white'}}
+                                style={{Color:'black',marginLeft:10,marginRight:10}}
                                 defaultValue={profile.bio}
                                 onChange={onBio}
                                 variant={edit?"outlined":"standard"}
-                                rows={5}
+                                rows={4}
                                 InputProps={{
                                   className: classes.input,
                                   readOnly: !edit,
                                   disableUnderline: true,
                                 }}
                                />
-                             {edit &&
+                          {edit &&
                             <StyledButton  onClick={onSub} style={{top:10,bottom:10}} >
                                 Save
                              </StyledButton >
                             }
-                      </div>
-                       <div className={'columnx'} >
-                     <Tabs defaultActiveKey="posts" id="uncontrolled-tab-example">
-                     <Tab eventKey="posts" title="Featured Post">
-                        <TitlebarGridList  style={{backgroundColor:"#535353"}} edit={edit} />
-                      </Tab>
-                      <Tab  eventKey="Profile" title="About">
-                               <div   className={'tabs'}>
-                  <div  className={'inputedits'}>
-                       <div style={{color:'white'}} className={'identi'}>Full Names:</div>
-                       <div style={{color:'white'}} className={'identi'}>{profile.name +" " +profile.surname}</div>
-                  </div>
-                  <div className={'inputedits'}>
-                        <div style={{color:'white'}} className={'identi'}>Email</div>
-                        <div style={{color:'white'}} className={'identi'}>{profile.email}</div>
-                  </div>
-                  <div style={{width:"100%"}}  className={'inputedits'}>
-                        <div style={{color:'white'}} className={'identi'}>Phone Number</div>
-                        <div style={{color:'white'}} className={'identi'}>{profile.phone}</div>
-                  </div>
-                <div s className={'inputedits'}>
-                      <div style={{color:'white'}} className={'identi'}>Date of birth</div>
-                    <div style={{color:'white'}} className={'identi'}>{profile.dateOfBirth.substring(0,10)}</div>
-                </div>
-                <div style={{width:"80%"}}  className={'inputedits'}>
-                       <div style={{color:'white'}} className={'identi'}>Gender</div>
-                         <div style={{color:'white'}} className={'identi'}>{profile.gender}</div>
-                </div>
-                <div style={{width:"80%",marginBottom:6}}  className={'inputedits'}>
-                        <div style={{color:'white'}} className={'identi'}>Country</div>
-                           <div style={{color:'white'}} className={'identi'}>{profile.country} </div>
 
-                </div>
-                
+      
+ </div>
+
+  <div className="profile-card js-profile-card" style={{marginTop:10}}>
+    
+                           <ListItem >
+<ListItemText  style={{marginLeft:6}} primary={'Featured Post'} /> 
+                      <ListItemIcon>
+                    <IconButton onClick={handleBankMenuOpen} edge="end" aria-label="youtu">
+                      <CreateIcon />
+                    </IconButton>
+                  </ListItemIcon>
+               </ListItem> 
+                      <Divider/>
+                      {renderBankingMenu}
+                     <TitlebarGridList />
+      
+ </div>  
 
 
-             </div>
-                          </Tab>
-                      
-                      
-                    </Tabs>
-                    </div>
-                   </div>
 
-                 </div>
-               }
+</div>
+
         </div>
   	 	)
   
  }
-
-
-const tileData = [
+ const tileData = [
    {
       img: 'https://pm1.narvii.com/6424/71de2b7b9611f0522cc2d88a04609cfdc0bc5936_00.jpg',
       title: 'Image',
@@ -331,14 +432,15 @@ function TitlebarGridList(props) {
         </GridListTile>
         {tileData.map((tile) => (
           <GridListTile key={tile.img}>
-           <GridListTile>
-        <button style={{width:250}} onClick={handleBankMenuOpen} className={'buttns'}>+</button>
-
-        </GridListTile>
+            <img src={tile.img} alt={tile.title} />
+            <GridListTileBar
+              title="Engagement rate~"
+             
+            />
           </GridListTile>
         ))}
         <GridListTile>
-        <button onClick={handleBankMenuOpen} className={'buttns'}>+</button>
+        
         </GridListTile>
         
       </GridList>
@@ -346,6 +448,9 @@ function TitlebarGridList(props) {
     </div>
   );
 }
+
+
+
  export default class ProfileScreen extends React.Component {
    constructor(props) {
     super(props);

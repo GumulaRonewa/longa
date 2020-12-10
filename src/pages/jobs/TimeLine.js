@@ -27,12 +27,12 @@ const items = [
 	const progressBarWidth = totalItems > 1 ? (numberOfActiveItems - 1) / (totalItems - 1) * 100 : 0;
 	
 	return (
-		<div className="timeline">
+		<div className="timelines">
 			<div className="timeline-progress" style={{ width: `${progressBarWidth}%`}}></div>
 			<div className="timeline-items">
 				{items.map((item, i) => (
 					<div key={i} className={"timeline-item" + (item.active ? ' active' : '')}>
-						<div className="timeline-content">
+						<div className="timeline-contents">
 							{item.name}
 						</div>
 					</div>
