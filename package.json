@@ -45,6 +45,7 @@
     "react-social-icons": "^4.1.0",
     "react-step-progress-bar": "^1.0.3",
     "react-tilt": "^0.1.4",
+    "react-toastify": "^6.2.0",
     "react-web-media-player": "^1.1.6",
     "shave": "^2.5.10",
     "styled-components": "^5.2.1",

@@ -33,7 +33,7 @@ const Sidebar2 = () => {
         </li>
      
         <li style={{background: value===2?'#d3eff8':""}}>
-          <a onClick={clicked} name='2' href="/Home">
+          <a onClick={clicked} name='2' href="/chat">
             <FaRegEnvelope className="icons" /> <p className={'hide'}>Message</p>
           </a>
         </li>

@@ -78,7 +78,7 @@ class Sidebar extends React.Component {
         {this.state.error  && (
                          <span className="errorMessage">Invalid Email or Password</span>
                        )}
-        <a href={"/forgot"} style={{ color: "white" }}>Forgot Password?</a>
+        <a href={"/forgot"} style={{ color: "grey" }}>Forgot Password?</a>
         <button onClick={this.handleLogin} className="signin-btn">Sign In</button>
         <button onClick={this.handleLogin} className="signin-btn">Sign In With Facebook</button>
         <button onClick={this.handleLogin} className="signin-btn">Sign In With Google</button>

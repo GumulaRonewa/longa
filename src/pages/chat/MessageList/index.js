@@ -4,83 +4,37 @@ import Toolbar from '../Toolbar';
 import ToolbarButton from '../ToolbarButton';
 import Message from '../Message';
 import moment from 'moment';
+import axios from "axios";
 
 import './MessageList.css';
 
-const MY_USER_ID = 'apple';
 
 export default function MessageList(props) {
   const [messages, setMessages] = useState([])
 
   useEffect(() => {
     getMessages();
-  },[])
+  })
 
   
   const getMessages = () => {
-     var tempMessages = [
-        {
-          id: 1,
-          author: 'apple',
-          message: 'Hello world! This is a long message that will hopefully get wrapped by our message bubble component! We will see how well it works.',
-          timestamp: new Date().getTime()
-        },
-        {
-          id: 2,
-          author: 'orange',
-          message: 'It looks like it wraps exactly as it is supposed to. Lets see what a reply looks like!',
-          timestamp: new Date().getTime()
-        },
-        {
-          id: 3,
-          author: 'orange',
-          message: 'Hello world! This is a long message that will hopefully get wrapped by our message bubble component! We will see how well it works.',
-          timestamp: new Date().getTime()
-        },
-        {
-          id: 4,
-          author: 'apple',
-          message: 'It looks like it wraps exactly as it is supposed to. Lets see what a reply looks like!',
-          timestamp: new Date().getTime()
-        },
-        {
-          id: 5,
-          author: 'apple',
-          message: 'Hello world! This is a long message that will hopefully get wrapped by our message bubble component! We will see how well it works.',
-          timestamp: new Date().getTime()
-        },
-        {
-          id: 6,
-          author: 'apple',
-          message: 'It looks like it wraps exactly as it is supposed to. Lets see what a reply looks like!',
-          timestamp: new Date().getTime()
-        },
-        {
-          id: 7,
-          author: 'orange',
-          message: 'Hello world! This is a long message that will hopefully get wrapped by our message bubble component! We will see how well it works.',
-          timestamp: new Date().getTime()
-        },
-        {
-          id: 8,
-          author: 'orange',
-          message: 'It looks like it wraps exactly as it is supposed to. Lets see what a reply looks like!',
-          timestamp: new Date().getTime()
-        },
-        {
-          id: 9,
-          author: 'apple',
-          message: 'Hello world! This is a long message that will hopefully get wrapped by our message bubble component! We will see how well it works.',
-          timestamp: new Date().getTime()
-        },
-        {
-          id: 10,
-          author: 'orange',
-          message: 'It looks like it wraps exactly as it is supposed to. Lets see what a reply looks like!',
-          timestamp: new Date().getTime()
-        },
-      ]
-      setMessages([...messages, ...tempMessages])
+             var data={userID:sessionStorage.getItem("userId")}
+
+     axios({
+         method: 'POST',
+         url: `https://longa-money.herokuapp.com/api/messages/user`, // First page at 0
+           data:data,
+
+       headers: {
+      "Authorization": `Bearer ${sessionStorage.getItem("token")}`,
+      
+      },
+    }).then(res =>{
+            setMessages(res.data)
+
+    }).catch((e) => {
+        console.log(e);
+      })
   }
 
   const renderMessages = () => {
@@ -92,16 +46,25 @@ export default function MessageList(props) {
       let previous = messages[i - 1];
       let current = messages[i];
       let next = messages[i + 1];
-      let isMine = current.author === MY_USER_ID;
-      let currentMoment = moment(current.timestamp);
+      let isMine = current.isMine;
+        var image=current.url==="" ;
+         var id=false;
+
+image =!image;
+  if(image){
+    id= current.url.slice(current.url.length - 4)
+    id=id===".mp4";
+
+  }
+      let currentMoment = moment(current.time);
       let prevBySameAuthor = false;
       let nextBySameAuthor = false;
       let startsSequence = true;
       let endsSequence = true;
-      let showTimestamp = true;
+      let showtime = true;
 
       if (previous) {
-        let previousMoment = moment(previous.timestamp);
+        let previousMoment = moment(previous.time);
         let previousDuration = moment.duration(currentMoment.diff(previousMoment));
         prevBySameAuthor = previous.author === current.author;
         
@@ -110,12 +73,12 @@ export default function MessageList(props) {
         }
 
         if (previousDuration.as('hours') < 1) {
-          showTimestamp = false;
+          showtime = false;
         }
       }
 
       if (next) {
-        let nextMoment = moment(next.timestamp);
+        let nextMoment = moment(next.time);
         let nextDuration = moment.duration(nextMoment.diff(currentMoment));
         nextBySameAuthor = next.author === current.author;
 
@@ -128,9 +91,11 @@ export default function MessageList(props) {
         <Message
           key={i}
           isMine={isMine}
+          video={id}
+          image={image}
           startsSequence={startsSequence}
           endsSequence={endsSequence}
-          showTimestamp={showTimestamp}
+          showtime={showtime}
           data={current}
         />
       );
@@ -151,14 +116,7 @@ export default function MessageList(props) {
 
         <div className="message-list-container">{renderMessages()}</div>
 
-        <Compose rightItems={[
-          <ToolbarButton key="photo" icon="ion-ios-camera" />,
-          <ToolbarButton key="image" icon="ion-ios-image" />,
-          <ToolbarButton key="audio" icon="ion-ios-mic" />,
-          <ToolbarButton key="money" icon="ion-ios-card" />,
-          <ToolbarButton key="games" icon="ion-logo-game-controller-b" />,
-          <ToolbarButton key="emoji" icon="ion-ios-happy" />
-        ]}/>
+        <Compose/>
       </div>
     );
 }

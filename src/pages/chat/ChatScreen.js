@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import './chat.css';
 import MessageList from './MessageList';
+import axios from "axios";
 
 import ConversationList from './ConversationList';
 import { Switch, Route, Link } from "react-router-dom";
@@ -12,10 +13,10 @@ export default class ChatScreen extends Component {
     this.state = {
       email: null,
 
-      password: null,
-      error: false,
     };
   }
+ 
+
 
   render(){
   	 return(

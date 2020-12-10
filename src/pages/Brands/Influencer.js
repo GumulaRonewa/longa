@@ -5,12 +5,28 @@ import Input from "../SignUp/Input";
 import Check from "./Check";
 import DateRange from "./DateRange";
 import Loading from "../loading/loading";
+import axios from "axios";
 
-const Influencer = ({ formData, setForm, navigation }) => {
+function Influencer({ formData, setForm, navigation }){
   const { instagram, facebook, twitter, youtube } = formData;
+            const [load, setLoad] = React.useState(false);
+
  const handle= (e)=>{
   e.preventDefault();
-   console.log(formData); 
+  setLoad(true);
+  formData.duration=sessionStorage.getItem('duration');
+  console.log(formData)
+  axios({
+      method: "POST",
+      url: `https://longa-money.herokuapp.com/api/brand/new`,
+      data: formData,
+      }).then((res) => {     this.props.history.push("/wb");
+  }
+      ).catch((e) => {
+                 console.log(e);
+                     setLoad(false);
+
+      });
 
  }
   return (
@@ -53,6 +69,9 @@ const Influencer = ({ formData, setForm, navigation }) => {
           value={facebook}
           name="facebook"
         />
+        {load &&(
+            <Loading style={{position:'absolute',zIndex:2}} loading={false} />
+          )}
         <ButtonWrapper>
           <button className="back" onClick={() => navigation.previous()}>
             Back

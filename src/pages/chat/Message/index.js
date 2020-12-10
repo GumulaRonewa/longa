@@ -8,9 +8,10 @@ export default function Message(props) {
       isMine,
       startsSequence,
       endsSequence,
+      video,
+      image,
       showTimestamp
     } = props;
-
     const friendlyTimestamp = moment(data.timestamp).format('LLLL');
     return (
       <div className={[
@@ -28,7 +29,26 @@ export default function Message(props) {
 
         <div className="bubble-container">
           <div className="bubble" title={friendlyTimestamp}>
-            { data.message }
+            { data.text }
+            {image && !video &&
+
+                <img
+                    src={data.url}
+                    alt="profile"
+                    className={'imagezx'}
+
+                    style={{width:'90%',marginLeft:10,maxHeight:400}}
+                  />
+                }
+
+                           {video &&
+                            <video className={'imagezx'} style={{width:'90%',marginLeft:10,minHeight:400}} controls>
+              <source
+                src={data.url}
+                type="video/mp4"
+              />
+            </video>
+     }
           </div>
         </div>
       </div>

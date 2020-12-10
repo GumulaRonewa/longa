@@ -148,9 +148,9 @@ const handleClick = () => {
       <div class="timeline-body">
         <div class="timeline-header">
           <span class="userimage">
-            <img
-              src="https://bootdey.com/img/Content/avatar/avatar3.png"
-              alt=""
+            <Avatar
+              src="L"
+              alt="L"
             />
           </span>
           <span class="username">

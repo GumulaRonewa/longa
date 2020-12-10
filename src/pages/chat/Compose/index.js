@@ -50,6 +50,7 @@ const useStyles = makeStyles((theme) => ({
     form.append("userID",id);
     form.append("senderID", id);
     form.append("text", text);
+    form.append("file", file);
 
     axios({
       method: "POST",
@@ -63,7 +64,10 @@ const useStyles = makeStyles((theme) => ({
       setText("");
 
       setfile(null);
-    });
+    }).catch((e) => {
+                 console.log(e);
+                 console.log(form.get("file"));
+      });
 
   };
   const handleFile = (e) => {
