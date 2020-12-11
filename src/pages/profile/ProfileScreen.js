@@ -273,7 +273,7 @@ const StyledButton2 = withStyles({
 
           </span>
         </a>
-       <a href="https://www.instagram.com/" className="profile-card-social__item instagram" target="_blank">
+       <a href="https://www.twitter.com/" className="profile-card-social__item instagram" target="_blank">
           <span className="icon-font">
                      <TwitterIcon style={{width:36,height:36,color: blue[500] }}/>
 
@@ -283,7 +283,7 @@ const StyledButton2 = withStyles({
       
 
 
-        <a href="https://codepen.io/JavaScriptJunkie" className="profile-card-social__item codepen" target="_blank">
+        <a href="https://youtube.com" className="profile-card-social__item codepen" target="_blank">
           <span className="icon-font">
           <YouTubeIcon style={{width:36,height:36,color: red[500] }} />
             
