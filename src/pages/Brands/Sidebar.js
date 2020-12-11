@@ -47,13 +47,17 @@ const Sidebar = ({ formData, setForm, navigation }) => {
         />
         <Check onChange={setForm} checked={usedBefore} name="usedBefore" />
 
-        <button className="continue" onClick={() => navigation.next()}>
+        <button className="continue" onClick={() => 
+          { if(email !== "" && contactNumber !== "" && nameAndSurname !== ""){
+            navigation.next()}
+          }
+          }>
           Continue
         </button>
       </Form>
       <div>
         <h4>
-          Not a brand? <span>Home</span>
+          Not a brand? <span onClick={() =>window.open("/","_self")}>Home</span>
         </h4>
       </div>
     </Container>

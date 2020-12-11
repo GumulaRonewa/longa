@@ -10,7 +10,8 @@ const CampaignInfo = ({ formData, setForm, navigation }) => {
   const {
     campaignName,
     campaignBudget,
-    descriptionofCampaign,
+    description,
+    dates,
     duration,
     influencers,
     dos,donts
@@ -49,8 +50,8 @@ const CampaignInfo = ({ formData, setForm, navigation }) => {
         <TextArea
           placeholder="Description of Campaign"
           onChange={setForm}
-          value={descriptionofCampaign}
-          name="descriptionofCampaign"
+          value={description}
+          name="description"
         />
         <TextArea
           placeholder="Campaign Do's"
@@ -65,7 +66,7 @@ const CampaignInfo = ({ formData, setForm, navigation }) => {
           name="donts"
         />
         <Duration>Duration</Duration>
-        <DateRange change={setForm} name={"duration"} val={duration} />
+        <DateRange change={setForm} formData={formData} name={"duration"} val={dates} />
 
         <ButtonWrapper>
           <button className="back" onClick={() => navigation.previous()}>
@@ -78,7 +79,7 @@ const CampaignInfo = ({ formData, setForm, navigation }) => {
       </Form>
       <div>
         <h4>
-          Not a brand? <span>Home</span>
+          Not a brand? <span onClick={() =>window.open("/","_self")}>Home</span>
         </h4>
       </div>
     </Container>

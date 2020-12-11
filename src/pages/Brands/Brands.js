@@ -15,9 +15,8 @@ const defaultData = {
   contactNumber: "",
   influencers: "",
   campaignName: "",
-         options:[{ value: 'Yes', label: 'Yes' },{ value: 'No', label: 'No' }],
-       open:false,
-
+  dates:[new Date(),new Date]  , 
+  endDate:"",
   campaignBudget: "",
   description: "",
   dos:"",

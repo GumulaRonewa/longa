@@ -5,13 +5,7 @@ import logo from "../../assets/color-logo.svg";
 const Sidebar = ({ twitter, setTwitter, apiUrl, socket }) => {
   const [popup, setPopup] = useState(null);
 
-  useEffect(() => {
-    socket.on("user", (user) => {
-      setTwitter(user);
-      console.log(user);
-      openPopup().close();
-    });
-  });
+  
 
   // socket.on("user", (user) => {
   //   setTwitter(user);
@@ -55,11 +49,7 @@ const Sidebar = ({ twitter, setTwitter, apiUrl, socket }) => {
         <button className="signin-btn">Facebook</button>
         <button className="signin-btn">Youtube</button>
       </Form>
-      <div>
-        <h4>
-          Don't have an account? <span>Sign Up</span>
-        </h4>
-      </div>
+      
     </Container>
   );
 };

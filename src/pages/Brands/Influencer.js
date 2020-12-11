@@ -9,18 +9,65 @@ import axios from "axios";
 
 function Influencer({ formData, setForm, navigation }){
   const { instagram, facebook, twitter, youtube } = formData;
-            const [load, setLoad] = React.useState(false);
 
+            const [load, setLoad] = React.useState(false);
+/*
+const defaultData = {
+  nameOfBrand: "",
+  nameAndSurname: "",
+  email: "",
+  range:"Duration of campaign",
+  contactNumber: "",
+  influencers: "",
+  campaignName: "",
+       
+
+  campaignBudget: "",
+  description: "",
+  dos:"",
+  donts:"",
+  followers:"",
+  instagram: "",
+  facebook: "",
+  twitter: "",
+  youtube: "",
+  usedBefore: "checked",
+  duration: "",
+};*/
  const handle= (e)=>{
+  var details = {
+       nameOfBrand:formData.nameOfBrand,
+       contactNumber:formData.contactNumber,
+       email:formData.email,
+       campaignName:formData.campaignName,
+       description:formData.description,
+       duration:formData.duration,
+       influencers:formData.influencers,
+       nameAndSurname:formData.nameAndSurname,
+       followers:formData.influencers,
+       budget:formData.budget,
+       facebook:formData.facebook,
+       twitter:formData.twitter,
+       youtube:formData.youtube,
+       instagram:formData.instagram,
+       endDate:formData.endDate,
+       dos:formData.dos,
+       donts:formData.donts,
+       options:[{ value: 'Yes', label: 'Yes' },{ value: 'No', label: 'No' }],
+       part:1,
+       open:false,
+       range:formData.dates,
+
+    };
   e.preventDefault();
   setLoad(true);
-  formData.duration=sessionStorage.getItem('duration');
-  console.log(formData)
+  console.log(details)
+  
   axios({
       method: "POST",
       url: `https://longa-money.herokuapp.com/api/brand/new`,
-      data: formData,
-      }).then((res) => {     this.props.history.push("/wb");
+      data: details,
+      }).then((res) => {     window.open("/wb","_self");
   }
       ).catch((e) => {
                  console.log(e);
@@ -81,7 +128,7 @@ function Influencer({ formData, setForm, navigation }){
       </Form>
       <div>
         <h4>
-          Not a brand? <span>Home</span>
+          Not a brand? <span onClick={() =>window.open("/","_self")}>Home</span>
         </h4>
       </div>
     </Container>

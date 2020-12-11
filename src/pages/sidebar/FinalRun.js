@@ -3,11 +3,8 @@ import "./side.css";
 import Sidebar from "./Sidebar";
 import Main from "./Main";
 import { Switch, Route, Link, BrowserRouter } from "react-router-dom";
-import Login from '../login/Login';
 import PrimarySearchAppBar from './PrimarySearchAppBar'
-import SimpleBottomNavigation from "./SimpleBottomNavigation"
-import Choose from '../login/Choose'
-import Register from '../login/Register'
+
 import Reset from '../login/Reset'
 import Forgot from '../login/Forgot'
 import AboutUs from '../login/AboutUs'
@@ -16,11 +13,11 @@ import Agreement from '../login/Agreement'
 import RegisterBussiness from '../login/RegisterBussiness';
 import Navbar from "../Navbar";
 import Hero from "../Hero";
-import Conformation from '../home/Conformation'
 import WelcomeBrand from '../home/WelcomeBrand'
 import profile_picture_without_slogan from '../../images/profile_picture_without_slogan.png'
 import SignIn from "../SignIn/SignIn";
 import SignUp from "../SignUp/SignUp";
+import Socials from "../Socials/Socials";
 import Brands from "../Brands/Brands";
 
 const Landing = () => {
@@ -74,6 +71,7 @@ function FinalRun1(){
          <Route exact path="/privacy" component={Privacy} />
          <Route exact path="/useragreement" component={Agreement} />
           <Route exact path="/aboutus" component={AboutUs} />
+          <Route exact path="/linksocial" component={Socials} />
           <Route exact path="/forgot" component={Forgot} />
           <Route exact path="/Reset" component={Reset} />
           <Route  path="/" component={Run} />

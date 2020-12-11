@@ -6,6 +6,8 @@ import bgImg from "../../assets/bg.jpg";
 import axios from "axios";
 import Input from "../SignUp/Input";
 import Loading from "../loading/loading";
+import { ToastContainer, toast } from 'react-toastify';
+  import 'react-toastify/dist/ReactToastify.css';
 
 class Forgot extends React.Component {
  /* constructor(props) {
@@ -88,10 +90,12 @@ class Sidebar extends React.Component {
      data:user,
     
     }).then((res) => {
-      
+              toast("Success")
+
       window.open("https://longamoney.groundrabbit.co.za/password-link.html", "_self");
          
       }).catch((e) => {
+        toast("Invalid Email")
                             this.setState({load: false });
 
       });
@@ -114,7 +118,7 @@ render(){
         {this.state.load &&(
             <Loading style={{position:'absolute',zIndex:2}} loading={false} />
           )}
-
+<ToastContainer />
         <button onClick={this.handleSub} className="continue" >
           Submit
         </button>
