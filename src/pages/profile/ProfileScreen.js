@@ -90,14 +90,16 @@ const StyledButton2 = withStyles({
           const [edit, setEdit] = React.useState(false);
           const [edit2, setEdit2] = React.useState(false);
           const [changed, setchanged] = React.useState(false);
+          const [changedB, setchangedB] = React.useState(false);
           const [buttons, setbutton] = React.useState('Edit');
           const [bio, setBio] = React.useState('');
               var outliner = edit ? "outlined" : "standard";
               var profile=props.profile;
           const [file, setfile] = React.useState(null);
           const [image, setimage] = React.useState(profile.image);
-          console.log(props)
+          var soci=profile.settings;
           const onSub=()=>{
+             setchangedB(true);
             var data={bio:bio,userID:localStorage.getItem("userId")}
           console.log(data)
               axios({
@@ -238,7 +240,7 @@ const StyledButton2 = withStyles({
 
                          }
          <div className="profile-card__name">{profile.name +" " +profile.surname}</div>
-                             <Rating style={{marginLeft:10,marginTop:5}} readOnly value={2} />
+                             <Rating style={{marginLeft:10,marginTop:5}} readOnly value={profile.rating} />
 
 
     </div>
@@ -288,7 +290,7 @@ const StyledButton2 = withStyles({
           </span>
         </a>
 
-        <a href="https://Facebook.com.tr/" className="profile-card-social__item link" target="_blank">
+        <a href="https://Facebook.com/" className="profile-card-social__item link" target="_blank">
           <span className="icon-font">
           <FacebookIcon style={{ color: blue[300],width:36,height:36}} />
           </span>
@@ -323,7 +325,7 @@ const StyledButton2 = withStyles({
                                 multiline
 
                                 style={{Color:'black',marginLeft:10,marginRight:10}}
-                                defaultValue={profile.bio}
+                                defaultValue={changedB? bio:profile.bio}
                                 onChange={onBio}
                                 variant={edit?"outlined":"standard"}
                                 rows={4}
