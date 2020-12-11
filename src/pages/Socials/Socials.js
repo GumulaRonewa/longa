@@ -4,17 +4,14 @@ import bgImg from "../../assets/bg.jpg";
 import Sidebar from "./Sidebar";
 import Main from "./Main";
 
-const Socials = ({ twitter, setTwitter, socket, apiUrl }) => {
+const Socials = () => {
   return (
     <Container>
       <Wrapper>
         <Sidebar
-          twitter={twitter}
-          setTwitter={setTwitter}
-          socket={socket}
-          apiUrl={apiUrl}
+         
         />
-        <Main twitter={twitter} setTwitter={setTwitter} />
+        <Main/>
       </Wrapper>
     </Container>
   );

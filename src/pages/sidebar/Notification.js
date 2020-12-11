@@ -12,14 +12,14 @@ import ListItemText from '@material-ui/core/ListItemText';
     };
   }
   componentWillMount() {
-                var data={userID:sessionStorage.getItem("userId")}
+                var data={userID:localStorage.getItem("userId")}
      axios({
          method: 'Get',
          url: `https://longa-money.herokuapp.com/api/notifications`, // First page at 0
            data:data,
 
        headers: {
-      "Authorization": `Bearer ${sessionStorage.getItem("token")}`,
+      "Authorization": `Bearer ${localStorage.getItem("token")}`,
       
       },
     }).then(res =>{

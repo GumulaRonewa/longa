@@ -10,7 +10,6 @@ import Forgot from '../login/Forgot'
 import AboutUs from '../login/AboutUs'
 import Privacy from '../login/Privacy'
 import Agreement from '../login/Agreement'
-import RegisterBussiness from '../login/RegisterBussiness';
 import Navbar from "../Navbar";
 import Hero from "../Hero";
 import WelcomeBrand from '../home/WelcomeBrand'
@@ -103,7 +102,7 @@ export default class FinalRun extends React.Component {
     ) {
                  
 
-      if (sessionStorage.getItem("token") === null) {
+      if (localStorage.getItem("token") === null) {
               var href=window.location.origin+"/login";
         window.open(href, "_self");
       }

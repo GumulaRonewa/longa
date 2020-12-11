@@ -51,7 +51,13 @@ sessionStorage.setItem('value',0);
       sessionStorage.setItem('surname',user['surname']);
       sessionStorage.setItem('image',user['image']);
       sessionStorage.setItem('userId',user['_id']);
-      window.open("home", "_self");
+      if(localStorage.getItem("skip") ==="true"){
+         window.open("home", "_self");
+      }
+      else{
+        window.open("linksocial", "_self");
+      }
+      
          
       }).catch((e) => {
                  console.log(e);

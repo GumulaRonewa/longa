@@ -1,12 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 
-const Main = ({ twitter, setTwitter }) => {
-  const { name, photo } = twitter;
+const Main = () => {
   return (
     <Container>
       <h2>Please link at least one social media account</h2>
-      <p>{name ? name : ""}</p>
     </Container>
   );
 };

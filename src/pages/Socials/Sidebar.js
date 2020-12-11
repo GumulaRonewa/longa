@@ -2,39 +2,109 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import logo from "../../assets/color-logo.svg";
 
-const Sidebar = ({ twitter, setTwitter, apiUrl, socket }) => {
-  const [popup, setPopup] = useState(null);
+function Sidebar () {
+  localStorage.setItem('skip',"true");
 
-  
+  const AddInsta = (e) => {
+  e.preventDefault();
+  localStorage.setItem('skip',"true");
 
-  // socket.on("user", (user) => {
-  //   setTwitter(user);
-  //   console.log(user);
-  //   openPopup().close();
-  // });
+    //handlePopMenuOpen(event);
+    var data = {
+      userID: localStorage.getItem("userId"),
+    };
+    console.log(data);
 
-  const startAuth = () => {
-    setPopup(openPopup());
-    console.log(popup);
-  };
-
-  const openPopup = () => {
-    const width = 600;
-    const height = 600;
-    const left = window.innerWidth / 2 - width / 2;
-    const top = window.innerHeight / 2 - height / 2;
-
-    const url = `${apiUrl}/twitter?socketId=${socket.id}`;
-
-    return window.open(
-      url,
-      "",
-      `toolbar=no, location=no, directories=no, status=no, menubar=no,
-      scrollbars=no, resizable=no, copyhistory=no, width=${width},
-      height=${height}, top=${top}, left=${left}`
+    window.open(
+      `https://longa-money.herokuapp.com/api/i/auth/insta/${data.userID}`,
+      "_self"
     );
+    // axios({
+    //   method: "GET",
+    //   url: `https://longa-money.herokuapp.com/api/i/auth/insta/${data.userID}`, // First page at 0
+    //   data: data,
+    //   headers: {
+    //     Authorization: `Bearer ${localStorage.getItem("token")}`,
+    //   },
+    // })
+    //   .then((res) => {
+    //     console.log(res);
+    //   })
+    //   .catch((e) => {
+    //     console.log(e);
+    //   });
   };
-  return (
+
+  const AddYoutube = (e) => {
+  	  e.preventDefault();
+  localStorage.setItem('skip',"true");
+
+    var data = { userID: localStorage.getItem("userId") };
+    console.log(data);
+    window.open(`https://longa-money.herokuapp.com/api/y/auth/yt/${data.userID}`, "_self");
+    // axios({
+    //   method: "GET",
+    //   url: `https://longa-money.herokuapp.com/api/y`, // First page at 0
+    //   data: data,
+    //   headers: {
+    //     Authorization: `Bearer ${localStorage.getItem("token")}`,
+    //   },
+    // })
+    //   .then((res) => {
+    //     console.log(res);
+    //   })
+    //   .catch((e) => {
+    //     console.log(e);
+    //   });
+  };
+  const AddTwitter = (e) => {
+  	  e.preventDefault();
+  localStorage.setItem('skip',"true");
+
+    var data = { userID: localStorage.getItem("userId") };
+    console.log(data);
+
+    window.open(`https://longa-money.herokuapp.com/api/t/auth/tw/${data.userID}`, "_self");
+    // axios({
+    //   method: "GET",
+    //   url: `https://longa-money.herokuapp.com/api/t/auth/twitter/${data.userID}`, // First page at 0
+    //   data: data,
+    //   headers: {
+    //     Authorization: `Bearer ${localStorage.getItem("token")}`,
+    //   },
+    // })
+    //   .then((res) => {
+    //     console.log(res);
+    //   })
+    //   .catch((e) => {
+    //     console.log(e);
+    //   });
+  };
+  const AddFacebook = (e) => {
+  	  e.preventDefault();
+
+    var data = { userID: localStorage.getItem("userId") };
+    console.log(data);
+  localStorage.setItem('skip',"true");
+
+    window.open(`https://longa-money.herokuapp.com/api/fb/auth/fb/${data.userID}`, "_self");
+    // axios({
+    //   method: "POST",
+    //   url: `https://longa-money.herokuapp.com/api/fb`, // First page at 0
+    //   data: data,
+    //   headers: {
+    //     Authorization: `Bearer ${localStorage.getItem("token")}`,
+    //   },
+    // })
+    //   .then((res) => {
+    //     console.log(res);
+    //   })
+    //   .catch((e) => {
+    //     console.log(e);
+    //   });
+  };
+
+    return (
     <Container>
       <LogoWrapper>
         <img src={logo} alt="" />
@@ -42,13 +112,16 @@ const Sidebar = ({ twitter, setTwitter, apiUrl, socket }) => {
       <Form>
         <h3>Link Socials</h3>
 
-        <button className="signin-btn" onClick={startAuth}>
+        <button className="signin-btn" onClick={AddTwitter}>
           Twitter
         </button>
-        <button className="signin-btn">Instagram</button>
-        <button className="signin-btn">Facebook</button>
-        <button className="signin-btn">Youtube</button>
+        <button className="signin-btn" onClick={AddInsta}>Instagram</button>
+        <button className="signin-btn" onClick={AddFacebook}>Facebook</button>
+        <button className="signin-btn" onClick={AddYoutube}>Youtube</button>
       </Form>
+      <h4>
+         <span onClick={() =>window.open("/home","_self")}>Skip</span>
+        </h4>
       
     </Container>
   );

@@ -161,8 +161,8 @@ constructor(props) {
           htmlFor="terms"
           style={{ fontSize: "0.8rem", textAlign: "center" }}
         >
-          By signing up, I agree to the <a href="#">Privacy Policy</a> <br />{" "}
-          and <a href="#">User Agreement</a>
+          By signing up, I agree to the <a href="https://www.dropbox.com/s/jdp25froz375fdr/LM%20Privacy%20Policy_05_11_2020.pdf?dl=0" target="_blank">Privacy Policy</a> <br />{" "}
+          and <a href="https://www.dropbox.com/s/ltz49mxd0mu6rcj/LM%20User%20Agreement.pdf?dl=0" target="_blank" >User Agreement</a>
         </label>
         <button onClick={this.handleLogin} className="signup-btn">Sign Up</button>
       </Form>

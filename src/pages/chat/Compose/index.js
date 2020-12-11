@@ -40,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
   const classes = useStyles();
     const [file, setfile] = React.useState(null);
             const [text, setText] = React.useState('');
-   var id=sessionStorage.getItem("userId")
+   var id=localStorage.getItem("userId")
   const handleText =(e)=>{
             setText(e.target.value)
           }
@@ -57,7 +57,7 @@ const useStyles = makeStyles((theme) => ({
       url: `https://longa-money.herokuapp.com/api/messages`, // First page at 0
       data: form,
       headers: {
-        Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
     }).then((res) => {
       console.log(res);

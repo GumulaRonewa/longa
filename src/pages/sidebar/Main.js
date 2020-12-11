@@ -6,6 +6,7 @@ import WalletScreen from '../wallet/WalletScreen';
 import Feed from '../feed/Feed';
 import Settings from '../profile/Settings';
 import ProfileScreen from '../profile/ProfileScreen';
+import About from '../profile/About';
 import Notification from './Notification';
 import ChatScreen from '../chat/ChatScreen'
 
@@ -23,6 +24,7 @@ const Main = () => {
      <Route path="/myprofile" component={ProfileScreen} />
      <Route path="/settings" component={Settings} />
      <Route path="/feed" component={Feed} />
+     <Route path="/user/:id" component={About} />
      <Route path="/chat" component={ChatScreen} />
      <Route path="/myjobs" component={JobScreen} />
      <Route path="/notification" component={Notification} />

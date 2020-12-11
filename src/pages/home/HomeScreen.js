@@ -109,13 +109,13 @@ function HomeScreenfunct(props) {
     }
   };
    const handleMomoadd=()=>{
-          var data={momo:phone,userID:sessionStorage.getItem("userId")}
+          var data={momo:phone,userID:localStorage.getItem("userId")}
               axios({
       method: 'POST',
      url: `https://longa-money.herokuapp.com/api/u/settings/momo`, // First page at 0
      data:data,
        headers: {
-      "Authorization": `Bearer ${sessionStorage.getItem("token")}`,
+      "Authorization": `Bearer ${localStorage.getItem("token")}`,
       
       },
     }).then(res =>{
@@ -126,13 +126,13 @@ function HomeScreenfunct(props) {
   }
  
    const handleBank=()=>{
-          var data={bankName:name,branchCode:branch,accountNumber:number,accountType:type,userID:sessionStorage.getItem("userId")}
+          var data={bankName:name,branchCode:branch,accountNumber:number,accountType:type,userID:localStorage.getItem("userId")}
               axios({
       method: 'POST',
      url: `https://longa-money.herokuapp.com/api/u/settings/banking`, // First page at 0
      data:data,
        headers: {
-      "Authorization": `Bearer ${sessionStorage.getItem("token")}`,
+      "Authorization": `Bearer ${localStorage.getItem("token")}`,
       
       },
     }).then(res =>{
@@ -151,7 +151,7 @@ function HomeScreenfunct(props) {
   };
    const handleBankMenuOpen = (event) => {
 
-        if(sessionStorage.getItem("bankings")==="true"){
+        if(localStorage.getItem("bankings")==="true"){
           setAnchorEl2(event.currentTarget);
 
     }
@@ -182,17 +182,17 @@ function HomeScreenfunct(props) {
     setMobileMoreAnchorEl(null);
   };
      const handleBid = () => {
-      sessionStorage.setItem("bankings",false)
+      localStorage.setItem("bankings",false)
       setBids(old =>[...old,selectedPromo]);
       console.log(bids)
-      var databid={userID:sessionStorage.getItem("userId"),id:selectedPromoId}
+      var databid={userID:localStorage.getItem("userId"),id:selectedPromoId}
       console.log(databid)
        axios({
       method: 'POST',
      url: `https://longa-money.herokuapp.com/api/bid`, // First page at 0
      data:databid,
        headers: {
-      "Authorization": `Bearer ${sessionStorage.getItem("token")}`,
+      "Authorization": `Bearer ${localStorage.getItem("token")}`,
       
       },
     }).then(res =>{
@@ -391,7 +391,7 @@ function HomeScreenfunct(props) {
                          </button>
                       </ListItemIcon>
                       <ListItemIcon>
-                        <button onClick={handleBankMenuOpen} className={item.bidders.includes(sessionStorage.getItem("userId")) || bids.includes(selectedPromo)?'buttonsexpandgreen':"buttonsexpandred"}>
+                        <button onClick={handleBankMenuOpen} className={item.bidders.includes(localStorage.getItem("userId")) || bids.includes(selectedPromo)?'buttonsexpandgreen':"buttonsexpandred"}>
                          Bid
                         </button>
                       </ListItemIcon>
@@ -408,7 +408,7 @@ function HomeScreenfunct(props) {
                        <button onClick={handleShareMenuOpen} className="buttonsexpandblue"  >
                            Share
                          </button>
-                         <button onClick={handleBankMenuOpen} className={item.bidders.includes(sessionStorage.getItem("userId")) || bids.includes(selectedPromo)?'buttonsexpandgreen':"buttonsexpandred"}>
+                         <button onClick={handleBankMenuOpen} className={item.bidders.includes(localStorage.getItem("userId")) || bids.includes(selectedPromo)?'buttonsexpandgreen':"buttonsexpandred"}>
                          Bid
                         </button>
                       </div>
@@ -525,7 +525,7 @@ function HomeScreenfunct(props) {
       method: 'GET',
      url: `https://longa-money.herokuapp.com/api/campaigns`, // First page at 0
        headers: {
-      "Authorization": `Bearer ${sessionStorage.getItem("token")}`,
+      "Authorization": `Bearer ${localStorage.getItem("token")}`,
       
       },
     }).then(res =>{

@@ -18,7 +18,6 @@ class Sidebar extends React.Component {
   }
   componentWillMount(){
     localStorage.clear();
-    sessionStorage.clear();
   }
   handleChange = (e) => {
     e.preventDefault();
@@ -38,19 +37,23 @@ class Sidebar extends React.Component {
       url: `https://longa-money.herokuapp.com/api/user/login`,
       data: user,
       }).then((res) => {
-      sessionStorage.setItem('token',res.data['token']);
+      localStorage.setItem('token',res.data['token']);
       var user=res.data['user'];
       var banking=user['bankingDetails'];
       banking=banking.accountNumber;
       banking=banking==="";
      sessionStorage.setItem('value',0);
-      sessionStorage.setItem('name',user['name']);
-      sessionStorage.setItem('bankings',banking);
-      sessionStorage.setItem('surname',user['surname']);
-      sessionStorage.setItem('image',user['image']);
-      sessionStorage.setItem('userId',user['_id']);
-      window.open("home", "_self");
-         
+      localStorage.setItem('name',user['name']);
+      localStorage.setItem('bankings',banking);
+      localStorage.setItem('surname',user['surname']);
+      localStorage.setItem('image',user['image']);
+      localStorage.setItem('userId',user['_id']);
+   if(localStorage.getItem("skip") ==="true"){
+         window.open("home", "_self");
+      }
+      else{
+        window.open("linksocial", "_self");
+      }         
       }).catch((e) => {
                  console.log(e);
                     this.setState({error: true });

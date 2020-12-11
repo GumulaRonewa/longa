@@ -18,8 +18,8 @@ function  Post(props){
     const form = new FormData();
        setBtn("Posting")
 
-    form.append("name", sessionStorage.getItem("name"));
-    form.append("surname", sessionStorage.getItem("surname"));
+    form.append("name", localStorage.getItem("name"));
+    form.append("surname", localStorage.getItem("surname"));
     form.append("text", text);
      var send= file===null ?fileV:file;
         form.append("file", send);
@@ -29,7 +29,7 @@ function  Post(props){
       url: `https://longa-money.herokuapp.com/api/feed`, // First page at 0
       data: form,
       headers: {
-        Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
     }).then((res) => {
       console.log(res);

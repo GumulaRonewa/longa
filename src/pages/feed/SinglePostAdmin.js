@@ -42,18 +42,18 @@ function Comment(props) {
     const form = new FormData();
     
 
-    form.append("userID", localStorage.getItem("userId"));
+    form.append("userID", sessionStorage.getItem("userId"));
     form.append("postID", props.id);
     form.append("text", text);
-        form.append("name", localStorage.getItem("name"));
-        form.append("surname", localStorage.getItem("surname") );
+        form.append("name", sessionStorage.getItem("name"));
+        form.append("surname", sessionStorage.getItem("surname") );
 
     axios({
       method: "POST",
       url: `https://longa-money.herokuapp.com/api/feed/comment`, // First page at 0
       data: form,
       headers: {
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
+        Authorization: `Bearer ${sessionStorage.getItem("token")}`,
       },
     }).then((res) => {
       console.log(res);
@@ -88,56 +88,22 @@ function Comment(props) {
     </Paper>
   );
 }
-const SinglePost = (prop) => {
+const SinglePostAdmin = (prop) => {
   const post=prop.post;
   var image=typeof post.url==='undefined' ;
 
  var id=false;
-  const [liked, setLike]=React.useState(post.likes.includes(localStorage.getItem("userId")));
  image =!image;
   if(image){
     id= post.url.slice(post.url.length - 4)
     id=id===".mp4";
 
   }
-      const [total, setTotal] = React.useState(post.likes.length);
+      const [total, setTotal] = React.useState(0);
   const [rep, setviewRep] = React.useState(false);
 
 const handleClick = () => {
-   var databit = {
-      userID: localStorage.getItem("userId"),
-      postID: post._id,
-    };
-    if (liked) {
-      setTotal(total-1);
-      setLike(false);
-      axios({
-        method: "POST",
-        url: `https://longa-money.herokuapp.com/api/feed/like`, // First page at 0
-        data: databit,
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      }).then((res) => {
-        console.log(res.data);
-      });
-
-     
-    } else {
-      setTotal(total+1);
-       setLike(true);
-       axios({
-        method: "POST",
-        url: `https://longa-money.herokuapp.com/api/feed/like`, // First page at 0
-        data: databit,
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      }).then((res) => {
-        console.log(res.data);
-      });
-      
-    }
+  
   };
   const handleComment = (e) => {
     setviewRep(!rep);
@@ -154,12 +120,12 @@ const handleClick = () => {
             />
           </span>
           <span class="username">
-            <a href="javascript:;">{post.username}</a> <small></small>
+            <a href="javascript:;">Longa Money Admin</a> <small></small>
           </span>
         </div>
         <div>
           <p>
-            {post.text}
+            {post.content}
           </p>
            {image && !id &&
 
@@ -182,7 +148,7 @@ const handleClick = () => {
         </div>
         <div class="timeline-likes">
           <div class="stats-right">
-            <span class="stats-text">{post.comments.length} Comments</span>
+            <span class="stats-text">0 Comments</span>
           </div>
           <div class="stats">
             <span class="fa-stack fa-fw stats-icon">
@@ -190,14 +156,14 @@ const handleClick = () => {
               <i class="fa fa-heart fa-stack-1x fa-inverse t-plus-1"></i>
             </span>
 
-            <span class="stats-total">{total} </span>
+            <span class="stats-total">{total}</span>
           </div>
         </div>
         <div class="timeline-footer">
           <a href="javascript:;" onClick={handleClick} class="m-r-15 text-inverse-lighter">
-            <i style={{color:liked?"blue":""}} class="fa fa-thumbs-up fa-fw fa-lg m-r-3"></i> Like
+            <i  class="fa fa-thumbs-up fa-fw fa-lg m-r-3"></i> Like
           </a>
-          <a href="javascript:;" onClick={handleComment} class="m-r-15 text-inverse-lighter">
+          <a href="javascript:;"  class="m-r-15 text-inverse-lighter">
             <i class="fa fa-comments fa-fw fa-lg m-r-3"></i> Comment
           </a>
          
@@ -238,4 +204,4 @@ const handleClick = () => {
   );
 };
 
-export default SinglePost;
+export default SinglePostAdmin;

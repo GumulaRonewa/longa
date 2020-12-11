@@ -20,12 +20,12 @@ export default class WalletScreen extends Component {
     };
   }
  componentDidMount(){
-            var data={userID:sessionStorage.getItem("userId")}
+            var data={userID:localStorage.getItem("userId")}
  axios({
       method: 'GET',
      url: `https://longa-money.herokuapp.com/api/feed`, // First page at 0
        headers: {
-      "Authorization": `Bearer ${sessionStorage.getItem("token")}`,
+      "Authorization": `Bearer ${localStorage.getItem("token")}`,
       
       },
     }).then(res =>{
@@ -36,7 +36,7 @@ export default class WalletScreen extends Component {
      url: `https://longa-money.herokuapp.com/api/u/wallet/jobs`, // First page at 0
        data:data,
        headers: {
-      "Authorization": `Bearer ${sessionStorage.getItem("token")}`,
+      "Authorization": `Bearer ${localStorage.getItem("token")}`,
       
       },
     }).then(res =>{

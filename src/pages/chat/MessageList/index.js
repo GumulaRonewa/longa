@@ -18,7 +18,7 @@ export default function MessageList(props) {
 
   
   const getMessages = () => {
-             var data={userID:sessionStorage.getItem("userId")}
+             var data={userID:localStorage.getItem("userId")}
 
      axios({
          method: 'POST',
@@ -26,7 +26,7 @@ export default function MessageList(props) {
            data:data,
 
        headers: {
-      "Authorization": `Bearer ${sessionStorage.getItem("token")}`,
+      "Authorization": `Bearer ${localStorage.getItem("token")}`,
       
       },
     }).then(res =>{

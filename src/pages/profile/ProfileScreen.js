@@ -96,16 +96,16 @@ const StyledButton2 = withStyles({
               var profile=props.profile;
           const [file, setfile] = React.useState(null);
           const [image, setimage] = React.useState(profile.image);
-          console.log(profile.image)
+          console.log(props)
           const onSub=()=>{
-            var data={bio:bio,userID:sessionStorage.getItem("userId")}
+            var data={bio:bio,userID:localStorage.getItem("userId")}
           console.log(data)
               axios({
       method: 'POST',
      url: `https://longa-money.herokuapp.com/api/u/settings/bio`, // First page at 0
      data:data,
        headers: {
-      "Authorization": `Bearer ${sessionStorage.getItem("token")}`,
+      "Authorization": `Bearer ${localStorage.getItem("token")}`,
       
       },
     }).then(res =>{
@@ -119,7 +119,7 @@ const StyledButton2 = withStyles({
                const onUpload=()=>{
                                 const form= new FormData();
 
-                form.append("userID",sessionStorage.getItem("userId"));
+                form.append("userID",localStorage.getItem("userId"));
       form.append("image",file);
           
               axios({
@@ -127,7 +127,7 @@ const StyledButton2 = withStyles({
      url: `https://longa-money.herokuapp.com/api/u/profile-pic`, // First page at 0
      data:form,
        headers: {
-      "Authorization": `Bearer ${sessionStorage.getItem("token")}`,
+      "Authorization": `Bearer ${localStorage.getItem("token")}`,
       
       },
     }).then(res =>{
@@ -367,21 +367,7 @@ const StyledButton2 = withStyles({
   
  }
  const tileData = [
-   {
-      img: 'https://pm1.narvii.com/6424/71de2b7b9611f0522cc2d88a04609cfdc0bc5936_00.jpg',
-      title: 'Image',
-      author: 'Twitter',
-    },
-     {
-      img: 'https://pm1.narvii.com/6424/71de2b7b9611f0522cc2d88a04609cfdc0bc5936_00.jpg',
-      title: 'Image',
-      author: 'Instagram',
-    },
-     {
-      img: 'https://pm1.narvii.com/6424/71de2b7b9611f0522cc2d88a04609cfdc0bc5936_00.jpg',
-      title: 'Image',
-      author: 'Instagram',
-    },
+
 ]
 
 
@@ -460,8 +446,7 @@ function TitlebarGridList(props) {
     };
   }
   componentWillMount() {
-                var data={userID:sessionStorage.getItem("userId")}
-        console.log(data);
+                var data={userID:localStorage.getItem("userId")}
 
      axios({
          method: 'POST',
@@ -469,11 +454,10 @@ function TitlebarGridList(props) {
            data:data,
 
        headers: {
-      "Authorization": `Bearer ${sessionStorage.getItem("token")}`,
+      "Authorization": `Bearer ${localStorage.getItem("token")}`,
       
       },
     }).then(res =>{
-      console.log(res.data)
         this.setState({details:res.data})
     }).catch((e) => {
         console.log(e);
