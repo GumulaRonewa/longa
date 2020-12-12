@@ -16,12 +16,12 @@ function Sidebar () {
     console.log(data);
 
     window.open(
-      `https://longa-money.herokuapp.com/api/i/auth/insta/${data.userID}`,
+      `https://longa-money.herokuapp.com/api/socials/insta/auth/insta/${data.userID}`,
       "_self"
     );
     // axios({
     //   method: "GET",
-    //   url: `https://longa-money.herokuapp.com/api/i/auth/insta/${data.userID}`, // First page at 0
+    //   url: `https://longa-money.herokuapp.com/api/socials/i/auth/insta/${data.userID}`, // First page at 0
     //   data: data,
     //   headers: {
     //     Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -41,10 +41,10 @@ function Sidebar () {
 
     var data = { userID: localStorage.getItem("userId") };
     console.log(data);
-    window.open(`https://longa-money.herokuapp.com/api/y/auth/yt/${data.userID}`, "_self");
+    window.open(`https://longa-money.herokuapp.com/api/socials/yt/auth/yt/${data.userID}`, "_self");
     // axios({
     //   method: "GET",
-    //   url: `https://longa-money.herokuapp.com/api/y`, // First page at 0
+    //   url: `https://longa-money.herokuapp.com/api/socials/y`, // First page at 0
     //   data: data,
     //   headers: {
     //     Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -64,10 +64,10 @@ function Sidebar () {
     var data = { userID: localStorage.getItem("userId") };
     console.log(data);
 
-    window.open(`https://longa-money.herokuapp.com/api/t/auth/tw/${data.userID}`, "_self");
+    window.open(`https://longa-money.herokuapp.com/api/socials/tw/auth/tw/${data.userID}`, "_self");
     // axios({
     //   method: "GET",
-    //   url: `https://longa-money.herokuapp.com/api/t/auth/twitter/${data.userID}`, // First page at 0
+    //   url: `https://longa-money.herokuapp.com/api/socials/t/auth/twitter/${data.userID}`, // First page at 0
     //   data: data,
     //   headers: {
     //     Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -87,10 +87,10 @@ function Sidebar () {
     console.log(data);
   localStorage.setItem('skip',"true");
 
-    window.open(`https://longa-money.herokuapp.com/api/fb/auth/fb/${data.userID}`, "_self");
+    window.open(`https://longa-money.herokuapp.com/api/socials/fb/auth/fb/${data.userID}`, "_self");
     // axios({
     //   method: "POST",
-    //   url: `https://longa-money.herokuapp.com/api/fb`, // First page at 0
+    //   url: `https://longa-money.herokuapp.com/api/socials/fb`, // First page at 0
     //   data: data,
     //   headers: {
     //     Authorization: `Bearer ${localStorage.getItem("token")}`,

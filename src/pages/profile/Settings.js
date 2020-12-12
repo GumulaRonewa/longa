@@ -283,7 +283,7 @@ function Settingsmain(props) {
           component={Link}
           to={"/settings/editdetails"}
         >
-          <PersonOutlineIcon style={{ marginLeft: 5, height: 40, width: 30 }} />
+          <PersonOutlineIcon style={{ color:"black",marginLeft: 5, height: 40, width: 30 }} />
           <ListItemText style={{ marginLeft: 6 }} primary={"Edit Details"} />
         </ListItem>
         <Divider />
@@ -293,7 +293,7 @@ function Settingsmain(props) {
           component={Link}
           to={"/settings/payment"}
         >
-          <CreditCardIcon style={{ marginLeft: 5, height: 40, width: 30 }} />
+          <CreditCardIcon style={{ color:"black",marginLeft: 5, height: 40, width: 30 }} />
           <ListItemText style={{ marginLeft: 6 }} primary={"Payment Method"} />
         </ListItem>
         <Divider />
@@ -323,7 +323,7 @@ function Settingsmain(props) {
           component={Link}
           to={"/settings/help"}
         >
-          <HelpOutlineIcon style={{ marginLeft: 5, height: 40, width: 30 }} />
+          <HelpOutlineIcon style={{ color:"black",marginLeft: 5, height: 40, width: 30 }} />
           <ListItemText style={{ marginLeft: 6 }} primary={"Help"} />
         </ListItem>
         <Divider />
@@ -810,9 +810,14 @@ function EditSocials(props) {
         <IconButton component={Link} onClick={props.handle} to={"/settings"}>
           <ArrowBackIcon />
         </IconButton>
-        <div className={"settingheader"}> Edit Social Media Accounts </div>
+                <div className={"settingheader"}> Edit Social Media Accounts </div>
       </div>
       <Divider style={{ marginTop: 6 }} />
+      <StyledButton style={{ width: "70%" }} onClick={() =>{window.open('/linksocial',"_self")}}>
+              View Linked Accounts
+            </StyledButton>
+      <Divider style={{ marginTop: 6 }} />
+
       {!editTwitter && !editInsta && !editYoutube && (
         <div>
           <ListItem button style={{ width: "85%" }} onClick={handleFacebook}>

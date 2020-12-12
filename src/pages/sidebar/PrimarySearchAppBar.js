@@ -203,7 +203,7 @@ const useStyles = makeStyles((theme) => ({
   return (
     <div>
     <div className={classes.toolbar}>
-      <AppBar position="fixed" style={{backgroundColor:"#121212",borderBottom:"1px solid white"}}>
+      <AppBar position="fixed" style={{backgroundColor:"#0F81C7",borderBottom:"1px solid white"}}>
         <Toolbar position="fixed">
          <div className="hider" >
           <IconButton

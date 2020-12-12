@@ -85,7 +85,7 @@ opacity: 1;
 .chathome{
   display:grid;
   overflow: hidden;
-  background-color: white;
+  background-color: #D3D3D3;
   display: flex;
   flex-direction: column;
   min-height: 100vh;

@@ -6,7 +6,8 @@
 .message .timestamp {
   display: flex;
   justify-content: center;
-  color: #999;
+  color: #D3D3D3
+;
   font-weight: 600;
   font-size: 12px;
   margin: 10px 0px;

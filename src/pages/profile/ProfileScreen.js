@@ -90,14 +90,44 @@ const StyledButton2 = withStyles({
           const [edit, setEdit] = React.useState(false);
           const [edit2, setEdit2] = React.useState(false);
           const [changed, setchanged] = React.useState(false);
+          const [changedB, setchangedB] = React.useState(false);
+          const [twitterhandle, setTwitter] = React.useState('');
           const [buttons, setbutton] = React.useState('Edit');
           const [bio, setBio] = React.useState('');
               var outliner = edit ? "outlined" : "standard";
               var profile=props.profile;
           const [file, setfile] = React.useState(null);
           const [image, setimage] = React.useState(profile.image);
-          console.log(props)
+          console.log(profile)
+          var tweet=JSON.stringify(profile.twitter);
+          var youTube=JSON.stringify(profile.youtube);
+         const handleTwiiter=()=>{
+          if(typeof tweet==="string" && tweet.length >5){
+           tweet=tweet.split(",")[1];
+           tweet=tweet.split(":")[1];
+           tweet=tweet.slice(1, -1);
+          // twitterhandle=tweet;
+          window.open(`https://www.twitter.com/${tweet}`)
+
+          }
+        }
+                 const handleYoutube=()=>{
+
+                  if(typeof youTube==="string" &&youTube.length >5){
+                     youTube=youTube.split(",")[0];
+                   youTube=youTube.split(":")[2];
+                   if(typeof youTube ==="undefined"){
+                   }
+                   else{
+                    youTube=youTube.slice(2, -1);
+           window.open(`https://${youTube}`)
+                   }
+/*
+           */
+           }
+           }
           const onSub=()=>{
+             setchangedB(true);
             var data={bio:bio,userID:localStorage.getItem("userId")}
           console.log(data)
               axios({
@@ -201,12 +231,7 @@ const StyledButton2 = withStyles({
      </div>
     </Menu>
   );
-   var dob='';
-               var isNule = typeof profile.dateOfBirth=== 'undefined';
-        if(!isNule){
-
-        }
-            console.log(profile.dateOfBirth)
+   
   	 return(
   	 	    <div>
              <div className="wrapper">
@@ -222,7 +247,7 @@ const StyledButton2 = withStyles({
                   </ListItemIcon>
                </ListItem> 
     <div className="imgages">
-      <Avatar style={{width:200,height:200}} src={!changed?profile.image:image} alt="profile card" />
+      <Avatar style={{width:200,height:200}} src={!changed?profile.image:image} alt="L" />
         {edit2 &&
                         <div className={'rowsz'}>
                        <input
@@ -238,7 +263,7 @@ const StyledButton2 = withStyles({
 
                          }
          <div className="profile-card__name">{profile.name +" " +profile.surname}</div>
-                             <Rating style={{marginLeft:10,marginTop:5}} readOnly value={2} />
+                             <Rating style={{marginTop:5}} readOnly value={profile.rating} />
 
 
     </div>
@@ -251,7 +276,7 @@ const StyledButton2 = withStyles({
         <div style={{marginLeft:10}}>
 
                   <div className={'reach'}>
-                        Reach~
+                        Reach~{profile.reach}
                       </div>
           </div>
       </div>
@@ -260,19 +285,19 @@ const StyledButton2 = withStyles({
        
     <div className="imgages">
         <div className={"rowing"} >
-        <a href="https://twitter.com/" className="profile-card-social__item twitter" target="_blank">
+        <a href={`https://twitter.com/${twitterhandle}`} className="profile-card-social__item twitter" target="_blank">
           <span >
           </span>
         </a>
 
         <a href="https://www.instagram.com/" className="profile-card-social__item instagram" target="_blank">
-          <span className="icon-font">
+          <span className="icon-font" >
            <InstagramIcon style={{ color: pink[300],width:36,height:36}}/>
 
           </span>
         </a>
-       <a href="https://www.instagram.com/" className="profile-card-social__item instagram" target="_blank">
-          <span className="icon-font">
+       <a  className="profile-card-social__item instagram" target="_blank">
+          <span className="icon-font" onClick={handleTwiiter}>
                      <TwitterIcon style={{width:36,height:36,color: blue[500] }}/>
 
           </span>
@@ -281,14 +306,14 @@ const StyledButton2 = withStyles({
       
 
 
-        <a href="https://codepen.io/JavaScriptJunkie" className="profile-card-social__item codepen" target="_blank">
-          <span className="icon-font">
+        <a className="profile-card-social__item codepen" target="_blank">
+          <span onClick={handleYoutube} className="icon-font">
           <YouTubeIcon style={{width:36,height:36,color: red[500] }} />
             
           </span>
         </a>
 
-        <a href="https://Facebook.com.tr/" className="profile-card-social__item link" target="_blank">
+        <a href="https://Facebook.com/" className="profile-card-social__item link" target="_blank">
           <span className="icon-font">
           <FacebookIcon style={{ color: blue[300],width:36,height:36}} />
           </span>
@@ -323,7 +348,7 @@ const StyledButton2 = withStyles({
                                 multiline
 
                                 style={{Color:'black',marginLeft:10,marginRight:10}}
-                                defaultValue={profile.bio}
+                                defaultValue={changedB? bio:profile.bio}
                                 onChange={onBio}
                                 variant={edit?"outlined":"standard"}
                                 rows={4}

@@ -1,7 +1,7 @@
 .profhome{
 	display:grid;
   overflow: hidden;
- background-color: #535353;
+ background-color: #D3D3D3;
 	height: 100vh;
 	width: 100%;
 }
@@ -188,7 +188,7 @@ opacity: 1;
   margin-top: 10px;
   place-items:center;
   font: normal normal normal 15px/16px Lato;
-  width: 110px;
+  width: 160px;
   height: 40px;
 }
 .ident{
@@ -300,11 +300,11 @@ display: flex;
 padding-top: 6px;
 flex-direction: column;
 color: white;
- background-color: #535353;
+ background-color: #D3D3D3;
 opacity: 1;
 }
 .settingshid div{
-  color: white;
+  color: black;
 }
 .biop{
 margin-left: 40px;

@@ -4,6 +4,7 @@
   background: white;
   border-top: 1px solid #eeeef1;
   position: fixed;
+  z-index: 0;
   width: 50%;
   bottom: 0px;
 }

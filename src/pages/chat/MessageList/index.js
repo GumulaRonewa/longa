@@ -114,7 +114,9 @@ image =!image;
          
         />
 
-        <div className="message-list-container">{renderMessages()}</div>
+        <div className="message-list-container">{renderMessages()}
+
+        </div>
 
         <Compose/>
       </div>

@@ -11,7 +11,7 @@ const Container = styled.div`
   width: auto;
   margin-left: 1rem;
   position: relative;
-  padding: 10px 1rem;
+  min-height:100vh;
 `;
 
 const Header = styled.h2`
