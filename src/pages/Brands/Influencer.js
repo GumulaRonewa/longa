@@ -155,7 +155,9 @@ const Form = styled.form`
 
   button.send {
     width: 20%;
-
+ width: 40%;
+     display:grid;
+    place-items:center;
     max-width: 350px;
     min-width: 100px;
     height: 40px;
@@ -174,7 +176,8 @@ const Form = styled.form`
   }
   button.back {
     width: 20%;
-
+     display:grid;
+    place-items:center;
     max-width: 350px;
     min-width: 100px;
     height: 40px;

@@ -112,8 +112,10 @@ const Form = styled.form`
   }
 
   button.continue {
-    width: 20%;
-    max-width: 350px;
+    width: 40%;
+     display:grid;
+    place-items:center;
+    max-width: 450px;
     min-width: 100px;
     height: 40px;
     border: none;
@@ -133,6 +135,8 @@ const Form = styled.form`
     width: 20%;
 
     max-width: 350px;
+    display:grid;
+    place-items:center;
     min-width: 100px;
     height: 40px;
     border: none;

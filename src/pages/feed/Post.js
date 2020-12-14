@@ -35,7 +35,7 @@ function  Post(props){
       console.log(res);
       setText("");
           setBtn("Post")
-
+         props.update(true)
       setfile(null);
       setfileV(null);
     });

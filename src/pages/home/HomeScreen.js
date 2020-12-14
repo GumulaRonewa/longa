@@ -427,7 +427,7 @@ function HomeScreenfunct(props) {
                     </div>
                      <div className={'cardsxc'}>
                       <div className={'cardtext'}> Tasks </div>
-                                                 < div className={'rowx'}>
+                                                 < div className={'rowsz'}>
 
                       <div className={'colic'} style={{marginLeft:-2}}>
                             <FacebookIcon style={{ color: blue[400] ,width:30,height:30}} /> {item.task.facebook}
@@ -436,7 +436,7 @@ function HomeScreenfunct(props) {
                             <InstagramIcon style={{ color: pink[300] ,width:30,height:30 }} />  {item.task.instagram}
                             </div>
                             </div>
-                                                 < div className={'rowx'}>
+                                                 < div className={'rowsz'}>
 
                                       <div className={'colic'}>
                             <YouTubeIcon style={{ color: red[500],width:30,height:30}} />  {item.task.youtube}</div>

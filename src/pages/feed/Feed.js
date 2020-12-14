@@ -22,8 +22,10 @@ const Header = styled.h2`
 function Feed(props){
     const [post, setPost] = React.useState([]);
     const [admin, setAdmin] = React.useState({});
-  
+    const [render, setrender] = React.useState(true);
+   
   React.useEffect(() => {
+    if(render){
     axios({
       method: 'GET',
      url: `https://longa-money.herokuapp.com/api/feed`, // First page at 0
@@ -32,16 +34,23 @@ function Feed(props){
       
       },
     }).then(res =>{
-         setPost(res.data['posts'])
-         setAdmin(res.data['pinned'])
+      setPost([])
+        setPost(res.data['posts'])
+          setAdmin(res.data['pinned'])
+         setrender(false)
     })
+  }
   });
   return (
         <div className={'home'} style={{marginLeft:"1rem"}} >
-      <Post />
+        {!render &&
+              <SinglePost update={setrender} post={admin}/>
+            }
+
+      <Post update={setrender} />
                   {post.map((item)=> (
 
-      <SinglePost post={item}/>
+      <SinglePost update={setrender} post={item}/>
       ))}
     </div>
   );

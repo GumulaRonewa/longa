@@ -7,7 +7,6 @@ import Paper from "@material-ui/core/Paper";
 import InputBase from "@material-ui/core/InputBase";
 import Divider from "@material-ui/core/Divider";
 import IconButton from "@material-ui/core/IconButton";
-import ReactWebMediaPlayer from 'react-web-media-player';
 
 import SendIcon from "@material-ui/icons/Send";
 const useStyles = makeStyles((theme) => ({
@@ -58,6 +57,7 @@ function Comment(props) {
     }).then((res) => {
       console.log(res);
       setText("");
+      props.update(true)
     });
   };
   const handleText = (e) => {
@@ -104,6 +104,7 @@ const SinglePost = (prop) => {
   const [rep, setviewRep] = React.useState(false);
 
 const handleClick = () => {
+//prop.update(true)
    var databit = {
       userID: localStorage.getItem("userId"),
       postID: post._id,
@@ -213,7 +214,7 @@ const handleClick = () => {
                 }
                 alt="L"
               />
-              <Comment id={post._id} />
+              <Comment id={post._id}  update={prop.update}/>
               
             </div>
                       <Divider style={{marginTop:5}} />
