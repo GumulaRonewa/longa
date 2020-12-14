@@ -116,7 +116,7 @@ const Form = styled.form`
      display:grid;
     place-items:center;
     max-width: 450px;
-    min-width: 100px;
+    min-width: 160px;
     height: 40px;
     border: none;
     margin: 1rem 0;
