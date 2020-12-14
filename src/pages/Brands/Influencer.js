@@ -154,12 +154,11 @@ const Form = styled.form`
   }
 
   button.send {
-    width: 20%;
- width: 40%;
+ width: 30%;
      display:grid;
     place-items:center;
     max-width: 350px;
-    min-width: 100px;
+    min-width: 150px;
     height: 40px;
     border: none;
     margin: 1rem 0;
@@ -182,7 +181,7 @@ const Form = styled.form`
     min-width: 100px;
     height: 40px;
     border: none;
-    margin: 1rem 0;
+    margin: 0.6rem 0;
     box-shadow: 0px 14px 9px -15px rgba(0, 0, 0, 0.25);
     border-radius: 8px;
     background-color: #0f81c7;
