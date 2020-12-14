@@ -1,8 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import Linked from './pages/home/Linked'
-import Welcome from './pages/home/Welcome'
+
 import * as serviceWorker from './serviceWorker';
 import FinalRun from './pages/sidebar/FinalRun'
 

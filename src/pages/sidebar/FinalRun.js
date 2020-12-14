@@ -5,11 +5,8 @@ import Main from "./Main";
 import { Switch, Route, Link, BrowserRouter } from "react-router-dom";
 import PrimarySearchAppBar from './PrimarySearchAppBar'
 
-import Reset from '../login/Reset'
 import Forgot from '../login/Forgot'
 import AboutUs from '../login/AboutUs'
-import Privacy from '../login/Privacy'
-import Agreement from '../login/Agreement'
 import Navbar from "../Navbar";
 import Hero from "../Hero";
 import WelcomeBrand from '../home/WelcomeBrand'
@@ -67,12 +64,10 @@ function FinalRun1(){
 
          <Route path="/registerbrands" component={Brands} />
          <Route exact path="/register" component={SignUp} />
-         <Route exact path="/privacy" component={Privacy} />
-         <Route exact path="/useragreement" component={Agreement} />
+        
           <Route exact path="/aboutus" component={AboutUs} />
           <Route exact path="/linksocial" component={Socials} />
           <Route exact path="/forgot" component={Forgot} />
-          <Route exact path="/Reset" component={Reset} />
           <Route  path="/" component={Run} />
         
 

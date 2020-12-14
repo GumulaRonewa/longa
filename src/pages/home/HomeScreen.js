@@ -9,7 +9,6 @@ import clsx from 'clsx';
 import { makeStyles } from "@material-ui/core/styles";
 import ListItemText from "@material-ui/core/ListItemText";
 import MonetizationOnIcon from '@material-ui/icons/MonetizationOn';
-import PeopleIcon from '@material-ui/icons/People';
 import Menu from '@material-ui/core/Menu';
  import MenuItem from '@material-ui/core/MenuItem';
 import axios from "axios";
@@ -23,7 +22,6 @@ import YouTubeIcon from '@material-ui/icons/YouTube';
 import InstagramIcon from '@material-ui/icons/Instagram';
 import { red, pink, blue } from '@material-ui/core/colors';
 import FacebookIcon from '@material-ui/icons/Facebook';
-import DirectionsRunIcon from '@material-ui/icons/DirectionsRun';
 import circle from '../../images/circle.svg'
 import GroupIcon from '@material-ui/icons/Group';
 import ScheduleIcon from '@material-ui/icons/Schedule';

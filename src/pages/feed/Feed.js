@@ -4,6 +4,7 @@ import styled from "styled-components";
 import axios from "axios";
 
 import Post from "./Post";
+import '../home/home.css';
 
 import SinglePost from "./SinglePost";
  import SinglePostAdmin from "./SinglePostAdmin"
@@ -36,14 +37,13 @@ function Feed(props){
     })
   });
   return (
-    <Container>
-     <SinglePostAdmin post={admin} />
+        <div className={'home'} style={{marginLeft:"1rem"}} >
       <Post />
                   {post.map((item)=> (
 
       <SinglePost post={item}/>
       ))}
-    </Container>
+    </div>
   );
 };
 

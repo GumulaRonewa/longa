@@ -93,7 +93,7 @@ body {
 .sidebar2 ul li a {
   display: flex;
   text-decoration: none;
-  color: white;
+  color: black;
   padding: 18px 35px;
   font-weight: 700;
   font-size: 18px;
